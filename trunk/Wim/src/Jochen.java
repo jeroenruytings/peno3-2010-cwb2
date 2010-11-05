@@ -2,7 +2,7 @@
 public class Jochen {
 
 	public Jochen(){
-		System.out.println("P&O cw is echt veel meer werk dan andere peno's !");
+		System.out.println("P&O cw is  een peno   !");
 	}
 	
     public void printMethode()
