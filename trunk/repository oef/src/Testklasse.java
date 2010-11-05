@@ -12,5 +12,10 @@ public class Testklasse {
 		{
 			System.out.println("Hello World");
 		}
+		
+		public void PrintOnderaan()
+		{
+			System.out.println("Hoi Shana");
+		}
 
 }
