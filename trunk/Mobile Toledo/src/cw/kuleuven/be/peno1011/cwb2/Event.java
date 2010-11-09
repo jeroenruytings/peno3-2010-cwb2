@@ -1,9 +1,12 @@
 package cw.kuleuven.be.peno1011.cwb2;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Event {
 	
+	private Calendar calendar = Calendar.getInstance();
+	private Date date;
 	private String description;
 	private Date startDate;
 	private Date stopDate;
@@ -26,16 +29,18 @@ public class Event {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(int year, int month, int day, int hourOfDay, int minute) {
+		calendar.set(year, month, day, hourOfDay, minute);
+		this.startDate = calendar.getTime();
 	}
 
 	public Date getStopDate() {
 		return stopDate;
 	}
 
-	public void setStopDate(Date stopDate) {
-		this.stopDate = stopDate;
+	public void setStopDate(int year, int month, int day, int hourOfDay, int minute) {
+		calendar.set(year, month, day, hourOfDay, minute);
+		this.startDate = calendar.getTime();
 	}
 
 	public Location getPlace() {
