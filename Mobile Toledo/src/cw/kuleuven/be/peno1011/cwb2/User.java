@@ -16,9 +16,9 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-		this.isStudent = isStudent;
+		setStudent(isStudent);
 		this.birthDate = birthDate;
-		this.isp = isp;
+		setIsp(isp);
 	}
 
 	public String getPassword() {
