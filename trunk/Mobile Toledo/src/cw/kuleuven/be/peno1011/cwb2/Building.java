@@ -8,7 +8,7 @@ import java.util.Map;
  * Een gebouw stelt elk type van mogelijke locaties voor.
  * 
  */
-public class Building
+public class Building extends Location
 {
 	private String name;
 	private Map<String,String> openinghours;
@@ -17,19 +17,33 @@ public class Building
 	private boolean isRentable;
 	private ArrayList<Room> rooms;
 	private Location location;
-    
-    /**
-     * 
-     */
-    public Building(String name, Map<String,String> openinghours, String phoneNumber, URL map, boolean isRentable, ArrayList<Room> rooms, Location location) {
-		this.name=name;
-		this.openinghours=openinghours;
-		this.phoneNumber=phoneNumber;
-		this.map=map;
-		this.isRentable=isRentable;
-		this.rooms=rooms;
-		this.location=location;
+
+	/**
+	 * @param locationNr
+	 * @param coordinates
+	 * @param street
+	 * @param number
+	 * @param zipCode
+	 * @param city
+	 * @param name
+	 * @param openinghours
+	 * @param phoneNumber
+	 * @param map
+	 * @param isRentable
+	 * @param rooms
+	 * @param location
+	 */
+	public Building(int locationNr, int[] coordinates, String street,int number, int zipCode, String city, String name,Map<String, String> openinghours, String phoneNumber, URL map,boolean isRentable, ArrayList<Room> rooms, Location location) {
+		super(locationNr, coordinates, street, number, zipCode, city);
+		this.name = name;
+		this.openinghours = openinghours;
+		this.phoneNumber = phoneNumber;
+		this.map = map;
+		this.isRentable = isRentable;
+		this.rooms = rooms;
+		this.location = location;
 	}
+
 	public String getName() {
 		return name;
 	}
