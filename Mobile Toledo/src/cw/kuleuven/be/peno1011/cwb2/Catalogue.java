@@ -4,18 +4,21 @@ import java.util.List;
 
 public class Catalogue {
 	
-	private List <Product> producten;
+	private List <Product> products;
 	
 	
-	public Catalogue(List <Product> producten) 
-	
-	{
-		this.producten = producten;
+	public Catalogue(List <Product> products) {
+		setProducts(products);
 	}
 
-	public List<Product> getCatalogueNr()
-	{
-		return producten;
+	
+	public void setProducts(List <Product> products) {
+		this.products = products;
+	}
+
+
+	public List <Product> getProducts() {
+		return products;
 	}
 	
 }
