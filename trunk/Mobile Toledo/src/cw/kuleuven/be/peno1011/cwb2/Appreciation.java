@@ -7,8 +7,9 @@ public class Appreciation {
 	private int score;
 	private ArrayList<User> users = new ArrayList<User>();
 	
-	public Appreciation() {
-		score = 0;
+	public Appreciation(int score, ArrayList<User> users) {
+		setScore(score);
+		setUsers(users);
 	}
 
 	public int getScore() {
