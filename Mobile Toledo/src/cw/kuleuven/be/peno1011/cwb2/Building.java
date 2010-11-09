@@ -35,13 +35,13 @@ public class Building extends Location
 	 */
 	public Building(int locationNr, int[] coordinates, String street,int number, int zipCode, String city, String name,Map<String, String> openinghours, String phoneNumber, URL map,boolean isRentable, ArrayList<Room> rooms, Location location) {
 		super(locationNr, coordinates, street, number, zipCode, city);
-		this.name = name;
-		this.openinghours = openinghours;
-		this.phoneNumber = phoneNumber;
-		this.map = map;
-		this.isRentable = isRentable;
-		this.rooms = rooms;
-		this.location = location;
+		setName(name);
+		setOpeninghours(openinghours);
+		setPhoneNumber(phoneNumber);
+		setMap(map);
+		setRentable(isRentable);
+		setRooms(rooms);
+		setLocation(location);
 	}
 
 	public String getName() {
