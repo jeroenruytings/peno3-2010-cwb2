@@ -1,6 +1,5 @@
 package cw.kuleuven.be.peno1011.cwb2;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Event {
@@ -12,11 +11,11 @@ public class Event {
 	private String category;
 	
 	public Event(String description, Location place, String category, Date startDate, Date stopDate) {
-		this.description = description;
-		this.startDate = startDate;
-		this.stopDate = stopDate;
-		this.place = place;
-		this.category = category;
+		setDescription(description);
+		setStartDate(startDate);
+		setStopDate(stopDate);
+		setPlace(place);
+		setCategory(category);
 	}
 	
 	public String getDescription() {
