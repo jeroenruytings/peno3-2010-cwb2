@@ -13,8 +13,7 @@ public class Location {
 	private int zipCode;
 	private String city;
 	
-	public Location(int locationNr,int[] coordinates, String street, int number, int zipCode,
-			String city) {
+	public Location(int locationNr,int[] coordinates, String street, int number, int zipCode, String city) {
 		this.locationNr = locationNr;
 		this.coordinates = coordinates;
 		this.street = street;
