@@ -13,11 +13,11 @@ public class Location {
 	private String city;
 	
 	public Location(int[] coordinates, String street, int number, int zipCode, String city) {
-		this.coordinates = coordinates;
-		this.street = street;
-		this.number = number;
-		this.zipCode = zipCode;
-		this.city = city;
+		setCoordinates(coordinates);
+		setStreet(street);
+		setNumber(number);
+		setZipCode(zipCode);
+		setCity(city);
 	}
 	public int[] getCoordinates() {
 		return coordinates;
