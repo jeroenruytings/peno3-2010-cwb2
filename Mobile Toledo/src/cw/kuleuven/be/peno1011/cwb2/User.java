@@ -15,7 +15,7 @@ public class User {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.password = password;
+		setPassword(password);
 		setStudent(isStudent);
 		this.birthDate = birthDate;
 		setIsp(isp);
