@@ -27,8 +27,10 @@ public class Document {
 		this.size = size;
 		this.uploadDate = uploadDate;
 		this.dateLastChanged = dateLastChanged;
-		this.author = author;
+		setAuthor(author);
 		this.title = title;
+		
+		
 	}
 
 
