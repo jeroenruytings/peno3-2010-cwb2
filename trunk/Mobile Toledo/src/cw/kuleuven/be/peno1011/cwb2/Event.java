@@ -5,15 +5,18 @@ import java.util.Date;
 
 public class Event {
 	
-	private Calendar calendar = Calendar.getInstance();
 	private String description;
 	private Date startDate;
 	private Date stopDate;
 	private Location place;
 	private String category;
 	
-	public Event() {
-		
+	public Event(String description, Location place, String category, Date startDate, Date stopDate) {
+		this.description = description;
+		this.startDate = startDate;
+		this.stopDate = stopDate;
+		this.place = place;
+		this.category = category;
 	}
 	
 	public String getDescription() {
@@ -28,18 +31,16 @@ public class Event {
 		return startDate;
 	}
 
-	public void setStartDate(int year, int month, int day, int hourOfDay, int minute) {
-		calendar.set(year, month, day, hourOfDay, minute);
-		this.startDate = calendar.getTime();
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public Date getStopDate() {
 		return stopDate;
 	}
 
-	public void setStopDate(int year, int month, int day, int hourOfDay, int minute) {
-		calendar.set(year, month, day, hourOfDay, minute);
-		this.startDate = calendar.getTime();
+	public void setStopDate(Date stopDate) {
+		this.stopDate = stopDate;
 	}
 
 	public Location getPlace() {
