@@ -16,7 +16,7 @@ public class Schoolbuilding extends Building
 			boolean isRentable, ArrayList<Room> rooms, Location location) 
 	
 	{
-		super(locationNr, coordinates, street, number, zipCode, city, name,
+		super(coordinates, street, number, zipCode, city, name,
 				openinghours, phoneNumber, map, isRentable, rooms, location);
 		this.department = department;
 	}

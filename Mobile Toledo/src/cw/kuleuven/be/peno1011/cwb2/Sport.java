@@ -23,11 +23,11 @@ public class Sport extends Building{
 	 * @param rooms
 	 * @param location
 	 */
-	public Sport(int locationNr, int[] coordinates, String street, int number,
+	public Sport(int[] coordinates, String street, int number,
 			int zipCode, String city, String name,
 			Map<String, String> openinghours, String phoneNumber, URL map,
 			boolean isRentable, ArrayList<Room> rooms, Location location, String discipline) {
-		super(locationNr, coordinates, street, number, zipCode, city, name,
+		super(coordinates, street, number, zipCode, city, name,
 				openinghours, phoneNumber, map, isRentable, rooms, location);
 		this.discipline = discipline;
 	}
