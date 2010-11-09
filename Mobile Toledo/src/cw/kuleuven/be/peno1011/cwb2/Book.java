@@ -13,12 +13,11 @@ public class Book extends Product{
 	 */
 	public Book(String name, int price, String isbn, boolean available, String author, String title, String subject) {
 		super(name, price);
-		this.isbn = isbn;
-		this.available = available;
-		this.author =  author;
-		this.title = title;
-		this.subject = subject;
-		// TODO Auto-generated constructor stub
+		setIsbn(isbn);
+		setAvailable(available);
+		setAuthor(author);
+		setTitle(title);
+		setSubject(subject);
 	}
 	
 	
