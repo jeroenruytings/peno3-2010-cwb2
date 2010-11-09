@@ -13,8 +13,8 @@ public class Lecture extends Event{
 	
 	public Lecture(Room room, Course course, Date startDate, String category, Location place, Date stopDate) {
 		super(category, place, category, startDate, stopDate);
-		this.room = room;
-		this.course = course;
+		setRoom(room);
+		setCourse(course);
 	}
 
 
