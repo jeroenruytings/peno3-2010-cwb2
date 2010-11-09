@@ -6,8 +6,8 @@ public class Product {
 	private int price;
 	
 	public Product(String name, int price){
-		this.name =  name;
-		this.price =  price;
+		setName(name);
+		setPrice(price);
 	}
 	
 	public String getName() {
