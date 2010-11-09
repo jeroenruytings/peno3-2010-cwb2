@@ -3,6 +3,13 @@ package cw.kuleuven.be.peno1011.cwb2;
 import java.net.URL;
 import java.sql.Date;
 
+
+
+
+/**
+ * @author CWB2-1011
+ *
+ */
 public class Document {
 
 	private URL link;
@@ -15,6 +22,18 @@ public class Document {
 	private User author;
 	private String title;
 	
+	
+	/**
+	 * @param link
+	 * @param appreciation
+	 * @param description
+	 * @param type
+	 * @param size
+	 * @param uploadDate
+	 * @param dateLastChanged
+	 * @param author
+	 * @param title
+	 */
 	
 	public Document(URL link, Appreciation appreciation, String description,
 			String type, int size, Date uploadDate, Date dateLastChanged,
