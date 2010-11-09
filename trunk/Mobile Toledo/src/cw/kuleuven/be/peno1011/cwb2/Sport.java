@@ -8,11 +8,30 @@ public class Sport extends Building{
 	
 	private String discipline;
 	
-	public Sport(String name, Map<String,String> openinghours, String phoneNumber, URL map, boolean isRentable, ArrayList<Room> rooms, Location location, String discipline){
-		super(name, openinghours, phoneNumber, map, isRentable, rooms, location);
+	/**
+	 * @param locationNr
+	 * @param coordinates
+	 * @param street
+	 * @param number
+	 * @param zipCode
+	 * @param city
+	 * @param name
+	 * @param openinghours
+	 * @param phoneNumber
+	 * @param map
+	 * @param isRentable
+	 * @param rooms
+	 * @param location
+	 */
+	public Sport(int locationNr, int[] coordinates, String street, int number,
+			int zipCode, String city, String name,
+			Map<String, String> openinghours, String phoneNumber, URL map,
+			boolean isRentable, ArrayList<Room> rooms, Location location, String discipline) {
+		super(locationNr, coordinates, street, number, zipCode, city, name,
+				openinghours, phoneNumber, map, isRentable, rooms, location);
 		this.discipline = discipline;
 	}
-	
+
 	public void setDiscipline(String discipline){
 		this.discipline =  discipline;
 	}
