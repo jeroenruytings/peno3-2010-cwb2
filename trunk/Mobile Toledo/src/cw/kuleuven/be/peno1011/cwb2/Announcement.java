@@ -1,19 +1,19 @@
 package cw.kuleuven.be.peno1011.cwb2;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Announcement {
 	
-	private final Calendar calendar = Calendar.getInstance();
-	private final Date date;
-	private final User user;
+	private Date date;
+	private User user;
 	private String title;
+	private String message;
 	private final Course course;
 	
-	public Announcement(User user, Course course, String title) {
-		 date = calendar.getTime();
-		 this.user = user;
+	public Announcement(User user, Course course, String title, String message) {
+		 setDate(date);
+		 setUser(user);
+		 setMessage(message);
 		 this.course = course;
 		 setTitle(title);
 	}
@@ -25,15 +25,19 @@ public class Announcement {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public Calendar getCalendar() {
-		return calendar;
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
-
+	
 	public Date getDate() {
 		return date;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -42,5 +46,12 @@ public class Announcement {
 		return course;
 	}
 	
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
 	
 }
