@@ -33,8 +33,8 @@ public class Building extends Location
 	 * @param rooms
 	 * @param location
 	 */
-	public Building(int locationNr, int[] coordinates, String street,int number, int zipCode, String city, String name,Map<String, String> openinghours, String phoneNumber, URL map,boolean isRentable, ArrayList<Room> rooms, Location location) {
-		super(locationNr, coordinates, street, number, zipCode, city);
+	public Building(int[] coordinates, String street,int number, int zipCode, String city, String name,Map<String, String> openinghours, String phoneNumber, URL map,boolean isRentable, ArrayList<Room> rooms, Location location) {
+		super(coordinates, street, number, zipCode, city);
 		setName(name);
 		setOpeninghours(openinghours);
 		setPhoneNumber(phoneNumber);

@@ -11,20 +11,20 @@ public class Company extends Building
 	public Company(Catalogue catalogue, String name,
 			Map<String, String> openinghours,String phonenumber,
 			URL groundplan, boolean isRentable, ArrayList<Room> rooms,
-			Location location){
-		super(locationNr, coordinates, street, number, zipCode, city, name,
+			Location location, int[] coordinates, String street,
+			int number, int zipCode, String city, String phoneNumber,
+			URL map){
+		super(coordinates, street, number, zipCode, city, name,
 				openinghours, phoneNumber, map, isRentable, rooms, location);
-		this.catalogue = catalogue;
+		setCatalogue(catalogue);
 	
 	}
 
-	public Catalogue getCatalogue()
-	{
+	public Catalogue getCatalogue(){
 		return catalogue;
 	}
 	
-	public void setCatalogue(Catalogue catalogue)
-	{
+	public void setCatalogue(Catalogue catalogue){
 		this.catalogue = catalogue;
 	}
 }
