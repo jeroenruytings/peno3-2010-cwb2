@@ -2,21 +2,25 @@ package cw.kuleuven.be.peno1011.cwb2;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 
 public class Schoolbuilding extends Building
 {
 	private String department;
 	
-	public Schoolbuilding(String department, String name, HashMap <String,String> openinghours,String phonenumber, URL groundplan, boolean isRentable, ArrayList<Room> rooms, Location location)
+	
+	public Schoolbuilding(String department, int locationNr, int[] coordinates, String street,
+			int number, int zipCode, String city, String name,
+			Map<String, String> openinghours, String phoneNumber, URL map,
+			boolean isRentable, ArrayList<Room> rooms, Location location) 
+	
 	{
-			super(name, openinghours, phonenumber, groundplan, isRentable, rooms, location);
-			this.department = department;
+		super(locationNr, coordinates, street, number, zipCode, city, name,
+				openinghours, phoneNumber, map, isRentable, rooms, location);
+		this.department = department;
 	}
-			
-	
-	
+
 	public String getDepartment()
 	{
 		return department;		
