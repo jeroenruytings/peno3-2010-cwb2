@@ -21,14 +21,14 @@ public class Document {
 			User author, String title) {
 		
 		setLink(link);
-		this.appreciation = appreciation;
-		this.Description = description;
-		this.type = type;
-		this.size = size;
-		this.uploadDate = uploadDate;
-		this.dateLastChanged = dateLastChanged;
+		setAppreciation(appreciation);
+		setDescription(description);
+		setType(type);
+		setSize(size);
+		setUploadDate(uploadDate);
+		setDateLastChanged(dateLastChanged);
 		setAuthor(author);
-		this.title = title;
+		setTitle(title);
 		
 		
 	}
