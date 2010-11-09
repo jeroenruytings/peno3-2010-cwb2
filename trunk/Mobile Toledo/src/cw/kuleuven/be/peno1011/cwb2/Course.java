@@ -40,5 +40,29 @@ public class Course {
 	public String getAcademicYear() {
 		return academicYear;
 	}
+
+	public void setLectures(ArrayList<Lecture> lectures) {
+		this.lectures = lectures;
+	}
+
+	public ArrayList<Lecture> getLectures() {
+		return lectures;
+	}
+
+	public void setDocuments(ArrayList<Document> documents) {
+		this.documents = documents;
+	}
+
+	public ArrayList<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setAnnouncements(ArrayList<Announcement> announcements) {
+		this.announcements = announcements;
+	}
+
+	public ArrayList<Announcement> getAnnouncements() {
+		return announcements;
+	}
 	
 }
