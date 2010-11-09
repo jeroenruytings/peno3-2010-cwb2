@@ -11,12 +11,14 @@ public class Room {
 	private String accomodation;
 	private Array responsibles;
 	
+	
 	public Room(int[] coordinates, String function, String accomodation,
 			Array responsibles) {
-		this.coordinates = coordinates;
-		this.function = function;
-		this.accomodation = accomodation;
-		this.responsibles = responsibles;
+		
+		setCoordinates(coordinates);
+		setFunction(function);
+		setAccomodation(accomodation);
+		setResponsibles(responsibles);
 	}
 
 	
