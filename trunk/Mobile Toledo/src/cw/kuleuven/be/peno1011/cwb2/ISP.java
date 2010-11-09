@@ -1,5 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2;
 
+import java.util.ArrayList;
+
 public class ISP {
 	private ArrayList<Course> courses;
 	private String group;
