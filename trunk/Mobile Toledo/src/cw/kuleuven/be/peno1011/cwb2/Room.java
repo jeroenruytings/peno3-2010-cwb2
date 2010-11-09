@@ -4,8 +4,17 @@ import java.lang.reflect.Array;
 
 
 
+
+/**
+ * @author CWB2-1011
+ * 
+ *
+ */
 public class Room {
 
+	
+	
+	
 	private  int[] coordinates = new int [2];
 	private String function;
 	private String accomodation;
