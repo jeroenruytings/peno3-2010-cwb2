@@ -6,7 +6,6 @@ package cw.kuleuven.be.peno1011.cwb2;
  * 
  */
 public class Location {
-	private int locationNr;
 	private int[] coordinates = new int[2];
 	private String street;
 	private int number;
@@ -14,7 +13,6 @@ public class Location {
 	private String city;
 	
 	public Location(int locationNr,int[] coordinates, String street, int number, int zipCode, String city) {
-		this.locationNr = locationNr;
 		this.coordinates = coordinates;
 		this.street = street;
 		this.number = number;
