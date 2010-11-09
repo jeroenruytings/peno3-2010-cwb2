@@ -6,7 +6,6 @@ import java.util.Date;
 public class Event {
 	
 	private Calendar calendar = Calendar.getInstance();
-	private Date date;
 	private String description;
 	private Date startDate;
 	private Date stopDate;
