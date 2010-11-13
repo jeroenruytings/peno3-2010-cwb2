@@ -1,4 +1,4 @@
-package cw.kuleuven.be.peno1011.cwb2;
+package cw.kuleuven.be.peno1011.cwb2.model;
 
 public class Book extends Product{
 	
