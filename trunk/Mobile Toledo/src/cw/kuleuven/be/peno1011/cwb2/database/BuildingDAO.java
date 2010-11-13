@@ -1,4 +1,6 @@
-package cw.kuleuven.be.peno1011.cwb2;
+package cw.kuleuven.be.peno1011.cwb2.database;
+
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
 
 public class BuildingDAO {
 	

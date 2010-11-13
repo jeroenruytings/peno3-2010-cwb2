@@ -1,9 +1,8 @@
-package cw.kuleuven.be.peno1011.cwb2;
+package cw.kuleuven.be.peno1011.cwb2.model;
 
 import java.util.ArrayList;
 
 public class Course {
-	
 	private final String courseName;
 	private final String courseCode;
 	private User prof;
