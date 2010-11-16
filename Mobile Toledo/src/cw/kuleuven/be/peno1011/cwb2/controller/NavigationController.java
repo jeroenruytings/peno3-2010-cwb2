@@ -1,40 +1,55 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
-//import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
-
+import cw.kuleuven.be.peno1011.cwb2.model.User;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Bundle;
 
 public class NavigationController {
-	
 	private static NavigationController navigationController;
-	private Location location;
+	private User user;
 	private LocationManager locationManager;
+	private LocationListener listener;
 	
-	private NavigationController() {
-		
+	private NavigationController(User user) {
+		this.user=user;
 	}
-	
-	public static NavigationController getInstance() {
+
+	public static NavigationController getInstance(User user) {
 		if (navigationController == null) {
-			navigationController = new NavigationController();
+			navigationController = new NavigationController(user);
 		}
 		return navigationController;
 	}
-	public void setLocation()
-	{
-		location = locationManager.getLastKnownLocation("xyz");
+	private void setLocation(){
+		user.setLocation(locationManager.getLastKnownLocation("xyz"));
 	}
-	public Location getLocation()
-	{
-		return location;
+	public void startUpdating(){
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
+
 	}
-//	public void drawRoute(Location location) {
-//		int[] locCoordinates = location.getCoordinates();
-//		int X=locCoordinates[1];
-//		int Y=locCoordinates[2];
-//		
-//	}
+	class Listener implements LocationListener {
+
+		public void onLocationChanged(Location location) {
+			NavigationController.this.setLocation();
+		}
+
+		public void onProviderDisabled(String provider) {
+			// TODO		
+		}
+
+		public void onProviderEnabled(String provider) {
+			// TODO		
+		}
+
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// TODO
+		}
+	}
+    public void stopUpdating(){
+    	locationManager.removeUpdates(listener);
+    }
 	
 
 }
