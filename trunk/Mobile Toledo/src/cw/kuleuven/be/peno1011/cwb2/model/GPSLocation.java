@@ -1,7 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
 import android.location.Location;
-import android.location.LocationManager;
 /**
  * Een locatie op de kaart.
  * 
@@ -12,7 +11,6 @@ public class GPSLocation {
 	private int zipCode;
 	private String city;
 	private Location location;
-	private LocationManager locationManager;
 	
 	public GPSLocation(int[] coordinates, String street, int number, int zipCode, String city) {
 		this.street=street;
