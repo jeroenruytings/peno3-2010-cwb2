@@ -26,7 +26,7 @@ public class Sport extends Building{
 	public Sport(int[] coordinates, String street, int number,
 			int zipCode, String city, String name,
 			Map<String, String> openinghours, String phoneNumber, URL map,
-			boolean isRentable, ArrayList<Room> rooms, Location location, String discipline) {
+			boolean isRentable, ArrayList<Room> rooms, GPSLocation location, String discipline) {
 		super(coordinates, street, number, zipCode, city, name,
 				openinghours, phoneNumber, map, isRentable, rooms, location);
 		this.discipline = discipline;

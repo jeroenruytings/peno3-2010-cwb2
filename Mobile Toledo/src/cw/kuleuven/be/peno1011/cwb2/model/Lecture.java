@@ -11,7 +11,7 @@ public class Lecture extends Event{
 	private ArrayList <Question> questions = new ArrayList<Question>();
 	
 	
-	public Lecture(Room room, Course course, Date startDate, String category, Location place, Date stopDate) {
+	public Lecture(Room room, Course course, Date startDate, String category, GPSLocation place, Date stopDate) {
 		super(category, place, category, startDate, stopDate);
 		setRoom(room);
 		setCourse(course);

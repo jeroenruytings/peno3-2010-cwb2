@@ -7,10 +7,10 @@ public class Event {
 	private String description;
 	private Date startDate;
 	private Date stopDate;
-	private Location place;
+	private GPSLocation place;
 	private String category;
 	
-	public Event(String description, Location place, String category, Date startDate, Date stopDate) {
+	public Event(String description, GPSLocation place, String category, Date startDate, Date stopDate) {
 		setDescription(description);
 		setStartDate(startDate);
 		setStopDate(stopDate);
@@ -42,11 +42,11 @@ public class Event {
 		this.stopDate = stopDate;
 	}
 
-	public Location getPlace() {
+	public GPSLocation getPlace() {
 		return place;
 	}
 
-	public void setPlace(Location place) {
+	public void setPlace(GPSLocation place) {
 		this.place = place;
 	}
 
