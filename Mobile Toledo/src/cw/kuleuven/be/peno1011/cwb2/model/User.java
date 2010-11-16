@@ -1,6 +1,9 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
+
 import java.util.Date;
 
+import android.location.Location;
+import android.location.LocationManager;
 
 public class User {
 	private final String userId;
@@ -10,6 +13,8 @@ public class User {
 	private boolean isStudent;
 	private final Date birthDate;
 	private ISP isp;
+	private Location location;
+	private LocationManager locationManager;
 	
 	public User(String userId, String firstName, String lastName,String password, boolean isStudent, Date birthDate, ISP isp) {
 		this.userId = userId;
@@ -20,7 +25,14 @@ public class User {
 		this.birthDate = birthDate;
 		setIsp(isp);
 	}
-
+	public void setLocation()
+	{
+		location = locationManager.getLastKnownLocation("xyz");
+	}
+	public Location getLocation()
+	{
+		return location;
+	}
 	public String getPassword() {
 		return password;
 	}
