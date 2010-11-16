@@ -11,7 +11,7 @@ public class Company extends Building
 	public Company(Catalogue catalogue, String name,
 			Map<String, String> openinghours,String phonenumber,
 			URL groundplan, boolean isRentable, ArrayList<Room> rooms,
-			Location location, int[] coordinates, String street,
+			GPSLocation location, int[] coordinates, String street,
 			int number, int zipCode, String city, String phoneNumber,
 			URL map){
 		super(coordinates, street, number, zipCode, city, name,
