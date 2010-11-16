@@ -5,6 +5,9 @@ import java.util.Date;
 import android.location.Location;
 import android.location.LocationManager;
 
+import android.location.Location;
+import android.location.LocationManager;
+
 public class User {
 	private final String userId;
 	private final String firstName;
@@ -14,7 +17,6 @@ public class User {
 	private final Date birthDate;
 	private ISP isp;
 	private Location location;
-	private LocationManager locationManager;
 	
 	public User(String userId, String firstName, String lastName,String password, boolean isStudent, Date birthDate, ISP isp) {
 		this.userId = userId;
@@ -25,9 +27,9 @@ public class User {
 		this.birthDate = birthDate;
 		setIsp(isp);
 	}
-	public void setLocation()
+	public void setLocation(Location location)
 	{
-		location = locationManager.getLastKnownLocation("xyz");
+		this.location=location;
 	}
 	public Location getLocation()
 	{
