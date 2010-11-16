@@ -3,10 +3,7 @@ package cw.kuleuven.be.peno1011.cwb2.model;
 import java.util.Date;
 
 import android.location.Location;
-import android.location.LocationManager;
 
-import android.location.Location;
-import android.location.LocationManager;
 
 public class User {
 	private final String userId;
