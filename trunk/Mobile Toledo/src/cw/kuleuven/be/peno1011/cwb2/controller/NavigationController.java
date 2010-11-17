@@ -6,23 +6,26 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+//opmerking: user kan statisch opgeslagen worden in de globale controller,
+//daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
 public class NavigationController {
 	private static NavigationController navigationController;
-	private User user;
+
 	private LocationManager locationManager;
 	private LocationListener listener;
 	
-	private NavigationController(User user) {
-		this.user=user;
+	private NavigationController() {
+		//singleton pattern
 	}
 
-	public static NavigationController getInstance(User user) {
+	public static NavigationController getInstance() {
 		if (navigationController == null) {
-			navigationController = new NavigationController(user);
+			navigationController = new NavigationController();
 		}
 		return navigationController;
 	}
 	private void setLocation(){
+		User user = MainController.getUser();
 		user.setLocation(locationManager.getLastKnownLocation("xyz"));
 	}
 	public void startUpdating(){
