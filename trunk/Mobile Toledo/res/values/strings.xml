@@ -7,4 +7,9 @@
 <string name="login">Log in</string>
 <string name="rememberme">Remember me!</string>
 <string name="quit">Quit</string>
+<string name="mobiletoledo">Welcome to Mobile Toledo! </string>
+<string name="mainmenu">Make a choice...</string>
+<string name="compass">Navigation</string>
+<string name="calendar">Calendar</string>
+<string name="course">Courses</string>
 </resources>
