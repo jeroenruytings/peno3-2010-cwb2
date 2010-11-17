@@ -20,7 +20,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="@string/username" />
-		<EditText android:id="@+id/username"
+		<EditText android:id="@+id/musername"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"/>
@@ -28,7 +28,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="@string/password" />
-		<EditText android:id="@+id/password"
+		<EditText android:id="@+id/mpassword"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
@@ -42,11 +42,13 @@
 	  	<CheckBox android:id="@+id/rememberme"
 	 	android:text="@string/rememberme"
 	 	android:layout_width="wrap_content"
-	 	android:layout_height="wrap_content" android:layout_gravity="left|center_vertical"/>
+	 	android:layout_height="wrap_content"
+	 	android:layout_gravity="left|center_vertical"/>
 		<Button android:id="@+id/login"
 	 	android:text="@string/login"
 	  	android:layout_height="wrap_content"
-	  	android:layout_width="wrap_content" android:layout_gravity="right|center_vertical"/>
+	  	android:layout_width="wrap_content"
+	  	android:layout_gravity="right|center_vertical"/>
 	 </FrameLayout>
   	
 </LinearLayout>
