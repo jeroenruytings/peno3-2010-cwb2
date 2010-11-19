@@ -16,6 +16,8 @@
 <string name="makeannouncement">Make a new announcement</string>
 <string name="message">Message:</string>
 <string name="title">Title:</string>
+<string name="submit">Submit</string>
+<string name="reset">Reset</string>
 <string name="interaction">Interactie</string>
 <string name="ownlocation">Eigen locatie</string>
 </resources>
