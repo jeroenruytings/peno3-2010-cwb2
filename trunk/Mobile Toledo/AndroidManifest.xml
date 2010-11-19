@@ -17,9 +17,15 @@
             </intent-filter>
         </activity>
 
+		
     <uses-library android:name="com.google.android.maps" 
     			  android:required="true"
     			  android:apiKey=""></uses-library>
+<activity android:name=".view.NavigationMenu" android:label="NavigationMenu">
+		<intent-filter>
+			<category android:name="android.intent.category.LAUNCHER"/>
+		</intent-filter>
+</activity>
 </application>
 
 
