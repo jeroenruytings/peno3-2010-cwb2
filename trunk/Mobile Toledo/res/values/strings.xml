@@ -17,4 +17,5 @@
 <string name="message">Message:</string>
 <string name="title">Title:</string>
 <string name="interaction">Interactie</string>
+<string name="ownlocation">Eigen locatie</string>
 </resources>
