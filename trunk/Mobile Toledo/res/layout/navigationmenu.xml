@@ -29,5 +29,5 @@
   android:text="@string/showlocation"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:onClick="showlocation"></Button>
+  android:onClick="showLocation"></Button>
 </LinearLayout>
