@@ -1,12 +1,13 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.view.View.OnClickListener;
+
 
 public class MainMenu extends Activity {
 	
