@@ -21,15 +21,15 @@ public void onCreate(Bundle savedInstanceState)
 {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.navigationmenu);
-	latitudeField = (TextView) findViewById(R.id.unknown01);
-	longitudeField = (TextView) findViewById(R.id.unknown02);
+	latitudeField = (TextView) findViewById(1);
+	longitudeField = (TextView) findViewById(1);
 
 }
 
 public void showLocation(View view)
 {
 	switch (view.getId()) {
-	case R.id.showlocation:
+	case R.id.ownlocation:
 				LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 				Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		
