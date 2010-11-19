@@ -15,13 +15,14 @@ public class CalendarController {
 	 */
 	public CalendarController() {
 		agenda = new Agenda();
-		//TODO/DAO haalt events uit db en steekt ze in de agenda
+		//TODO/DAO haalt de juiste (!) events uit db en steekt ze in de agenda
 	}
 
 
 
 	public void updateCalendar(){ //android kalender updaten, dmv events in agenda
 		ArrayList<Event> events = agenda.getEvents();
-		//TODO/voor elke event gegevens in de android kalender steken
+		//TODO/voor elke event de gegevens in de android kalender steken -> dmv ical object?
+		//alternatief: haal google calendargegevens op
 	}
 }
