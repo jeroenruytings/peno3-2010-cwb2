@@ -67,6 +67,9 @@ public class ViewAnnouncements extends ListActivity {
 
 		  setListAdapter((ListAdapter) new ArrayAdapter<String>(this, R.layout.activity_list_item, COUNTRIES));
 
+		 // String[] announcements = getResources().getStringArray(R.array.announcements_array);
+		  //setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, countries));
+		  
 		  ListView lv = getListView(); 
 		  lv.setTextFilterEnabled(true);
 
