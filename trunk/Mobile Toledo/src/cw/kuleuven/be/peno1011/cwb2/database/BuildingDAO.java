@@ -17,12 +17,12 @@ public class BuildingDAO {
 		}
 		return buildingDAO;
 	}
-	
+	//TO DO
 	public boolean insert(Building building) {
 		boolean inserted=false;
 		return inserted;
 	}
-	
+	//TO DO
 	public boolean delete(Building building) {
 		boolean deleted=false;
 		return deleted;
