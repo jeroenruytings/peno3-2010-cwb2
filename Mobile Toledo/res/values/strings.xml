@@ -12,4 +12,5 @@
 <string name="compass">Navigation</string>
 <string name="calendar">Calendar</string>
 <string name="course">Courses</string>
+<string name="showlocation">Show location!</string>
 </resources>
