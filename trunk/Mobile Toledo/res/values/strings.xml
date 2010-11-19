@@ -13,4 +13,7 @@
 <string name="calendar">Calendar</string>
 <string name="course">Courses</string>
 <string name="showlocation">Show location!</string>
+<string name="makeannouncement">Make a new announcement</string>
+<string name="message">Message:</string>
+<string name="title">Title:</string>
 </resources>
