@@ -5,7 +5,7 @@ import java.util.Date;
 public class Announcement {
 	
 	private Date date;
-	private User user;
+	private User user; //degene die de aankondiging maakte
 	private String title;
 	private String message;
 	private final Course course;
