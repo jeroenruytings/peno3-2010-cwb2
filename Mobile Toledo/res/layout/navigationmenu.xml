@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+<TextView 
+  android:id="@+id/longitude"
   android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
+  android:layout_height="wrap_content"
+  android:text="Longitude: "></TextView>
+  <TextView
+  android:id="@+id/unknown01"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="unknown" ></TextView>
+ <TextView
+  android:id="@+id/latitude"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="latitude: "></TextView>
+  <TextView
+  android:id="@+id/unknown02"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="unknown" ></TextView> 
+  <Button
+  android:id="@+id/showlocation"
+  android:text="@+id/showlocation"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:onClick="showlocation"></Button>
 </LinearLayout>
