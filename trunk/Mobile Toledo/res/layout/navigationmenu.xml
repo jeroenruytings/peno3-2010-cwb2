@@ -26,7 +26,7 @@
   android:text="unknown" ></TextView> 
   <Button
   android:id="@+id/showlocation"
-  android:text="@+id/showlocation"
+  android:text="@string/showlocation"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
   android:onClick="showlocation"></Button>
