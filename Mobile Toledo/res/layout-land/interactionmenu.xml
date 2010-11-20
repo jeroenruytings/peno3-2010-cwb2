@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
+  android:orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
   	<LinearLayout
-	  android:orientation="horizontal"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content">
+	  android:orientation="vertical"
+	  android:layout_width="wrap_content"
+	  android:layout_height="fill_parent">
 	 <ImageButton android:id="@+id/makeannouncementbutton"
 	 	android:src="@drawable/makeannouncementbutton"
 	  	android:layout_width="wrap_content"
@@ -23,9 +23,9 @@
 	</LinearLayout>  
 	
 	<LinearLayout
-	  android:orientation="horizontal"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content">
+	  android:orientation="vertical"
+	  android:layout_width="wrap_content"
+	  android:layout_height="fill_parent">
 	 <ImageButton android:id="@+id/announcementsbutton"
 	 	android:src="@drawable/announcementbutton"
 	  	android:layout_width="wrap_content"
@@ -39,9 +39,9 @@
 	</LinearLayout>  	
 	
 	<LinearLayout
-	  android:orientation="horizontal"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content">  
+	  android:orientation="vertical"
+	  android:layout_width="wrap_content"
+	  android:layout_height="fill_parent">
 	<ImageButton android:id="@+id/questionbutton"
 	    android:src="@drawable/questionbutton"
 	    android:layout_width="wrap_content"
