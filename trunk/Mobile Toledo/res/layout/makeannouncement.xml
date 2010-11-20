@@ -9,6 +9,17 @@
 	  	android:orientation = "vertical"
 	  	android:layout_width="fill_parent"
 	  	android:layout_height="wrap_content">
+	  		<TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dip"
+	        android:text="Melding voor het vak:"/>
+		    <Spinner 
+	        android:id="@+id/courseSpinner"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="true"
+	        android:prompt="@string/course_prompt"/>
 	  		<TextView android:id="@+id/title" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 

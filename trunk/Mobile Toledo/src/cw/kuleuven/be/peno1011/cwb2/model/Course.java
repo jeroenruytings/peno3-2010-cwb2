@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Course {
 	private final String courseName;
@@ -9,7 +10,7 @@ public class Course {
 	private final String academicYear;
 	private ArrayList<Lecture> lectures;
 	private ArrayList<Document> documents;
-	private ArrayList<Announcement> announcements;
+	private LinkedList<Announcement> announcements;
 	
 	
 	public Course(String courseName, String courseCode,
@@ -56,11 +57,7 @@ public class Course {
 		return documents;
 	}
 
-	public void setAnnouncements(ArrayList<Announcement> announcements) {
-		this.announcements = announcements;
-	}
-
-	public ArrayList<Announcement> getAnnouncements() {
+	public LinkedList<Announcement> getAnnouncements() {
 		return announcements;
 	}
 	

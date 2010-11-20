@@ -13,21 +13,31 @@ public class MainMenu extends Activity {
 	
     protected void onCreate(Bundle savedInstanceState) {
 
-	super.onCreate(savedInstanceState);
-    
-    setContentView(R.layout.mainmenu);
-    setTitle(R.string.mainmenu);
-    
-    ImageButton navigationbutton = (ImageButton) findViewById(R.id.compassbutton);
-    navigationbutton.setOnClickListener(new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View view) {
-			Intent intent = new Intent(MainMenu.this,NavigationMenu.class);
-			startActivity(intent);
-			finish();
-		}
-    });
+		super.onCreate(savedInstanceState);
+	    
+	    setContentView(R.layout.mainmenu);
+	    setTitle(R.string.mainmenu);
+	    
+	    ImageButton navigationButton = (ImageButton) findViewById(R.id.compassbutton);
+	    navigationButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(MainMenu.this,NavigationMenu.class);
+				startActivity(intent);
+				finish();
+			}
+	    });
+	    ImageButton interactionButton = (ImageButton) findViewById(R.id.interactionbutton);
+	    interactionButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(MainMenu.this,InteractionMenu.class);
+				startActivity(intent);
+				finish();
+			}
+	    });
     }
     
 }
