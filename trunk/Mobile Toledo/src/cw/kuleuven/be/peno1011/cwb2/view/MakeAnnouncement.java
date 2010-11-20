@@ -22,11 +22,7 @@ public class MakeAnnouncement extends Activity{
 		setContentView(R.layout.makeannouncement);
 	    setTitle(R.string.makeannouncement);
 	    
-	    createWidgets();
-
-	}
-	private void createWidgets(){
-		final List<Course> courses = MainController.getUser().getIsp().getCourses();
+	    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 	    List<String> courseTitles = new ArrayList<String>();
 	    for(int i=0;i<courses.size();i++){
 	    	courseTitles.set(i, courses.get(i).getCourseName());
@@ -62,6 +58,7 @@ public class MakeAnnouncement extends Activity{
             }
 
         });
+
 	}
 	
 }

@@ -10,6 +10,8 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 
 public class InteractionMenu extends Activity{	
+	
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	    
@@ -19,19 +21,24 @@ public class InteractionMenu extends Activity{
 	    ImageButton makeannouncementButton = (ImageButton) findViewById(R.id.makeannouncementbutton);
 	    ImageButton announcementsButton = (ImageButton) findViewById(R.id.announcementsbutton);
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
-	    
-	    if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
+	
+	    //moet nog geimplementeerd worden:
+//    	if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
 	    	makeannouncementButton.setVisibility(View.VISIBLE);
+	    	TextView makeAnnouncementText = (TextView) findViewById(R.id.makeannouncement);
+	    	makeAnnouncementText.setVisibility(View.VISIBLE);
 	    	TextView text = (TextView) findViewById(R.id.questions);
 	    	text.setText(R.string.questionanswering);
-	    }
+//	    }
+
+
 	    
 	    makeannouncementButton.setOnClickListener(new View.OnClickListener() {	
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,MakeAnnouncement.class);
 				startActivity(intent);
-				finish();
+//				finish();
 			}
 	    });
 	    
@@ -41,7 +48,7 @@ public class InteractionMenu extends Activity{
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,ShowAnnouncements.class);
 				startActivity(intent);
-				finish();
+//				finish();
 			}
 	    });
 	    questionButton.setOnClickListener(new View.OnClickListener() {
