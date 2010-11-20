@@ -8,7 +8,7 @@
 <string name="rememberme">Remember me!</string>
 <string name="quit">Quit</string>
 <string name="mobiletoledo">Welcome to Mobile Toledo! </string>
-<string name="mainmenu">Make a choice...</string>
+<string name="mainmenu">Hoofdmenu</string>
 <string name="compass">Navigatie</string>
 <string name="calendar">Kalender</string>
 <string name="course">Vakken</string>
@@ -23,6 +23,6 @@
 <string name="announcements">Aankondigingen bekijken</string>
 <string name="questions">Vragen stellen</string>
 <string name="questionanswering">Vragen beantwoorden</string>
-<string name="interactionmenu">Mogelijke interacties:</string>
+<string name="interactionmenu">Mogelijke interacties</string>
 <string name="course_prompt">Selecteer een vak</string>
 </resources>
