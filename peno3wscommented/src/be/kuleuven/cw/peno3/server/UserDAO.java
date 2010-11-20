@@ -170,8 +170,8 @@ public class UserDAO {
 		return result.toString();
 	}
 
-	// Deze methode 
-	// de parameter userJson is een String volgens de JSON standaard
+	// Deze methode maakt een gebruiker adh
+	// de parameter userJson (is een String volgens de JSON standaard)
 	@POST
 	@Path ("/addUser")
 	@Produces ("application/json")
