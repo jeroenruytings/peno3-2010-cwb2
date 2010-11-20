@@ -22,6 +22,10 @@ public class ClientDAOTest {
 		testListUsers();
 		testaddUserJson();
 	}
+	
+	// methode gaat:
+	//1) een object omzetten naar zijn overeenkomstige JSON String
+	//2) deze JSON String in een postmethode plaatsen en deze uitvoeren
 	private static void testaddUserJson() {
 		try {
 			User newUser = new User();
@@ -33,15 +37,16 @@ public class ClientDAOTest {
 			cred.setUsername("jel");
 			newUser.setCredential(cred);
 			
-			
+			// maak van het object User een String volgens de JSON standaard
 			String jsonuser = new Gson().toJson(newUser);
 			
 			HttpClient client = new HttpClient();
-			
+			// maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
 			PostMethod method = new PostMethod("http://localhost:9876/UserHandler/addUser");
 			method.addParameter("user", jsonuser);
+			// voert de methode ook werkelijk uit en retourneert een onbekend getal
 			int returnCode = client.executeMethod(method);
-
+			// displayt de respone op de postmethode
 			System.out.println(method.getResponseBodyAsString());
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
