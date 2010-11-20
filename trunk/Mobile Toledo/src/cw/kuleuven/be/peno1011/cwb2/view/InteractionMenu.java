@@ -20,11 +20,11 @@ public class InteractionMenu extends Activity{
 	    ImageButton announcementsButton = (ImageButton) findViewById(R.id.announcementsbutton);
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
 	    
-	    if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
-	    	makeannouncementButton.setVisibility(View.VISIBLE);
-	    	TextView text = (TextView) findViewById(R.id.questions);
-	    	text.setText(R.string.questionanswering);
-	    }
+//	    if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
+//	    	makeannouncementButton.setVisibility(View.VISIBLE);
+//	    	TextView text = (TextView) findViewById(R.id.questions);
+//	    	text.setText(R.string.questionanswering);
+//	    }
 	    
 	    makeannouncementButton.setOnClickListener(new View.OnClickListener() {	
 			@Override
