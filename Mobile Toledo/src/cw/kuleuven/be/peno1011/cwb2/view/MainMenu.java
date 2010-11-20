@@ -25,7 +25,6 @@ public class MainMenu extends Activity {
 			public void onClick(View view) {
 				Intent intent = new Intent(MainMenu.this,NavigationMenu.class);
 				startActivity(intent);
-				finish();
 			}
 	    });
 	    ImageButton interactionButton = (ImageButton) findViewById(R.id.interactionbutton);
@@ -35,7 +34,6 @@ public class MainMenu extends Activity {
 			public void onClick(View view) {
 				Intent intent = new Intent(MainMenu.this,InteractionMenu.class);
 				startActivity(intent);
-				finish();
 			}
 	    });
     }
