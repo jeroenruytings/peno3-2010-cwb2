@@ -17,10 +17,10 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 public class InfoController {
 	private User user = MainController.getUser();
 	
-	public Set<Announcement> allAnnouncements(){ //allemaal
+	public List<Announcement> allAnnouncements(){ //allemaal
         ISP isp = user.getIsp();
 		ArrayList<Course> courses = isp.getCourses();
-        Set<Announcement> announcements = new TreeSet<Announcement>();
+        List<Announcement> announcements = new LinkedList<Announcement>();
         for (Course course : courses){
         	announcements.addAll(course.getAnnouncements());
         }
@@ -28,8 +28,8 @@ public class InfoController {
         return announcements;
 	}
 	
-	public Set<Announcement> courseAnnouncements(Course course){ //1vak
-		Set<Announcement> announcements = new TreeSet<Announcement>();
+	public List<Announcement> courseAnnouncements(Course course){ //1vak
+		List<Announcement> announcements = new LinkedList<Announcement>();
 		announcements.addAll(course.getAnnouncements());
 		return announcements;
 	}
