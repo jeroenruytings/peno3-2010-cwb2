@@ -38,7 +38,6 @@ public class InteractionMenu extends Activity{
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,MakeAnnouncement.class);
 				startActivity(intent);
-//				finish();
 			}
 	    });
 	    
@@ -48,7 +47,6 @@ public class InteractionMenu extends Activity{
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,ShowAnnouncements.class);
 				startActivity(intent);
-//				finish();
 			}
 	    });
 	    questionButton.setOnClickListener(new View.OnClickListener() {
