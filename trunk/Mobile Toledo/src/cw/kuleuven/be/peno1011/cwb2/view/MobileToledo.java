@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.LoginController;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 import android.app.Activity;
@@ -46,8 +47,9 @@ public class MobileToledo extends Activity {
     }
 
 	private void login(String username, String password) {
-		if(verifyUsername(username) && verifyPassword(password)){
-			//saveUser();
+		User user = LoginController.getUser(username,password);
+		if(user != null){
+			LoginController.login(user);
 			Intent i = new Intent(this, MainMenu.class);
 	        startActivity(i);
 	        finish();
@@ -61,20 +63,5 @@ public class MobileToledo extends Activity {
 		}
 	}
 
-	private boolean verifyPassword(String password) {
-		// TODO Moet nog gecontroleerd worden
-		return true;
-	}
-
-	private boolean verifyUsername(String username) {
-		// TODO Moet nog gecontroleerd worden
-		return true;
-	}
-	private void saveUser(){
-		//usergegevens uit database halen met dao
-//		MainController.user=user;//user opslaan in de maincontroller, statisch bereikbaar
-	}
-	
-	
 	
 }
