@@ -7,9 +7,12 @@ import android.os.Bundle;
 
 public class NavigationMenu extends Activity{
 	
-	protected void OnCreate(Bundle savedInstanceState){
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.navigationmenu);
+		setTitle(R.string.hello);
+			
 	}
 
 }

@@ -4,23 +4,22 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-  <LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content">
- <ImageButton
-  android:id="@+id/ownlocationbutton"
-  android:src="@drawable/compassbutton"
-  android:text="@string/showlocation"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:onClick="showocation"></ImageButton>
-  <TextView
-  android:id="@+id/ownlocation"
-  android:text="@string/ownlocation"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:layout_gravity="center" 
-  ></TextView>
-  </LinearLayout>
+	  <LinearLayout
+	  android:orientation="horizontal"
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content">
+		 <ImageButton
+		  android:id="@+id/ownlocationbutton"
+		  android:src="@drawable/compassbutton"
+		  android:text="@string/showlocation"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:onClick="showocation"/>
+		  <TextView
+		  android:id="@+id/ownlocation"
+		  android:text="@string/ownlocation"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"/>
+	  </LinearLayout>
   </LinearLayout>
