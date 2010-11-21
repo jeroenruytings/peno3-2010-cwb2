@@ -6,7 +6,7 @@ public class Question {
 	private Lecture lecture;
 	private String message;
 	
-	public Question(User questioner, Lecture lecture String message) {
+	public Question(User questioner, Lecture lecture, String message) {
 		setQuestioner(questioner);
 		setLecture(lecture);
 		setMessage(message);

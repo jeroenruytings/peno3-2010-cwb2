@@ -27,15 +27,15 @@ public class MobileToledo extends Activity {
         setContentView(R.layout.mobiletoledo);
         setTitle(R.string.mobiletoledo);
                 
-//        String oldUsername = LoginController.getInstance().getUsername(MobileToledo.this);
-//        String oldPassword = LoginController.getInstance().getPassword(MobileToledo.this);
-//        
-//        if(oldPassword != null && oldUsername != null){
-//        	EditText mUsername = (EditText) findViewById(R.id.musername);
-//        	EditText mPassword = (EditText) findViewById(R.id.mpassword);
-//        	mUsername.setText(oldUsername);
-//        	mPassword.setText(oldPassword);
-//        }
+        String oldUsername = LoginController.getInstance().getUsername(MobileToledo.this);
+        String oldPassword = LoginController.getInstance().getPassword(MobileToledo.this);
+        
+        if(oldPassword != null && oldUsername != null){
+        	EditText mUsername = (EditText) findViewById(R.id.musername);
+        	EditText mPassword = (EditText) findViewById(R.id.mpassword);
+        	mUsername.setText(oldUsername);
+        	mPassword.setText(oldPassword);
+        }
         
         Button loginbutton = (Button) findViewById(R.id.login);
 
