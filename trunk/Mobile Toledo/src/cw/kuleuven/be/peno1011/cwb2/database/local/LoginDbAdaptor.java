@@ -81,7 +81,9 @@ public class LoginDbAdaptor {
     }
     
     public String getPassword(long rowId) throws SQLException {
-        Cursor mCursor =
+    	if(DatabaseEmpty())
+    		return null;
+    	Cursor mCursor =
 
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
                     KEY_USERNAME, KEY_PASSWORD}, KEY_ROWID + "=" + rowId, null,
@@ -92,7 +94,13 @@ public class LoginDbAdaptor {
         return mCursor.getString(2);
     }
     
-    public String getUsername(long rowId) throws SQLException {
+    private boolean DatabaseEmpty() {
+		return true;
+	}
+
+	public String getUsername(long rowId) throws SQLException {
+    	if(DatabaseEmpty())
+    		return null;
     	Cursor mCursor =
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
                     KEY_USERNAME, KEY_PASSWORD}, KEY_ROWID + "=" + rowId, null,
