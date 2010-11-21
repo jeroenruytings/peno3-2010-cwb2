@@ -3,6 +3,7 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 import cw.kuleuven.be.peno1011.cwb2.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,8 @@ public class MainMenu extends Activity {
 			
 			@Override
 			public void onClick(View view) {
+        		//Context context = getApplicationContext();
+				//Intent intent = new Intent(context, NavigationMenu.class);
 				Intent intent = new Intent(MainMenu.this,NavigationMenu.class);
 				startActivity(intent);
 			}
