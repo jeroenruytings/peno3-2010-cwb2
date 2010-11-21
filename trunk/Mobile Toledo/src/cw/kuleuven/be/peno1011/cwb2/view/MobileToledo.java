@@ -2,12 +2,13 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.LoginController;
-import cw.kuleuven.be.peno1011.cwb2.database.local.LoginDbAdaptor;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 public class MobileToledo extends Activity {
 	
 	private boolean remember = false;
+    private static final int INSERT_ID = Menu.FIRST;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,30 @@ public class MobileToledo extends Activity {
 			}
 		});
 	}
-        
+       
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        menu.add(0, INSERT_ID, 0, R.string.menu_newuser);
+        return true;
+    }
+	
+	@Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case INSERT_ID:
+                createUser();
+                return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+	
+	private void createUser() {
+        Intent i = new Intent(this, NewUser.class);
+        startActivity(i);
+    }
+	
+	
 	private void login(String username, String password) {
 		User user = LoginController.getInstance().getUser(username,password);
 		if(user != null){

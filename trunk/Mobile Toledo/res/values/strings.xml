@@ -25,4 +25,7 @@
 <string name="questionanswering">Vragen beantwoorden</string>
 <string name="interactionmenu">Mogelijke interacties</string>
 <string name="course_prompt">Selecteer een vak</string>
+<string name="menu_newuser">Add new user</string>
+<string name="confirmpassword">Confirm Password</string>
+<string name="createuser">Create user</string>
 </resources>
