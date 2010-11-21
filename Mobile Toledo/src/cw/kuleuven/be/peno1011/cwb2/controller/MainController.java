@@ -5,6 +5,9 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 public class MainController {
 	private static User user;
 
+	public static void setUser(User user){
+		MainController.user = user;
+	}
 	
 	public static User getUser(){
 		return user;
