@@ -23,13 +23,13 @@ public class InteractionMenu extends Activity{
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
 	
 	    //moet nog geimplementeerd worden:
-//    	if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
+    	if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
 	    	makeannouncementButton.setVisibility(View.VISIBLE);
 	    	TextView makeAnnouncementText = (TextView) findViewById(R.id.makeannouncement);
 	    	makeAnnouncementText.setVisibility(View.VISIBLE);
 	    	TextView text = (TextView) findViewById(R.id.questions);
 	    	text.setText(R.string.questionanswering);
-//	    }
+	    }
 
 
 	    
