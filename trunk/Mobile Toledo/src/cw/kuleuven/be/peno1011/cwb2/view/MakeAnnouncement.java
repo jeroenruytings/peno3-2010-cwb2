@@ -16,7 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class MakeAnnouncement extends Activity{	
-	protected void OnCreate(Bundle savedInstanceState){
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.makeannouncement);
