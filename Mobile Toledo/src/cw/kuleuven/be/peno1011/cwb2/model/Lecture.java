@@ -16,15 +16,6 @@ public class Lecture extends Event{
 		setRoom(room);
 		setCourse(course);
 	}
-	
-	public Date getStartDate(){
-		return startDate;
-	}
-	
-	public Date getStopDate(){
-		return stopDate;
-	}
-	
 
 	public Room getRoom() {
 		return room;
