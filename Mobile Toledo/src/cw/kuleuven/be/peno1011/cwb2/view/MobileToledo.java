@@ -10,10 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MobileToledo extends Activity {
+	
+	private boolean remember = false;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +47,30 @@ public class MobileToledo extends Activity {
             	else
             	   login(username, password) ;
             }
-
+            
         });
-    }
-
+        
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.rememberme);        
+        rememberMe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked){
+					remember = true;
+				}
+				else{
+					remember = false;
+				}
+			}
+		});
+	}
+        
 	private void login(String username, String password) {
 		User user = LoginController.getUser(username,password);
 		if(user != null){
 			LoginController.login(user);
+			if(remember)
+				remember(username,password);
 			Intent i = new Intent(this, MainMenu.class);
 	        startActivity(i);
 	        finish();
@@ -61,6 +82,10 @@ public class MobileToledo extends Activity {
     		Toast toast = Toast.makeText(context, text, duration);
     		toast.show();
 		}
+	}
+
+	private void remember(String username, String password) {
+				
 	}
 
 	
