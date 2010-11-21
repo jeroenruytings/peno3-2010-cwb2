@@ -2,7 +2,7 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.LoginController;
-import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
+import cw.kuleuven.be.peno1011.cwb2.database.local.LoginDbAdaptor;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 import android.app.Activity;
 import android.content.Context;
@@ -26,6 +26,16 @@ public class MobileToledo extends Activity {
         
         setContentView(R.layout.mobiletoledo);
         setTitle(R.string.mobiletoledo);
+                
+//        String oldUsername = LoginController.getInstance().getUsername(MobileToledo.this);
+//        String oldPassword = LoginController.getInstance().getPassword(MobileToledo.this);
+//        
+//        if(oldPassword != null && oldUsername != null){
+//        	EditText mUsername = (EditText) findViewById(R.id.musername);
+//        	EditText mPassword = (EditText) findViewById(R.id.mpassword);
+//        	mUsername.setText(oldUsername);
+//        	mPassword.setText(oldPassword);
+//        }
         
         Button loginbutton = (Button) findViewById(R.id.login);
 
@@ -33,7 +43,7 @@ public class MobileToledo extends Activity {
 
             public void onClick(View view) {
             	EditText mUsername = (EditText) findViewById(R.id.musername);
-                EditText mPassword = (EditText) findViewById(R.id.mpassword);
+            	EditText mPassword = (EditText) findViewById(R.id.mpassword);
             	String username = mUsername.getText().toString();
             	String password = mPassword.getText().toString();
             	if (username.equals("") || password.equals("")){
@@ -66,9 +76,9 @@ public class MobileToledo extends Activity {
 	}
         
 	private void login(String username, String password) {
-		User user = LoginController.getUser(username,password);
+		User user = LoginController.getInstance().getUser(username,password);
 		if(user != null){
-			LoginController.login(user);
+			LoginController.getInstance().login(user);
 			if(remember)
 				remember(username,password);
 			Intent i = new Intent(this, MainMenu.class);
@@ -85,8 +95,6 @@ public class MobileToledo extends Activity {
 	}
 
 	private void remember(String username, String password) {
-				
+		LoginController.getInstance().remember(username,password,MobileToledo.this);
 	}
-
-	
 }
