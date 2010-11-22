@@ -50,7 +50,7 @@ public class GoogleMaps extends MapActivity{
 	    setContentView(R.layout.googlemaps);
 	    mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
-        
+        mapView.invalidate();
  
         
         
