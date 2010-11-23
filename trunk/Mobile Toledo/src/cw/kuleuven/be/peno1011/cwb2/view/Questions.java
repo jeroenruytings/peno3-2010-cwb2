@@ -9,7 +9,7 @@ public class Questions extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		if(MainController.getUser().isStudent()){ //implementatie 'vragen stellen'
+		if(MainController.getUser().getLevel()==1){ //implementatie 'vragen stellen'
 //			setContentView(R.layout.posequestions);
 //		    setTitle(R.string.posequesitons);
 			//TODO/ingeven van vragen, cfr MakeAnnouncement

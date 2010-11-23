@@ -21,14 +21,17 @@ public class InteractionMenu extends Activity{
 	    ImageButton makeannouncementButton = (ImageButton) findViewById(R.id.makeannouncementbutton);
 	    ImageButton announcementsButton = (ImageButton) findViewById(R.id.announcementsbutton);
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
+	    ImageButton multipleButton = (ImageButton) findViewById(R.id.multiplebutton);
 	
 	    //moet nog geimplementeerd worden:
-    	if(!MainController.getUser().isStudent()){ //als gebruiker een prof is, ziet de menu er anders uit!
+    	if(MainController.getUser().getLevel()>1){ //als gebruiker een prof is, ziet de menu er anders uit!
 	    	makeannouncementButton.setVisibility(View.VISIBLE);
 	    	TextView makeAnnouncementText = (TextView) findViewById(R.id.makeannouncement);
 	    	makeAnnouncementText.setVisibility(View.VISIBLE);
-	    	TextView text = (TextView) findViewById(R.id.questions);
-	    	text.setText(R.string.questionanswering);
+	    	TextView text1 = (TextView) findViewById(R.id.questions);
+	    	text1.setText(R.string.questionanswering);
+	    	TextView text2 = (TextView) findViewById(R.id.multiple);
+	    	text2.setText("Meerkeuzevraag stellen");
 	    }
 
 
@@ -53,7 +56,18 @@ public class InteractionMenu extends Activity{
 			
 			@Override
 			public void onClick(View view) {
-				
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",Questions.class); 
+				startActivity(intent);
+			}
+	    });
+	    multipleButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",MultipleChoice.class); 
+				startActivity(intent);
 			}
 	    });
     }

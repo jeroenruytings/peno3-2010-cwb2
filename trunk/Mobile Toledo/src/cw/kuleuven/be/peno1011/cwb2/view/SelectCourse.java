@@ -12,6 +12,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,9 @@ public class SelectCourse extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.selectcourse);
+        
+        Bundle bundle = getIntent().getExtras();
+        final Object nextview = bundle.get("nextview");   
 		
 	    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 	    List<String> courseTitles = new ArrayList<String>();
@@ -44,7 +48,9 @@ public class SelectCourse extends Activity{
                 int courseLocation = s.getSelectedItemPosition();
                 Course course = courses.get(courseLocation);
                 Lecture lecture = findLecture(course);
-                //TODO/ nieuwe intent starte en lecture doorgeve
+                Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
+                intent.putExtra("lecture",lecture); 
+                startActivity(intent);
             }
 
         });

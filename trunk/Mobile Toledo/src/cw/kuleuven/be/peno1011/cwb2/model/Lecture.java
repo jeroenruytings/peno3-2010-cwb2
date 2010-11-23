@@ -1,10 +1,15 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Lecture extends Event{
+public class Lecture extends Event implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Room room;
 	private Course course;
 	private ArrayList <MultipleChoice> multipleChoices = new ArrayList<MultipleChoice>();

@@ -29,7 +29,7 @@ public class LoginController {
 		//Normaal uit DAO iemand, nu even fictief persoon
 		Date currentDate = new Date(Calendar.DATE);
 		ISP isp = new ISP(new ArrayList<Course>(),"1","1",1);
-		return new User("1","Test","Persoon","wachtwoord",false,currentDate,isp);
+		return new User("1","Test","Persoon","wachtwoord",2,currentDate,isp);
 	}
 	
 	public void login(User user){
