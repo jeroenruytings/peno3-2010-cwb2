@@ -11,6 +11,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class SelectCourse extends Activity{	
 	
@@ -29,7 +31,7 @@ public class SelectCourse extends Activity{
         
         Bundle bundle = getIntent().getExtras();
         final Object nextview = bundle.get("nextview");   
-		
+        
 	    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 	    List<String> courseTitles = new ArrayList<String>();
 	    for(int i=0;i<courses.size();i++){
@@ -48,9 +50,17 @@ public class SelectCourse extends Activity{
                 int courseLocation = s.getSelectedItemPosition();
                 Course course = courses.get(courseLocation);
                 Lecture lecture = findLecture(course);
-                Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
-                intent.putExtra("lecture",lecture); 
-                startActivity(intent);
+//                if(lecture != null){
+                    Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
+                    intent.putExtra("lecture",lecture); 
+                    startActivity(intent);
+//                }
+//                else{
+//        			Context context = getApplicationContext();
+//            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
+//            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+//            		toast.show();
+//                }
             }
 
         });
