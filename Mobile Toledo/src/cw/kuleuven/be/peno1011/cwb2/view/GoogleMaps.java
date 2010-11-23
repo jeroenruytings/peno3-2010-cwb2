@@ -79,15 +79,15 @@ public class GoogleMaps extends MapActivity{
 	    mapOverlays = mapView.getOverlays();
 	    drawable = this.getResources().getDrawable(R.drawable.androidmarker);
 	    itemizedOverlay = new MapOverlay(drawable);
-	    GeoPoint point = new GeoPoint(19240000,-99120000);
+	    GeoPoint point = new GeoPoint((int)50.863408*1000000,(int)4.676775*1000000);
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
 	    //draw the map
 	    
         mapView.invalidate();
-        
         mc = mapView.getController();
+        mc.animateTo(point);
         
 	}
 	
