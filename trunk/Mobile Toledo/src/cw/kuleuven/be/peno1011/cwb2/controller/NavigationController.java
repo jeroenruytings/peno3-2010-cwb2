@@ -1,5 +1,8 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
+import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
+import android.content.Context;
+
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -8,7 +11,7 @@ import android.os.Bundle;
 
 //opmerking: user kan statisch opgeslagen worden in de globale controller,
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
-public class NavigationController {
+public class NavigationController{
 	private static NavigationController navigationController;
 	private static LocationListener listener;
 	private Criteria criteria;
@@ -25,9 +28,10 @@ public class NavigationController {
 		}
 		return navigationController;
 	}
-	public Location getLocation(){
-		boolean enabledOnly = true;
-		Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, enabledOnly));
+	public Location getLocation(){		
+		OwnLocationManager olm = new OwnLocationManager();
+		Location location = olm.getOwnLocation();
+		
 		return location;
 	}
 	public void startUpdating(){
