@@ -28,4 +28,5 @@
 <string name="menu_newuser">Add new user</string>
 <string name="confirmpassword">Confirm Password</string>
 <string name="createuser">Create user</string>
+<string name="navigate">Navigeer naar..</string>
 </resources>
