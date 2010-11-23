@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 
@@ -48,15 +49,10 @@ import android.R.drawable;
 public class GoogleMaps extends MapActivity{
 	private MapView mapView;
 	private MapController mc;
-    private GeoPoint p;
-    private LocationManager locationManager;
-	private LocationListener listener;
-	private Location location;
-	private GeoPoint gp;
-	private String locationprovider;
 	List<Overlay> mapOverlays;
 	Drawable drawable;
 	MapOverlay itemizedOverlay;
+	private NavigationController navigationController;
 	
 	
 	@Override
@@ -79,7 +75,11 @@ public class GoogleMaps extends MapActivity{
 	    mapOverlays = mapView.getOverlays();
 	    drawable = this.getResources().getDrawable(R.drawable.androidmarker);
 	    itemizedOverlay = new MapOverlay(drawable);
-	    GeoPoint point = new GeoPoint((int)50.863408*1000000,(int)4.676775*1000000);
+	    navigationController = navigationController.getInstance();
+	    Location location = navigationController.getLocation();
+	    int lat = (int) location.getLatitude()*1000000;
+	    int lng = (int) location.getLongitude()*1000000;
+	    GeoPoint point = new GeoPoint(lat,lng);
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
