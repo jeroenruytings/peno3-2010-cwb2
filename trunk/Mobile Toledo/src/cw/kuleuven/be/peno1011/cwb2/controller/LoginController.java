@@ -37,7 +37,6 @@ public class LoginController {
 	}
 
 	public void remember(String username, String password, Context context) {
-//		LoginDbAdaptor.getInstance(context).open();
 		LoginDbAdaptor.getInstance(context).addUser(username, password);
 	}
 	
