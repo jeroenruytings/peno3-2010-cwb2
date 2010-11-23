@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Dit is een commentaar-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="cw.kuleuven.be.peno1011.cwb2"
       android:versionCode="1"
