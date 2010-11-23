@@ -12,7 +12,7 @@
 <string name="compass">Navigatie</string>
 <string name="calendar">Kalender</string>
 <string name="course">Vakken</string>
-<string name="showlocation">Show location!</string>
+
 <string name="makeannouncement">Nieuwe aankondiging maken </string>
 <string name="message">Boodschap:</string>
 <string name="title">Titel:</string>
@@ -28,5 +28,6 @@
 <string name="menu_newuser">Add new user</string>
 <string name="confirmpassword">Confirm Password</string>
 <string name="createuser">Create user</string>
-<string name="navigate">Navigeer naar..</string>
+<string name="navigate">Navigeer naar locatie</string>
+<string name="locationinfo">Info over locaties</string>
 </resources>
