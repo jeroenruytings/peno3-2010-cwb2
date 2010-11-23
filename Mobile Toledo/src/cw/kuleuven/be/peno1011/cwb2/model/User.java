@@ -10,17 +10,17 @@ public class User {
 	private final String firstName;
 	private final String lastName;
 	private String password;
-	private boolean isStudent;
+	private int level;
 	private final Date birthDate;
 	private ISP isp;
 	private Location location;
 	
-	public User(String userId, String firstName, String lastName,String password, boolean isStudent, Date birthDate, ISP isp) {
+	public User(String userId, String firstName, String lastName,String password, int level, Date birthDate, ISP isp) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		setPassword(password);
-		setStudent(isStudent);
+		setLevel(level);
 		this.birthDate = birthDate;
 		setIsp(isp);
 	}
@@ -40,12 +40,12 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isStudent() {
-		return isStudent;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setStudent(boolean isStudent) {
-		this.isStudent = isStudent;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public ISP getIsp() {
