@@ -17,6 +17,9 @@ public class ShowAnnouncements extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
+		  
+		  //TODO/knoppen om ipv recente announcements alle announcements of announcements per vak te bezien
+		  
 		  InfoController controller = new InfoController();
 		  final List<Announcement> recentAnnouncements = (List<Announcement>) controller.recentAnnouncements(7); //laatste 7 dagen
 		  String[] displayStrings = makeStrings(recentAnnouncements);

@@ -14,9 +14,9 @@ public class Questions extends Activity{
 //		    setTitle(R.string.posequesitons);
 			//TODO/ingeven van vragen, cfr MakeAnnouncement
 		}
-		else{ //implementatie 'vragen beantwoorden'
-//			setContentView(R.layout.answerquestions);
-//		    setTitle(R.string.answerquestions);
+		else{ //implementatie 'vragen weergeven'
+//			setContentView(R.layout.showquestions);
+//		    setTitle(R.string.showquestions);
 			//TODO/listview van alle vragen, cfr ShowAnnouncements
 		}
 	}
