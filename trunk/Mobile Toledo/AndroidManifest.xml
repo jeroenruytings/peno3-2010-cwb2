@@ -49,6 +49,21 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+				<activity android:name=".view.SelectCourse" android:label="selectcourse">
+			<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity android:name=".view.Questions" android:label="questions">
+			<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity android:name=".view.MultipleChoice" android:label="multiple">
+			<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 </application>
 
 
