@@ -10,7 +10,7 @@ public class MultipleChoice extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		if(MainController.getUser().isStudent()){ //implementatie beantwoorden
+		if(MainController.getUser().getLevel()==1){ //implementatie beantwoorden
 			setContentView(R.layout.posemultiplechoice);
 		    setTitle(R.string.posemultiplechoice);
 			
