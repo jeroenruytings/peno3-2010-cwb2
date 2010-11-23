@@ -33,7 +33,7 @@ public class LoginController {
 	}
 	
 	public void login(User user){
-		MainController.setUser(user);
+		MainController.getInstance().setUser(user);
 	}
 
 	public void remember(String username, String password, Context context) {
