@@ -1,6 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
-import cw.kuleuven.be.peno1011.cwb2.model.User;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,11 +10,12 @@ import android.os.Bundle;
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
 public class NavigationController {
 	private static NavigationController navigationController;
-
+	private static LocationListener listener;
+	private Criteria criteria;
 	private LocationManager locationManager;
-	private LocationListener listener;
 	
 	private NavigationController() {
+		criteria = new Criteria();
 		//singleton pattern
 	}
 
@@ -24,9 +25,10 @@ public class NavigationController {
 		}
 		return navigationController;
 	}
-	private void setLocation(){
-		User user = MainController.getUser();
-		user.setLocation(locationManager.getLastKnownLocation("xyz"));
+	public Location getLocation(){
+		boolean enabledOnly = true;
+		Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, enabledOnly));
+		return location;
 	}
 	public void startUpdating(){
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
@@ -35,7 +37,7 @@ public class NavigationController {
 	class Listener implements LocationListener {
 
 		public void onLocationChanged(Location location) {
-			NavigationController.this.setLocation();
+
 		}
 
 		public void onProviderDisabled(String provider) {
