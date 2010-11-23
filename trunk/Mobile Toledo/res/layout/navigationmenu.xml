@@ -4,14 +4,14 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-	  <LinearLayout
-	  android:orientation="horizontal"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content">
+  
+  <LinearLayout
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
 		 <ImageButton
 		  android:id="@+id/ownlocationbutton"
 		  android:src="@drawable/compassbutton"
-		  android:text="@string/showlocation"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
 		  <TextView
@@ -20,5 +20,40 @@
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"
 		  android:layout_gravity="center"/>
-	  </LinearLayout>
+ </LinearLayout>
+ 
+ <LinearLayout
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+		  <ImageButton
+		  android:id="@+id/navigatebutton"
+		  android:src="@drawable/compassbutton"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"/>
+		  <TextView
+		  android:id="@+id/navigate"
+		  android:text="@string/navigate"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"/>
+ </LinearLayout>
+	  
+ <LinearLayout
+ android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+		  <ImageButton
+		  android:id="@+id/navigatebutton"
+		  android:src="@drawable/compassbutton"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"/>
+		  <TextView
+		  android:id="@+id/navigate"
+		  android:text="@string/locationinfo"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"/>
+  </LinearLayout>
+  
   </LinearLayout>
