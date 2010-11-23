@@ -24,6 +24,8 @@ import com.google.android.maps.MapView.LayoutParams;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.google.android.maps.Overlay;
+
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -83,7 +85,7 @@ public class GoogleMaps extends MapActivity{
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
-	    //draw the map
+	       //draw the map
 	    
         mapView.invalidate();
         mc = mapView.getController();
