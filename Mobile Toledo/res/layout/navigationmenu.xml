@@ -46,12 +46,12 @@
   android:layout_width="fill_parent"
   android:layout_height="wrap_content">
 		  <ImageButton
-		  android:id="@+id/navigatebutton"
+		  android:id="@+id/locationinfobutton"
 		  android:src="@drawable/compassbutton"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
 		  <TextView
-		  android:id="@+id/navigate"
+		  android:id="@+id/locationinfo"
 		  android:text="@string/locationinfo"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"
