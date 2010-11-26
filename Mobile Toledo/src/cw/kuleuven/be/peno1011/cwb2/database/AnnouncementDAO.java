@@ -40,7 +40,7 @@ public class AnnouncementDAO {
 		try {
 			HttpClient client = new HttpClient();
 			// maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
-			PostMethod method = new PostMethod("http://localhost:9876/AnnouncementHandler/addAnnouncement");
+			PostMethod method = new PostMethod("http://http://134.58.253.55:9876/:9876/AnnouncementHandler/addAnnouncement");
 			method.addParameter("announcement", jsonannouncement);
 			// voert de methode ook werkelijk uit en retourneert een onbekend getal
 			int returnCode = client.executeMethod(method);
