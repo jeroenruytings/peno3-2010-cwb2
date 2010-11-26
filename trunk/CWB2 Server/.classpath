@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="C:/Users/Jeroen/Downloads/peno3ws/peno3ws/WEB-INF/lib/AriadneNextUtils.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jeroen/Downloads/peno3ws/peno3ws/WEB-INF/lib/grizzly-servlet-webserver-1.9.18-i.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jeroen/Downloads/peno3ws/peno3ws/WEB-INF/lib/jersey-server-1.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
