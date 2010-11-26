@@ -94,12 +94,12 @@ public class AnnouncementDAO {
 	@GET
 	@Path ("/addAnnouncement")
 	@Produces ("application/json")
-	public String addAnnouncement(@QueryParam("message") String message, @QueryParam("date") String date, @QueryParam("userId") String userId, @QueryParam("title") String title, @QueryParam("courseCode") String courseCode) {
+	public String addAnnouncement(@QueryParam("message") String message, @QueryParam("userId") String userId, @QueryParam("title") String title, @QueryParam("courseCode") String courseCode) { //@QueryParam("date") String date, 
 
 		JSONObject result = new JSONObject();
 		try {
 		
-			String query = "INSERT INTO announcement (message,date,userId,title,courseCode) VALUES ('" + message + "','" + date + "'," + userId + "','" + title + "'," + courseCode +")";
+			String query = "INSERT INTO announcement (message,userId,title,courseCode) VALUES ('" + message + "','" + userId + "','" + title + "'," + courseCode +")";//+ date + "',"
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();
