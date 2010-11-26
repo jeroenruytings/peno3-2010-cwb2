@@ -1,5 +1,11 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
+import java.lang.reflect.Array;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
 import android.content.Context;
 
@@ -34,6 +40,20 @@ public class NavigationController{
 		
 		return location;
 	}
+	
+	public ArrayList<String> getBuildingNames(ArrayList<Building> buildings)
+	{
+		ArrayList <String> buildingnames = new ArrayList<String>();
+		Iterator<Building> it = buildings.iterator(); 
+			{	
+					while (it.hasNext()){
+					buildingnames.add(it.next().getName());
+					}
+			}
+
+		return buildingnames;
+	} 
+	
 	public void startUpdating(){
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
 
