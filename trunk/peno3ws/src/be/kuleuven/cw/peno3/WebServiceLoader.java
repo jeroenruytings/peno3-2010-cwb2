@@ -17,6 +17,7 @@ public class WebServiceLoader {
 
 		PropertiesManager.getInstance().init("config/config.properties");
 
+
 		final String baseUri = "http://" + ipAdress.getIp() + "/";
 		final Map<String, String> initParams = new HashMap<String, String>();
 
