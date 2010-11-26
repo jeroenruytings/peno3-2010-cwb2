@@ -16,30 +16,23 @@ import be.kuleuven.cw.peno3.model.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
-
 public class ClientDAOTest {
 	public static void main(String[] args) {
-		testListUsers();
-		testaddUserJson();
+		//testListAnnouncements();
+		testAddAnnouncements();
 	}
-	private static void testaddUserJson() {
+
+	private static void testAddAnnouncements() {
 		try {
-			User newUser = new User();
-			newUser.setFirstName("Jelle");
-			newUser.setLastName("Vloeibergs");	
-			
-			Credential cred = new Credential();			
-			cred.setPassword("mysecret");
-			cred.setUsername("jel");
-			newUser.setCredential(cred);
-			
-			
-			String jsonuser = new Gson().toJson(newUser);
 			
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://localhost:9876/UserHandler/addUser");
-			method.addParameter("user", jsonuser);
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+			method.addParameter("userId", "s0215121");
+			method.addParameter("message", "Hoera! Hoera! Eerste databaserecord toegevoegd!");
+//			method.addParameter("date", null);
+			method.addParameter("title", "Joepie!");
+			method.addParameter("courseCode", "1");
 			int returnCode = client.executeMethod(method);
 
 			System.out.println(method.getResponseBodyAsString());
@@ -54,10 +47,10 @@ public class ClientDAOTest {
 			e.printStackTrace();
 		}
 	}
-	public static void testListUsers() {
+	public static void testListAnnouncements() {
 
 		try {
-			String json = stringOfUrl("http://localhost:9876/UserHandler/listUsers");
+			String json = stringOfUrl("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
 
 			User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
 			for (User user : obj2) {
