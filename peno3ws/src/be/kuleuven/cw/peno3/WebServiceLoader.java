@@ -15,7 +15,7 @@ public class WebServiceLoader {
 
 		PropertiesManager.getInstance().init("config/config.properties");
 
-		final String baseUri = "http://localhost:9876/";
+		final String baseUri = "http://134.58.253.55:9876/";
 		final Map<String, String> initParams = new HashMap<String, String>();
 
 		initParams.put("com.sun.jersey.config.property.packages", "be.kuleuven.cw.peno3");
