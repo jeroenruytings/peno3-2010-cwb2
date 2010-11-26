@@ -1,5 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.database;
 
+import java.lang.reflect.Array;
+
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 
 public class BuildingDAO {
@@ -26,5 +28,12 @@ public class BuildingDAO {
 	public boolean delete(Building building) {
 		boolean deleted=false;
 		return deleted;
+	}
+	
+	public Array getBuildings()
+	{
+		Array buildings = null;
+		return buildings;
+		
 	}
 }
