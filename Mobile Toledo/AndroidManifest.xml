@@ -54,13 +54,14 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".view.Questions" android:label="questions">
+		<activity android:name=".view.Questions" android:label="question">
 			<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".view.MultipleChoice" android:label="multiple">
+		<activity android:name=".view.MultipleChoice" android:label="MultipleChoice">
 			<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>

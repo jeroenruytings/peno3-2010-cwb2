@@ -6,9 +6,9 @@ public class MultipleChoice {
 	
 	private String question;
 	private Lecture lecture;
-	private ArrayList<String> possibleAnswers;
+	private String[] possibleAnswers;
 	private ArrayList<User> responders;
-	private int[] results;
+	private int[] answers;
 	
 	public MultipleChoice(Lecture lecture, String question, ArrayList<String> answers) {
 		setLecture(lecture);
@@ -16,11 +16,11 @@ public class MultipleChoice {
 		setPossibleAnswers(possibleAnswers);
 	}
 
-	public ArrayList<String> getPossibleAnswers() {
+	public String[] getPossibleAnswers() {
 		return possibleAnswers;
 	}
 
-	public void setPossibleAnswers(ArrayList<String> possibleAnswers) {
+	public void setPossibleAnswers(String[] possibleAnswers) {
 		this.possibleAnswers = possibleAnswers;
 	}
 
@@ -31,13 +31,17 @@ public class MultipleChoice {
 	public void setResponders(ArrayList<User> responders) {
 		this.responders = responders;
 	}
-
-	public int[] getResults() {
-		return results;
+	
+	public void addResponder(User user){
+		responders.add(user);
 	}
 
-	public void setResults(int[] results) {
-		this.results = results;
+	public int[] getAnswers() {
+		return answers;
+	}
+
+	public void addAnswer(int i) {
+		answers[answers.length] = i;
 	}
 
 	public String getQuestion() {
