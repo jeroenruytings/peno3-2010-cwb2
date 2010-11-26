@@ -70,6 +70,11 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+		<activity android:name=".view.LocationInfo" android:label="infoon">
+				<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
 		
 </application>
 
