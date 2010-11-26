@@ -1,7 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.database;
 
 
-import java.sql.Array;
+import java.util.ArrayList;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 
@@ -31,9 +31,9 @@ public class BuildingDAO {
 		return deleted;
 	}
 	
-	public Array getBuildings()
+	public ArrayList<Building> getBuildings()
 	{
-		Array buildings = null;
+		ArrayList<Building> buildings = null;
 		return buildings;
 		
 	}
