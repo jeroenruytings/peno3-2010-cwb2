@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.ariadne.config.PropertiesManager;
 
+import be.kuleuven.cw.peno3.client.ipAdress;
+
 import com.sun.grizzly.http.SelectorThread;
 import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
 
@@ -15,7 +17,7 @@ public class WebServiceLoader {
 
 		PropertiesManager.getInstance().init("config/config.properties");
 
-		final String baseUri = "http://134.58.253.55:9876/";
+		final String baseUri = "http://" + ipAdress.getIp() + "/";
 		final Map<String, String> initParams = new HashMap<String, String>();
 
 		initParams.put("com.sun.jersey.config.property.packages", "be.kuleuven.cw.peno3");
