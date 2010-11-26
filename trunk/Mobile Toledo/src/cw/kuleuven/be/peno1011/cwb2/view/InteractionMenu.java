@@ -66,7 +66,7 @@ public class InteractionMenu extends Activity{
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
-                intent.putExtra("nextview",MultipleChoice.class); 
+                intent.putExtra("nextview",MultipleView.class); 
 				startActivity(intent);
 			}
 	    });

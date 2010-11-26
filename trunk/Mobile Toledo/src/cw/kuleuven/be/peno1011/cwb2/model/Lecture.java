@@ -12,7 +12,7 @@ public class Lecture extends Event implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Room room;
 	private Course course;
-	private ArrayList <MultipleChoice> multipleChoices = new ArrayList<MultipleChoice>();
+	private MultipleChoice multipleChoice;
 	private ArrayList <Question> questions = new ArrayList<Question>();
 	
 	
@@ -42,13 +42,13 @@ public class Lecture extends Event implements Serializable{
 	}
 
 
-	public ArrayList<MultipleChoice> getMultipleChoices() {
-		return multipleChoices;
+	public MultipleChoice getMultipleChoice() {
+		return multipleChoice;
 	}
 
 
-	public void setMultipleChoices(ArrayList<MultipleChoice> multipleChoices) {
-		this.multipleChoices = multipleChoices;
+	public void setMultipleChoice(MultipleChoice multipleChoice) {
+		this.multipleChoice = multipleChoice;
 	}
 
 

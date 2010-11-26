@@ -4,23 +4,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
-import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
-import cw.kuleuven.be.peno1011.cwb2.model.Course;
-import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
+import cw.kuleuven.be.peno1011.cwb2.model.Course;
+import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
 public class SelectCourse extends Activity{	
 	
@@ -30,7 +26,7 @@ public class SelectCourse extends Activity{
         setContentView(R.layout.selectcourse);
         
         Bundle bundle = getIntent().getExtras();
-        final Object nextview = bundle.get("nextview");   
+        final Object nextview = bundle.get("nextview");
         
 	    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 	    List<String> courseTitles = new ArrayList<String>();
@@ -48,19 +44,19 @@ public class SelectCourse extends Activity{
         submitbutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 int courseLocation = s.getSelectedItemPosition();
-                Course course = courses.get(courseLocation);
-                Lecture lecture = findLecture(course);
-//                if(lecture != null){
-                    Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
+                try{
+                	Course course = courses.get(courseLocation);
+                	Lecture lecture = findLecture(course);
+                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
                     intent.putExtra("lecture",lecture); 
                     startActivity(intent);
-//                }
-//                else{
-//        			Context context = getApplicationContext();
-//            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
-//            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-//            		toast.show();
-//                }
+                }
+                catch(Exception e){
+                	Context context = getApplicationContext();
+            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
+            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+            		toast.show();
+                }
             }
 
         });
