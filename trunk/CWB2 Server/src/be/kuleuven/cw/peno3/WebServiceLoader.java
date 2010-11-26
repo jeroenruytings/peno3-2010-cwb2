@@ -1,3 +1,4 @@
+package be.kuleuven.cw.peno3;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
