@@ -57,6 +57,7 @@ public class NavigationController{
 			buildingnames.add("hallo");
 			buildingnames.add("haai");
 			buildingnames.add("hoi");
+			buildingnames.add("hoor");
 			buildingnames.add("heftig");
 			buildingnames.add("heldingshana");
 		return buildingnames;
