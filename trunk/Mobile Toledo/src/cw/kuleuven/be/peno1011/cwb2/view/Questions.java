@@ -20,12 +20,10 @@ public class Questions extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.question);
-		setContentTitle(R.string.question);
+		setContentView(R.layout.question);	
 		
-		
-		 Bundle bundle = getIntent().getExtras();
-		 final Lecture lecture = (Lecture) bundle.get("lecture"); 
+		Bundle bundle = getIntent().getExtras();
+		final Lecture lecture = (Lecture) bundle.get("lecture"); 
 		 
 				 
 		 
