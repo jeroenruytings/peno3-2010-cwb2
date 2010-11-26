@@ -39,16 +39,16 @@ public class LocationInfo extends Activity {
 
 	//	 getinfobutton.setOnClickListener(new View.OnClickListener() { 
 
-			// @Override
-			// public void onClick(View v) {
+		//	 @Override
+		//	 public void onClick(View v) {
 			// TODO Auto-generated method stub
 			//	String name = locationedit.getText().toString();
-			//	String location = String.format(getString(R.string.location),name);
+		//		String location = String.format(getString(R.string.location),name);
 				
 		
 		 }
-	 
+		 }
 	
 	
-}
+
 

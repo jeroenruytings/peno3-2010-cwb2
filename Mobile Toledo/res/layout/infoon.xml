@@ -8,16 +8,14 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:layout_marginTop="10dip"
-	android:text="Selecteer locatie:"/>
-	<Spinner 
-	android:id="@+id/locationSpinner"
+	android:text="Zoek op locatie:"/>
+	<AutoCompleteTextView
+	android:id="@+id/locationEdit"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:drawSelectorOnTop="true"/>	
-	
+	android:layout_height="wrap_content"/>	
 	<Button
 	android:id="@+id/get"
-	android:text="Get"
+	android:text="Get info"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:gravity="center"
