@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
 import android.content.Context;
@@ -41,8 +42,10 @@ public class NavigationController{
 		return location;
 	}
 	
-	public ArrayList<String> getBuildingNames(ArrayList<Building> buildings)
+	public ArrayList<String> getBuildingNames()
 	{
+		BuildingDAO dao = BuildingDAO.getInstance();
+		ArrayList<Building> buildings = dao.getBuildings();
 		ArrayList <String> buildingnames = new ArrayList<String>();
 		Iterator<Building> it = buildings.iterator(); 
 			{	
