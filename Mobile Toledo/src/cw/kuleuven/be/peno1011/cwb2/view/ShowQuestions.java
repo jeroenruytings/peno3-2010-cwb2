@@ -1,19 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import java.util.List;
-
-import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
-import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
-import cw.kuleuven.be.peno1011.cwb2.model.Question;
-import cw.kuleuven.be.peno1011.cwb2.R;
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ShowQuestions extends ListActivity {
 	
