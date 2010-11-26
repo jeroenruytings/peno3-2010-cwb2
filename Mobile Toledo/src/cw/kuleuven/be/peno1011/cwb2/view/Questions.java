@@ -1,16 +1,12 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
+import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
-import cw.kuleuven.be.peno1011.cwb2.view.SelectCourse;
-
-
 
 
 
@@ -20,7 +16,10 @@ public class Questions extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.question);	
+		setContentView(R.layout.question);
+		setContentView(R.layout.makeannouncement);
+		
+				
 		
 		Bundle bundle = getIntent().getExtras();
 		final Lecture lecture = (Lecture) bundle.get("lecture"); 
