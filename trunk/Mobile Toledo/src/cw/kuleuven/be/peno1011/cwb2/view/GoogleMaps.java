@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
+import cw.kuleuven.be.peno1011.cwb2.model.MapOverlay;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 
@@ -77,11 +78,7 @@ public class GoogleMaps extends MapActivity{
 	    mapOverlays = mapView.getOverlays();
 	    drawable = this.getResources().getDrawable(R.drawable.androidmarker);
 	    itemizedOverlay = new MapOverlay(drawable);
-	    navigationController = navigationController.getInstance();
-	    Location location = navigationController.getLocation();
-	    int lat = (int) location.getLatitude()*1000000;
-	    int lng = (int) location.getLongitude()*1000000;
-	    GeoPoint point = new GeoPoint(lat,lng);
+	    GeoPoint point = new GeoPoint((int) 50.863665*1000000, (int) 4.679747*1000000);
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
@@ -93,28 +90,5 @@ public class GoogleMaps extends MapActivity{
         
 	}
 	
-	class MapOverlay extends com.google.android.maps.ItemizedOverlay {
-		
-		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
-		
-		public MapOverlay(Drawable defaultMarker) {
-			super(boundCenterBottom(defaultMarker));
-		}
 
-		@Override
-		protected OverlayItem createItem(int i) {
-			return mOverlays.get(i);
-		}
-
-		@Override
-		public int size() {
-			return mOverlays.size();
-		}
-		
-		public void addOverlay(OverlayItem overlay) {
-		    mOverlays.add(overlay);
-		    populate();
-		}
-
-	}
 }

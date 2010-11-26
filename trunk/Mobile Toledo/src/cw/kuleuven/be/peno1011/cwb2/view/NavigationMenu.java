@@ -30,6 +30,28 @@ public class NavigationMenu extends MapActivity{
 			}
 		});
 		
+		ImageButton button2 = (ImageButton) findViewById(R.id.navigatebutton);
+		button2.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent1 = new Intent(NavigationMenu.this,ShowRoute.class);
+				startActivity(intent1);
+				finish();
+			}
+		});
+		
+		ImageButton button3 = (ImageButton) findViewById(R.id.locationinfobutton);
+		button3.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent2 = new Intent(NavigationMenu.this,LocationInfo.class);
+				startActivity(intent2);
+				finish();
+			}
+		});
+		
 	}
 
 	@Override
