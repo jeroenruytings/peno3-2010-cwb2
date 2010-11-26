@@ -47,14 +47,14 @@ public class Questions extends Activity{
 	        submitbutton.setOnClickListener(new View.OnClickListener() {
 	        	
 
-	            public void onClick(View view) {
-	            	EditText mTitle = (EditText) findViewById(R.id.musername);
-	                EditText mMessage = (EditText) findViewById(R.id.mpassword);
+	    public void onClick(View view) {
+	       EditText mTitle = (EditText) findViewById(R.id.musername);
+	       EditText mMessage = (EditText) findViewById(R.id.mpassword);
 	                
-//	               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),.....));
-	            }
+//	        dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),lecture));
+	       }
 
-	        });
+	    });
 		
 	    	
 	}
