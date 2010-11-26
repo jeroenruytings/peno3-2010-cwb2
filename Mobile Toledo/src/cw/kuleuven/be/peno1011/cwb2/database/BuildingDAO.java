@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.database;
 
-import java.lang.reflect.Array;
+
+import java.sql.Array;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 
