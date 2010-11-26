@@ -36,12 +36,16 @@ public class AnnouncementDAO {
 		return announcementDAO;
 	}
 	
-	public void add(String jsonannouncement) {
+	public void add(String userId, String message, Date date, String title, String courseCode) {
 		try {
 			HttpClient client = new HttpClient();
 			// maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
-			PostMethod method = new PostMethod("http://134.58.253.55:9876/AnnouncementHandler/addAnnouncement");
-			method.addParameter("announcement", jsonannouncement);
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+			method.addParameter("userId", userId);
+			method.addParameter("message", message);
+			method.addParameter("date", date.toString());
+			method.addParameter("title", title);
+			method.addParameter("courseCode", courseCode);
 			// voert de methode ook werkelijk uit en retourneert een onbekend getal
 			int returnCode = client.executeMethod(method);
 			// displayt de respone op de postmethode
@@ -69,7 +73,7 @@ public class AnnouncementDAO {
 	public static void testListUsers() {
 
 		try {
-			String json = stringOfUrl("http://localhost:9876/UserHandler/listUsers");
+			String json = stringOfUrl("http://" + ipAdress.getIp() + "/UserHandler/listUsers");
 
 			User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
 			for (User user : obj2) {
