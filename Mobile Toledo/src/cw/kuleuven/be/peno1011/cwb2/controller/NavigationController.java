@@ -53,7 +53,12 @@ public class NavigationController{
 					buildingnames.add(it.next().getName());
 					}
 			}
-
+			
+			buildingnames.add("hallo");
+			buildingnames.add("haai");
+			buildingnames.add("hoi");
+			buildingnames.add("heftig");
+			buildingnames.add("heldingshana");
 		return buildingnames;
 	} 
 	
