@@ -1,7 +1,5 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
@@ -21,21 +19,23 @@ import android.widget.ImageButton;
 
 
 public class LocationInfo extends Activity {
+	private NavigationController control;
+ 
+		 @Override
+		 protected void onCreate(Bundle savedInstanceState) {
+		     super.onCreate(savedInstanceState);
+		     setContentView(R.layout.infoon);
 
-	 protected void onCreate(Bundle savedInstanceState) {
-		 
-		 super.onCreate(savedInstanceState);	 
-		 setContentView(R.layout.getinfo);
-		 
-		 NavigationController control = NavigationController.getInstance();
-	     ArrayList<String> Buildings = control.getBuildingNames();
-		 
-		 AutoCompleteTextView locationEdit = (AutoCompleteTextView)findViewById(R.id.locationEdit);
-		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.infoon,Buildings);
-		 locationEdit.setAdapter(adapter);
-		 
-		 AutoCompleteTextView locationedit = (AutoCompleteTextView) findViewById(R.id.locationEdit);		 	 
-		 Button getinfobutton = (Button) findViewById(R.id.get);
+		     control = NavigationController.getInstance();
+		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
+		     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.autofilllist, control.getBuildingNames());
+		     textView.setAdapter(adapter);
+		 }
+     //    textView.setAdapter(adapter);
+
+		 		 
+	//	 AutoCompleteTextView locationedit = (AutoCompleteTextView) findViewById(R.id.locationEdit);		 	 
+		// Button getinfobutton = (Button) findViewById(R.id.get);
 
 	//	 getinfobutton.setOnClickListener(new View.OnClickListener() { 
 
@@ -47,7 +47,7 @@ public class LocationInfo extends Activity {
 				
 		
 		 }
-		 }
+	
 	
 	
 
