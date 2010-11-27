@@ -3,36 +3,33 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   orientation="vertical"
   android:layout_width="fill_parent"
-  android:layout_height="wrap_content">
+  android:layout_height="fill_parent">
   
-  <LinearLayout
-  orientation="vertical"
+  <FrameLayout
+  orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content">
   <TextView
   android:id="@+id/locationname"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:text="@string/location"
-  /> 
-  
+  android:text="@string/location"/> 
   <ImageButton
   android:id="@+id/locationinfonavigate"
   android:src="@drawable/compassbutton"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:layout_gravity="right"
-  />
-  </LinearLayout>
+  android:layout_gravity="right"/>
+  </FrameLayout>
   
   <ImageView
   android:id="@+id/locationmap"
   android:src="@drawable/imagenotfound"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:gravity="center"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_centerInParent="true"
   />
-  
+
 
 
 </RelativeLayout>
