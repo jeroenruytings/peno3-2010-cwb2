@@ -7,6 +7,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.Building;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -30,12 +31,17 @@ public class LocationInfo extends Activity {
 		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
 		     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.autofilllist, control.getBuildingNames());
 		     textView.setAdapter(adapter);
-		 }
-     //    textView.setAdapter(adapter);
-
-		 		 
-	//	 AutoCompleteTextView locationedit = (AutoCompleteTextView) findViewById(R.id.locationEdit);		 	 
-		// Button getinfobutton = (Button) findViewById(R.id.get);
+		 
+    
+		Button getinfobutton = (Button) findViewById(R.id.getinfo);
+		getinfobutton.setOnClickListener(new View.OnClickListener()	{
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(LocationInfo.this,GetInfo.class);
+				startActivity(intent);
+			}
+		});		
 
 	//	 getinfobutton.setOnClickListener(new View.OnClickListener() { 
 
@@ -45,7 +51,7 @@ public class LocationInfo extends Activity {
 			//	String name = locationedit.getText().toString();
 		//		String location = String.format(getString(R.string.location),name);
 				
-		
+		 }
 		 }
 	
 	
