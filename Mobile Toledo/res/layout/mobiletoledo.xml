@@ -4,7 +4,7 @@
   android:orientation = "vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  style="@style/MenuLayout">
+  android:background="@layout/gradient">
   
  	<ImageView android:id="@+id/toledologo"
   	android:layout_marginTop="5px"
