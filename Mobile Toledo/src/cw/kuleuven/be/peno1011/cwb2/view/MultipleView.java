@@ -6,11 +6,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
+import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
@@ -34,7 +36,6 @@ public class MultipleView extends Activity{
 		    EditText mansw2 = (EditText) findViewById(R.id.mansw2);
 		    EditText mansw3 = (EditText) findViewById(R.id.mansw3);
 		    EditText mansw4 = (EditText) findViewById(R.id.mansw4);
-		    EditText mansw5 = (EditText) findViewById(R.id.mansw5);
 		    
 		    mansw1.setOnKeyListener(new View.OnKeyListener() {
 				@Override
@@ -77,6 +78,25 @@ public class MultipleView extends Activity{
 				}
 			});
 		    
+		    Button resetbutton = (Button) findViewById(R.id.reset1);
+
+	        resetbutton.setOnClickListener(new View.OnClickListener() {
+
+	            public void onClick(View view) {
+	            	//TODO/reset implementatie
+	            }
+
+	        });
+	        Button submitbutton = (Button) findViewById(R.id.submit1);
+
+	        submitbutton.setOnClickListener(new View.OnClickListener() {
+
+	            public void onClick(View view) {
+	            	//TODO
+//	               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	            }
+
+	        });
 		}
 		else{ //implementatie stellen
 			setContentView(R.layout.multiplechoice);
@@ -86,7 +106,7 @@ public class MultipleView extends Activity{
 		    final String[] options = multiple.getPossibleAnswers();
 		    
 	        AlertDialog.Builder ab=new AlertDialog.Builder(MultipleView.this);
-			ab.setTitle("Title");
+			ab.setTitle(multiple.getQuestion());
 			ab.setSingleChoiceItems(options, 0,new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int whichButton) {
 	                // onClick?

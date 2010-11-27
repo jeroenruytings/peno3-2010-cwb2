@@ -3,7 +3,8 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  style="@style/MenuLayout">
   	<LinearLayout
 	  android:orientation="horizontal"
 	  android:layout_width="fill_parent"
@@ -19,9 +20,9 @@
 		android:text="@string/makeannouncement" 
 		android:layout_gravity="center"
 		android:visibility="gone"
-		android:typeface="serif"/>
-	</LinearLayout>  
-	
+		style="@style/MenuText"/>
+	</LinearLayout> 
+	 
 	<LinearLayout
 	  android:orientation="horizontal"
 	  android:layout_width="fill_parent"
@@ -35,7 +36,7 @@
 		android:layout_height="wrap_content" 
 		android:text="@string/announcements" 
 		android:layout_gravity="center"
-		android:typeface="serif"/>
+		style="@style/MenuText"/>
 	</LinearLayout>  	
 	
 	<LinearLayout
@@ -51,7 +52,7 @@
 		android:layout_height="wrap_content" 
 		android:text="@string/questions" 
 		android:layout_gravity="center"
-		android:typeface="serif"/>
+		style="@style/MenuText"/>
 	</LinearLayout> 
 	
 	<LinearLayout
@@ -67,7 +68,7 @@
 		android:layout_height="wrap_content" 
 		android:text="@string/multiple" 
 		android:layout_gravity="center"
-		android:typeface="serif"/>
+		style="@style/MenuText"/>
 	</LinearLayout> 
 
 </LinearLayout>
