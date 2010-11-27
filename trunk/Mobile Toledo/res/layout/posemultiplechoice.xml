@@ -65,4 +65,18 @@
 			android:layout_weight="1"
 			android:visibility="gone"/>
 		</LinearLayout>
+		<FrameLayout
+  		android:layout_width="match_parent"
+  		android:layout_height="match_parent">
+		  	<Button android:id="@+id/reset1"
+		 	android:text="@string/reset"
+		  	android:layout_height="wrap_content"
+		  	android:layout_width="wrap_content"
+		  	android:layout_gravity="left|center_vertical"/>
+			<Button android:id="@+id/submit1"
+		 	android:text="@string/submit"
+		  	android:layout_height="wrap_content"
+		  	android:layout_width="wrap_content"
+		  	android:layout_gravity="right|center_vertical"/>
+		</FrameLayout>
 </LinearLayout>

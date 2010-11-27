@@ -56,6 +56,7 @@ public class MakeAnnouncement extends Activity{
                 EditText mMessage = (EditText) findViewById(R.id.mpassword);
                 int courseLocation = s.getSelectedItemPosition();
                 AnnouncementDAO dao = AnnouncementDAO.getInstance();
+                //TODO/ in database steken.
 //               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
             }
 
