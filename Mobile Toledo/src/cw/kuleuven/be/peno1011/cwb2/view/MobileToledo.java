@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,8 +28,10 @@ public class MobileToledo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.mobiletoledo);
-        setTitle(R.string.mobiletoledo);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		setContentView(R.layout.mobiletoledo);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+        ((TextView)findViewById(R.id.titlebar)).setText(R.string.mobiletoledo);
                 
         String oldUsername = LoginController.getInstance().getUsername(MobileToledo.this);
         String oldPassword = LoginController.getInstance().getPassword(MobileToledo.this);
