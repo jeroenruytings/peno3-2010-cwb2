@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class MainMenu extends Activity {
@@ -16,8 +18,10 @@ public class MainMenu extends Activity {
 
 		super.onCreate(savedInstanceState);
 	    
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 	    setContentView(R.layout.mainmenu);
-	    setTitle(R.string.mainmenu);
+	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
+	    ((TextView)findViewById(R.id.titlebar)).setText(R.string.mainmenu);
 	    
 	    ImageButton navigationButton = (ImageButton) findViewById(R.id.compassbutton);
 	    navigationButton.setOnClickListener(new View.OnClickListener() {
