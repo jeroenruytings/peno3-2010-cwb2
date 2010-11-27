@@ -42,24 +42,21 @@ public class NavigationController{
 		return location;
 	}
 	
-	public ArrayList<String> getBuildingNames()
+	public String[] getBuildingNames()
 	{
-		BuildingDAO dao = BuildingDAO.getInstance();
-		ArrayList<Building> buildings = dao.getBuildings();
-		ArrayList <String> buildingnames = new ArrayList<String>();
-		Iterator<Building> it = buildings.iterator(); 
-			{	
-					while (it.hasNext()){
-					buildingnames.add(it.next().getName());
-					}
-			}
+	//	BuildingDAO dao = BuildingDAO.getInstance();
+		//ArrayList<Building> buildings = dao.getBuildings();
+		String [] buildingnames = new String []{
+		//Iterator<Building> it = buildings.iterator(); 
+			//{	
+				//	while (it.hasNext()){
+					//buildingnames.add(it.next().getName());
+					//}
+			//}
 			
-			buildingnames.add("hallo");
-			buildingnames.add("haai");
-			buildingnames.add("hoi");
-			buildingnames.add("hoor");
-			buildingnames.add("heftig");
-			buildingnames.add("heldingshana");
+			"haai","hoi","hoor","heftig","heldingshana"
+		};
+		
 		return buildingnames;
 	} 
 	
