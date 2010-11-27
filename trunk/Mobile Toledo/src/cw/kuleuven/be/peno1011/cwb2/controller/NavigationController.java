@@ -54,7 +54,7 @@ public class NavigationController{
 					//}
 			//}
 			
-			"haai","hoi","hoor","heftig","heldingshana"
+			"haai","hoi","hoor","heftig","helding shana"
 		};
 		
 		return buildingnames;
