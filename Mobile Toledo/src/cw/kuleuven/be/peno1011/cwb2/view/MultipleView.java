@@ -1,5 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,10 +34,10 @@ public class MultipleView extends Activity{
 			setContentView(R.layout.posemultiplechoice);
 		    setTitle(R.string.posemultiplechoice);
 			
-		    EditText mansw1 = (EditText) findViewById(R.id.mansw1);
-		    EditText mansw2 = (EditText) findViewById(R.id.mansw2);
-		    EditText mansw3 = (EditText) findViewById(R.id.mansw3);
-		    EditText mansw4 = (EditText) findViewById(R.id.mansw4);
+		    final EditText mansw1 = (EditText) findViewById(R.id.mansw1);
+		    final EditText mansw2 = (EditText) findViewById(R.id.mansw2);
+		    final EditText mansw3 = (EditText) findViewById(R.id.mansw3);
+		    final EditText mansw4 = (EditText) findViewById(R.id.mansw4);
 		    
 		    mansw1.setOnKeyListener(new View.OnKeyListener() {
 				@Override
@@ -92,8 +94,36 @@ public class MultipleView extends Activity{
 	        submitbutton.setOnClickListener(new View.OnClickListener() {
 
 	            public void onClick(View view) {
-	            	//TODO
-//	               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	            	
+	            	EditText multiQuestion = (EditText) findViewById(R.id.submit1);
+	            	String answ1 = mansw1.getText().toString();
+	            	String answ2 = mansw2.getText().toString();
+	            	String answ3 = mansw3.getText().toString();
+	            	String answ4 = mansw4.getText().toString();
+	            	EditText mansw5 = (EditText) findViewById(R.id.mansw1);
+	            	String answ5 = mansw5.getText().toString();
+	            	String question = multiQuestion.getText().toString();
+	            	if(question.equals("") || answ1.equals("") || answ2.equals("")){
+	            		ArrayList<String> answers = new ArrayList<String>();
+		            	answers.add(answ1);answers.add(answ2);
+		            	if(!answ3.equals("")){
+		            		answers.add(answ3);
+		            	}
+		            	if(!answ4.equals("")){
+		            		answers.add(answ4);
+		            	}
+		            	if(!answ5.equals("")){
+		            		answers.add(answ5);
+		            	}
+		            	answers.add(answ3);answers.add(answ4);answers.add(answ5);
+		            	MultipleChoice multiple = new MultipleChoice(lecture, question, answers);
+		            	//TODO/ in database steken
+	            	}
+	            	else{
+					      Toast.makeText(getApplicationContext(), "Gelieve een vraag en minstens 2 mogelijke antwoorden in te geven!",
+				          Toast.LENGTH_LONG).show();
+	            	}
+	            	
 	            }
 
 	        });
@@ -109,7 +139,6 @@ public class MultipleView extends Activity{
 			ab.setTitle(multiple.getQuestion());
 			ab.setSingleChoiceItems(options, 0,new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int whichButton) {
-	                // onClick?
 	            }
 	        });
 	        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {

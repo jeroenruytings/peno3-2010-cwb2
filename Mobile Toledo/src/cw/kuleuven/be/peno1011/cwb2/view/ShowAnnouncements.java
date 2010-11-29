@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,7 +23,7 @@ public class ShowAnnouncements extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
-		  
+
 		  //TODO/knoppen om ipv recente announcements alle announcements of announcements per vak te bezien
 		  
 		  InfoController controller = new InfoController();

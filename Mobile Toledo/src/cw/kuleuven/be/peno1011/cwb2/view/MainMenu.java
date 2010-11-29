@@ -1,15 +1,13 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import cw.kuleuven.be.peno1011.cwb2.R;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import cw.kuleuven.be.peno1011.cwb2.R;
 
 
 public class MainMenu extends Activity {
@@ -40,6 +38,14 @@ public class MainMenu extends Activity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(MainMenu.this,InteractionMenu.class);
+				startActivity(intent);
+			}
+	    });
+	    ImageButton courseButton = (ImageButton) findViewById(R.id.coursebutton);
+	    courseButton.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(MainMenu.this,SelectCourse.class);
 				startActivity(intent);
 			}
 	    });

@@ -1,65 +1,83 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
-public class SelectCourse extends Activity{	
+public class SelectCourse extends ListActivity{	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.selectcourse);
         
-        Bundle bundle = getIntent().getExtras();
-        final Object nextview = bundle.get("nextview");
-        
-	    final List<Course> courses = MainController.getUser().getIsp().getCourses();
-	    List<String> courseTitles = new ArrayList<String>();
-	    for(int i=0;i<courses.size();i++){
-	    	courseTitles.set(i, courses.get(i).getCourseName());
-	    }
-	    final Spinner s = (Spinner) findViewById(R.id.courseSpinner);
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-	            this, android.R.layout.simple_spinner_item, courseTitles);
-	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    s.setAdapter(adapter);
-        Button submitbutton = (Button) findViewById(R.id.submit);
-        
-        //Course course;
-        submitbutton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                int courseLocation = s.getSelectedItemPosition();
-                try{
-                	Course course = courses.get(courseLocation);
-                	Lecture lecture = findLecture(course);
-                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextview);
-                    intent.putExtra("lecture",lecture); 
-                    startActivity(intent);
-                }
-                catch(Exception e){
-                	Context context = getApplicationContext();
-            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
-            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-            		toast.show();
-                }
-            }
+		try{
+			  String[] courseTitles = getCourseTitles();
+			  setListAdapter(new ArrayAdapter<String>(this,
+			          android.R.layout.simple_list_item_1, courseTitles));
+			  ListView lv = getListView();
+			  lv.setTextFilterEnabled(true);
+			  lv.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+				        Bundle bundle = getIntent().getExtras();
+				        Object nextView = null;
+				        if(!bundle.equals(null))
+				        {
+					        nextView = bundle.get("nextview");
+				        }
 
-        });
+						if(!nextView.equals(null)){
+			                try{
+			                	Course course = MainController.getUser().getIsp().getCourses().get(position);
+			                	Lecture lecture = findLecture(course);
+			                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextView);
+			                    intent.putExtra("lecture",lecture); 
+			                    startActivity(intent);
+			                }
+			                catch(Exception e){
+			                	Context context = getApplicationContext();
+			            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
+			            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+			            		toast.show();
+			                }
+		            	}
+		                else{
+		                	Intent intent = new Intent(SelectCourse.this,CourseInfo.class);
+		                	intent.putExtra("course",MainController.getUser().getIsp().getCourses().get(position).getCourseName()); 
+		                	startActivity(intent);
+		                }
+					}
+			  });
+		  }
+		  catch(NullPointerException n){
+			  Toast.makeText(getApplicationContext(), "Fout bij het opvragen van de vakken.",
+			          Toast.LENGTH_LONG).show();
+		  }
+	}
+	public String[] getCourseTitles(){
+		List<Course> courses = MainController.getUser().getIsp().getCourses();
+		String[] courseTitles = new String[courses.size()];
+		for(int i = 0;i< courses.size();i++){
+			String course = courses.get(i).getCourseName();
+			courseTitles[i] = course;
+		}
+		return courseTitles;
 	}
 	private Lecture findLecture(Course course){
         Date currentDate = new Date();

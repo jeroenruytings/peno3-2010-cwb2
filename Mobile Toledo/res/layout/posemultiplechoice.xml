@@ -8,11 +8,11 @@
 	  	android:orientation = "vertical"
 	  	android:layout_width="fill_parent"
 	  	android:layout_height="wrap_content">
-	  		<TextView android:id="@+id/title" 
+	  		<TextView android:id="@+id/multi" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:text="@string/question" />
-			<EditText android:id="@+id/mtitle"
+			<EditText android:id="@+id/mmulti"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"/>
