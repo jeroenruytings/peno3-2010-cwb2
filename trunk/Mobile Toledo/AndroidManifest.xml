@@ -34,7 +34,7 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
-		<activity android:name=".view.ShowAnnouncements" android:label="ShowAnnouncements">
+		<activity android:name=".view.ShowAnnouncements" android:label="ShowAnnouncements" android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
@@ -61,7 +61,6 @@
 		</activity>
 		<activity android:name=".view.MultipleChoice" android:label="MultipleChoice">
 			<intent-filter>
-					<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
@@ -76,6 +75,22 @@
 				</intent-filter>
 		</activity>
 		<activity android:name=".view.GetInfo" android:label="getinfo">
+				<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
+		<activity android:name=".view.CoursePages" android:label="CoursePages">
+				<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
+		<activity android:name=".view.CourseInfo" android:label="CourseInfo" android:theme="@android:style/Theme.NoTitleBar">
+				<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
+		<activity android:name=".view.CourseDocuments" android:label="CourseDocuments" android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>

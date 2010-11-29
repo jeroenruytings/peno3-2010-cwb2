@@ -21,6 +21,8 @@ public class MainMenu extends Activity {
 	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
 	    ((TextView)findViewById(R.id.titlebar)).setText(R.string.mainmenu);
 	    
+	    getWindow().setFeatureInt(Window.FEATURE_OPTIONS_PANEL, R.layout.title);	
+	    
 	    ImageButton navigationButton = (ImageButton) findViewById(R.id.compassbutton);
 	    navigationButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -46,6 +48,7 @@ public class MainMenu extends Activity {
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(MainMenu.this,SelectCourse.class);
+				intent.putExtra("nextview",CoursePages.class); 
 				startActivity(intent);
 			}
 	    });
