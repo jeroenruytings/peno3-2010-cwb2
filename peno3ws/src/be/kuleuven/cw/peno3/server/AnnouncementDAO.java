@@ -110,11 +110,12 @@ public class AnnouncementDAO {
 	@POST
 	@Path ("/addAnnouncement")
 	@Produces ("application/json")
-	public String addUser(@FormParam("message") String message, @FormParam("announcementId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
+	public String addUser(@FormParam("message") String message, @FormParam("userId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
+
 		JSONObject result = new JSONObject();
 		if(userId != null) {
 			try {
-				String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "','" + courseCode + "'," + date +")";
+				String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode,date) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "','" + courseCode + "'," + date +")";
 				System.out.println(query);
 				manager.update(query);
 				manager.disconnect();
