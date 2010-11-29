@@ -28,8 +28,8 @@ public class ClientDAOTest {
 			HttpClient client = new HttpClient();
 			
 			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
-			method.addParameter("userId", "s0215121");
 			method.addParameter("message", "Hoera! Hoera! Eerste databaserecord toegevoegd!");
+			method.addParameter("userId", "s0215121");
 //			method.addParameter("date", null);
 			method.addParameter("title", "Joepie!");
 			method.addParameter("courseCode", "1");
