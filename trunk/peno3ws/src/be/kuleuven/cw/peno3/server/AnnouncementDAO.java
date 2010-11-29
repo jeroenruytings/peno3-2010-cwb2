@@ -46,6 +46,7 @@ public class AnnouncementDAO {
 		String query = "SELECT * FROM announcement";
 		System.out.println(query);
 		String result = queryForAnnouncements(query);
+		System.out.println(result);
 		manager.disconnect();
 		return result;
 	}
@@ -99,7 +100,7 @@ public class AnnouncementDAO {
 		JSONObject result = new JSONObject();
 		try {
 		
-			String query = "INSERT INTO announcement (message,userId,title,courseCode) VALUES ('" + message + "','" + userId + "','" + title + "'," + courseCode +")";//+ date + "',"
+			String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "'," + courseCode +")";//+ date + "',"
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();
