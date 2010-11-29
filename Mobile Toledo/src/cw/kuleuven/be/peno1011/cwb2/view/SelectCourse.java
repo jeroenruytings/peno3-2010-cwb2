@@ -8,14 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
@@ -43,25 +40,26 @@ public class SelectCourse extends ListActivity{
 				        }
 
 						if(!nextView.equals(null)){
-			                try{
-			                	Course course = MainController.getUser().getIsp().getCourses().get(position);
-			                	Lecture lecture = findLecture(course);
-			                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextView);
-			                    intent.putExtra("lecture",lecture); 
-			                    startActivity(intent);
-			                }
-			                catch(Exception e){
-			                	Context context = getApplicationContext();
-			            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
-			            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-			            		toast.show();
-			                }
+		                	Course course = MainController.getUser().getIsp().getCourses().get(position);
+
+		                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextView);
+							if(nextView.equals(CourseDocuments.class)){
+			                	intent.putExtra("course",MainController.getUser().getIsp().getCourses().get(position).getCourseName()); 
+							}
+							else{
+								try{
+				                	Lecture lecture = findLecture(course);
+				                    intent.putExtra("lecture",lecture); 
+				                }
+				                catch(Exception e){
+				                	Context context = getApplicationContext();
+				            		CharSequence text = "Geen les van dit vak gevonden die momenteel bezig is.";
+				            		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+				            		toast.show();
+				                }
+							}
+							startActivity(intent);
 		            	}
-		                else{
-		                	Intent intent = new Intent(SelectCourse.this,CourseInfo.class);
-		                	intent.putExtra("course",MainController.getUser().getIsp().getCourses().get(position).getCourseName()); 
-		                	startActivity(intent);
-		                }
 					}
 			  });
 		  }
