@@ -114,7 +114,7 @@ public class AnnouncementDAO {
 		JSONObject result = new JSONObject();
 		if(userId != null) {
 			try {
-				String query = "INSERT INTO announcement (message,userId,title,courseCode,date) VALUES ('" + message + "','" + userId + "','" + title + "','" + courseCode + "','" + date + "')";
+				String query = "INSERT INTO announcement (message,userId,title,courseCode,date) VALUES ('" + message + "','" + userId + "','" + title + "','" + courseCode + "'," + date + ")";
 				System.out.println(query);
 				manager.update(query);
 				manager.disconnect();
