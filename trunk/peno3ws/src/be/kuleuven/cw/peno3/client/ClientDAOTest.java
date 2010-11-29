@@ -11,6 +11,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
 
+import be.kuleuven.cw.peno3.model.Announcement;
 import be.kuleuven.cw.peno3.model.Credential;
 import be.kuleuven.cw.peno3.model.User;
 
@@ -54,9 +55,9 @@ public class ClientDAOTest {
 		try {
 			String json = stringOfUrl("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
 
-			User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
-			for (User user : obj2) {
-				System.out.println(user);	
+			Announcement[] obj2 = new Gson().fromJson(json.toString(), Announcement[].class);  
+			for (Announcement announcement : obj2) {
+				System.out.println(announcement);	
 			}
 			
 		} catch (MalformedURLException e) {
