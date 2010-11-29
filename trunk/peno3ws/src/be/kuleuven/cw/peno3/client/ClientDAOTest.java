@@ -85,7 +85,7 @@ public class ClientDAOTest {
 			calendar.set(Calendar.YEAR, 2010);
 			Date date = calendar.getTime();
 			String dateString = toMysqlDate(date);
-			method.addParameter("date", dateString);
+			method.addParameter("date", "");
 			
 			int returnCode = client.executeMethod(method);
 
