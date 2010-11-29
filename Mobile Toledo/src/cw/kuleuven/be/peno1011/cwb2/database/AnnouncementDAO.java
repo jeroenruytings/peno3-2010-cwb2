@@ -21,78 +21,78 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
 public class AnnouncementDAO {
-	
-	private static AnnouncementDAO announcementDAO;
-	
-	// Singleton
-	private AnnouncementDAO(){
-		
-	}
-	
-	public static AnnouncementDAO getInstance() {
-		if (announcementDAO == null){
-			announcementDAO = new AnnouncementDAO();
-		}
-		return announcementDAO;
-	}
-	
-	public void add(String userId, String message, Date date, String title, String courseCode) {
-		try {
-			HttpClient client = new HttpClient();
-			// maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
-			method.addParameter("userId", userId);
-			method.addParameter("message", message);
-			method.addParameter("date", date.toString());
-			method.addParameter("title", title);
-			method.addParameter("courseCode", courseCode);
-			// voert de methode ook werkelijk uit en retourneert een onbekend getal
-			int returnCode = client.executeMethod(method);
-			// displayt de respone op de postmethode
-			System.out.println(method.getResponseBodyAsString());
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public boolean delete(Announcement announcement) {
-		boolean deleted=false;
-		return deleted;
-	}
-	
-	/**
-	 * Methode moet nog uitgewerkt worden:
-	 */
-	public static void testListUsers() {
+        
+        private static AnnouncementDAO announcementDAO;
+        
+        // Singleton
+        private AnnouncementDAO(){
+                
+        }
+        
+        public static AnnouncementDAO getInstance() {
+                if (announcementDAO == null){
+                        announcementDAO = new AnnouncementDAO();
+                }
+                return announcementDAO;
+        }
+        
+        public void add(String userId, String message, Date date, String title, String courseCode) {
+                try {
+                        HttpClient client = new HttpClient();
+                        // maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
+                        PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+                        method.addParameter("userId", userId);
+                        method.addParameter("message", message);
+                        method.addParameter("date", date.toString());
+                        method.addParameter("title", title);
+                        method.addParameter("courseCode", courseCode);
+                        // voert de methode ook werkelijk uit en retourneert een onbekend getal
+                        int returnCode = client.executeMethod(method);
+                        // displayt de respone op de postmethode
+                        System.out.println(method.getResponseBodyAsString());
+                } catch (IllegalArgumentException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                } catch (HttpException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
+        }
+        
+        public boolean delete(Announcement announcement) {
+                boolean deleted=false;
+                return deleted;
+        }
+        
+        /**
+         * Methode moet nog uitgewerkt worden:
+         */
+        public static void testListUsers() {
 
-		try {
-			String json = stringOfUrl("http://" + ipAdress.getIp() + "/UserHandler/listUsers");
+                try {
+                        String json = stringOfUrl("http://" + ipAdress.getIp() + "/UserHandler/listUsers");
 
-			User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
-			for (User user : obj2) {
-				System.out.println(user);	
-			}
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+                        User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
+                        for (User user : obj2) {
+                                System.out.println(user);       
+                        }
+                        
+                } catch (MalformedURLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                } catch (JsonParseException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                }
 
-	}
-	
+        }
+        
     public static String stringOfUrl(String addr) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         URL url = new URL(addr);
