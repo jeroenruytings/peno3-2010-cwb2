@@ -19,59 +19,68 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-@Path ("/AnnouncementHandler")
-public class AnnouncementDAO {
+@Path ("/AppreciationHandler")
+public class AppreciationDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
 	@GET
-	@Path ("/getAnnouncement")
+	@Path ("/getAppreciation")
 	@Produces ("application/json")
-	public String getAnnouncement(@QueryParam("word") String word){
-		String query = "SELECT * FROM announcement";
-		if(word !=null)query += " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
-		String result = queryForAnnouncements(query);
+	public String getAppreciation(@QueryParam("docQuestionId") int docQuestionId,@QueryParam("isDocument") boolean isDocument){
+		int docOrQuestion;
+		if(isDocument)
+			docOrQuestion = 1;
+		else
+			docOrQuestion = 0;
+		String query = "SELECT * FROM appreciation";
+		if(docQuestionId > 0 )query += " WHERE docQuestionId like '%" + docQuestionId + "%' and isDocument like '%" + docOrQuestion + "%'";
+		String result = queryForAppreciations(query);
 		manager.disconnect();
 		return result;
 	}
 
 	@GET
-	@Path ("/listAnnouncements")
+	@Path ("/listAppreciations")
 	@Produces ("application/json")
 	public String listAnnouncements(){
 
-		String query = "SELECT * FROM announcement";
-		String result = queryForAnnouncements(query);
+		String query = "SELECT * FROM appreciation";
+		System.out.println(query);
+		String result = queryForAppreciations(query);
+		System.out.println(result);
 		manager.disconnect();
 		return result;
 	}
 
-	private String queryForAnnouncements(String query) {
-		JsonArray announcements = new JsonArray();
+	private String queryForAppreciations(String query) {
+		JsonArray appreciations = new JsonArray();
 		ResultSet rs = manager.query(query);
 		Gson gson = new Gson();
 		try {
+			//TODO: wat moet er hier komen? 
 			while(rs.next()) {
-				JsonObject announcement = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = announcement.get("courseCode");
+				JsonObject appreciation = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
+				JsonElement jsonElement = appreciation.get("courseCode");
 				if (!jsonElement.isJsonNull()) {
 					int courseCode = jsonElement.getAsInt();
 					query = "SELECT * FROM course WHERE courseCode='" + courseCode + "'";
 					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)announcement.add("course", result.get(0));
+					if(result.size() >0)appreciation.add("course", result.get(0));
 				}
-				announcements.add(announcement);
+				appreciations.add(appreciation);
 			}
 		} catch (SQLException e) {
 			JSONObject result = new JSONObject();
 			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
 			return result.toString();
 		}
-		String asString = announcements.toString();
+		String asString = appreciations.toString();
 		return asString;
 	}
 
 	private JsonArray querySimpleTable(String query) {
+		System.out.println(query);
 		Vector users = new Vector();
 		ResultSet rs = manager.query(query);
 		Gson gson = new Gson();
@@ -87,14 +96,18 @@ public class AnnouncementDAO {
 	}
 
 	@GET
-	@Path ("/addAnnouncement")
+	@Path ("/addAppreciation")
 	@Produces ("application/json")
-	public String addAnnouncement(@QueryParam("message") String message, @QueryParam("userId") String userId, @QueryParam("title") String title, @QueryParam("courseCode") String courseCode) { //@QueryParam("date") String date, 
+	public String addAppreciation(@QueryParam("docQuestionId") int docQuestionId, @QueryParam("isDocument") boolean isDocument, @QueryParam("userId") String userId, @QueryParam("score") int score){
 
 		JSONObject result = new JSONObject();
 		try {
-		
-			String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "'," + courseCode +")";//+ date + "',"
+			int document;
+			if(isDocument)
+				document = 1;
+			else
+				document = 0;
+			String query = "INSERT INTO appreciation (appreciationId,docQuestionId,isDocument,userId,score) VALUES (NULL,'"+ docQuestionId + "','" + document + "','" + userId + "','" + score +")";
 			manager.update(query);
 			manager.disconnect();
 		} catch (SQLException e) {
@@ -102,7 +115,7 @@ public class AnnouncementDAO {
 			return result.toString();
 		}
 
-		result.put("result", "Announcement succesfully added.");
+		result.put("result", "Appreciation succesfully added.");
 
 		return result.toString();
 	}
