@@ -36,7 +36,7 @@ public class MakeAnnouncement extends Activity{
 	    s.setAdapter(adapter);
 	    
 	    Button resetbutton = (Button) findViewById(R.id.reset);
-
+	    //TODO/ resetbutton werkt nog niet
         resetbutton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
