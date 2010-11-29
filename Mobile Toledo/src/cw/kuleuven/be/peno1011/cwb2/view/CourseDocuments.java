@@ -11,6 +11,9 @@ public class CourseDocuments extends Activity{
         TextView textview = new TextView(this);
         textview.setText("documenten hier");
         setContentView(textview);
+        
+		Bundle bundle = getIntent().getExtras();
+	    final String courseTitle = (String) bundle.get("courseTitle");
     }
 
 }

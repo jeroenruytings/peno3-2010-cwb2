@@ -75,4 +75,25 @@ public class InfoController {
         }
         return announcements;
 	}
+	public Course findCourse(String title){
+		List<Course> courses = user.getIsp().getCourses();
+		boolean isFound = false;
+		Course course = null;
+		for(int i=0;i<courses.size() && !isFound;i++){
+			if(courses.get(i).equals(title)){
+				isFound = true;
+				course = courses.get(i);
+			}
+		}
+		return course;
+	}
+	public String[] makeStrings(List<Announcement> announcements){
+		String[] displayStrings = new String[announcements.size()];
+		for(int i = 0;i< announcements.size();i++){
+			String displayString = announcements.get(i).getCourse().getCourseName() + ": " + announcements.get(i).getTitle();
+			displayStrings[announcements.size()-i-1] = displayString;
+		}
+		return displayStrings;
+	}
+	
 }

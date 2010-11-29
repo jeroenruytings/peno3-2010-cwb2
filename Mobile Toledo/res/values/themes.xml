@@ -2,6 +2,7 @@
 <resources>
 	<style name="Theme" parent="android:Theme">
 		<item name="android:windowTitleSize">26px</item>
-		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>		    		
+		<item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>	
+  		<item name="android:tabWidgetStyle">@style/LightTabWidget</item>	
 	</style>
 </resources>
