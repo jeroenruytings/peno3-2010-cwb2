@@ -44,7 +44,7 @@ public class SelectCourse extends ListActivity{
 
 		                	Intent intent = new Intent(SelectCourse.this,(Class<?>) nextView);
 							if(nextView.equals(CourseDocuments.class)){
-			                	intent.putExtra("course",MainController.getUser().getIsp().getCourses().get(position).getCourseName()); 
+			                	intent.putExtra("courseTitle",MainController.getUser().getIsp().getCourses().get(position).getCourseName()); 
 							}
 							else{
 								try{
