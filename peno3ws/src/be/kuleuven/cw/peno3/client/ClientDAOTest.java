@@ -9,6 +9,7 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.BasicConfigurator;
 
 import be.kuleuven.cw.peno3.model.Credential;
 import be.kuleuven.cw.peno3.model.User;
@@ -18,6 +19,7 @@ import com.google.gson.JsonParseException;
 
 public class ClientDAOTest {
 	public static void main(String[] args) {
+		BasicConfigurator.configure();
 		//testListAnnouncements();
 		testAddAnnouncements();
 	}
