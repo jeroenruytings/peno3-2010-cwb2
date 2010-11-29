@@ -107,4 +107,46 @@ public class AnnouncementDAO {
 		return result.toString();
 	}
 
+	@POST
+	@Path ("/addAnnouncement")
+	@Produces ("application/json")
+	public String addUser(@FormParam("message") String message, @FormParam("userId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
+		JSONObject result = new JSONObject();
+		if(userId != null) {
+			try {
+				String query = "INSERT INTO announcement (message,userId,title,courseCode,date) VALUES ('" + message + "','" + userId + "','" + title + "','" + courseCode + "','" + date + ")";
+				System.out.println(query);
+				manager.update(query);
+				manager.disconnect();
+				}
+			catch (SQLException e) {
+				result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
+				return result.toString();
+			}
+			result.put("result", "Announcement sucessfully added");
+		}
+		else {
+			result.put("result", "The userId was empty, no User added...");
+		}
+		return result.toString();
+	}
+
+	private int insertCredentials(String username, String password) throws SQLException {
+		int cred_id = -1;
+
+		String update = "INSERT INTO credentials (username,password) VALUES ('"+username+"','"+password+"')";
+		String query = "SELECT LAST_INSERT_ID() from credentials";
+		System.out.println(query);
+		ResultSet rs = manager.updateAndQuery(update, query);
+		rs.last();
+		HashMap result = manager.getColumnValues(rs);
+		cred_id = ((Long)result.get("LAST_INSERT_ID()")).intValue();
+
+		return cred_id;
+	}
+
+	private int insertDefaultCredentials() throws SQLException {
+
+		return insertCredentials("user", "default");
+	}
 }
