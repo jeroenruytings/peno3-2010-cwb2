@@ -78,7 +78,7 @@ public class ClientDAOTest {
 			method.addParameter("courseCode", "Randomcode");
 			//volgende regels zorgen voor toevoegen van de date vertrekkende van een dateobject
 			Calendar calendar = Calendar.getInstance();
-			calendar.set(2010, 11, 29, 21, 33);
+			calendar.set(2010, 11, 29, 21, 33, 0);
 			Date date = calendar.getTime();
 			String dateString = toMysqlDate(date);
 			method.addParameter("date", dateString);
