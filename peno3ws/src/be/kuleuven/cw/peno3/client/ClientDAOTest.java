@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -25,7 +28,7 @@ public class ClientDAOTest {
 		testAddAnnouncements();
 	}
 
-	private static void testAddAnnouncements() {
+/*	private static void testAddAnnouncements() {
 		try {
 			
 			HttpClient client = new HttpClient();
@@ -60,7 +63,41 @@ public class ClientDAOTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}*/
+	
+	private static void testAddAnnouncements() {
+		try {
+			HttpClient client = new HttpClient();
+			
+			
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+			method.addParameter("message", "Dit is de postmethod test");
+			method.addParameter("userId","s0215121");
+			method.addParameter("title", "De eerste postmethode werkt!");
+			method.addParameter("courseCode", "Randomcode");
+			//volgende regels zorgen voor toevoegen van de date vertrekkende van een dateobject
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(2010, 11, 29, 21, 33);
+			Date date = calendar.getTime();
+			String dateString = toMysqlDate(date);
+			method.addParameter("date", dateString);
+			
+			int returnCode = client.executeMethod(method);
+
+			System.out.println(method.getResponseBodyAsString());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
 	public static void testListAnnouncements() {
 
 		try {
@@ -102,4 +139,20 @@ public class ClientDAOTest {
         return output.toString();
     }
     
+    private static String toMysqlDate(Date date){
+    	  if (date==null) return "NULL";
+    	  SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	  return sqlValueWithQuotas(sdf.format(date));
+    	 }
+
+    	 public static String sqlValueWithQuotas(Object obj){
+    	  if ( obj == null ) return "NULL";
+    	  
+    	  String str = obj.toString();
+    	  str.replaceAll("'", "\\'");
+    	  str = '\''+str+'\'';
+    	  
+    	  return str;
+    	  
+    	 }
 }
