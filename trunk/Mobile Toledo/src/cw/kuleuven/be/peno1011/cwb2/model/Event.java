@@ -12,6 +12,7 @@ public class Event {
 	private String category;
 	
 	public Event(String title,String description, GPSLocation place, String category, Date startDate, Date stopDate) {
+		this.title=title;
 		setDescription(description);
 		setStartDate(startDate);
 		setStopDate(stopDate);

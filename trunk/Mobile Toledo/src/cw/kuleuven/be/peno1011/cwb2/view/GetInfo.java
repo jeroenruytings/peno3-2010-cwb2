@@ -68,9 +68,9 @@ public class GetInfo extends Activity {
 	  	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
-	  	        TypedArray a = obtainStyledAttributes(R.styleable.HelloGallery);
-	  	        mGalleryItemBackground = a.getResourceId(R.styleable.HelloGallery_android_galleryItemBackground, 0);
-	  	        a.recycle();
+//	  	        TypedArray a = obtainStyledAttributes(R.styleable.HelloGallery);
+//	  	        mGalleryItemBackground = a.getResourceId(R.styleable.HelloGallery_android_galleryItemBackground, 0);
+//	  	        a.recycle();
 	  	    }
 
 	  	    public int getCount() {
