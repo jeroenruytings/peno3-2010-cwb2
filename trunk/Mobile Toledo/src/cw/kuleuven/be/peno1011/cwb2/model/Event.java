@@ -4,13 +4,14 @@ import java.util.Date;
 
 public class Event {
 	
+	private String title;
 	private String description;
 	private Date startDate;
 	private Date stopDate;
 	private GPSLocation place;
 	private String category;
 	
-	public Event(String description, GPSLocation place, String category, Date startDate, Date stopDate) {
+	public Event(String title,String description, GPSLocation place, String category, Date startDate, Date stopDate) {
 		setDescription(description);
 		setStartDate(startDate);
 		setStopDate(stopDate);
@@ -18,6 +19,10 @@ public class Event {
 		setCategory(category);
 	}
 	
+	public String getTitle() {
+		return title;
+	}
+
 	public String getDescription() {
 		return description;
 	}

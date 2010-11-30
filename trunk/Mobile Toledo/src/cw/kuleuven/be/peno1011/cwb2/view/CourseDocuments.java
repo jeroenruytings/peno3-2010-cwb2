@@ -13,7 +13,7 @@ public class CourseDocuments extends Activity{
         setContentView(textview);
         
 		Bundle bundle = getIntent().getExtras();
-	    final String courseTitle = (String) bundle.get("courseTitle");
+	    //final String courseTitle = (String) bundle.get("courseTitle");
     }
 
 }
