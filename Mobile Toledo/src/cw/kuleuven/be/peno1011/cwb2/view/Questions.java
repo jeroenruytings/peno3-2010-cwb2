@@ -17,7 +17,7 @@ public class Questions extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.question);
-		setContentView(R.layout.makeannouncement);
+
 		
 				
 		
