@@ -22,6 +22,7 @@ public class InteractionMenu extends Activity{
 	    ImageButton announcementsButton = (ImageButton) findViewById(R.id.announcementsbutton);
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
 	    ImageButton multipleButton = (ImageButton) findViewById(R.id.multiplebutton);
+	    ImageButton statsButton = (ImageButton) findViewById(R.id.statsbutton);
 	
 	    //moet nog geimplementeerd worden:
     	if(MainController.getUser().getLevel()>1){ //als gebruiker een prof is, ziet de menu er anders uit!
@@ -62,6 +63,15 @@ public class InteractionMenu extends Activity{
 			}
 	    });
 	    multipleButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",MultipleView.class); 
+				startActivity(intent);
+			}
+	    });
+	    statsButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
