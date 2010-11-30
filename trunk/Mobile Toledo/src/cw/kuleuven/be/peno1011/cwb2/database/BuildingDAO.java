@@ -37,4 +37,21 @@ public class BuildingDAO {
 		return buildings;
 		
 	}
+	
+	public Boolean buildingExists(String buildingname)
+	{
+		Boolean exists = false;
+		
+		// if naam komt voor in database exists = true;
+		
+		return exists;
+	}
+	public Boolean roomExists(String roomname)
+	{
+		Boolean exists = false;
+		
+		// if naam komt voor in database exists = true;
+		
+		return exists;
+	}
 }
