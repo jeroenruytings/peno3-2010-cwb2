@@ -12,7 +12,7 @@ public class CourseInfo extends Activity{
 	     setContentView(R.layout.courseinfo);
 	     
 	     Bundle bundle = getIntent().getExtras();
-		 final String courseTitle = (String) bundle.get("courseTitle");
+		 //final String courseTitle = (String) bundle.get("courseTitle");
 
 	}
 }

@@ -3,21 +3,19 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
 public class CoursePages extends TabActivity{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);	  
 
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
-		setContentView(R.layout.coursepages);
+		setContentView(R.layout.tablayout);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
 		
 		try{
