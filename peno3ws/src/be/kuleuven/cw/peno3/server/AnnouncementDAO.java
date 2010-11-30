@@ -24,18 +24,35 @@ public class AnnouncementDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
+	private String getAnnouncement(String searchString, String query) {
+		String executeQuery = "SELECT * FROM announcement";
+		if(searchString !=null)executeQuery += query;
+		String result = queryForAnnouncements(executeQuery);
+		manager.disconnect();
+		return result;
+	}
+	
 	@POST
-	@Path ("/getAnnouncement")
+	@Path ("/getAnnouncementByWord")
 	@Produces ("application/json")
-	public String getAnnouncement(@QueryParam("word") String word){
-		String query = "SELECT * FROM announcement";
-		if(word !=null)query += " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
+	public String getAnnouncementByWord(@QueryParam("word") String word){
+		String query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
+		String result = getAnnouncement(word,query);
+		manager.disconnect();
+		return result;
+	}
+	
+	@POST
+	@Path ("/getAnnouncementByCourseCode")
+	@Produces ("application/json")
+	public String getAnnouncementByCourseCode(@QueryParam("courseCode") String courseCode){
+		String query = " WHERE courseCode like '%" + courseCode + "%'";
 		String result = queryForAnnouncements(query);
 		manager.disconnect();
 		return result;
 	}
 
-	@POST
+	@GET
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
@@ -55,7 +72,7 @@ public class AnnouncementDAO {
 				JsonObject announcement = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
 				JsonElement jsonElement = announcement.get("courseCode");
 				if (!jsonElement.isJsonNull()) {
-					int courseCode = jsonElement.getAsInt();
+					String courseCode = jsonElement.getAsString();
 					query = "SELECT * FROM course WHERE courseCode='" + courseCode + "'";
 					JsonArray result = querySimpleTable(query);
 					if(result.size() >0)announcement.add("course", result.get(0));
