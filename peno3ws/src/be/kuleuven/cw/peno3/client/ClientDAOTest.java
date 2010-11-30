@@ -23,9 +23,12 @@ import com.google.gson.JsonParseException;
 
 public class ClientDAOTest {
 	public static void main(String[] args) {
-		testListAnnouncements();
-		testAddAnnouncements();
+		//testListAnnouncements();
+		//testAddAnnouncements();
 		testGetAnnouncement();
+		//testAddCourse();
+		//testGetCourseByName();
+		//testGetUser();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -124,6 +127,84 @@ public class ClientDAOTest {
 		}
 	}
 	
+	public static void testAddCourse() {
+		try {
+		HttpClient client = new HttpClient();
+		
+		
+		
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/addCourse");
+		method.addParameter("courseCode","H123456");
+		method.addParameter("academicYear","1011");
+		method.addParameter("course","Economie");
+		
+		int returnCode = client.executeMethod(method);
+
+		System.out.println(method.getResponseBodyAsString());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void testGetCourseByName() {
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/getCourseByName");
+			method.addParameter("courseCode", "H987654");
+			int returnCode = client.executeMethod(method);
+			String json = method.getResponseBodyAsString();
+			if(json.contains("[]")) {
+					System.out.println("Geen zoekresultaten gevonden");
+				}
+			else {
+				System.out.println(json);
+				}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void testGetUser(){
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/UserHandler/getUser");
+			method.addParameter("name", "Jeroen");
+			int returnCode = client.executeMethod(method);
+			String json = method.getResponseBodyAsString();
+			if(json.contains("[]")) {
+					System.out.println("Geen zoekresultaten gevonden");
+				}
+			else {
+				System.out.println(json);
+				}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
     public static String stringOfUrl(String addr) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         URL url = new URL(addr);
@@ -137,6 +218,9 @@ public class ClientDAOTest {
         return output.toString();
     }
     
+    /*
+     * Onderstaande methodes zetten date-objecten om in sql compatibele strings
+     */
     private static String toMysqlDate(Date date){
     	  if (date==null) return "NULL";
     	  SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

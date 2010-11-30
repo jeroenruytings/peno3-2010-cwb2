@@ -24,7 +24,9 @@ public class AnnouncementDAO {
 
 	private String getAnnouncement(String searchString, String query) {
 		String executeQuery = "SELECT * FROM announcement";
-		if(searchString !=null)executeQuery += query;
+		if(searchString !=null){
+			executeQuery += query;
+		}
 		String result = queryForAnnouncements(executeQuery);
 		manager.disconnect();
 		return result;
@@ -97,18 +99,18 @@ public class AnnouncementDAO {
 	}
 
 	private JsonArray querySimpleTable(String query) {
-		Vector users = new Vector();
+		Vector announcements = new Vector();
 		ResultSet rs = manager.query(query);
 		Gson gson = new Gson();
 		try {
 			while(rs.next()) {
-				users.add(manager.getColumnValues(rs));
+				announcements.add(manager.getColumnValues(rs));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return (JsonArray) gson.toJsonTree(users);
+		return (JsonArray) gson.toJsonTree(announcements);
 	}
 
 	/*
