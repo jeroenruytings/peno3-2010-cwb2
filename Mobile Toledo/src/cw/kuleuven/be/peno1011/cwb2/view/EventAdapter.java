@@ -4,14 +4,18 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Event;
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 
 public class EventAdapter extends BaseAdapter implements OnClickListener {
 	    private Context context;
@@ -35,17 +39,40 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	    }
 
 	    public View getView(int position, View convertView, ViewGroup viewGroup) {
-	        Event event = events.get(position);
 	        if (convertView == null) {
 	            LayoutInflater inflater = (LayoutInflater) context
 	                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            convertView = inflater.inflate(R.layout.listevent, null);
 	        }
+	        Event event = events.get(position);
+	     
 	        TextView title = (TextView) convertView.findViewById(R.id.eventtitle);
 	        title.setText(event.getTitle());
-
+	        
+	        TextView loc = (TextView) convertView.findViewById(R.id.eventloc);
+	        GPSLocation location = event.getPlace();
+	        if(location instanceof Building){
+	        	loc.setText(((Building) location).getName());
+	    	}
+	        else if(location instanceof GPSLocation){
+	        	loc.setText(location.getStreet() + " " + location.getNumber());
+	        }
 	        TextView date = (TextView) convertView.findViewById(R.id.eventdate);
 	        date.setText(event.getStartDate().toGMTString() + event.getStartDate().getHours() + ":" + event.getStartDate().getMinutes());
+	        
+	        SurfaceView cat = (SurfaceView) convertView.findViewById(R.id.category);
+	        if(event.getCategory().equals("college")) {
+	        	cat.setBackgroundColor(R.color.blue);
+	        }
+	        else if(event.getCategory().equals("party")) {
+	        	cat.setBackgroundDrawable(cat.getResources().getDrawable(R.drawable.gradient));
+	        }
+	        else if(event.getCategory().equals("culture")) {
+	        	cat.setBackgroundColor(R.color.green);
+	        }
+	        else{
+	        	cat.setBackgroundColor(R.color.white);
+	        }
 
 	        return convertView;
 	    }

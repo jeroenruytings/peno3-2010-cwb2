@@ -16,7 +16,6 @@ public class Building extends GPSLocation
 	private URL map;
 	private boolean isRentable;
 	private ArrayList<Room> rooms;
-	private GPSLocation location;
 
 	/**
 	 * @param locationNr
@@ -41,7 +40,6 @@ public class Building extends GPSLocation
 		setMap(map);
 		setRentable(isRentable);
 		setRooms(rooms);
-		setGPSLocation(location);
 	}
 
 	public String getName() {
@@ -90,14 +88,6 @@ public class Building extends GPSLocation
 
 	public void setRooms(ArrayList<Room> rooms) {
 		this.rooms = rooms;
-	}
-
-	public GPSLocation getGPSLocation() {
-		return location;
-	}
-
-	public void setGPSLocation(GPSLocation location) {
-		this.location = location;
 	}
     
 }

@@ -11,9 +11,6 @@ import java.lang.reflect.Array;
  *
  */
 public class Room {
-
-	
-	
 	
 	private  int[] coordinates = new int [2];
 	private String function;
