@@ -24,7 +24,7 @@ public class AnnouncementDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
-	@GET
+	@POST
 	@Path ("/getAnnouncement")
 	@Produces ("application/json")
 	public String getAnnouncement(@QueryParam("word") String word){
@@ -35,7 +35,7 @@ public class AnnouncementDAO {
 		return result;
 	}
 
-	@GET
+	@POST
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
@@ -86,31 +86,13 @@ public class AnnouncementDAO {
 		return (JsonArray) gson.toJsonTree(users);
 	}
 
-	@GET
-	@Path ("/addAnnouncement")
-	@Produces ("application/json")
-	public String addAnnouncement(@QueryParam("message") String message, @QueryParam("userId") String userId, @QueryParam("title") String title, @QueryParam("courseCode") String courseCode) { //@QueryParam("date") String date, 
-
-		JSONObject result = new JSONObject();
-		try {
-		
-			String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "'," + courseCode +")";//+ date + "',"
-			manager.update(query);
-			manager.disconnect();
-		} catch (SQLException e) {
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-
-		result.put("result", "Announcement succesfully added.");
-
-		return result.toString();
-	}
-
+	/*
+	 * Method adds an announcement to the database	
+	 */
 	@POST
 	@Path ("/addAnnouncement")
 	@Produces ("application/json")
-	public String addUser(@FormParam("message") String message, @FormParam("userId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
+	public String addAnnouncement(@FormParam("message") String message, @FormParam("userId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
 
 		JSONObject result = new JSONObject();
 		if(userId != null) {
@@ -130,24 +112,5 @@ public class AnnouncementDAO {
 			result.put("result", "The userId was empty, no User added...");
 		}
 		return result.toString();
-	}
-
-	private int insertCredentials(String username, String password) throws SQLException {
-		int cred_id = -1;
-
-		String update = "INSERT INTO credentials (username,password) VALUES ('"+username+"','"+password+"')";
-		String query = "SELECT LAST_INSERT_ID() from credentials";
-		System.out.println(query);
-		ResultSet rs = manager.updateAndQuery(update, query);
-		rs.last();
-		HashMap result = manager.getColumnValues(rs);
-		cred_id = ((Long)result.get("LAST_INSERT_ID()")).intValue();
-
-		return cred_id;
-	}
-
-	private int insertDefaultCredentials() throws SQLException {
-
-		return insertCredentials("user", "default");
 	}
 }
