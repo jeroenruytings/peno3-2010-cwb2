@@ -3,6 +3,7 @@ package be.kuleuven.cw.peno3.server;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.ws.rs.FormParam;
@@ -14,8 +15,6 @@ import javax.ws.rs.QueryParam;
 
 import org.json.simple.JSONObject;
 
-import be.kuleuven.cw.peno3.model.User;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -26,25 +25,33 @@ public class UserDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
-	@GET
-	@Path ("/getUser")
+	@POST
+	@Path ("/getUserByName")
 	@Produces ("application/json")
-	public String getUser(@QueryParam("name") String name){
+	public String getUserByName(@QueryParam("name") String name){
 		String query = "SELECT * FROM user";
-		if(name !=null)query += " WHERE firstname like '%" + name + "%' or lastname like '%" + name + "%'";
-		System.out.println(query);
+		if(name !=null)query += " WHERE firstName like '%" + name + "%' or lastName like '%" + name + "%'";
 		String result = queryForUsers(query);
 		manager.disconnect();
 		return result;
 	}
 
-	@GET
+	@POST
+	@Path ("/getUserByUserId")
+	@Produces("application/json")
+	public String getUserByUserId(@QueryParam("userId") String userId){
+		String query = "SELECT * FROM user";
+		if(userId !=null)query += " WHERE userId like '%" + userId + "%'";
+		String result = queryForUsers(query);
+		manager.disconnect();
+		return result;
+	}
+	
+	@POST
 	@Path ("/listUsers")
 	@Produces ("application/json")
-	public String listUsers(){
-
+	public String listAnnouncements(){
 		String query = "SELECT * FROM user";
-		System.out.println(query);
 		String result = queryForUsers(query);
 		manager.disconnect();
 		return result;
@@ -57,12 +64,21 @@ public class UserDAO {
 		try {
 			while(rs.next()) {
 				JsonObject user = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = user.get("cred_id");
+				JsonElement jsonElement = user.get("userId");
 				if (!jsonElement.isJsonNull()) {
-					int id = jsonElement.getAsInt();
-					query = "SELECT * FROM credentials WHERE id='" + id + "'";
+					String userId = jsonElement.getAsString();
+					query = "SELECT * FROM isp WHERE userId ='" + userId + "'";
 					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)user.add("credentials", result.get(0));
+					if(result.size() >0)user.add("group", result.get(1));
+					if(result.size() >0)user.add("studies", result.get(2));
+					if(result.size() >0)user.add("phase", result.get(3));
+					
+					query = "SELECT * FROM isp_course WHERE userId ='" + userId + "'";
+					JsonArray resultaat = querySimpleTable(query);
+					Iterator<JsonElement> it = resultaat.iterator();
+					while(it.hasNext()){
+						if(result.size() >0)user.add("courseCode", result.get(2));
+					}
 				}
 				users.add(user);
 			}
@@ -76,7 +92,6 @@ public class UserDAO {
 	}
 
 	private JsonArray querySimpleTable(String query) {
-		System.out.println(query);
 		Vector users = new Vector();
 		ResultSet rs = manager.query(query);
 		Gson gson = new Gson();
@@ -91,88 +106,26 @@ public class UserDAO {
 		return (JsonArray) gson.toJsonTree(users);
 	}
 
-	@GET
-	@Path ("/addUser")
-	@Produces ("application/json")
-	public String addUser(@QueryParam("firstname") String firstName,@QueryParam("lastname") String lastName){
-
-		JSONObject result = new JSONObject();
-		try {
-			int cred_id = insertDefaultCredentials();
-			if (cred_id >-1) {
-				String query = "INSERT INTO user (firstname,lastname,cred_id) VALUES ('" + firstName + "','" + lastName + "'," + cred_id + ")";
-				System.out.println(query);
-				manager.update(query);
-				manager.disconnect();
-			}else {
-				manager.disconnect();
-				result.put("result", "INSERT of credentials failed");
-				return result.toString();
-			}
-		} catch (SQLException e) {
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-
-		result.put("result", "User "+firstName + " " + lastName+" succefully added.");
-
-		return result.toString();
-	}
-
+	/*
+	 * Method adds an announcement to the database	
+	 */
 	@POST
 	@Path ("/addUser")
 	@Produces ("application/json")
-	public String addUser(@FormParam("user") String userJson){
+	public String addAnnouncement(@FormParam("userId") String userId, @FormParam("firstName") String firstName, @FormParam("lastName") String lastName, @FormParam("password") String password, @FormParam("birthDate") String birthDate, @FormParam("rank") int rank){
+
 		JSONObject result = new JSONObject();
-		if(userJson != null) {
-			User newUser = new Gson().fromJson(userJson, User.class);
-
-			try {
-				int cred_id = -1;
-				if(newUser.getCredential() != null) {
-					cred_id = insertCredentials(newUser.getCredential().getUsername(), newUser.getCredential().getPassword());
-				}else {
-					cred_id = insertDefaultCredentials();
-				}
-
-				if (cred_id >-1) {
-					String query = "INSERT INTO user (firstname,lastname,cred_id) VALUES ('" + newUser.getFirstName() + "','" + newUser.getLastName() + "'," + cred_id + ")";
-					System.out.println(query);
-					manager.update(query);
-					manager.disconnect();
-				}else {
-					manager.disconnect();
-					result.put("result", "INSERT of credentials failed");
-					return result.toString();
-				}
-			} catch (SQLException e) {
-				result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-				return result.toString();
+		try {
+			String query = "INSERT INTO announcement (userId, firstName, lastName, password, birthDate, rank) VALUES ('"+ userId + "','" + firstName + "','" + lastName + "','" + password + "'," + birthDate + "'," + rank +")";
+			System.out.println(query);
+			manager.update(query);
+			manager.disconnect();
 			}
-			result.put("result", "User "+newUser.getFirstName() + " " + newUser.getLastName()+" succefully added.");
+		catch (SQLException e) {
+			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
+			return result.toString();
 		}
-		else {
-			result.put("result", "User was empty, no User added...");
-		}
+		result.put("result", "User sucessfully added");
 		return result.toString();
-	}
-
-	private int insertCredentials(String username, String password) throws SQLException {
-		int cred_id = -1;
-
-		String update = "INSERT INTO credentials (username,password) VALUES ('"+username+"','"+password+"')";
-		String query = "SELECT LAST_INSERT_ID() from credentials";
-		System.out.println(query);
-		ResultSet rs = manager.updateAndQuery(update, query);
-		rs.last();
-		HashMap result = manager.getColumnValues(rs);
-		cred_id = ((Long)result.get("LAST_INSERT_ID()")).intValue();
-
-		return cred_id;
-	}
-
-	private int insertDefaultCredentials() throws SQLException {
-
-		return insertCredentials("user", "default");
 	}
 }
