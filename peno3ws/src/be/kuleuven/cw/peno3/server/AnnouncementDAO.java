@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -22,11 +23,15 @@ public class AnnouncementDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
-	private String getAnnouncement(String searchString, String query) {
+	public String getAnnouncement(String searchString, String query) {
 		String executeQuery = "SELECT * FROM announcement";
+		System.out.println("executeQuery before:" + executeQuery);
+		
 		if(searchString !=null){
-			executeQuery += query;
+			executeQuery = executeQuery + query;
 		}
+		
+		System.out.println("executeQuery after:" +executeQuery);
 		String result = queryForAnnouncements(executeQuery);
 		manager.disconnect();
 		return result;
@@ -37,7 +42,17 @@ public class AnnouncementDAO {
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@QueryParam("word") String word){
 		String query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
-		String result = getAnnouncement(word,query);
+//		return getAnnouncement(word,query);
+		String executeQuery = "SELECT * FROM announcement";
+		System.out.println("executeQuery before:" + executeQuery);
+		System.out.println("word:"+ word);
+		
+		if(word !=null){ 
+			executeQuery +=query;
+		}
+		
+		System.out.println("executeQuery after:" +executeQuery);
+		String result = queryForAnnouncements(executeQuery);
 		manager.disconnect();
 		return result;
 	}
