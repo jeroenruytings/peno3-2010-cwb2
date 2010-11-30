@@ -34,6 +34,6 @@
 <string name="navigate">Navigeer naar...</string>
 <string name="locationinfo">Info van locatie</string>
 <string name="multiple">Meerkeuzevraag beantwoorden</string>
-<string name="location">%d</string>
+<string name="location">$s</string>
 <string name="stats">Statistieken</string>
 </resources>
