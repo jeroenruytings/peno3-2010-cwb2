@@ -23,7 +23,7 @@ import com.google.gson.JsonParseException;
 
 public class ClientDAOTest {
 	public static void main(String[] args) {
-		//testListAnnouncements();
+		testListAnnouncements();
 		testAddAnnouncements();
 		testGetAnnouncement();
 	}

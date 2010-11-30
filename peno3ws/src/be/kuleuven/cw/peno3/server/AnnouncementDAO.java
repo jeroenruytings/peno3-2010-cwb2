@@ -52,7 +52,7 @@ public class AnnouncementDAO {
 		return result;
 	}
 
-	@GET
+	@POST
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
