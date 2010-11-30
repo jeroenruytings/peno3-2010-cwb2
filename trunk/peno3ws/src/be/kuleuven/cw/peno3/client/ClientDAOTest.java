@@ -97,7 +97,8 @@ public class ClientDAOTest {
 			HttpClient client = new HttpClient();
 			
 			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
-			method.addParameter("word", "test");
+//			method.setQueryString("?word=test");
+			method.addParameter("word","test");
 			int returnCode = client.executeMethod(method);
 			String json = method.getResponseBodyAsString();
 			if(json.contains("[]")) {
