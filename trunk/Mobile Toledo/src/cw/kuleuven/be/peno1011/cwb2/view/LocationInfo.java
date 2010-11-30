@@ -1,6 +1,8 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+
 import cw.kuleuven.be.peno1011.cwb2.R;
+
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 
 import android.app.Activity;
@@ -14,6 +16,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+
+
 public class LocationInfo extends Activity {
 	private NavigationController control;
  
@@ -23,8 +27,17 @@ public class LocationInfo extends Activity {
 		     setContentView(R.layout.infoon);
 
 		     control = NavigationController.getInstance();
+		   
+		     String [] list1 = control.getBuildingNames();
+		   	 String [] list2 = control.getRoomNames();
+
+		   	   String [] list= new String[list1.length+list2.length];
+		   	   System.arraycopy(list1, 0, list, 0, list1.length);
+		   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
+
+		     
 		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
-		     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.autofilllist, control.getBuildingNames());
+		     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.autofilllist, list);
 		     textView.setAdapter(adapter);
 		    		 
     
