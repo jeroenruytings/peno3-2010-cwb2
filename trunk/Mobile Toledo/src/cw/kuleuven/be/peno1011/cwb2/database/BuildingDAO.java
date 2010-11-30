@@ -4,6 +4,7 @@ package cw.kuleuven.be.peno1011.cwb2.database;
 import java.util.ArrayList;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
 public class BuildingDAO {
 	
@@ -36,6 +37,12 @@ public class BuildingDAO {
 		ArrayList<Building> buildings = null;
 		return buildings;
 		
+	}
+	
+	public ArrayList<Room> getRooms()
+	{
+		ArrayList<Room> buildings = null;
+		return buildings;
 	}
 	
 	public Boolean buildingExists(String buildingname)
