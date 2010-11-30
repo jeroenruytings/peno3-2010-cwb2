@@ -51,6 +51,16 @@ public class AnnouncementDAO {
 		manager.disconnect();
 		return result;
 	}
+	
+	@POST
+	@Path ("/getAnnouncementByDate")
+	@Produces ("application/json")
+	public String getAnnouncementByDate(@QueryParam("date") String date){
+		String query = " WHERE date like '%" + date + "%'";
+		String result = queryForAnnouncements(query);
+		manager.disconnect();
+		return result;
+	}
 
 	@POST
 	@Path ("/listAnnouncements")
