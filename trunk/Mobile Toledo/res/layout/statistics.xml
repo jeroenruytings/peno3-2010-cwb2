@@ -17,19 +17,39 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		    </ProgressBar> 
-		 <ProgressBar android:id="@+id/sb"
+		    <TextView android:id="@+id/multiplefeedback" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="center"
+				android:typeface="serif"
+				android:text="Antwoord A"/>
+		<ProgressBar android:id="@+id/sb"
 		    android:indeterminateOnly="false" 
 		    android:progressDrawable="@android:drawable/progress_horizontal" 
 		    android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal" 
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
-		  <ProgressBar android:id="@+id/sc"
+		  	<TextView android:id="@+id/multiplefeedback" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="center"
+				android:typeface="serif"
+				android:text="Antwoord B">
+			</TextView>
+		<ProgressBar android:id="@+id/sc"
 		    android:indeterminateOnly="false" 
 		    android:progressDrawable="@android:drawable/progress_horizontal" 
 		    android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal" 
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
+		  	<TextView android:id="@+id/multiplefeedback" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="center"
+				android:typeface="serif"
+				android:text="Antwoord C">
+				</TextView>
 		  </LinearLayout>    
  </LinearLayout>
