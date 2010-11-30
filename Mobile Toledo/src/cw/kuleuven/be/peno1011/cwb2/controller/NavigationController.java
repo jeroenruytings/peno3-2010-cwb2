@@ -83,6 +83,14 @@ public class NavigationController{
 		return existing;
 	}
 	
+	public Uri[] getPictureArray(String locationname)
+	{
+		Uri[] pictureArray = {
+				Uri.parse("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA")
+		};
+		return pictureArray;
+	}
+	
 	public Uri getGoogleMap(String location)
 	{
 		Uri uri = null;
