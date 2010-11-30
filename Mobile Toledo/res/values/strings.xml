@@ -35,4 +35,5 @@
 <string name="locationinfo">Info van locatie</string>
 <string name="multiple">Meerkeuzevraag beantwoorden</string>
 <string name="location">%d</string>
+<string name="stats">Statistieken</string>
 </resources>
