@@ -1,6 +1,8 @@
+
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
 import java.lang.reflect.Array;
+import java.net.URI;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,11 +16,13 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 //opmerking: user kan statisch opgeslagen worden in de globale controller,
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
 public class NavigationController{
+	private BuildingDAO dao;
 	private static NavigationController navigationController;
 	private static LocationListener listener;
 	private Criteria criteria;
@@ -44,7 +48,7 @@ public class NavigationController{
 	
 	public String[] getBuildingNames()
 	{
-	//	BuildingDAO dao = BuildingDAO.getInstance();
+	//	dao = BuildingDAO.getInstance();
 		//ArrayList<Building> buildings = dao.getBuildings();
 		String [] buildingnames = new String []{
 		//Iterator<Building> it = buildings.iterator(); 
@@ -59,6 +63,31 @@ public class NavigationController{
 		
 		return buildingnames;
 	} 
+	public String[] getRoomNames()
+	{
+		//zelfde als getBuildingNames()
+		// use dao.getRooms();
+		String [] roomnames = new String []{
+				"kamer", "kat","kooi, kraai"
+		};
+		return roomnames;
+		
+	}
+	
+	public boolean buildingExists(String buildingname)
+	{
+		Boolean existing = false;
+		dao = BuildingDAO.getInstance();
+		existing = dao.buildingExists(buildingname);
+		existing = true;
+		return existing;
+	}
+	
+	public Uri getGoogleMap(String location)
+	{
+		Uri uri = null;
+		return uri;
+	}
 	
 	public void startUpdating(){
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
