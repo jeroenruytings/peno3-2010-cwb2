@@ -11,34 +11,52 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Cryptography {
 	
-	public static void main(String[] args) throws Exception {
-		//Tester
-		
-		String testString = "Onze Mobile Toledo wordt de beste!";
-		String password = "abc123ABC";
-		System.out.println(password);
-		String encrypted = Cryptography.encrypt(password, testString);
-		System.out.println(encrypted);
-		String decrypted = Cryptography.decrypt(password,encrypted);
-		System.out.println(decrypted);
+	private final String SEED="ditishetencryptiepaswoord";
+	private final String HEX="0123456789ABCDEF";
+	private static Cryptography cryptography;
+	
+	private Cryptography(){	}
+	
+	public static Cryptography getInstance() {
+		if(cryptography==null) {
+			cryptography = new Cryptography();
+		}
+		return cryptography;
 	}
 	
 	//Seed = wachtwoord, zonder wachtwoord geen decryption
 	
-	public static String encrypt(String seed, String cleartext) throws Exception {
-		byte[] rawKey = getRawKey(seed.getBytes());
-		byte[] result = encrypt(rawKey, cleartext.getBytes());
-		return toHex(result);
+	public String encrypt(String cleartext) {
+		byte[] rawKey;
+		String resultString;
+		try {
+			rawKey = getRawKey(SEED.getBytes());
+			byte[] result = encrypt(rawKey, cleartext.getBytes());
+			resultString = toHex(result);
+		} catch (Exception e) {
+			resultString = cleartext;
+			e.printStackTrace();
+		}
+		return resultString;
 	}
 	
-	public static String decrypt(String seed, String encrypted) throws Exception {
-		byte[] rawKey = getRawKey(seed.getBytes());
-		byte[] enc = toByte(encrypted);
-		byte[] result = decrypt(rawKey, enc);
-		return new String(result);
+	public String decrypt(String encrypted){
+		byte[] rawKey;
+		String resultString;
+		try {
+			rawKey = getRawKey(SEED.getBytes());
+			byte[] enc = toByte(encrypted);
+			byte[] result = decrypt(rawKey, enc);
+			resultString = new String(result);
+			
+		} catch (Exception e) {
+			resultString = encrypted;
+			e.printStackTrace();
+		}
+		return resultString;
 	}
 
-	private static byte[] getRawKey(byte[] seed) throws Exception {
+	private byte[] getRawKey(byte[] seed) throws Exception {
 		KeyGenerator kgen = KeyGenerator.getInstance("AES");
 		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
 		sr.setSeed(seed);
@@ -49,7 +67,7 @@ public class Cryptography {
 	}
 
 	
-	private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
+	private byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
 	    SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 	    cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
@@ -57,7 +75,7 @@ public class Cryptography {
 		return encrypted;
 	}
 
-	private static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
+	private byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
 	    SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 	    cipher.init(Cipher.DECRYPT_MODE, skeySpec);
@@ -65,14 +83,14 @@ public class Cryptography {
 		return decrypted;
 	}
 
-	public static String toHex(String txt) {
+	public String toHex(String txt) {
 		return toHex(txt.getBytes());
 	}
-	public static String fromHex(String hex) {
+	public String fromHex(String hex) {
 		return new String(toByte(hex));
 	}
 	
-	public static byte[] toByte(String hexString) {
+	public byte[] toByte(String hexString) {
 		int len = hexString.length()/2;
 		byte[] result = new byte[len];
 		for (int i = 0; i < len; i++)
@@ -80,7 +98,7 @@ public class Cryptography {
 		return result;
 	}
 
-	public static String toHex(byte[] buf) {
+	public String toHex(byte[] buf) {
 		if (buf == null)
 			return "";
 		StringBuffer result = new StringBuffer(2*buf.length);
@@ -89,9 +107,8 @@ public class Cryptography {
 		}
 		return result.toString();
 	}
-	private final static String HEX = "0123456789ABCDEF";
 	
-	private static void appendHex(StringBuffer sb, byte b) {
+	private void appendHex(StringBuffer sb, byte b) {
 		sb.append(HEX.charAt((b>>4)&0x0f)).append(HEX.charAt(b&0x0f));
 	}
 }
