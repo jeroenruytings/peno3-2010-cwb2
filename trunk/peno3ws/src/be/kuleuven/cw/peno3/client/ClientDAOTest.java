@@ -23,13 +23,31 @@ import com.google.gson.JsonParseException;
 
 public class ClientDAOTest {
 	public static void main(String[] args) {
-		testListAnnouncements();
+		//testListAnnouncements();
 		//testAddAnnouncements();
-		//testGetAnnouncement();
+		testGetAnnouncement();
 		//testAddCourse();
 		//testGetCourseByName();
 		//testGetUser();
-		testTryPostParameter();
+		//testTryPostParameter();
+		//testListCourses();
+	}
+	
+	public static void testListCourses() {
+		try {
+			String json = stringOfUrl("http://" + ipAdress.getIp() + "/CourseHandler/listCourses");
+			System.out.println(json);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	private static void testAddAnnouncements() {
@@ -95,9 +113,8 @@ public class ClientDAOTest {
 		try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
-//			method.setQueryString("?word=test");
-			method.addParameter("word","test");
+			GetMethod method = new GetMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
+			method.setQueryString("?word=ee");
 			int returnCode = client.executeMethod(method);
 			String json = method.getResponseBodyAsString();
 			if(json.contains("[]")) {
@@ -134,7 +151,7 @@ public class ClientDAOTest {
 		
 		
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/addCourse");
-		method.addParameter("courseCode","H123456");
+		method.addParameter("courseCode","H007");
 		method.addParameter("academicYear","1011");
 		method.addParameter("course","Economie");
 		
