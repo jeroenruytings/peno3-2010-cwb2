@@ -30,9 +30,11 @@ public class JeroenDAOTest {
 		//testAddCourse();
 		//testGetCourseByName();
 		//testGetUser();
-		testAddUser();
+		//testAddUser();
 		//testListAppreciations();
 		//testGetAppreciation();
+		//testAddEvent();
+		testListEvents();
 	}
 	
 	public static void testGetUser(){
@@ -140,6 +142,26 @@ public class JeroenDAOTest {
 		}
 	}
 	
+	public static void testListEvents(){
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/EventHandler/listEvents");
+			
+			int response = client.executeMethod(method);
+			System.out.println(method.getResponseBodyAsString());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void testGetAppreciation(){
 		try {
 			HttpClient client = new HttpClient();
@@ -148,6 +170,42 @@ public class JeroenDAOTest {
 			
 			method.addParameter("docQuestionId", "123");
 			method.addParameter("isDocument","1");
+			
+			int response = client.executeMethod(method);
+			System.out.println(method.getResponseBodyAsString());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void testAddEvent(){
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/EventHandler/addEvent");
+			method.addParameter("description","groot feest omdat peno gedaan is");
+			method.addParameter("locationId", "1");
+			method.addParameter("categorie","feest");
+			method.addParameter("title","groot feest");
+			
+					//eventId,description,startDate,stopDate,locationId,categorie, title
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(2010, 12, 15, 17, 00);
+			Date date = calendar.getTime();
+			String dateString = cryptography.toMysqlDate(date);
+			method.addParameter("startDate", dateString);
+			
+			calendar.set(2010, 12, 15, 23, 59);
+			date = calendar.getTime();
+			dateString = cryptography.toMysqlDate(date);
+			method.addParameter("stopDate", dateString);
 			
 			int response = client.executeMethod(method);
 			System.out.println(method.getResponseBodyAsString());
