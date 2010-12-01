@@ -62,7 +62,7 @@ public class Agenda extends TabActivity{
 //                	Intent intentTest = new Intent().setClass(context, EventsList.class);
 //                	a.setIntent(intentTest);
 //                	Bundle b = new Bundle();
-                    EventsList.self.showEvents("month");
+                    EventsList.self.showEvents(tab);
 //                }
             }
         });
