@@ -17,6 +17,9 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 public class InfoController {
 	private User user = MainController.getUser();
 	
+	public InfoController(){
+		
+	}
 	public List<Announcement> allAnnouncements(){ //allemaal
         ISP isp = user.getIsp();
 		ArrayList<Course> courses = isp.getCourses();
@@ -51,7 +54,15 @@ public class InfoController {
 			}
 		}
 		sortAnnouncements(announcements);
-		return announcements; //postconditie: announcements zijn gesorteerd
+//		return announcements; //postconditie: announcements zijn gesorteerd
+		Announcement a1 = new Announcement(null, null, "Test", "tesst");
+		Announcement a2 = new Announcement(null, null, "Test", "Boodschap");
+		Announcement a3 = new Announcement(null, null, "Test", "tesst");
+		Announcement a4 = new Announcement(null, null, "Test", "tesst");
+		Announcement a5 = new Announcement(null, null, "Test", "tesst");
+		List<Announcement> anns = new LinkedList<Announcement>();
+		anns.add(a1);anns.add(a2);anns.add(a3);anns.add(a4);anns.add(a5);
+        return anns;
 	}
 	public List<Announcement> sortAnnouncements(List<Announcement> announcements){
 		int i=announcements.size()-1;
@@ -90,8 +101,14 @@ public class InfoController {
 	public String[] makeStrings(List<Announcement> announcements){
 		String[] displayStrings = new String[announcements.size()];
 		for(int i = 0;i< announcements.size();i++){
+			try{
 			String displayString = announcements.get(i).getCourse().getCourseName() + ": " + announcements.get(i).getTitle();
 			displayStrings[announcements.size()-i-1] = displayString;
+			}
+			catch(NullPointerException ne){//course = null
+				String displayString = "??" + ": " + announcements.get(i).getTitle();
+				displayStrings[announcements.size()-i-1] = displayString;
+			}
 		}
 		return displayStrings;
 	}

@@ -5,7 +5,16 @@ public class Question {
 	private User questioner;
 	private Lecture lecture;
 	private String message;
+	private Appreciation appreciation;
 	
+	public Appreciation getAppreciation() {
+		return appreciation;
+	}
+
+	public void setAppreciation(Appreciation appreciation) {
+		this.appreciation = appreciation;
+	}
+
 	public Question(User questioner, Lecture lecture, String message) {
 		setQuestioner(questioner);
 		setLecture(lecture);
