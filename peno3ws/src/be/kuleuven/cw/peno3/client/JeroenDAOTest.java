@@ -20,6 +20,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
 public class JeroenDAOTest {
+	
+	private static Cryptography cryptography;
+	
+	public JeroenDAOTest() {
+		cryptography = Cryptography.getInstance();
+	}
+	
 	public static void main(String[] args) {
 		//testListAnnouncements();
 		//testAddAnnouncements();
@@ -39,7 +46,7 @@ public class JeroenDAOTest {
 			String encryptedJson = method.getResponseBodyAsString();
 			String json = "";
 			try {
-				json = Cryptography.decrypt("wachtwoordstring", encryptedJson);
+				json = cryptography.decrypt(encryptedJson);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
