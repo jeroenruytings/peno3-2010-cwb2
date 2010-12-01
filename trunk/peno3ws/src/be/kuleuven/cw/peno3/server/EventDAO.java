@@ -35,7 +35,7 @@ public class EventDAO {
 		return result;
 	}
 
-	@GET
+	@POST
 	@Path ("/listEvents")
 	@Produces ("application/json")
 	public String listEvents(){
@@ -85,11 +85,11 @@ public class EventDAO {
 	@POST
 	@Path ("/addEvent")
 	@Produces ("application/json")
-	public String addEvent(@FormParam("description") String description, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate, @FormParam("locationNr") int locationNr, @FormParam("categorie") String categorie, @FormParam("title") String title){
+	public String addEvent(@FormParam("description") String description, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate, @FormParam("locationId") String locationId, @FormParam("categorie") String categorie, @FormParam("title") String title){
 
 		JSONObject result = new JSONObject();
 		try {
-			String query = "INSERT INTO event (eventId,description,startDate,stopDate,locationNr,categorie,title) VALUES (NULL,'"+ description + "','" + startDate + "','" + stopDate + "','" + locationNr + "'," + categorie + "'," + title +")";
+			String query = "INSERT INTO event (eventId,description,startDate,stopDate,locationId,categorie,title) VALUES (NULL,'"+ description + "'," + startDate + "," + stopDate + ",'" + locationId + "','" + categorie + "','" + title +"')";
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();
