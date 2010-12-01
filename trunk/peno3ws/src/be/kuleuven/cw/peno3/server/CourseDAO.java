@@ -21,62 +21,49 @@ import com.google.gson.JsonObject;
 @Path ("/CourseHandler")
 public class CourseDAO {
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
+	
 	private String getCourse(String searchString, String query) {
 		String executeQuery = "SELECT * FROM course";
 		if(searchString !=null)executeQuery += query;
 		String result = queryForCourses(executeQuery);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 	
-	@POST
+	@GET
+	@Path ("/getCourseByCourseCode")
+	@Produces ("application/json")
+	public String getCourseByCourseCode(@QueryParam("courseCode") String courseCode){
+		String query = " WHERE courseCode like '%" + courseCode + "%'";
+		return getCourse(courseCode,query);
+	}
+	
+	@GET
 	@Path ("/getCourseByName")
 	@Produces ("application/json")
-	public String getCourseByName(@QueryParam("courseCode") String courseCode){
-		String query = " WHERE courseCode like '%" + courseCode + "%'";
-		String result = getCourse(courseCode,query);
-		manager.disconnect();
-		return result;
+	public String getCourseByName(@QueryParam("course") String course){
+		String query = " WHERE course like '%" + course + "%'";
+		return getCourse(course,query);
 	}
 	
-	@POST
-	@Path ("/tryPostParameter")
+	@GET
+	@Path ("/getCourseByYear")
 	@Produces ("application/json")
-	public String tryPostParameter(@QueryParam("param") String param) {
-		System.out.println(param);
-		return param;
+	public String getCourseByYear(@QueryParam("year") String year){
+		String query = " WHERE academicYear like '%" + year + "%'";
+		return getCourse(year,query);
 	}
-//	
-//	@POST
-//	@Path ("/getAnnouncementByCourseCode")
-//	@Produces ("application/json")
-//	public String getAnnouncementByCourseCode(@QueryParam("courseCode") String courseCode){
-//		String query = " WHERE courseCode like '%" + courseCode + "%'";
-//		String result = queryForAnnouncements(query);
-//		manager.disconnect();
-//		return result;
-//	}
-//	
-//	@POST
-//	@Path ("/getAnnouncementByDate")
-//	@Produces ("application/json")
-//	public String getAnnouncementByDate(@QueryParam("date") String date){
-//		String query = " WHERE date like '%" + date + "%'";
-//		String result = queryForAnnouncements(query);
-//		manager.disconnect();
-//		return result;
-//	}
-//
+	
 	@GET
 	@Path ("/listCourses")
 	@Produces ("application/json")
 	public String listCourses(){
-
 		String query = "SELECT * FROM course";
 		String result = queryForCourses(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	private String queryForCourses(String query) {
@@ -96,21 +83,6 @@ public class CourseDAO {
 		String asString = courses.toString();
 		return asString;
 	}
-//
-//	private JsonArray querySimpleTable(String query) {
-//		Vector courses = new Vector();
-//		ResultSet rs = manager.query(query);
-//		Gson gson = new Gson();
-//		try {
-//			while(rs.next()) {
-//				courses.add(manager.getColumnValues(rs));
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return (JsonArray) gson.toJsonTree(courses);
-//	}
 
 	/*
 	 * Method adds a course to the database	
