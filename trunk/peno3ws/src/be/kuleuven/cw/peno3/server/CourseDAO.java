@@ -38,6 +38,14 @@ public class CourseDAO {
 		manager.disconnect();
 		return result;
 	}
+	
+	@POST
+	@Path ("/tryPostParameter")
+	@Produces ("application/json")
+	public String tryPostParameter(@QueryParam("param") String param) {
+		System.out.println(param);
+		return param;
+	}
 //	
 //	@POST
 //	@Path ("/getAnnouncementByCourseCode")

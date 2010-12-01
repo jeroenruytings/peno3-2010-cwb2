@@ -25,10 +25,11 @@ public class ClientDAOTest {
 	public static void main(String[] args) {
 		//testListAnnouncements();
 		//testAddAnnouncements();
-		testGetAnnouncement();
+		//testGetAnnouncement();
 		//testAddCourse();
 		//testGetCourseByName();
 		//testGetUser();
+		testTryPostParameter();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -180,12 +181,45 @@ public class ClientDAOTest {
 		}
 	}
 	
+	public static void testTryPostParameter() {
+		try {
+			HttpClient client = new HttpClient();
+			
+			
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+			method.addParameter("message", "Dit is de postmethod test");
+			method.addParameter("userId","s0215121");
+			method.addParameter("title", "De eerste postmethode werkt!");
+			method.addParameter("courseCode", "Randomcode");
+			//volgende regels zorgen voor toevoegen van de date vertrekkende van een dateobject
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(2010, 11, 29, 22, 14);
+			Date date = calendar.getTime();
+			String dateString = toMysqlDate(date);
+			method.addParameter("date", dateString);
+			
+			int returnCode = client.executeMethod(method);
+	
+			System.out.println(method.getResponseBodyAsString());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void testGetUser(){
 		try {
 			HttpClient client = new HttpClient();
 			
 			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/UserHandler/getUser");
-			method.addParameter("name", "Jeroen");
+			method.addParameter("param", "Dit is een parameter");
 			int returnCode = client.executeMethod(method);
 			String json = method.getResponseBodyAsString();
 			if(json.contains("[]")) {
