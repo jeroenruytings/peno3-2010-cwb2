@@ -10,11 +10,33 @@
 		android:orientation="vertical"
 		android:paddingLeft="2dip">
 		<TableRow>
-		<SurfaceView android:id="@+id/category"
+		<TextView android:id="@+id/nocat"
 				android:layout_width="8dip"
 				android:layout_height="fill_parent"
 				android:gravity="left"
 				android:background="#ffffff"
+				android:visibility="gone"
+				/>
+		<TextView android:id="@+id/rcat"
+				android:layout_width="8dip"
+				android:layout_height="fill_parent"
+				android:gravity="left"
+				android:background="#ff0000"
+				android:visibility="gone"
+				/>
+		<TextView android:id="@+id/ocat"
+				android:layout_width="8dip"
+				android:layout_height="fill_parent"
+				android:gravity="left"
+				android:background="#ff8a00"
+				android:visibility="gone"
+				/>
+		<TextView android:id="@+id/bcat"
+				android:layout_width="8dip"
+				android:layout_height="fill_parent"
+				android:gravity="left"
+				android:visibility="gone"
+				android:background="#0000ff"
 				/>
 		<LinearLayout
 			android:layout_width="wrap_content"
@@ -22,7 +44,7 @@
 			android:orientation="vertical"
 			android:layout_weight="1"
 			android:gravity="center_vertical"
-			android:paddingLeft="2dip">
+			android:paddingLeft="3dip">
 			<TextView android:id="@+id/eventtitle"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -33,18 +55,42 @@
 				android:ellipsize="end"
 				android:textColor="#ffffff"
 				android:padding="0px"
-				android:text="Titel hier"/>
-			<TextView android:id="@+id/eventloc"
+				android:text="Geen titel"/>
+			<TableLayout
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:gravity="left"
-				android:singleLine="true"
-				android:ellipsize="end"
-				android:padding="0px"
-				android:textSize="11px"
-				android:textColor="#444444"
-				android:text="Locatie: "/>
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_weight="1"
+			android:gravity="center_vertical"
+			android:padding="0px">
+				<TableRow>
+					<TextView 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:gravity="left"
+						android:singleLine="true"
+						android:ellipsize="end"
+						android:padding="0px"
+						android:textSize="11px"
+						android:textColor="#444444"
+						android:text="Locatie: "
+						android:textStyle="italic"
+						/>
+					<TextView android:id="@+id/eventloc"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:gravity="left"
+						android:textStyle="bold"
+						android:singleLine="true"
+						android:ellipsize="end"
+						android:padding="0px"
+						android:textSize="11px"
+						android:textColor="#444444"
+						android:text=""/>
+				</TableRow>
+			</TableLayout>
 			<TextView android:id="@+id/eventdate"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"

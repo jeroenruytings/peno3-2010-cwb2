@@ -7,6 +7,9 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,48 +23,40 @@ import cw.kuleuven.be.peno1011.cwb2.controller.CalendarController;
 import cw.kuleuven.be.peno1011.cwb2.model.Event;
 
 public class EventsList extends ListActivity{
+	public static EventsList self;
 	ListView list;
-	CalendarController controller;
+	CalendarController controller = new CalendarController();
+	int numberOfDays;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
+		  self=this;
 		  
 		  Bundle bundle = getIntent().getExtras();
 		  final String span = (String) bundle.get("span");
 		  
-		  Event e1 = new Event("Stelsels differentiaalvergelijkingen","beschr",null,"college", new Date(),new Date());
-		  Event e2 = new Event("DubbelTD","descr",null,"party", new Date(),new Date());
-		  Event e3 = new Event("Dynamica","descr",null,"bll", new Date(),new Date());
-		  Event e4 = new Event("Dynamica","descr",null,"college", new Date(),new Date());
-		  Event e5 = new Event("Dynamica","descr",null,"college", new Date(),new Date());
-		  Event e6 = new Event("Dynamica","descr",null,"college", new Date(),new Date());
-		  Event e7 = new Event("Dynamica","descr",null,"college", new Date(),new Date());
 		  List<Event> events = new ArrayList<Event>();
-		  events.add(e1);
-		  events.add(e2);events.add(e3);events.add(e4);events.add(e5);events.add(e6);events.add(e7);
-		  makeAdapter(events);
-
 		  if(span.equals("day")){
-			  
+			  events = controller.getEvents(1);
+			  numberOfDays=1;
 		  }
 		  else if(span.equals("week")){
-			  
+			  events = controller.getEvents(7);
+			  numberOfDays=7;
 		  }
 		  else{
-			  
+			  events = controller.getEvents(30);
+			  numberOfDays=30;
 		  }
+		  makeAdapter(events);
 		  
 	}
 	public void makeAdapter(List<Event> eventsList){
 		final List<Event> events = eventsList;
 		 list = getListView();
 		 EventAdapter adapter = new EventAdapter(this, events);
-	        
 	     list.setAdapter(adapter);
 
-//		  setListAdapter(new EventAdapter(this,
-//		          events ));
-//		  ListView lv = getListView();
-//		  lv.setTextFilterEnabled(true);
 		  list.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
@@ -80,7 +75,7 @@ public class EventsList extends ListActivity{
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        	menu.add(0, Menu.FIRST, 0, "Uurrooster");
+        	menu.add(0, Menu.FIRST, 0, "Lessen");
         	menu.add(0, 2, 0, "Feestjes");
         	menu.add(0, 3, 0, "Cultuur");
         return true;
@@ -90,18 +85,16 @@ public class EventsList extends ListActivity{
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
             case Menu.FIRST:
-            	Event e1 = new Event("Stelsels differentiaalvergelijkingen","beschr",null,"college", new Date(),new Date());
-      		  	List<Event> events = new ArrayList<Event>();
-      		  	events.add(e1);
-//      		  	List<Event> events = controller.getCategoryEvents("college");
-      		  	makeAdapter(events);
+      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
+      		  	makeAdapter(events1);
                 return true;
             case 2:
-//  		  	List<Event> events = controller.getCategoryEvents("party");
-            	Event e2 = new Event("Dynamica","descr",null,"party", new Date(),new Date());
-      		  	List<Event> events2 = new ArrayList<Event>();
-      		  	events2.add(e2);
+  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
       		  	makeAdapter(events2);
+                return true;
+            case 3:
+  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
+      		  	makeAdapter(events3);
                 return true;
         }
         return super.onMenuItemSelected(featureId, item);

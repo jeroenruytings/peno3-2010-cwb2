@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MenuLayout">
+    <style name="GenLayout">
         <item name="android:background">@drawable/gradient</item>
     </style>
     <style name="FontStyle1">
