@@ -76,35 +76,43 @@ public class EventsList extends ListActivity{
 		  else{
 			  events = controller.getEvents(30);
 			  numberOfDays=30;
-			  Toast.makeText(getApplicationContext(), "maand",
-		          Toast.LENGTH_LONG).show();
+//			  Toast.makeText(getApplicationContext(), "maand",
+//		          Toast.LENGTH_LONG).show();
 		  }
 		  makeAdapter(events);
 	}
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        	menu.add(0, Menu.FIRST, 0, "Lessen");
-        	menu.add(0, 2, 0, "Feestjes");
-        	menu.add(0, 3, 0, "Cultuur");
+        
+        	menu.add(0, Menu.FIRST, 0, "Categorieën weergeven");
+//        	menu.add(0, 2, 0, "Feestjes");
+//        	menu.add(0, 3, 0, "Cultuur");
+        	menu.add(1,2,0, "Ga naar datum");
         return true;
     }
 	
 	@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
-            case Menu.FIRST:
-      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
-      		  	makeAdapter(events1);
-                return true;
-            case 2:
-  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
-      		  	makeAdapter(events2);
-                return true;
-            case 3:
-  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
-      		  	makeAdapter(events3);
-                return true;
+        case Menu.FIRST:
+        		//maak keuzelijst
+        	return true;
+        case 2:
+        		//maak calendarpicker
+        	return true;
+//            case Menu.FIRST:
+//      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
+//      		  	makeAdapter(events1);
+//                return true;
+//            case 2:
+//  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
+//      		  	makeAdapter(events2);
+//                return true;
+//            case 3:
+//  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
+//      		  	makeAdapter(events3);
+//                return true;
         }
         return super.onMenuItemSelected(featureId, item);
     }

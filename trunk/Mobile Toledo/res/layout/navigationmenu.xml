@@ -3,6 +3,65 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  style="@style/GenLayout"
+  android:gravity="center_vertical|center_horizontal">
+  
+ <TableLayout
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TableRow>
+  <ImageButton
+		  android:id="@+id/ownlocationbutton"
+		  android:src="@drawable/compassbutton"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"/>
+  	<ImageButton
+		  android:id="@+id/navigatebutton"
+		  android:src="@drawable/compassbutton"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"/>
+  </TableRow>
+  <TableRow>
+   <TextView
+		  android:id="@+id/ownlocation"
+		  android:text="@string/ownlocation"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"
+		  style="@style/MenuText"/>  
+	<TextView
+		  android:id="@+id/navigate"
+		  android:text="@string/navigate"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"
+		  style="@style/MenuText"/>
+  </TableRow>
+  <TableRow android:layout_marginTop="20dip">
+<ImageButton
+		  android:id="@+id/locationinfobutton"
+		  android:src="@drawable/compassbutton"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  />
+  </TableRow>
+ <TableRow>
+ <TextView
+		  android:id="@+id/locationinfo"
+		  android:text="@string/locationinfo"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_gravity="center"
+		  style="@style/MenuText"/>
+  </TableRow>
+</TableLayout>  	
+</LinearLayout>
+<!--<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
   android:layout_height="fill_parent">
   
   <LinearLayout
@@ -59,3 +118,4 @@
   </LinearLayout>
   
   </LinearLayout>
+-->
