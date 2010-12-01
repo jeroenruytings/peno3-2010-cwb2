@@ -5,6 +5,8 @@ package be.kuleuven.cw.peno3.client;
 
 
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
@@ -111,4 +113,21 @@ public class Cryptography {
 	private void appendHex(StringBuffer sb, byte b) {
 		sb.append(HEX.charAt((b>>4)&0x0f)).append(HEX.charAt(b&0x0f));
 	}
+	
+    public String toMysqlDate(Date date){
+  	  if (date==null) return "NULL";
+  	  SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  	  return sqlValueWithQuotas(sdf.format(date));
+  	 }
+
+  	 private static String sqlValueWithQuotas(Object obj){
+  	  if ( obj == null ) return "NULL";
+  	  
+  	  String str = obj.toString();
+  	  str.replaceAll("'", "\\'");
+  	  str = '\''+str+'\'';
+  	  
+  	  return str;
+  	  
+  	 }
 }

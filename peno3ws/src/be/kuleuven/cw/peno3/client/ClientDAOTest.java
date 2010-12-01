@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
 public class ClientDAOTest {
+	
+	private static Cryptography cryptography = Cryptography.getInstance();
+	
 	public static void main(String[] args) {
 		//testListAnnouncements();
 		//testAddAnnouncements();
@@ -31,23 +34,6 @@ public class ClientDAOTest {
 		//testGetUser();
 		//testTryPostParameter();
 		//testListCourses();
-	}
-	
-	public static void testListCourses() {
-		try {
-			String json = stringOfUrl("http://" + ipAdress.getIp() + "/CourseHandler/listCourses");
-			System.out.println(json);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 	
 	private static void testAddAnnouncements() {
@@ -63,7 +49,7 @@ public class ClientDAOTest {
 			Calendar calendar = Calendar.getInstance();
 			calendar.set(2010, 11, 29, 22, 14);
 			Date date = calendar.getTime();
-			String dateString = toMysqlDate(date);
+			String dateString = cryptography.toMysqlDate(date);
 			method.addParameter("date", dateString);
 			
 			int returnCode = client.executeMethod(method);
@@ -143,82 +129,7 @@ public class ClientDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void testAddCourse() {
-		try {
-		HttpClient client = new HttpClient();
-		
-		
-		
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/addCourse");
-		method.addParameter("courseCode","H007");
-		method.addParameter("academicYear","1011");
-		method.addParameter("course","Economie");
-		
-		int returnCode = client.executeMethod(method);
 
-		System.out.println(method.getResponseBodyAsString());
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void testGetCourseByName() {
-		try {
-			HttpClient client = new HttpClient();
-			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/getCourseByName");
-			method.addParameter("courseCode", "H987654");
-			int returnCode = client.executeMethod(method);
-			String json = method.getResponseBodyAsString();
-			if(json.contains("[]")) {
-					System.out.println("Geen zoekresultaten gevonden");
-				}
-			else {
-				System.out.println(json);
-				}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void testTryPostParameter() {
-		try {
-			HttpClient client = new HttpClient();
-			
-			
-			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/tryPostParameter");
-			method.addParameter("param", "Dit is de postmethod test");
-			
-			int returnCode = client.executeMethod(method);
-	
-			System.out.println(method.getResponseBodyAsString());
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
     public static String stringOfUrl(String addr) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -236,20 +147,5 @@ public class ClientDAOTest {
     /*
      * Onderstaande methodes zetten date-objecten om in sql compatibele strings
      */
-    private static String toMysqlDate(Date date){
-    	  if (date==null) return "NULL";
-    	  SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    	  return sqlValueWithQuotas(sdf.format(date));
-    	 }
 
-    	 public static String sqlValueWithQuotas(Object obj){
-    	  if ( obj == null ) return "NULL";
-    	  
-    	  String str = obj.toString();
-    	  str.replaceAll("'", "\\'");
-    	  str = '\''+str+'\'';
-    	  
-    	  return str;
-    	  
-    	 }
 }
