@@ -33,6 +33,13 @@ public class UserDAO {
 		if(name !=null)query += " WHERE firstName like '%" + name + "%' or lastName like '%" + name + "%'";
 		String result = queryForUsers(query);
 		manager.disconnect();
+		String encryptedResult = null;
+		try {
+			encryptedResult = Cryptography.encrypt("wachtwoordstring", result);
+			return encryptedResult;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
