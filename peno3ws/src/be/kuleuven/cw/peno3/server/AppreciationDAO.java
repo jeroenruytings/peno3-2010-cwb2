@@ -43,7 +43,7 @@ public class AppreciationDAO {
 	@GET
 	@Path ("/listAppreciations")
 	@Produces ("application/json")
-	public String listAnnouncements(){
+	public String listAppreciations(){
 
 		String query = "SELECT * FROM appreciation";
 		System.out.println(query);
@@ -58,16 +58,8 @@ public class AppreciationDAO {
 		ResultSet rs = manager.query(query);
 		Gson gson = new Gson();
 		try {
-			//TODO: wat moet er hier komen? 
 			while(rs.next()) {
 				JsonObject appreciation = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = appreciation.get("courseCode");
-				if (!jsonElement.isJsonNull()) {
-					int courseCode = jsonElement.getAsInt();
-					query = "SELECT * FROM course WHERE courseCode='" + courseCode + "'";
-					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)appreciation.add("course", result.get(0));
-				}
 				appreciations.add(appreciation);
 			}
 		} catch (SQLException e) {
@@ -102,12 +94,7 @@ public class AppreciationDAO {
 
 		JSONObject result = new JSONObject();
 		try {
-			int document;
-			if(isDocument)
-				document = 1;
-			else
-				document = 0;
-			String query = "INSERT INTO appreciation (appreciationId,docQuestionId,isDocument,userId,score) VALUES (NULL,'"+ docQuestionId + "','" + document + "','" + userId + "','" + score +")";
+			String query = "INSERT INTO appreciation (appreciationId,docQuestionId,isDocument,userId,score) VALUES (NULL,'"+ docQuestionId + "','" + isDocument + "','" + userId + "','" + score +"')";
 			manager.update(query);
 			manager.disconnect();
 		} catch (SQLException e) {
