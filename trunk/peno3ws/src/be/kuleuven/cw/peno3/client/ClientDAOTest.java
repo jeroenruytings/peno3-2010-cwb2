@@ -114,7 +114,7 @@ public class ClientDAOTest {
 			HttpClient client = new HttpClient();
 			
 			GetMethod method = new GetMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
-			method.setQueryString("?word=ee");
+			method.setQueryString("?date=test");
 			int returnCode = client.executeMethod(method);
 			String json = method.getResponseBodyAsString();
 			if(json.contains("[]")) {
