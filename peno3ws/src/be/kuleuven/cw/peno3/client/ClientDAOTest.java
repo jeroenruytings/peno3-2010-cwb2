@@ -26,14 +26,10 @@ public class ClientDAOTest {
 	private static Cryptography cryptography = Cryptography.getInstance();
 	
 	public static void main(String[] args) {
-		//testListAnnouncements();
-		//testAddAnnouncements();
-		testGetAnnouncement();
-		//testAddCourse();
-		//testGetCourseByName();
-		//testGetUser();
-		//testTryPostParameter();
-		//testListCourses();
+//		testAddAnnouncements();
+//		testListAnnouncements();
+//		testGetAnnouncement();
+		testAddCourse();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -130,6 +126,28 @@ public class ClientDAOTest {
 		}
 	}
 
+	private static void testAddCourse() {
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/addCourse");
+			method.addParameter("courseCode", "H44444");
+			method.addParameter("academicYear","1112");
+			method.addParameter("course", "Akoestische golven");
+			int returnCode = client.executeMethod(method);
+
+			System.out.println(method.getResponseBodyAsString());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
     public static String stringOfUrl(String addr) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
