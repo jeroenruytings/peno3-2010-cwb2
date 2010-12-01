@@ -32,26 +32,26 @@ public class CourseDAO {
 		return cryptography.encrypt(result);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getCourseByCourseCode")
 	@Produces ("application/json")
-	public String getCourseByCourseCode(@QueryParam("courseCode") String courseCode){
+	public String getCourseByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = " WHERE courseCode like '%" + courseCode + "%'";
 		return getCourse(courseCode,query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getCourseByName")
 	@Produces ("application/json")
-	public String getCourseByName(@QueryParam("course") String course){
+	public String getCourseByName(@FormParam("course") String course){
 		String query = " WHERE course like '%" + course + "%'";
 		return getCourse(course,query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getCourseByYear")
 	@Produces ("application/json")
-	public String getCourseByYear(@QueryParam("year") String year){
+	public String getCourseByYear(@FormParam("year") String year){
 		String query = " WHERE academicYear like '%" + year + "%'";
 		return getCourse(year,query);
 	}
