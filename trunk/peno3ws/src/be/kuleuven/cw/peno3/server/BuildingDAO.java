@@ -92,7 +92,7 @@ public class BuildingDAO {
 	@POST
 	@Path ("/addBuilding")
 	@Produces ("application/json")
-	public String addBuilding(@FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("street") String street, @FormParam("phonenumber") String phonenumber, @FormParam("map") String map, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
+	public String addBuilding(@FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
 
 		JSONObject result = new JSONObject();
 		try {
@@ -109,5 +109,28 @@ public class BuildingDAO {
 		return result.toString();
 	}
 	
+	@POST
+	@Path ("/addMap")
+	@Produces ("application/json")
+	public String addMap(@FormParam("locationId") String locationId, @FormParam("map") String map){
+
+		JSONObject result = new JSONObject();
+		try {
+			String query = "INSERT INTO building_map (buildingMapId,locationId,map) VALUES (NULL,'"+ locationId + "','" + map + "')";
+			System.out.println(query);
+			manager.update(query);
+			manager.disconnect();
+			}
+		catch (SQLException e) {
+			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
+			return result.toString();
+		}
+		result.put("result", "Building sucessfully added");
+		return result.toString();
+	}
+	
+	/*
+	 * Nog te schrijven: een slimme listbuilding die ineens ook alle maps meegeeft
+	 */
 	
 }

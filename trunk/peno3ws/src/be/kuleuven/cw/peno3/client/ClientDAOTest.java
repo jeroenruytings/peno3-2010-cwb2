@@ -29,7 +29,7 @@ public class ClientDAOTest {
 //		testAddAnnouncements();
 //		testListAnnouncements();
 //		testGetAnnouncement();
-		testAddBuilding();
+		testAddMap();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -126,16 +126,13 @@ public class ClientDAOTest {
 		}
 	}
 
-	private static void testAddBuilding() {
+	private static void testAddMap() {
 		try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/BuildingHandler/addBuilding");
-			method.addParameter("name", "C300");
-			method.addParameter("openinghours","Dagelijks van 8 tot 20 u");
-			method.addParameter("phonenumber", "032525005");
-			method.addParameter("isRentable", "1");
-			method.addParameter("googleMap", "http://yourgooglemapurllinkhere.com");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/BuildingHandler/addMap");
+			method.addParameter("locationId", "1");
+			method.addParameter("map","kuleuven.belinkkomterhier");
 			int returnCode = client.executeMethod(method);
 
 			System.out.println(method.getResponseBodyAsString());
