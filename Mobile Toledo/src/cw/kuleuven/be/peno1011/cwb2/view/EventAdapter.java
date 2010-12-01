@@ -1,5 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -59,7 +61,11 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        	loc.setText(location.getStreet() + " " + location.getNumber());
 	        }
 	        TextView date = (TextView) convertView.findViewById(R.id.eventdate);
-	        date.setText(event.getStartDate().toGMTString() + event.getStartDate().getHours() + ":" + event.getStartDate().getMinutes());
+	        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+	        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
+	        Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
+	        
+	        date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
 	        
 
 	        if(event.getCategory().equals("college")) {

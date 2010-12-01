@@ -35,20 +35,7 @@ public class EventsList extends ListActivity{
 		  Bundle bundle = getIntent().getExtras();
 		  final String span = (String) bundle.get("span");
 		  
-		  List<Event> events = new ArrayList<Event>();
-		  if(span.equals("day")){
-			  events = controller.getEvents(1);
-			  numberOfDays=1;
-		  }
-		  else if(span.equals("week")){
-			  events = controller.getEvents(7);
-			  numberOfDays=7;
-		  }
-		  else{
-			  events = controller.getEvents(30);
-			  numberOfDays=30;
-		  }
-		  makeAdapter(events);
+		  showEvents(span);
 		  
 	}
 	public void makeAdapter(List<Event> eventsList){
@@ -71,6 +58,28 @@ public class EventsList extends ListActivity{
 			        ab.show();
 				}
 		  });
+	}
+	public void showEvents(String span){
+		List<Event> events = new ArrayList<Event>();
+		  if(span.equals("day")){
+			  events = controller.getEvents(1);
+			  numberOfDays=1;
+//			  Toast.makeText(getApplicationContext(), "dag",
+//			          Toast.LENGTH_LONG).show();
+		  }
+		  else if(span.equals("week")){
+			  events = controller.getEvents(7);
+			  numberOfDays=7;
+//			  Toast.makeText(getApplicationContext(), "week",
+//			          Toast.LENGTH_LONG).show();
+		  }
+		  else{
+			  events = controller.getEvents(30);
+			  numberOfDays=30;
+			  Toast.makeText(getApplicationContext(), "maand",
+		          Toast.LENGTH_LONG).show();
+		  }
+		  makeAdapter(events);
 	}
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -29,7 +29,7 @@ public class CalendarController {
 		Date d2 = cal.getTime();
 		cal.add(Calendar.DAY_OF_YEAR, 7);
 		Date d3 = cal.getTime();
-		Event e1 = new Event("Stelsels differentiaalvergelijkingen","beschr",null,"college", d1,d1);
+		Event e1 = new Event("Stelsels differentiaalvergelijkingen en fourierreeksen en ook blablaaaaaa","beschr",null,"college", d1,d1);
 		  Event e2 = new Event("DubbelTD","descr",null,"party", d1,d1);
 		  Event e4 = new Event("Dynamica","descr",null,"college", d2,d2);
 		  Event e5 = new Event("Numerieke wiskunde","descr",null,"college", new Date(),new Date());
@@ -57,7 +57,7 @@ public class CalendarController {
         cal.add(Calendar.DAY_OF_MONTH, numberOfDays);
         Date maxDate = cal.getTime();
         for(int i=0;i<allEvents.size();i++){
-        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 && allEvents.get(i).getStopDate().compareTo(maxDate)<0){
+        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 || allEvents.get(i).getStopDate().compareTo(maxDate)<0){
         		events.add(allEvents.get(i));
         	}
         }
