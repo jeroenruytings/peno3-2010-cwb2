@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 public class UserDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
 	@GET
 	@Path ("/getUserByName")
@@ -33,14 +34,7 @@ public class UserDAO {
 		if(name !=null)query += " WHERE firstName like '%" + name + "%' or lastName like '%" + name + "%'";
 		String result = queryForUsers(query);
 		manager.disconnect();
-		String encryptedResult = null;
-		try {
-			encryptedResult = Cryptography.encrypt("wachtwoordstring", result);
-			return encryptedResult;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	@GET
