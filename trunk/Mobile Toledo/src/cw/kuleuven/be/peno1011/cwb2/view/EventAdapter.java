@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
@@ -60,18 +61,22 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        TextView date = (TextView) convertView.findViewById(R.id.eventdate);
 	        date.setText(event.getStartDate().toGMTString() + event.getStartDate().getHours() + ":" + event.getStartDate().getMinutes());
 	        
-	        SurfaceView cat = (SurfaceView) convertView.findViewById(R.id.category);
+
 	        if(event.getCategory().equals("college")) {
-	        	cat.setBackgroundColor(R.color.blue);
+	        	TextView blueCategory = (TextView) convertView.findViewById(R.id.bcat);
+	        	blueCategory.setVisibility(TextView.VISIBLE);
 	        }
 	        else if(event.getCategory().equals("party")) {
-	        	cat.setBackgroundDrawable(cat.getResources().getDrawable(R.drawable.gradient));
+	        	TextView redCategory = (TextView) convertView.findViewById(R.id.rcat);
+	        	redCategory.setVisibility(TextView.VISIBLE);
 	        }
 	        else if(event.getCategory().equals("culture")) {
-	        	cat.setBackgroundColor(R.color.green);
+	        	TextView orangeCategory = (TextView) convertView.findViewById(R.id.ocat);
+	        	orangeCategory.setVisibility(TextView.VISIBLE);
 	        }
 	        else{
-	        	cat.setBackgroundColor(R.color.white);
+	        	TextView noCategory = (TextView) convertView.findViewById(R.id.nocat);
+	        	noCategory.setVisibility(TextView.VISIBLE);
 	        }
 
 	        return convertView;

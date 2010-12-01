@@ -34,6 +34,15 @@ public class MainMenu extends Activity {
 				startActivity(intent);
 			}
 	    });
+	    ImageButton calendarButton = (ImageButton) findViewById(R.id.calendarbutton);
+	    calendarButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(MainMenu.this,Agenda.class);
+				startActivity(intent);
+			}
+	    });
 	    ImageButton interactionButton = (ImageButton) findViewById(R.id.interactionbutton);
 	    interactionButton.setOnClickListener(new View.OnClickListener() {
 			

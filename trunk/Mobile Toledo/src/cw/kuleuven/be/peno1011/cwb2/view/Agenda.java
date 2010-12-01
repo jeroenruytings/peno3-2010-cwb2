@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.TabHost.OnTabChangeListener;
 
 public class Agenda extends TabActivity{
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,29 +27,37 @@ public class Agenda extends TabActivity{
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
 	    Intent intent;  // Reusable Intent for each tab
 	
-	
-	    // Create an Intent to launch an Activity for the tab (to be reused)
+
 	    intent = new Intent().setClass(this, EventsList.class);
 	    intent.putExtra("span", "day");
-	    // Initialize a TabSpec for each tab and add it to the TabHost
+	    final Intent intent1 = intent;
 	    spec = tabHost.newTabSpec("day").setIndicator("Vandaag")
-	                  .setContent(intent);
+	                  .setContent(intent1);
 	    tabHost.addTab(spec);
 	
-	    // Do the same for the other tabs
-	    intent = new Intent().setClass(this, EventsList.class);
-	    intent.putExtra("span", "week");
-	    spec = tabHost.newTabSpec("week").setIndicator("Hele week")
-	                  .setContent(intent);
+	    Intent intent2 = new Intent().setClass(this, EventsList.class);
+	    intent2.putExtra("span", "week");
+	    spec = tabHost.newTabSpec("week").setIndicator("Deze week")
+	                  .setContent(intent2);
 	    tabHost.addTab(spec);
 	
-	    intent = new Intent().setClass(this, EventsList.class);
-	    intent.putExtra("span", "day");
-	    spec = tabHost.newTabSpec("month").setIndicator("Hele maand")
-	                  .setContent(intent);
+	    Intent intent3 = new Intent().setClass(this, EventsList.class);
+	    intent3.putExtra("span", "month");
+	    spec = tabHost.newTabSpec("month").setIndicator("Deze maand")
+	                  .setContent(intent3);
 	    tabHost.addTab(spec);
 	
 	    tabHost.setCurrentTab(2);
-//	    tabHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.compassbutton);
+	    
+	    tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+            public void onTabChanged(String tabId) {
+//                if( tabId.equals("day") ){
+                	EventsList a = new EventsList();
+                	a.setIntent(intent1);
+                	Bundle b = new Bundle();
+                    a.self.onCreate(b);
+//                }
+            }
+        });
 	}
 }
