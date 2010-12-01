@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 public class AnnouncementDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
 	public String getAnnouncement(String searchString, String query) {
 		String executeQuery = "SELECT * FROM announcement";
@@ -34,7 +35,7 @@ public class AnnouncementDAO {
 		System.out.println("executeQuery after:" +executeQuery);
 		String result = queryForAnnouncements(executeQuery);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 	
 	@GET
@@ -77,7 +78,7 @@ public class AnnouncementDAO {
 		String query = "SELECT * FROM announcement";
 		String result = queryForAnnouncements(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	private String queryForAnnouncements(String query) {
