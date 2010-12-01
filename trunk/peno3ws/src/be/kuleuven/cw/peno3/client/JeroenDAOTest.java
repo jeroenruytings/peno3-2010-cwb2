@@ -29,7 +29,8 @@ public class JeroenDAOTest {
 		//testGetAnnouncement();
 		//testAddCourse();
 		//testGetCourseByName();
-		testGetUser();
+		//testGetUser();
+		//testAddUser();
 	}
 	
 	public static void testGetUser(){
@@ -52,5 +53,31 @@ public class JeroenDAOTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void testAddUser(){
+//		try {
+//			HttpClient client = new HttpClient();
+//			
+//			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/UserHandler/addUser");
+//			method.addParameter("userId","s0199105");
+//			method.addParameter("firstName","Jan");
+//			method.addParameter("lastName","Janssens");
+//			method.addParameter("birthDate", )
+//			
+//			int response = client.executeMethod(method);
+//			String encryptedJson = method.getResponseBodyAsString();
+//			String json = cryptography.decrypt(encryptedJson);
+//			System.out.println(json);
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JsonParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

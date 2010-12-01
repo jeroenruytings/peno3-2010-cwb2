@@ -125,7 +125,7 @@ public class UserDAO {
 
 		JSONObject result = new JSONObject();
 		try {
-			String query = "INSERT INTO user (userId, firstName, lastName, password, birthDate, rank) VALUES ('"+ userId + "','" + firstName + "','" + lastName + "','" + password + "'," + birthDate + "'," + rank +")";
+			String query = "INSERT INTO user (userId, firstName, lastName, password, birthDate, rank) VALUES ('"+ userId + "','" + firstName + "','" + lastName + "','" + password + "','" + birthDate + "'," + rank +")";
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();
