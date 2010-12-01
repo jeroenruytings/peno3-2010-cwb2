@@ -26,10 +26,10 @@ public class UserDAO {
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 	private Cryptography cryptography = Cryptography.getInstance();
 
-	@GET
+	@POST
 	@Path ("/getUserByName")
 	@Produces ("application/json")
-	public String getUserByName(@QueryParam("name") String name){
+	public String getUserByName(@FormParam("name") String name){
 		String query = "SELECT * FROM user";
 		if(name !=null)query += " WHERE firstName like '%" + name + "%' or lastName like '%" + name + "%'";
 		String result = queryForUsers(query);
@@ -37,10 +37,10 @@ public class UserDAO {
 		return cryptography.encrypt(result);
 	}
 
-	@GET
+	@POST
 	@Path ("/getUserByUserId")
 	@Produces("application/json")
-	public String getUserByUserId(@QueryParam("userId") String userId){
+	public String getUserByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM user";
 		if(userId !=null)query += " WHERE userId like '%" + userId + "%'";
 		String result = queryForUsers(query);
