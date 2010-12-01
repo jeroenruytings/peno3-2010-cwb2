@@ -25,7 +25,7 @@ public class UserDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
-	@POST
+	@GET
 	@Path ("/getUserByName")
 	@Produces ("application/json")
 	public String getUserByName(@QueryParam("name") String name){
@@ -36,7 +36,7 @@ public class UserDAO {
 		return result;
 	}
 
-	@POST
+	@GET
 	@Path ("/getUserByUserId")
 	@Produces("application/json")
 	public String getUserByUserId(@QueryParam("userId") String userId){
@@ -47,10 +47,10 @@ public class UserDAO {
 		return result;
 	}
 	
-	@POST
+	@GET
 	@Path ("/listUsers")
 	@Produces ("application/json")
-	public String listAnnouncements(){
+	public String listUsers(){
 		String query = "SELECT * FROM user";
 		String result = queryForUsers(query);
 		manager.disconnect();
@@ -69,16 +69,24 @@ public class UserDAO {
 					String userId = jsonElement.getAsString();
 					query = "SELECT * FROM isp WHERE userId ='" + userId + "'";
 					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)user.add("group", result.get(1));
-					if(result.size() >0)user.add("studies", result.get(2));
-					if(result.size() >0)user.add("phase", result.get(3));
-					
+					if(result.size() >0)user.add("isp", result.get(0));
+										
 					query = "SELECT * FROM isp_course WHERE userId ='" + userId + "'";
 					JsonArray resultaat = querySimpleTable(query);
-					Iterator<JsonElement> it = resultaat.iterator();
-					while(it.hasNext()){
-						if(result.size() >0)user.add("courseCode", result.get(2));
+//					if(resultaat.size() >0)user.add(, resultaat.get(0));
+//					if(resultaat.size() >0)user.add(, resultaat.get(1));
+
+					
+					if(resultaat.size() > 0){
+						for(int i = 0; i<resultaat.size(); i++){
+							user.add("course "+i, resultaat.get(0));
+						}
 					}
+
+//					Iterator<JsonElement> it = resultaat.iterator();
+//					while(it.hasNext()){
+//						if(result.size() >0)user.add("test", result.get(0));
+//					}
 				}
 				users.add(user);
 			}
@@ -112,11 +120,11 @@ public class UserDAO {
 	@POST
 	@Path ("/addUser")
 	@Produces ("application/json")
-	public String addAnnouncement(@FormParam("userId") String userId, @FormParam("firstName") String firstName, @FormParam("lastName") String lastName, @FormParam("password") String password, @FormParam("birthDate") String birthDate, @FormParam("rank") int rank){
+	public String addUser(@FormParam("userId") String userId, @FormParam("firstName") String firstName, @FormParam("lastName") String lastName, @FormParam("password") String password, @FormParam("birthDate") String birthDate, @FormParam("rank") int rank){
 
 		JSONObject result = new JSONObject();
 		try {
-			String query = "INSERT INTO announcement (userId, firstName, lastName, password, birthDate, rank) VALUES ('"+ userId + "','" + firstName + "','" + lastName + "','" + password + "'," + birthDate + "'," + rank +")";
+			String query = "INSERT INTO user (userId, firstName, lastName, password, birthDate, rank) VALUES ('"+ userId + "','" + firstName + "','" + lastName + "','" + password + "'," + birthDate + "'," + rank +")";
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();

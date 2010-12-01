@@ -36,8 +36,6 @@ public class ClientDAOTest {
 		try {
 			HttpClient client = new HttpClient();
 			
-			
-			
 			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
 			method.addParameter("message", "Dit is de postmethod test");
 			method.addParameter("userId","s0215121");
