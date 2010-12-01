@@ -42,39 +42,31 @@ public class AnnouncementDAO {
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@QueryParam("word") String word){
 		String query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
-//		return getAnnouncement(word,query);
-		String executeQuery = "SELECT * FROM announcement";
-		System.out.println("executeQuery before:" + executeQuery);
-		System.out.println("word:"+ word);
-		
-		if(word !=null){ 
-			executeQuery +=query;
-		}
-		
-		System.out.println("executeQuery after:" +executeQuery);
-		String result = queryForAnnouncements(executeQuery);
-		manager.disconnect();
-		return result;
+		return getAnnouncement(word,query);
 	}
 	
-	@POST
+	@GET
 	@Path ("/getAnnouncementByCourseCode")
 	@Produces ("application/json")
 	public String getAnnouncementByCourseCode(@QueryParam("courseCode") String courseCode){
 		String query = " WHERE courseCode like '%" + courseCode + "%'";
-		String result = queryForAnnouncements(query);
-		manager.disconnect();
-		return result;
+		return getAnnouncement(courseCode, query);
 	}
 	
-	@POST
-	@Path ("/getAnnouncementByDate")
+	@GET
+	@Path ("/getAnnouncementByExactDate")
 	@Produces ("application/json")
-	public String getAnnouncementByDate(@QueryParam("date") String date){
-		String query = " WHERE date like '%" + date + "%'";
-		String result = queryForAnnouncements(query);
-		manager.disconnect();
-		return result;
+	public String getAnnouncementByExactDate(@QueryParam("date") String date){
+		String query = " WHERE date= '" + date + "'";
+		return getAnnouncement(date, query);
+	}
+	
+	@GET
+	@Path ("/getAnnouncementByStartDate")
+	@Produces ("application/json")
+	public String getAnnouncementByStartDate(@QueryParam("date") String date){
+		String query = " WHERE date>= '" + date + "'";
+		return getAnnouncement(date, query);
 	}
 
 	@GET
