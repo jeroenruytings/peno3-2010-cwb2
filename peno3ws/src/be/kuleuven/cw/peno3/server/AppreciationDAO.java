@@ -24,23 +24,18 @@ public class AppreciationDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 
-	@GET
+	@POST
 	@Path ("/getAppreciation")
 	@Produces ("application/json")
-	public String getAppreciation(@QueryParam("docQuestionId") int docQuestionId,@QueryParam("isDocument") boolean isDocument){
-		int docOrQuestion;
-		if(isDocument)
-			docOrQuestion = 1;
-		else
-			docOrQuestion = 0;
+	public String getAppreciation(@FormParam("docQuestionId") String docQuestionId,@FormParam("isDocument") String isDocument){
 		String query = "SELECT * FROM appreciation";
-		if(docQuestionId > 0 )query += " WHERE docQuestionId like '%" + docQuestionId + "%' and isDocument like '%" + docOrQuestion + "%'";
+		if(docQuestionId != null )query += " WHERE docQuestionId like '%" + docQuestionId + "%' and isDocument like '%" + isDocument + "%'";
 		String result = queryForAppreciations(query);
 		manager.disconnect();
 		return result;
 	}
 
-	@GET
+	@POST
 	@Path ("/listAppreciations")
 	@Produces ("application/json")
 	public String listAppreciations(){
@@ -87,14 +82,19 @@ public class AppreciationDAO {
 		return (JsonArray) gson.toJsonTree(users);
 	}
 
-	@GET
+	@POST
 	@Path ("/addAppreciation")
 	@Produces ("application/json")
-	public String addAppreciation(@QueryParam("docQuestionId") int docQuestionId, @QueryParam("isDocument") boolean isDocument, @QueryParam("userId") String userId, @QueryParam("score") int score){
-
+	public String addAppreciation(@FormParam("docQuestionId") String docQuestionId, @FormParam("isDocument") String isDocument, @FormParam("userId") String userId, @FormParam("score") String score){
+		System.out.println(docQuestionId);
+		System.out.println(isDocument);
+		System.out.println(userId);
+		System.out.println(score);
+		
 		JSONObject result = new JSONObject();
 		try {
 			String query = "INSERT INTO appreciation (appreciationId,docQuestionId,isDocument,userId,score) VALUES (NULL,'"+ docQuestionId + "','" + isDocument + "','" + userId + "','" + score +"')";
+			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();
 		} catch (SQLException e) {
