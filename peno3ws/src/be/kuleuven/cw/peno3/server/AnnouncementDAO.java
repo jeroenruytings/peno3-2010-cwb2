@@ -38,34 +38,34 @@ public class AnnouncementDAO {
 		return cryptography.encrypt(result);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getAnnouncementByWord")
 	@Produces ("application/json")
-	public String getAnnouncementByWord(@QueryParam("word") String word){
+	public String getAnnouncementByWord(@FormParam("word") String word){
 		String query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
 		return getAnnouncement(word,query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getAnnouncementByCourseCode")
 	@Produces ("application/json")
-	public String getAnnouncementByCourseCode(@QueryParam("courseCode") String courseCode){
+	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = " WHERE courseCode like '%" + courseCode + "%'";
 		return getAnnouncement(courseCode, query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getAnnouncementByExactDate")
 	@Produces ("application/json")
-	public String getAnnouncementByExactDate(@QueryParam("date") String date){
+	public String getAnnouncementByExactDate(@FormParam("date") String date){
 		String query = " WHERE date= '" + date + "'";
 		return getAnnouncement(date, query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/getAnnouncementByStartDate")
 	@Produces ("application/json")
-	public String getAnnouncementByStartDate(@QueryParam("date") String date){
+	public String getAnnouncementByStartDate(@FormParam("date") String date){
 		String query = " WHERE date>= '" + date + "'";
 		return getAnnouncement(date, query);
 	}

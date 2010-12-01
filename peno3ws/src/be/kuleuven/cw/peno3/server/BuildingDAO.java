@@ -92,16 +92,11 @@ public class BuildingDAO {
 	@POST
 	@Path ("/addBuilding")
 	@Produces ("application/json")
-	public String addAnnouncement(@FormParam("name") String name, @FormParam("openingshours") String openingshours, @FormParam("street") String street, @FormParam("phonenumber") String phonenumber, @FormParam("map") String map, @FormParam("isRentable") boolean isRentable , @FormParam("googleMap") String googleMap){
+	public String addBuilding(@FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("street") String street, @FormParam("phonenumber") String phonenumber, @FormParam("map") String map, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
 
 		JSONObject result = new JSONObject();
 		try {
-			int rentable;
-			if(isRentable)
-				rentable = 1;
-			else
-				rentable = 0;
-			String query = "INSERT INTO announcement (locationId, name,openingshours,street,phonenumber,map,isRentable,googleMap) VALUES (NULL,'"+ name + "','" + openingshours + "','" + street + "','" + phonenumber + "'," + map + "'," + rentable + "'," + googleMap +")";
+			String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES (NULL,'"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
 			System.out.println(query);
 			manager.update(query);
 			manager.disconnect();

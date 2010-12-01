@@ -28,8 +28,8 @@ public class ClientDAOTest {
 	public static void main(String[] args) {
 //		testAddAnnouncements();
 //		testListAnnouncements();
-//		testGetAnnouncement();
-		testAddCourse();
+		testGetAnnouncement();
+//		testAddBuilding();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -95,10 +95,10 @@ public class ClientDAOTest {
 		try {
 			HttpClient client = new HttpClient();
 			
-			GetMethod method = new GetMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
-			method.setQueryString("?date=test");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
+			method.addParameter("word","test");
 			int returnCode = client.executeMethod(method);
-			String json = method.getResponseBodyAsString();
+			String json = cryptography.decrypt(method.getResponseBodyAsString());
 			if(json.contains("[]")) {
 					System.out.println("Geen zoekresultaten gevonden");
 				}
@@ -126,14 +126,16 @@ public class ClientDAOTest {
 		}
 	}
 
-	private static void testAddCourse() {
+	private static void testAddBuilding() {
 		try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/addCourse");
-			method.addParameter("courseCode", "H44444");
-			method.addParameter("academicYear","1112");
-			method.addParameter("course", "Akoestische golven");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/BuildingHandler/addBuilding");
+			method.addParameter("name", "C300");
+			method.addParameter("openinghours","Dagelijks van 8 tot 20 u");
+			method.addParameter("phonenumber", "032525005");
+			method.addParameter("isRentable", "1");
+			method.addParameter("googleMap", "http://yourgooglemapurllinkhere.com");
 			int returnCode = client.executeMethod(method);
 
 			System.out.println(method.getResponseBodyAsString());
