@@ -36,7 +36,14 @@ public class JeroenDAOTest {
 			GetMethod method = new GetMethod("http://" + ipAdress.getIp() + "/UserHandler/getUserByName");
 			method.setQueryString("?name=Jeroen");
 			int response = client.executeMethod(method);
-			String json = method.getResponseBodyAsString();
+			String encryptedJson = method.getResponseBodyAsString();
+			String json = "";
+			try {
+				json = Cryptography.decrypt("wachtwoordstring", encryptedJson);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(json.contains("[]")) {
 					System.out.println("Geen zoekresultaten gevonden");
 				}
