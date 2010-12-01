@@ -21,11 +21,7 @@ import com.google.gson.JsonParseException;
 
 public class JeroenDAOTest {
 	
-	private static Cryptography cryptography;
-	
-	public JeroenDAOTest() {
-		cryptography = Cryptography.getInstance();
-	}
+	private static Cryptography cryptography = Cryptography.getInstance();
 	
 	public static void main(String[] args) {
 		//testListAnnouncements();
@@ -44,19 +40,8 @@ public class JeroenDAOTest {
 			method.setQueryString("?name=Jeroen");
 			int response = client.executeMethod(method);
 			String encryptedJson = method.getResponseBodyAsString();
-			String json = "";
-			try {
-				json = cryptography.decrypt(encryptedJson);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(json.contains("[]")) {
-					System.out.println("Geen zoekresultaten gevonden");
-				}
-			else {
-				System.out.println(json);
-				}
+			String json = cryptography.decrypt(encryptedJson);
+			System.out.println(json);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
