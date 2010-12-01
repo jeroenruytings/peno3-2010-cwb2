@@ -108,4 +108,6 @@ public class BuildingDAO {
 		result.put("result", "Building sucessfully added");
 		return result.toString();
 	}
+	
+	
 }

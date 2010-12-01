@@ -28,8 +28,8 @@ public class ClientDAOTest {
 	public static void main(String[] args) {
 //		testAddAnnouncements();
 //		testListAnnouncements();
-		testGetAnnouncement();
-//		testAddBuilding();
+//		testGetAnnouncement();
+		testAddBuilding();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -163,9 +163,5 @@ public class ClientDAOTest {
         IOUtils.copy(stream, output);
         return output.toString();
     }
-    
-    /*
-     * Onderstaande methodes zetten date-objecten om in sql compatibele strings
-     */
 
 }
