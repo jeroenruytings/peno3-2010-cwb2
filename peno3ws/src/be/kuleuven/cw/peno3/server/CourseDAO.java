@@ -9,6 +9,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.GET;
 
 import org.json.simple.JSONObject;
 
@@ -67,17 +68,17 @@ public class CourseDAO {
 //		return result;
 //	}
 //
-//	@POST
-//	@Path ("/listAnnouncements")
-//	@Produces ("application/json")
-//	public String listAnnouncements(){
-//
-//		String query = "SELECT * FROM announcement";
-//		String result = queryForAnnouncements(query);
-//		manager.disconnect();
-//		return result;
-//	}
-//
+	@GET
+	@Path ("/listCourses")
+	@Produces ("application/json")
+	public String listCourses(){
+
+		String query = "SELECT * FROM course";
+		String result = queryForCourses(query);
+		manager.disconnect();
+		return result;
+	}
+
 	private String queryForCourses(String query) {
 		JsonArray courses = new JsonArray();
 		ResultSet rs = manager.query(query);

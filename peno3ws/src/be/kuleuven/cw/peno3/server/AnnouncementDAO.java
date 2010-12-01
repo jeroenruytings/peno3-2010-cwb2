@@ -37,7 +37,7 @@ public class AnnouncementDAO {
 		return result;
 	}
 	
-	@POST
+	@GET
 	@Path ("/getAnnouncementByWord")
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@QueryParam("word") String word){
