@@ -28,7 +28,7 @@ public class BuildingDAO {
 	@POST
 	@Path ("/getBuilding")
 	@Produces ("application/json")
-	public String getAnnouncement(@QueryParam("name") String name){
+	public String getBuilding(@QueryParam("name") String name){
 		String query = "SELECT * FROM building";
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
 		String result = queryForBuildings(query);
@@ -39,7 +39,7 @@ public class BuildingDAO {
 	@POST
 	@Path ("/listBuildings")
 	@Produces ("application/json")
-	public String listAnnouncements(){
+	public String listBuildings(){
 
 		String query = "SELECT * FROM building";
 		String result = queryForBuildings(query);
@@ -59,7 +59,16 @@ public class BuildingDAO {
 					int locationId = jsonElement.getAsInt();
 					query = "SELECT * FROM locationId WHERE locationId='" + locationId + "'";
 					JsonArray result = querySimpleTable(query);
+					
+					JsonArray relResult = querySimpleTable(query);
 					if(result.size() >0)building.add("location", result.get(0));
+					
+					query = "SELECT * FROM building_map WHERE locationId ='" + locationId + "'";
+					if(relResult.size() > 0){
+						for(int i = 0; i<relResult.size(); i++){
+							building.add("map"+i, relResult.get(i));
+						}
+					}
 				}
 				buildings.add(building);
 			}
@@ -129,9 +138,5 @@ public class BuildingDAO {
 		result.put("result", "Building sucessfully added");
 		return result.toString();
 	}
-	
-	/*
-	 * Nog te schrijven: een slimme listbuilding die ineens ook alle maps meegeeft
-	 */
 	
 }
