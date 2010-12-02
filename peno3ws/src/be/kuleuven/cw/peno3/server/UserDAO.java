@@ -80,7 +80,7 @@ public class UserDAO {
 					
 					if(resultaat.size() > 0){
 						for(int i = 0; i<resultaat.size(); i++){
-							user.add("course "+i, resultaat.get(0));
+							user.add("course "+i, resultaat.get(i));
 						}
 					}
 
