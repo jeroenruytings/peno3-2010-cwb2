@@ -56,7 +56,7 @@ public class CourseDAO {
 		return getCourse(year,query);
 	}
 	
-	@GET
+	@POST
 	@Path ("/listCourses")
 	@Produces ("application/json")
 	public String listCourses(){

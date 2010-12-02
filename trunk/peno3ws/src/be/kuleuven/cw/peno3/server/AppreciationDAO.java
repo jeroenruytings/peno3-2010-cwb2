@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 public class AppreciationDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
 	@POST
 	@Path ("/getAppreciation")
@@ -32,7 +33,7 @@ public class AppreciationDAO {
 		if(docQuestionId != null )query += " WHERE docQuestionId like '%" + docQuestionId + "%' and isDocument like '%" + isDocument + "%'";
 		String result = queryForAppreciations(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	@POST
@@ -45,7 +46,7 @@ public class AppreciationDAO {
 		String result = queryForAppreciations(query);
 		System.out.println(result);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	private String queryForAppreciations(String query) {

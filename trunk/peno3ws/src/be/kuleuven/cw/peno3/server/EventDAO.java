@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 public class EventDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
 	public String getEvent(String searchString, String query) {
 		String executeQuery = "SELECT * FROM event";
@@ -32,7 +33,7 @@ public class EventDAO {
 		
 		String result = queryForEvents(executeQuery);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	@POST
@@ -43,7 +44,7 @@ public class EventDAO {
 		String query = "SELECT * FROM event";
 		String result = queryForEvents(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	private String queryForEvents(String query) {
