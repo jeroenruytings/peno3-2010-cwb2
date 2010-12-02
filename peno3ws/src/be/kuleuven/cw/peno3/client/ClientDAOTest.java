@@ -29,7 +29,8 @@ public class ClientDAOTest {
 //		testAddAnnouncements();
 //		testListAnnouncements();
 //		testGetAnnouncement();
-		testAddMap();
+//		testAddMap();
+		testListBuildings();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -140,6 +141,26 @@ public class ClientDAOTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void testListBuildings(){
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
+			
+			int response = client.executeMethod(method);
+			System.out.println(method.getResponseBodyAsString());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {

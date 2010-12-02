@@ -44,7 +44,7 @@ public class BuildingDAO {
 		String query = "SELECT * FROM building";
 		String result = queryForBuildings(query);
 		manager.disconnect();
-		return cryptography.encrypt(result);
+		return result;
 	}
 
 	private String queryForBuildings(String query) {
@@ -57,7 +57,7 @@ public class BuildingDAO {
 				JsonElement jsonElement = building.get("locationId");
 				if (!jsonElement.isJsonNull()) {
 					int locationId = jsonElement.getAsInt();
-					query = "SELECT * FROM locationId WHERE locationId='" + locationId + "'";
+					query = "SELECT * FROM building WHERE locationId='" + locationId + "'";
 					JsonArray result = querySimpleTable(query);
 					
 					JsonArray relResult = querySimpleTable(query);
