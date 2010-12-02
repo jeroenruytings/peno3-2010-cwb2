@@ -44,15 +44,8 @@ public class BuildingDAO {
 		String query = "SELECT * FROM building";
 		String result = queryForBuildings(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
-
-//	query = "SELECT * FROM building_map WHERE locationId ='" + locationId + "'";
-//	if(relResult.size() > 0){
-//		for(int i = 0; i<relResult.size(); i++){
-//			building.add("map"+i, relResult.get(i));
-//		}
-//	}
 	
 	private String queryForBuildings(String query) {
 		JsonArray buildings = new JsonArray();
@@ -61,12 +54,16 @@ public class BuildingDAO {
 		try {
 			while(rs.next()) {
 				JsonObject building = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = building.get("courseCode");
+				JsonElement jsonElement = building.get("locationId");
 				if (!jsonElement.isJsonNull()) {
-					String courseCode = jsonElement.getAsString();
-					query = "SELECT * FROM course WHERE courseCode='" + courseCode + "'";
+					String locationId = jsonElement.getAsString();
+					query = "SELECT * FROM building_map WHERE locationId='" + locationId + "'";
 					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)building.add("course", result.get(0));
+					if(result.size() >0) {
+						for(int i = 0; i<result.size(); i++){
+							building.add("map"+i, result.get(i));
+						}
+					}
 				}
 				buildings.add(building);
 			}
