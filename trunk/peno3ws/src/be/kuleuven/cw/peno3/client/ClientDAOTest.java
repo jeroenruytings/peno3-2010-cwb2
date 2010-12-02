@@ -27,10 +27,9 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-//		testListAnnouncements();
 //		testGetAnnouncement();
 //		testAddMap();
-		testListBuildings();
+		testListAnnouncements();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -62,34 +61,6 @@ public class ClientDAOTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public static void testListAnnouncements() {
-
-		try {
-			String json = stringOfUrl("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
-			System.out.println(json);
-			Announcement[] obj2 = new Gson().fromJson(json.toString(), Announcement[].class);  
-			for (Announcement announcement : obj2) {
-				System.out.println("Message = "+announcement.getMessage());	
-				System.out.println("Title = "+announcement.getTitle());	
-				System.out.println("UserId = "+ announcement.getUserId());	
-				System.out.println("Coursecode = "+announcement.getCourseCode());	
-				System.out.println("AnnouncementId = " + announcement.getAnnouncementId());	
-			
-			}
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 	
 	public static void testGetAnnouncement() {
@@ -149,11 +120,11 @@ public class ClientDAOTest {
 		}
 	}
 	
-	public static void testListBuildings(){
+	public static void testListAnnouncements(){
 		try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/BuildingHandler/listBuildings");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
 			
 			int response = client.executeMethod(method);
 			System.out.println(method.getResponseBodyAsString());
