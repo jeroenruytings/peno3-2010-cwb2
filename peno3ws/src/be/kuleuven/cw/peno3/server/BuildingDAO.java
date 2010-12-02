@@ -44,7 +44,7 @@ public class BuildingDAO {
 		String query = "SELECT * FROM building";
 		String result = queryForBuildings(query);
 		manager.disconnect();
-		return cryptography.encrypt(result);
+		return result;
 	}
 	
 	private String queryForBuildings(String query) {
@@ -62,6 +62,13 @@ public class BuildingDAO {
 					if(result.size() >0) {
 						for(int i = 0; i<result.size(); i++){
 							building.add("map"+i, result.get(i));
+						}
+					}
+					query = "SELECT * FROM building_picture WHERE locationId='" + locationId + "'";
+					result = querySimpleTable(query);
+					if(result.size()>0) {
+						for(int i=0; i<result.size(); i++) {
+							building.add("picture"+i, result.get(i));
 						}
 					}
 				}
