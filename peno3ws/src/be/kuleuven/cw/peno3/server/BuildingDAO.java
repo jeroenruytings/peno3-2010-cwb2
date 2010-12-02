@@ -63,12 +63,12 @@ public class BuildingDAO {
 					JsonArray relResult = querySimpleTable(query);
 					if(result.size() >0)building.add("location", result.get(0));
 					
-					query = "SELECT * FROM building_map WHERE locationId ='" + locationId + "'";
-					if(relResult.size() > 0){
-						for(int i = 0; i<relResult.size(); i++){
-							building.add("map"+i, relResult.get(i));
-						}
-					}
+//					query = "SELECT * FROM building_map WHERE locationId ='" + locationId + "'";
+//					if(relResult.size() > 0){
+//						for(int i = 0; i<relResult.size(); i++){
+//							building.add("map"+i, relResult.get(i));
+//						}
+//					}
 				}
 				buildings.add(building);
 			}
