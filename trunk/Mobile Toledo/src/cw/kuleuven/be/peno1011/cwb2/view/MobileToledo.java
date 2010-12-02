@@ -1,5 +1,9 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
+
+import org.apache.commons.httpclient.HttpException;
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.LoginController;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
@@ -105,8 +109,28 @@ public class MobileToledo extends Activity {
 	
 	
 	private void login(String username, String password) {
-		User user = LoginController.getInstance().getUser(username,password);
-		if(user != null){
+		User user = null;
+		try {
+			user = LoginController.getInstance().getUser(username);
+		} catch (HttpException e) {
+			Context context = getApplicationContext();
+			CharSequence text = "No internet connection!";
+    		int duration = Toast.LENGTH_SHORT;
+    		Toast toast = Toast.makeText(context, text, duration);
+    		toast.show();
+		} catch (IOException e) {
+			
+		}
+		
+		if (user == null || ! user.getPassword().equals(password)){
+			Context context = getApplicationContext();
+    		CharSequence text = "Invalid combination username-password!";
+    		int duration = Toast.LENGTH_SHORT;
+    		Toast toast = Toast.makeText(context, text, duration);
+    		toast.show();
+		}
+		
+		else{
 			LoginController.getInstance().login(user);
 			if(remember)
 				remember(username,password);
@@ -114,13 +138,7 @@ public class MobileToledo extends Activity {
 	        startActivity(i);
 	        finish();
 		}
-		else{
-			Context context = getApplicationContext();
-    		CharSequence text = "Invalid combination username-password!";
-    		int duration = Toast.LENGTH_SHORT;
-    		Toast toast = Toast.makeText(context, text, duration);
-    		toast.show();
-		}
+		
 	}
 
 	private void remember(String username, String password) {
