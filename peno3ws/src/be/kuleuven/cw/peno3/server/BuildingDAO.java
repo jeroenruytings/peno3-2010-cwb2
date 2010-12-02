@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 public class BuildingDAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
+	private Cryptography cryptography = Cryptography.getInstance();
 
 	@POST
 	@Path ("/getBuilding")
@@ -32,7 +33,7 @@ public class BuildingDAO {
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
 		String result = queryForBuildings(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	@POST
@@ -43,7 +44,7 @@ public class BuildingDAO {
 		String query = "SELECT * FROM building";
 		String result = queryForBuildings(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 
 	private String queryForBuildings(String query) {

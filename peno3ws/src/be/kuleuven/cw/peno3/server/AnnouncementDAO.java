@@ -70,7 +70,7 @@ public class AnnouncementDAO {
 		return getAnnouncement(date, query);
 	}
 
-	@GET
+	@POST
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
