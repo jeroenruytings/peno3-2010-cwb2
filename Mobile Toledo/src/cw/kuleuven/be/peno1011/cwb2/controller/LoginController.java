@@ -36,10 +36,6 @@ public class LoginController {
 		
 		return UserDAO.getInstance().getUser(username);
 		
-		//Normaal uit DAO iemand, nu even fictief persoon
-//		Date currentDate = new Date(Calendar.DATE);
-//		ISP isp = new ISP(new ArrayList<Course>(),"1","1",1);
-//		return new User("1","Test","Persoon","wachtwoord",2,currentDate,isp);
 	}
 	
 	
