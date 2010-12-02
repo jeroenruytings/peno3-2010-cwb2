@@ -124,7 +124,7 @@ public class ClientDAOTest {
 		try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/BuildingHandler/listBuildings");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/listAnnouncements");
 			
 			int response = client.executeMethod(method);
 			System.out.println(method.getResponseBodyAsString());
