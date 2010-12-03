@@ -65,30 +65,6 @@ public class UserDAO {
 		try {
 			while(rs.next()) {
 				JsonObject user = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = user.get("userId");
-				if (!jsonElement.isJsonNull()) {
-					String userId = jsonElement.getAsString();
-					query = "SELECT * FROM isp WHERE userId ='" + userId + "'";
-					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)user.add("isp", result.get(0));
-										
-					query = "SELECT * FROM isp_course WHERE userId ='" + userId + "'";
-					JsonArray resultaat = querySimpleTable(query);
-//					if(resultaat.size() >0)user.add(, resultaat.get(0));
-//					if(resultaat.size() >0)user.add(, resultaat.get(1));
-
-					
-					if(resultaat.size() > 0){
-						for(int i = 0; i<resultaat.size(); i++){
-							user.add("course "+i, resultaat.get(i));
-						}
-					}
-
-//					Iterator<JsonElement> it = resultaat.iterator();
-//					while(it.hasNext()){
-//						if(result.size() >0)user.add("test", result.get(0));
-//					}
-				}
 				users.add(user);
 			}
 		} catch (SQLException e) {

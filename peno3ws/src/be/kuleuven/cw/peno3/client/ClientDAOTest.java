@@ -17,6 +17,7 @@ import org.apache.log4j.BasicConfigurator;
 //import org.apache.log4j.BasicConfigurator;
 
 import be.kuleuven.cw.peno3.model.Announcement;
+import be.kuleuven.cw.peno3.model.User;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -29,7 +30,8 @@ public class ClientDAOTest {
 //		testAddAnnouncements();
 //		testGetAnnouncement();
 //		testAddMap();
-		testListAnnouncements();
+//		testListAnnouncements();
+		testListUsers();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -77,14 +79,14 @@ public class ClientDAOTest {
 			else {
 				System.out.println(json);
 				Announcement[] obj2 = new Gson().fromJson(json.toString(), Announcement[].class);  
-				for (Announcement announcement : obj2) {
-					
-					System.out.println("Message = "+announcement.getMessage());	
-					System.out.println("Title = "+announcement.getTitle());	
-					System.out.println("UserId = "+ announcement.getUserId());	
-					System.out.println("Coursecode = "+announcement.getCourseCode());	
-					System.out.println("AnnouncementId = " + announcement.getAnnouncementId());	
-				}
+//				for (Announcement announcement : obj2) {
+//					
+//					System.out.println("Message = "+announcement.getMessage());	
+//					System.out.println("Title = "+announcement.getTitle());	
+//					System.out.println("UserId = "+ announcement.getUserId());	
+//					System.out.println("Coursecode = "+announcement.getCourseCode());	
+//					System.out.println("AnnouncementId = " + announcement.getAnnouncementId());	
+//				}
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -128,6 +130,33 @@ public class ClientDAOTest {
 			
 			int response = client.executeMethod(method);
 			System.out.println(method.getResponseBodyAsString());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void testListUsers(){
+		try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/UserHandler/listUsers");
+			
+			int response = client.executeMethod(method);
+			String json = method.getResponseBodyAsString();
+			System.out.println(json);
+			User[] obj2 = new Gson().fromJson(json.toString(), User[].class);  
+			for (User user : obj2) {
+				System.out.println(user);
+				if(user.getIsp()==null) {
+					
+				}
+			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
