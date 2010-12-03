@@ -1,14 +1,15 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,6 +29,7 @@ public class GetInfo extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.getinfo);
+	    control = NavigationController.getInstance();
 	    Bundle b = this.getIntent().getExtras();
 		location = b.getString("autocomplete_building");
 		TextView locationname = (TextView) findViewById(R.id.locationname);
@@ -57,15 +59,17 @@ public class GetInfo extends Activity {
 	        
 	        }
 	    });
-	}
-		  	 
+
+	}	  	 
 	  	class ImageAdapter extends BaseAdapter {
 
 	  		private int mGalleryItemBackground;
 	  	    private Context mContext;
-	  	    private Integer[] mImageIds = {R.drawable.marker,R.drawable.mobiletoledo, R.drawable.calendarbutton,R.drawable.imagenotfound};  
 
-	  	    public ImageAdapter(Context c) {
+	  	    private Bitmap[] mImages = control.getPictureArray(location);
+	  	    	//control.getPictureArray(location);  
+
+	   	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
 //	  	        TypedArray a = obtainStyledAttributes(R.styleable.HelloGallery);
@@ -74,7 +78,7 @@ public class GetInfo extends Activity {
 	  	    }
 
 	  	    public int getCount() {
-	  	        return mImageIds.length;
+	  	        return mImages.length;
 	  	    }
 
 	  	    public Object getItem(int position) {
@@ -88,7 +92,8 @@ public class GetInfo extends Activity {
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
 
-	  	        i.setId(mImageIds[position]);
+	  	             
+	  	        i.setImageBitmap(mImages[position]);
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);
 	  	        i.setBackgroundResource(mGalleryItemBackground);
@@ -96,16 +101,8 @@ public class GetInfo extends Activity {
 	  	        return i;
 	  	    }
 
-	  	}
-		 
-	  //   control = NavigationController.getInstance();
-	   //  ImageView image = (ImageView) findViewById(R.id.locationmap);
-	    // image.setImageResource(R.drawable.mobiletoledo);
-	     //ImageView image2 = (ImageView) findViewById(R.id.locationphoto);
-	     //image.setImageResource(R.drawable.redarrow);
-	     //  image.setImageURI(control.getGoogleMap(location));
-	     
-	    
+		  	}
+		    
 	}
 
 
