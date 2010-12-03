@@ -42,8 +42,8 @@ public class MakeAnnouncement extends Activity{
 	        resetbutton.setOnClickListener(new View.OnClickListener() {
 	
 	            public void onClick(View view) {
-	        	    EditText mTitle = (EditText) findViewById(R.id.musername);
-	                EditText mMessage = (EditText) findViewById(R.id.mpassword);
+	        	    EditText mTitle = (EditText) findViewById(R.id.mtitle);
+	                EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	            	mTitle.setText("");
 	            	mMessage.setText("");
 	            }
@@ -54,8 +54,8 @@ public class MakeAnnouncement extends Activity{
 	        submitbutton.setOnClickListener(new View.OnClickListener() {
 	
 	            public void onClick(View view) {
-	            	EditText mTitle = (EditText) findViewById(R.id.musername);
-	                EditText mMessage = (EditText) findViewById(R.id.mpassword);
+	            	EditText mTitle = (EditText) findViewById(R.id.mtitle);
+	                EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	                int courseLocation = s.getSelectedItemPosition();
 	                AnnouncementDAO dao = AnnouncementDAO.getInstance();
 	                //TODO/ in database steken.
