@@ -1,4 +1,5 @@
 package be.kuleuven.cw.peno3.client;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +29,7 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-//		testGetAnnouncement(); << bevat fouten
+		testGetAnnouncement();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
