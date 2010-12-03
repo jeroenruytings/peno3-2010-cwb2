@@ -86,6 +86,17 @@ public class InfoController {
         }
         return announcements;
 	}
+	
+	public Announcement findAnnouncement(List<Announcement> announcements, String title){
+		Announcement announcement = null;
+		for(int i = 0; i<announcements.size();i++){
+			if(announcements.get(i).getTitle().equals(title)){
+				announcement = announcements.get(i);
+			}
+		}
+		return announcement;
+	}
+	
 	public Course findCourse(String title){
 		List<Course> courses = user.getIsp().getCourses();
 		boolean isFound = false;

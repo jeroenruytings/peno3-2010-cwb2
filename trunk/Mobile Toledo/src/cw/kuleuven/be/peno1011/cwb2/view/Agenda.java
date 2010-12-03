@@ -24,15 +24,12 @@ public class Agenda extends TabActivity{
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
         ((TextView)findViewById(R.id.titlebar)).setText("Agenda");
 		
-	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
-	    Intent intent;  // Reusable Intent for each tab
 	
 
 	    final Intent intent1 = new Intent().setClass(this, EventsList.class);
 	    intent1.putExtra("span", "day");
-//	    final Intent intent1 = intent;
 	    spec = tabHost.newTabSpec("day").setIndicator("Vandaag")
 	                  .setContent(intent1);
 	    tabHost.addTab(spec);
