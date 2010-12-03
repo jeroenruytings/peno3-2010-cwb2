@@ -63,7 +63,7 @@ public class GetInfo extends Activity {
 
 	  		private int mGalleryItemBackground;
 	  	    private Context mContext;
-	  	    private Integer[] mImageIds = {R.drawable.redarrow,R.drawable.mobiletoledo, R.drawable.calendarbutton,R.drawable.imagenotfound};  
+	  	    private Integer[] mImageIds = {R.drawable.marker,R.drawable.mobiletoledo, R.drawable.calendarbutton,R.drawable.imagenotfound};  
 
 	  	    public ImageAdapter(Context c) {
 		  	    

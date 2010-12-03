@@ -14,12 +14,12 @@
   <TableRow>
   <ImageButton
 		  android:id="@+id/ownlocationbutton"
-		  android:src="@drawable/compassbutton"
+		  android:src="@drawable/nav1"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
   	<ImageButton
 		  android:id="@+id/navigatebutton"
-		  android:src="@drawable/compassbutton"
+		  android:src="@drawable/go_to"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
   </TableRow>
@@ -33,7 +33,7 @@
 		  style="@style/MenuText"/>  
 	<TextView
 		  android:id="@+id/navigate"
-		  android:text="@string/navigate"
+		  android:text="Naar locatie"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"
 		  android:layout_gravity="center"
@@ -42,7 +42,7 @@
   <TableRow android:layout_marginTop="20dip">
 <ImageButton
 		  android:id="@+id/locationinfobutton"
-		  android:src="@drawable/compassbutton"
+		  android:src="@drawable/info"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"
 		  />
