@@ -176,7 +176,7 @@ public class NavigationController{
 		// geef of m verhuurbaar is
 		String rentable = "ja";
 		String isrentable = "Mogelijkheid tot huren: " + rentable;
-		return null;
+		return isrentable;
 	}
 	
 
