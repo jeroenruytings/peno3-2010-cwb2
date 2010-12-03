@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
 
@@ -33,9 +34,7 @@ public class Questions extends Activity{
 	        resetbutton.setOnClickListener(new View.OnClickListener() {
 
 	       public void onClick(View view) {
-	        	    EditText mTitle = (EditText) findViewById(R.id.musername);
-	                EditText mMessage = (EditText) findViewById(R.id.mpassword);
-	            	mTitle.setText("");
+	        	    EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	            	mMessage.setText("");
 	            }
 
@@ -48,10 +47,13 @@ public class Questions extends Activity{
 	        	
 
 	    public void onClick(View view) {
-	       EditText mTitle = (EditText) findViewById(R.id.musername);
-	       EditText mMessage = (EditText) findViewById(R.id.mpassword);
-	                
-//	        dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),lecture));
+	       EditText mMessage = (EditText) findViewById(R.id.mmessage);
+	       
+//          QuestionDAO dao = QuestionDAO.getInstance();
+           //TODO/ in database steken.
+//               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	       
+//	        dao.insert(mMessage.getText().toString(),lecture));
 	       }
 
 	    });
