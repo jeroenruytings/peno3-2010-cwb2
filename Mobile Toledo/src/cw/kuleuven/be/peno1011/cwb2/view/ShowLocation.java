@@ -21,6 +21,10 @@ public void onCreate(Bundle savedInstanceState)
 {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.navigationmenu);
+	
+	Bundle b = this.getIntent().getExtras();
+	String location = b.getString("locationname");
+	
 	latitudeField = (TextView) findViewById(1);
 	longitudeField = (TextView) findViewById(1);
 

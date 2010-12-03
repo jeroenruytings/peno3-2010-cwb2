@@ -93,28 +93,28 @@ public class NavigationController{
 	}
 	
 	  public Bitmap downloadFile(String fileUrl){
-		  Bitmap bmImg = null;
-          URL myFileUrl = null;          
+		  Bitmap mImg = null;
+          URL mFileUrl = null;          
           try {
-               myFileUrl= new URL(fileUrl);
+               mFileUrl= new URL(fileUrl);
           } catch (MalformedURLException e) {
                // TODO Auto-generated catch block
                e.printStackTrace();
           }
           try {
-               HttpURLConnection conn= (HttpURLConnection)myFileUrl.openConnection();
-               conn.setDoInput(true);
-               conn.connect();
-               int length = conn.getContentLength();
-               InputStream is = conn.getInputStream();
+               HttpURLConnection connection= (HttpURLConnection)mFileUrl.openConnection();
+               connection.setDoInput(true);
+               connection.connect();
+               int length = connection.getContentLength();
+               InputStream is = connection.getInputStream();
                
-               bmImg = BitmapFactory.decodeStream(is);
+               mImg = BitmapFactory.decodeStream(is);
                               
           } catch (IOException e) {
                // TODO Auto-generated catch block
                e.printStackTrace();
           }
-          return bmImg;
+          return mImg;
 	  }
 
 	
@@ -124,14 +124,6 @@ public class NavigationController{
 		Bitmap img2 = downloadFile("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA");
 		Bitmap img3 = downloadFile("http://www.appelogen.be/wp-images/derde_prentje.jpg");
 		Bitmap img4 = downloadFile("http://www.jouwpagina.nl/fotos2/k-mmygirl/catduck.jpg");
-		//String urlString = "http://www.trouwshop.nl/images/upload/20080907_234513_bruidspaar_gira.jpg";
-		//Uri[] pictureArray ={
-  
-				//Uri.parse("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA"),
-				//Uri.parse("http://www.appelogen.be/wp-images/derde_prentje.jpg"),
-				//Uri.parse("http://www.jouwpagina.nl/fotos2/k-mmygirl/catduck.jpg"),
-	//	Uri.parse(urlString)
-		//};
 		
 		Bitmap [] pictureArray = {img,img2,img3,img4};
 			
