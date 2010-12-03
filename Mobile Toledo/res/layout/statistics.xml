@@ -37,6 +37,7 @@
 				android:typeface="serif"
 				android:text="Antwoord B">
 			</TextView>
+		
 		<ProgressBar android:id="@+id/sc"
 		    android:indeterminateOnly="false" 
 		    android:progressDrawable="@android:drawable/progress_horizontal" 
@@ -51,5 +52,33 @@
 				android:typeface="serif"
 				android:text="Antwoord C">
 				</TextView>
+			<ProgressBar android:id="@+id/sd"
+		    android:indeterminateOnly="false" 
+		    android:progressDrawable="@android:drawable/progress_horizontal" 
+		    android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal" 
+		    android:minHeight="20dip" 
+		    android:maxHeight="20dip">
+		  	</ProgressBar>
+		  	<TextView android:id="@+id/multiplefeedback" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="center"
+				android:typeface="serif"
+				android:text="Antwoord D">
+			</TextView>
+			<ProgressBar android:id="@+id/se"
+		    android:indeterminateOnly="false" 
+		    android:progressDrawable="@android:drawable/progress_horizontal" 
+		    android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal" 
+		    android:minHeight="20dip" 
+		    android:maxHeight="20dip">
+		  	</ProgressBar>
+		  	<TextView android:id="@+id/multiplefeedback" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="center"
+				android:typeface="serif"
+				android:text="Antwoord E">
+			</TextView>
 		  </LinearLayout>    
  </LinearLayout>
