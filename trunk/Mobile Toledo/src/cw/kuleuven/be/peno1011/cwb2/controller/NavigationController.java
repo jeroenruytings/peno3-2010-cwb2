@@ -148,27 +148,36 @@ public class NavigationController{
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
 
 	}
-	class Listener implements LocationListener {
 
-		public void onLocationChanged(Location location) {
 
-		}
-
-		public void onProviderDisabled(String provider) {
-			// TODO		
-		}
-
-		public void onProviderEnabled(String provider) {
-			// TODO		
-		}
-
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO
-		}
-	}
     public void stopUpdating(){
     	locationManager.removeUpdates(listener);
     }
+
+	public String getOpeninghours(String location) {
+		// geef de openingsuren
+		String openinghours = "openingsuren";
+		return openinghours;
+	}
+
+	public String getAdresse(String location) {
+		// geef het adres
+		String adresse = "adres";
+		return adresse;
+	}
+
+	public String getTelephonenr(String location) {
+		// geef het telefoonnr
+		String telephonenr = "telefoonnr";
+		return telephonenr;
+	}
+
+	public String isRentable(String location) {
+		// geef of m verhuurbaar is
+		String rentable = "ja";
+		String isrentable = "Mogelijkheid tot huren: " + rentable;
+		return null;
+	}
 	
 
 }
