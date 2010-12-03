@@ -38,29 +38,29 @@ public class InfoController {
 	}
 	
 	public List<Announcement> recentAnnouncements(int maxDaysAgo){ // recente
-		ISP isp = user.getIsp();
-		ArrayList<Course> courses = isp.getCourses();
-        List<Announcement> announcements = new LinkedList<Announcement>();
-        for (Course course : courses){
-        	announcements.addAll(course.getAnnouncements());
-        }
-		Date currentDate = new Date();
-		Date oldestDate = new Date();
-		oldestDate.setDate(currentDate.getDay()-14);
-		int size = announcements.size();
-		for(int i=0;i<size;i++){
-			if(announcements.get(i).getDate().compareTo(oldestDate)<0){
-				announcements.remove(i);
-			}
-		}
-		sortAnnouncements(announcements);
+//		ISP isp = user.getIsp();
+//		ArrayList<Course> courses = isp.getCourses();
+//        List<Announcement> announcements = new LinkedList<Announcement>();
+//        for (Course course : courses){
+//        	announcements.addAll(course.getAnnouncements());
+//        }
+//		Date currentDate = new Date();
+//		Date oldestDate = new Date();
+//		oldestDate.setDate(currentDate.getDay()-14);
+//		int size = announcements.size();
+//		for(int i=0;i<size;i++){
+//			if(announcements.get(i).getDate().compareTo(oldestDate)<0){
+//				announcements.remove(i);
+//			}
+//		}
+//		sortAnnouncements(announcements);
 //		return announcements; //postconditie: announcements zijn gesorteerd
 		Announcement a1 = new Announcement(null, null, "Test", "tesst");
 		Announcement a2 = new Announcement(null, null, "Test", "Boodschap");
 		Announcement a3 = new Announcement(null, null, "Test", "tesst");
 		Announcement a4 = new Announcement(null, null, "Test", "tesst");
 		Announcement a5 = new Announcement(null, null, "Test", "tesst");
-		List<Announcement> anns = new LinkedList<Announcement>();
+		List<Announcement> anns = new ArrayList<Announcement>();
 		anns.add(a1);anns.add(a2);anns.add(a3);anns.add(a4);anns.add(a5);
         return anns;
 	}
