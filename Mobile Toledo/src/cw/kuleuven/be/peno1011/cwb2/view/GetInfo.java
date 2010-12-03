@@ -34,6 +34,14 @@ public class GetInfo extends Activity {
 		location = b.getString("autocomplete_building");
 		TextView locationname = (TextView) findViewById(R.id.locationname);
 	 	locationname.setText(location);
+		TextView adresse = (TextView) findViewById(R.id.adresse);
+	 	locationname.setText(control.getAdresse(location));
+		TextView telephonenr = (TextView) findViewById(R.id.telephonenr);
+	 	locationname.setText(control.getTelephonenr(location));
+	 	TextView openinghours = (TextView)findViewById(R.id.openinghours);
+	 	openinghours.setText(control.getOpeninghours(location));
+		TextView rentable = (TextView) findViewById(R.id.rentable);
+	 	locationname.setText(control.isRentable(location));
 
 	    Gallery g = (Gallery) findViewById(R.id.gallery);
 	    g.setAdapter(new ImageAdapter(this));
