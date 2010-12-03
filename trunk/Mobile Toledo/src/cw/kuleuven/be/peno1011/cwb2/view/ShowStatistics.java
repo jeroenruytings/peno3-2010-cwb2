@@ -25,6 +25,13 @@ public class ShowStatistics extends Activity {
 	         final ProgressBar statc = (ProgressBar) findViewById(R.id.sc);
 	         statc.setProgress(50);
 	         
+	         final ProgressBar statd = (ProgressBar) findViewById(R.id.sd);
+	         statc.setProgress(50);
+	         
+	         final ProgressBar state = (ProgressBar) findViewById(R.id.se);
+	         statc.setProgress(50);
+	        
+	         
 
 /*	         // Start lengthy operation in a background thread
 	         new Thread(new Runnable() {
