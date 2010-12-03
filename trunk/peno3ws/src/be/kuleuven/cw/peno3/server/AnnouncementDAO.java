@@ -15,7 +15,9 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@FormParam("word") String word){
 		String query = "SELECT * FROM announcement";
-		if(word!=null)query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
+		System.out.println(word);
+		if(word!=null)query+= " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
+		System.out.println(super.get(query));
 		return super.get(query);
 	}
 	
@@ -24,7 +26,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM announcement";
-		if(courseCode!=null)query = " WHERE courseCode like '%" + courseCode + "%'";
+		if(courseCode!=null)query+= " WHERE courseCode like '%" + courseCode + "%'";
 		return super.get(query);
 	}
 	
@@ -33,7 +35,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByExactDate(@FormParam("date") String date){
 		String query = "SELECT * FROM announcement";
-		if(date!=null)query = " WHERE date= '" + date + "'";
+		if(date!=null)query+= " WHERE date= '" + date + "'";
 		return super.get(query);
 	}
 	
@@ -42,7 +44,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByStartDate(@FormParam("date") String date){
 		String query = "SELECT * FROM announcement";
-		if(date!=null)query = " WHERE date>= '" + date + "'";
+		if(date!=null)query+= " WHERE date>= '" + date + "'";
 		return super.get(query);
 	}
 
