@@ -24,13 +24,18 @@ public class TestOnWeb {
 	private static void testGetUser() throws HttpException, IOException{
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/UserHandler/getUserByUserId");
-		method.addParameter("userId", "s0199104");
+		method.addParameter("userId", "s999999");
 		
 		int response = client.executeMethod(method);
 		String encryptedJson = method.getResponseBodyAsString();
 		System.out.println(encryptedJson);
 		String json = cryptography.decrypt(encryptedJson);
 		System.out.println(json);
+		
+		String[] parsed = json.split(",");
+		System.out.println(parsed[1]);
+		
+		
 		int start;
 		int end;
 		start = json.indexOf("userId")+9;
