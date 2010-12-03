@@ -5,6 +5,7 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -12,9 +13,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +45,22 @@ public class GetInfo extends Activity {
 	 	openinghours.setText(control.getOpeninghours(location));
 		TextView rentable = (TextView) findViewById(R.id.rentable);
 	 	rentable.setText(control.isRentable(location));
-
+	 	
+	 	ImageButton navigatebutton = (ImageButton) findViewById(R.id.locationinfonavigate);
+	 	navigatebutton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Bundle b = new Bundle();
+				b.putString("locationname", location);
+				Intent intent = new Intent(GetInfo.this,ShowLocation.class);
+				intent.putExtras(b);
+				startActivity(intent);
+				//intent moet doorgegeven worden aan navigeer naar met van eigen locatie
+				//naar de locatie meegegeven in de bundle
+			}
+		});
+	 	
 	    Gallery g = (Gallery) findViewById(R.id.gallery);
 	    g.setAdapter(new ImageAdapter(this));
 
@@ -80,9 +98,6 @@ public class GetInfo extends Activity {
 	   	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
-//	  	        TypedArray a = obtainStyledAttributes(R.styleable.HelloGallery);
-//	  	        mGalleryItemBackground = a.getResourceId(R.styleable.HelloGallery_android_galleryItemBackground, 0);
-//	  	        a.recycle();
 	  	    }
 
 	  	    public int getCount() {
