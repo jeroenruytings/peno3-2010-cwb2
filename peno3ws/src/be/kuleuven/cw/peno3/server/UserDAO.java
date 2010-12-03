@@ -1,24 +1,11 @@
 package be.kuleuven.cw.peno3.server;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
-
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-
-import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 @Path ("/UserHandler")
 public class UserDAO extends DAO{
@@ -33,9 +20,9 @@ public class UserDAO extends DAO{
 	}
 
 	@POST
-	@Path ("/getUserByUserId")
+	@Path ("/getUserById")
 	@Produces("application/json")
-	public String getUserByUserId(@FormParam("userId") String userId){
+	public String getUserById(@FormParam("userId") String userId){
 		String query = "SELECT * FROM user";
 		if(userId !=null)query += " WHERE userId like '%" + userId + "%'";
 		return super.get(query);

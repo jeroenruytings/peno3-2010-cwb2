@@ -14,7 +14,6 @@ public abstract class DAO {
 
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 	private Cryptography cryptography = Cryptography.getInstance();
-	protected String tablename;
 	
 	public DAO() {
 		// TODO Auto-generated constructor stub
@@ -64,5 +63,4 @@ public abstract class DAO {
 		manager.disconnect();
 		return cryptography.encrypt(result);
 	}
-	
 }
