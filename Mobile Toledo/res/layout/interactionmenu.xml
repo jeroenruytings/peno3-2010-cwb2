@@ -63,7 +63,7 @@
   </TableRow>
     <TableRow android:layout_marginTop="20dip">
 <ImageButton android:id="@+id/statsbutton"
-	    android:src="@drawable/resultsbutton2"
+	    android:src="@drawable/resultsbutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:visibility="gone"/>
