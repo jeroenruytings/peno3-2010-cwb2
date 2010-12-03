@@ -21,6 +21,10 @@ public class Question {
 		setMessage(message);
 	}
 	
+	public String getMessage() {
+		return message;
+	}
+
 	public User getQuestioner() {
 		return questioner;
 	}
@@ -28,7 +32,8 @@ public class Question {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
+	
+	
 	public void setQuestioner(User questioner) {
 		this.questioner = questioner;
 	}
