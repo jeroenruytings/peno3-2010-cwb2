@@ -27,11 +27,11 @@ public class ClientDAOTest {
 	private static Cryptography cryptography = Cryptography.getInstance();
 	
 	public static void main(String[] args) {
-//		testAddAnnouncements();
-//		testGetAnnouncement();
-//		testAddMap();
-//		testListAnnouncements();
-		testListUsers();
+		testAddAnnouncements();
+		testGetAnnouncement();
+		testAddMap();
+		testListAnnouncements();
+//		testListUsers();
 	}
 	
 	private static void testAddAnnouncements() {

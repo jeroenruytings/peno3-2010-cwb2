@@ -1,124 +1,57 @@
 package be.kuleuven.cw.peno3.server;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
-
 import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 @Path ("/AnnouncementHandler")
-public class AnnouncementDAO {
-
-	protected DatabaseManager manager = DatabaseManager.getInstance();
-	private Cryptography cryptography = Cryptography.getInstance();
-
-	public String getAnnouncement(String searchString, String query) {
-		String executeQuery = "SELECT * FROM announcement";
-		System.out.println("executeQuery before:" + executeQuery);
-		
-		if(searchString !=null){
-			executeQuery = executeQuery + query;
-		}
-		
-		System.out.println("executeQuery after:" +executeQuery);
-		String result = queryForAnnouncements(executeQuery);
-		manager.disconnect();
-		return cryptography.encrypt(result);
-	}
+public class AnnouncementDAO extends DAO{
 	
 	@POST
 	@Path ("/getAnnouncementByWord")
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@FormParam("word") String word){
-		String query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
-		return getAnnouncement(word,query);
+		String query = "SELECT * FROM announcement";
+		if(word!=null)query = " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
+		return super.get(query);
 	}
 	
 	@POST
 	@Path ("/getAnnouncementByCourseCode")
 	@Produces ("application/json")
 	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
-		String query = " WHERE courseCode like '%" + courseCode + "%'";
-		return getAnnouncement(courseCode, query);
+		String query = "SELECT * FROM announcement";
+		if(courseCode!=null)query = " WHERE courseCode like '%" + courseCode + "%'";
+		return super.get(query);
 	}
 	
 	@POST
 	@Path ("/getAnnouncementByExactDate")
 	@Produces ("application/json")
 	public String getAnnouncementByExactDate(@FormParam("date") String date){
-		String query = " WHERE date= '" + date + "'";
-		return getAnnouncement(date, query);
+		String query = "SELECT * FROM announcement";
+		if(date!=null)query = " WHERE date= '" + date + "'";
+		return super.get(query);
 	}
 	
 	@POST
 	@Path ("/getAnnouncementByStartDate")
 	@Produces ("application/json")
 	public String getAnnouncementByStartDate(@FormParam("date") String date){
-		String query = " WHERE date>= '" + date + "'";
-		return getAnnouncement(date, query);
+		String query = "SELECT * FROM announcement";
+		if(date!=null)query = " WHERE date>= '" + date + "'";
+		return super.get(query);
 	}
 
 	@POST
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
-
 		String query = "SELECT * FROM announcement";
-		String result = queryForAnnouncements(query);
-		manager.disconnect();
-		return cryptography.encrypt(result);
-	}
-
-	private String queryForAnnouncements(String query) {
-		JsonArray announcements = new JsonArray();
-		ResultSet rs = manager.query(query);
-		Gson gson = new Gson();
-		try {
-			while(rs.next()) {
-				JsonObject announcement = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = announcement.get("courseCode");
-				if (!jsonElement.isJsonNull()) {
-					String courseCode = jsonElement.getAsString();
-					query = "SELECT * FROM course WHERE courseCode='" + courseCode + "'";
-					JsonArray result = querySimpleTable(query);
-					if(result.size() >0)announcement.add("course", result.get(0));
-				}
-				announcements.add(announcement);
-			}
-		} catch (SQLException e) {
-			JSONObject result = new JSONObject();
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-		String asString = announcements.toString();
-		return asString;
-	}
-
-	private JsonArray querySimpleTable(String query) {
-		Vector announcements = new Vector();
-		ResultSet rs = manager.query(query);
-		Gson gson = new Gson();
-		try {
-			while(rs.next()) {
-				announcements.add(manager.getColumnValues(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return (JsonArray) gson.toJsonTree(announcements);
+		return super.list(query);
 	}
 
 	/*
@@ -128,24 +61,7 @@ public class AnnouncementDAO {
 	@Path ("/addAnnouncement")
 	@Produces ("application/json")
 	public String addAnnouncement(@FormParam("message") String message, @FormParam("userId") String userId, @FormParam("title") String title, @FormParam("courseCode") String courseCode, @FormParam("date") String date){
-
-		JSONObject result = new JSONObject();
-		if(userId != null) {
-			try {
-				String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode,date) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "','" + courseCode + "'," + date +")";
-				System.out.println(query);
-				manager.update(query);
-				manager.disconnect();
-				}
-			catch (SQLException e) {
-				result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-				return result.toString();
-			}
-			result.put("result", "Announcement sucessfully added");
-		}
-		else {
-			result.put("result", "The userId was empty, no User added...");
-		}
-		return result.toString();
+			String query = "INSERT INTO announcement (announcementId,message,userId,title,courseCode,date) VALUES (NULL,'"+ message + "','" + userId + "','" + title + "','" + courseCode + "'," + date +")";
+			return super.add(query);
 	}
 }
