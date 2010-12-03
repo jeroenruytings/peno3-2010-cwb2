@@ -3,6 +3,8 @@ package cw.kuleuven.be.peno1011.cwb2.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,18 +51,29 @@ public class CalendarController {
 	}
 	
 	public List<Event> getEvents(int numberOfDays){ // recente
-		List<Event> allEvents = agenda.getEvents();
+		LinkedHashSet<Event> allEvents = Event.getEvents();
+		//List<Event> allEvents = agenda.getEvents();
         List<Event> events = new ArrayList<Event>();
         Date currentDate = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
         cal.add(Calendar.DAY_OF_MONTH, numberOfDays);
         Date maxDate = cal.getTime();
-        for(int i=0;i<allEvents.size();i++){
-        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 || allEvents.get(i).getStopDate().compareTo(maxDate)<0){
-        		events.add(allEvents.get(i));
+        
+        Iterator<Event> it = allEvents.iterator();
+        while(it.hasNext()){
+        	Event currentEvent = it.next();
+        	if(currentEvent.getStartDate().compareTo(currentDate)>0 || currentEvent.getStopDate().compareTo(maxDate)<0){
+        		events.add(currentEvent);
         	}
         }
+        
+        
+//        for(int i=0;i<allEvents.size();i++){
+//        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 || allEvents.get(i).getStopDate().compareTo(maxDate)<0){
+//        		events.add(allEvents.get(i));
+//        	}
+//        }
 		//eventueel sort events?
 		return events; 
 	}

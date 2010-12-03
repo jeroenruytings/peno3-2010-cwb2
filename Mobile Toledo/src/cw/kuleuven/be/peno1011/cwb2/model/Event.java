@@ -1,6 +1,13 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import org.apache.commons.httpclient.HttpException;
+
+import cw.kuleuven.be.peno1011.cwb2.database.EventDAO;
 
 public class Event {
 	
@@ -18,6 +25,19 @@ public class Event {
 		setStopDate(stopDate);
 		setPlace(place);
 		setCategory(category);
+	}
+	
+	private static LinkedHashSet<Event> events;
+	
+	public static LinkedHashSet<Event> getEvents(){
+		return events;
+	}
+	
+	public static void updateEvents() throws HttpException, IOException{
+		Event[] eventsFromDAO = EventDAO.getEvents();
+		for(int i = 0; i< eventsFromDAO.length; i++){
+			events.add(eventsFromDAO[i]);
+		}
 	}
 	
 	public String getTitle() {
