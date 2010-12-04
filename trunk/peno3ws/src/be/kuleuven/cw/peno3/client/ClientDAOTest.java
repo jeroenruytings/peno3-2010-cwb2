@@ -98,19 +98,19 @@ public class ClientDAOTest {
 	}
 	
 	public static void testGetAnnouncementByWord() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
 		method.addParameter("word","test");
 		testGet(method);
 	}
 	
 	public static void testGetAnnouncementByCourseCode() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByCourseCode");
 		method.addParameter("courseCode","Rand");
 		testGet(method);
 	}
 	
 	public static void testGetAnnouncementByStartDate() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByStartDate");
 		method.addParameter("date","2010-12-29");
 		testGet(method);
 	}
