@@ -32,8 +32,8 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/addBuilding")
 	@Produces ("application/json")
-	public String addBuilding(@FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
-		String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES (NULL,'"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
+	public String addBuilding(@FormParam("locationId") String locationId, @FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
+		String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES ('" +locationId + "','"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
 		return super.add(query);
 	}
 	
@@ -45,4 +45,29 @@ public class BuildingDAO extends DAO{
 		return super.add(query);
 	}
 	
+	@POST
+	@Path ("/getMap")
+	@Produces ("application/json")
+	public String getMap(@QueryParam("locationId") String locationId){
+		String query = "SELECT * FROM building_map";
+		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		return super.get(query);
+	}
+	
+	@POST
+	@Path ("/addPicture")
+	@Produces ("application/json")
+	public String addPicture(@FormParam("locationId") String locationId, @FormParam("picture") String picture){
+		String query = "INSERT INTO building_picture (buildingPictureId,locationId,picture) VALUES (NULL,'"+ locationId + "','" + picture + "')";
+		return super.add(query);
+	}
+	
+	@POST
+	@Path ("/getPicture")
+	@Produces ("application/json")
+	public String getPicture(@QueryParam("locationId") String locationId){
+		String query = "SELECT * FROM building_picture";
+		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		return super.get(query);
+	}
 }
