@@ -90,6 +90,42 @@ public class ClientDAOTest {
 			e.printStackTrace();
 		}
 	}
+	private static void testList(PostMethod postMethod) {
+		try {
+			HttpClient client = new HttpClient();
+			int response = client.executeMethod(postMethod);
+			System.out.println(postMethod.getResponseBodyAsString());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void testAdd(PostMethod postMethod) {
+		try {
+			HttpClient client = new HttpClient();
+			
+			
+			int returnCode = client.executeMethod(postMethod);
+
+			System.out.println(postMethod.getResponseBodyAsString());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public static void testGetAnnouncementByExactDate() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByExactDate");
@@ -115,6 +151,27 @@ public class ClientDAOTest {
 		testGet(method);
 	}
 
+	public static void testListAppreciation() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/listAppreciations");
+		testList(method);
+	}
+	
+	public static void testAddAppreciation() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/addAppreciation");
+		method.addParameter("docQuestionId", "1234");
+		method.addParameter("isDocument","true");
+		method.addParameter("userId","s0215121");
+		method.addParameter("score","5");
+		testAdd(method);
+	}
+	
+	public static void testGetAppreciation() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/getAppreciation");
+		method.addParameter("docQuestionId", "1234");
+		method.addParameter("isDocument","true");
+		testGet(method);
+	}
+	
 	private static void testAddMap() {
 		try {
 			HttpClient client = new HttpClient();
