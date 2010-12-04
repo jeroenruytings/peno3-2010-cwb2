@@ -93,7 +93,7 @@ public class ClientDAOTest {
 	
 	public static void testGetAnnouncementByExactDate() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByExactDate");
-		method.addParameter("date","2010-12-29");
+		method.addParameter("date","20101222");
 		testGet(method);
 	}
 	
@@ -111,7 +111,7 @@ public class ClientDAOTest {
 	
 	public static void testGetAnnouncementByStartDate() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByStartDate");
-		method.addParameter("date","2010-12-29");
+		method.addParameter("date","20100101");
 		testGet(method);
 	}
 
