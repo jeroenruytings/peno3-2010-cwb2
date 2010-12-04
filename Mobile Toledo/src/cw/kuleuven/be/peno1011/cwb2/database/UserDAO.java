@@ -28,8 +28,8 @@ public class UserDAO {
 		method.addParameter("userId", username);
 		
 		int response = client.executeMethod(method);
-		String encryptedJson = method.getResponseBodyAsString();
-		String json = cryptography.decrypt(encryptedJson);
+		String json = method.getResponseBodyAsString();
+		//String json = cryptography.decrypt(encryptedJson);
 		
 		if(json.contains("[]")) {
 			return new User(null,null,null,null,-1,null,null);
