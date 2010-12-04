@@ -29,10 +29,10 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-		testGetAnnouncementByExactDate();
-		testGetAnnouncementByStartDate();
-		testGetAnnouncementByCourseCode();
-		testGetAnnouncementByWord();
+		testGetAppreciation();
+		testAddAppreciation();
+		testListAppreciation();
+//		testGetAnnouncementByWord();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
@@ -94,7 +94,7 @@ public class ClientDAOTest {
 		try {
 			HttpClient client = new HttpClient();
 			int response = client.executeMethod(postMethod);
-			System.out.println(postMethod.getResponseBodyAsString());
+			System.out.println(cryptography.decrypt(postMethod.getResponseBodyAsString()));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,7 +114,7 @@ public class ClientDAOTest {
 			
 			int returnCode = client.executeMethod(postMethod);
 
-			System.out.println(postMethod.getResponseBodyAsString());
+			System.out.println(cryptography.decrypt(postMethod.getResponseBodyAsString()));
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,7 +147,7 @@ public class ClientDAOTest {
 	
 	public static void testGetAnnouncementByStartDate() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByStartDate");
-		method.addParameter("date","20100101");
+		method.addParameter("date","20110101");
 		testGet(method);
 	}
 
@@ -159,7 +159,7 @@ public class ClientDAOTest {
 	public static void testAddAppreciation() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/addAppreciation");
 		method.addParameter("docQuestionId", "1234");
-		method.addParameter("isDocument","true");
+		method.addParameter("isDocument","1");
 		method.addParameter("userId","s0215121");
 		method.addParameter("score","5");
 		testAdd(method);
@@ -168,7 +168,7 @@ public class ClientDAOTest {
 	public static void testGetAppreciation() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/getAppreciation");
 		method.addParameter("docQuestionId", "1234");
-		method.addParameter("isDocument","true");
+		method.addParameter("isDocument","1");
 		testGet(method);
 	}
 	
