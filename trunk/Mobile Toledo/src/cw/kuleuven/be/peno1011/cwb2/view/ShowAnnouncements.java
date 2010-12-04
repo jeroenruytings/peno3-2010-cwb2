@@ -22,6 +22,7 @@ import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
+import cw.kuleuven.be.peno1011.cwb2.view.widgets.ExpandableAdapter;
 
 public class ShowAnnouncements extends ListActivity {
 	    private ExpandableAdapter adapter;
@@ -74,7 +75,7 @@ public class ShowAnnouncements extends ListActivity {
 			       adapter = new ExpandableAdapter(this, new ArrayList<String>(),
 			                new ArrayList<ArrayList<Announcement>>());
 			
-			        listView.setAdapter(adapter);
+//			        listView.setAdapter(adapter);
 			        final List<Announcement> announcements = controller.recentAnnouncements(7);//TODO allannouncements
 			        int i = 0;
 			        while (i != announcements.size()-1)
@@ -82,7 +83,7 @@ public class ShowAnnouncements extends ListActivity {
 			            adapter.addItem(announcements.get(i));
 			            i++;
 			        }
-			        
+			        listView.setAdapter(adapter);
 			        listView.setOnChildClickListener(new OnChildClickListener()
 			        {
 			        	@Override

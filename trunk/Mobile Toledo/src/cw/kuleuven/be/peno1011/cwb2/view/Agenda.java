@@ -1,19 +1,13 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import cw.kuleuven.be.peno1011.cwb2.R;
-import android.app.Activity;
 import android.app.TabActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TabHost.OnTabChangeListener;
+import cw.kuleuven.be.peno1011.cwb2.R;
 
 public class Agenda extends TabActivity{
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,11 +18,11 @@ public class Agenda extends TabActivity{
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
         ((TextView)findViewById(R.id.titlebar)).setText("Agenda");
 		
-	    TabHost tabHost = getTabHost();  // The activity TabHost
-	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+	    TabHost tabHost = getTabHost();  
+	    TabHost.TabSpec spec; 
 	
 
-	    final Intent intent1 = new Intent().setClass(this, EventsList.class);
+	    Intent intent1 = new Intent().setClass(this, EventsList.class);
 	    intent1.putExtra("span", "day");
 	    spec = tabHost.newTabSpec("day").setIndicator("Vandaag")
 	                  .setContent(intent1);
@@ -46,9 +40,9 @@ public class Agenda extends TabActivity{
 	                  .setContent(intent3);
 	    tabHost.addTab(spec);
 	
-	    tabHost.setCurrentTab(2);
+	    tabHost.setCurrentTab(1);
 	    final TabHost host2 = tabHost;
-	    final Context context = this;
+//	    final Context context = this;
 	    tabHost.setOnTabChangedListener(new OnTabChangeListener() {
             public void onTabChanged(String tabId) {
 //                if( tabId.equals("day") ){

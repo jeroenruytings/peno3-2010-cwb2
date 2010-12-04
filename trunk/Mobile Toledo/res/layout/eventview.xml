@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="horizontal"
+	android:padding="4px">
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_weight="1"
+			android:gravity="center_vertical"
+			android:paddingLeft="3dip">
+			<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="right"
+			>
+				<TextView android:id="@+id/nocat2"
+					android:layout_width="wrap_content"
+					android:layout_height="fill_parent"
+					android:gravity="right"
+					android:textColor="#ffffff"
+					android:visibility="gone"
+					android:text="Geen categorie"
+					android:textStyle="italic"
+					android:textSize="11px"
+					/>
+				<TextView android:id="@+id/rcat2"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:gravity="right"
+						android:textColor="#ff0000"
+						android:visibility="gone"
+						android:text="Feestje"
+						android:textStyle="italic"
+						android:textSize="11px"
+						/>
+				<TextView android:id="@+id/ocat2"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:gravity="right"
+						android:textColor="#ff8a00"
+						android:visibility="gone"
+						android:text="Cultuur"
+						android:textStyle="italic"
+						android:textSize="11px"
+						/>
+				<TextView android:id="@+id/bcat2"
+						android:layout_width="wrap_content"
+						android:layout_height="fill_parent"
+						android:gravity="right"
+						android:visibility="gone"
+						android:textColor="#0000ff"
+						android:text="Les"
+						android:textStyle="italic"
+						android:textSize="11px"
+						/>
+			</LinearLayout>
+			<TextView android:id="@+id/eventdescr"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="left"
+				android:singleLine="true"
+				android:ellipsize="end"
+				android:textColor="#ffffff"
+				android:padding="0px"
+				android:text="Geen verdere beschrijving"/>
+			<TableLayout
+				android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_weight="1"
+			android:gravity="center_vertical"
+			android:padding="0px">
+				<TableRow>
+					<TextView 
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:gravity="left"
+						android:singleLine="true"
+						android:ellipsize="end"
+						android:padding="0px"
+						android:textSize="11px"
+						android:textColor="#bbbbbb"
+						android:text="Locatie: "
+						android:textStyle="italic"
+						/>
+					<TextView android:id="@+id/eventloc2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:gravity="left"
+						android:textStyle="bold"
+						android:singleLine="true"
+						android:ellipsize="end"
+						android:padding="0px"
+						android:textSize="11px"
+						android:textColor="#bbbbbb"
+						android:text=""/>
+				</TableRow>
+			</TableLayout>
+			<TextView android:id="@+id/eventdate2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="left"
+				android:singleLine="true"
+				android:ellipsize="end"
+				android:padding="0px"
+				android:textSize="11px"
+				android:textColor="#dddddd"
+				android:text="Datum  hh:mm"/>
+		</LinearLayout>
+</LinearLayout>

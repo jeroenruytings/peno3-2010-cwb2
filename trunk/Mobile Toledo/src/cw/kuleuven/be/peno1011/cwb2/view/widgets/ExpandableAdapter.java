@@ -1,4 +1,4 @@
-package cw.kuleuven.be.peno1011.cwb2.view;
+package cw.kuleuven.be.peno1011.cwb2.view.widgets;
 
 import java.util.ArrayList;
 
@@ -14,17 +14,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 public class ExpandableAdapter extends BaseExpandableListAdapter {
-
-    @Override
-    public boolean areAllItemsEnabled()
-    {
-        return true;
-    }
-
     private Context context;
-
     private ArrayList<String> groups;
-
     private ArrayList<ArrayList<Announcement>> children;
 
     public ExpandableAdapter(Context context, ArrayList<String> groups,
@@ -73,7 +64,15 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         tv.setText("   " + announcement.getTitle());
         return convertView;
     }
-
+    @Override
+    public boolean areAllItemsEnabled()
+    {
+        return true;
+    }
+    @Override
+    public int getGroupCount() {
+        return groups.size();
+    }
     @Override
     public int getChildrenCount(int groupPosition) {
         return children.get(groupPosition).size();
@@ -85,16 +84,10 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public int getGroupCount() {
-        return groups.size();
-    }
-
-    @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
-    // Return a group view. You can load your custom layout here.
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
             ViewGroup parent) {
@@ -110,12 +103,12 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public boolean hasStableIds() {
+    public boolean isChildSelectable(int arg0, int arg1) {
         return true;
     }
-
+    
     @Override
-    public boolean isChildSelectable(int arg0, int arg1) {
+    public boolean hasStableIds() {
         return true;
     }
 
