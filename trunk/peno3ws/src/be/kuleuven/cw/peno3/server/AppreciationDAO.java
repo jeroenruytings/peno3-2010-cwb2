@@ -29,7 +29,7 @@ public class AppreciationDAO extends DAO{
 	 *
 	 * @param docQuestionId the doc question id
 	 * @param isDocument the is document
-	 * @return the appreciation
+	 * @return the average appreciation of the document/question with the coresponding docQuestionId 
 	 */
 	@POST
 	@Path ("/getAppreciation")

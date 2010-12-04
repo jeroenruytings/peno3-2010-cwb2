@@ -43,7 +43,7 @@ public class MultipleChoiceDAO extends DAO{
 	 * Gets the answer corresponding to the given possible answer id.
 	 *
 	 * @param possibleAnswerId the possible answer id
-	 * @return the answer corresponding to the given possible answer id
+	 * @return the total amount of users who voted for this answer
 	 */
 	@POST
 	@Path ("/getAnswerByPossibleAnswerId")
