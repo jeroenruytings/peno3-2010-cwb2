@@ -172,6 +172,12 @@ public class ClientDAOTest {
 		testGet(method);
 	}
 	
+	public static void testGetDocumentByWord() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/DocumentHandler/getDocumentByWord");
+		method.addParameter("word","link");
+		testGet(method);
+	}
+	
 	private static void testAddMap() {
 		try {
 			HttpClient client = new HttpClient();
