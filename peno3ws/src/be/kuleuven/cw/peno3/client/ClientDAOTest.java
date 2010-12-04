@@ -32,8 +32,8 @@ public class ClientDAOTest {
 //		testGetAppreciation();
 //		testAddAppreciation();
 //		testListAppreciation();
-		testGetDocumentByWord();
-//		testGetAnnouncementByWord();
+//		testGetDocumentByWord();
+		testGetAnnouncementByStartDate();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
@@ -148,7 +148,7 @@ public class ClientDAOTest {
 	
 	public static void testGetAnnouncementByStartDate() {
 		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByStartDate");
-		method.addParameter("date","20110101");
+		method.addParameter("date","20101229");
 		testGet(method);
 	}
 
