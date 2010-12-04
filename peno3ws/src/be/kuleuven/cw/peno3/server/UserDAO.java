@@ -1,11 +1,9 @@
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 @Path ("/UserHandler")
 public class UserDAO extends DAO{
