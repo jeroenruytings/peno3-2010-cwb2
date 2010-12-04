@@ -1,11 +1,9 @@
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 @Path ("/AnnouncementHandler")
 public class AnnouncementDAO extends DAO{
@@ -15,9 +13,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByWord(@FormParam("word") String word){
 		String query = "SELECT * FROM announcement";
-		System.out.println(word);
 		if(word!=null)query+= " WHERE title like '%" + word + "%' or message like '%" + word + "%'";
-		System.out.println(super.get(query));
 		return super.get(query);
 	}
 	

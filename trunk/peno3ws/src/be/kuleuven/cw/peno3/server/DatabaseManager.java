@@ -98,6 +98,7 @@ public class DatabaseManager {
 	 * @param rs The ResultSet row
 	 * @return a HashMap mapping column names with values
 	 */
+	@SuppressWarnings("unchecked")
 	public static HashMap getColumnValues(ResultSet rs) {
 
 		HashMap<String, Object> nativeItem = new HashMap<String, Object>();

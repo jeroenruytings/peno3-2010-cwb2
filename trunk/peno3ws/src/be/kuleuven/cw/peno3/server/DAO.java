@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public abstract class DAO {
@@ -19,6 +18,7 @@ public abstract class DAO {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@SuppressWarnings({ "static-access", "unchecked" })
 	protected String executeQuery(String query) {
 		JsonArray appreciations = new JsonArray();
 		ResultSet rs = manager.query(query);
@@ -43,6 +43,7 @@ public abstract class DAO {
 		return cryptography.encrypt(result);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String add(String query){
 		JSONObject result = new JSONObject();
 		try {
