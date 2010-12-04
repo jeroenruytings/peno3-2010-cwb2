@@ -96,7 +96,7 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
-		<activity android:name=".view.Agenda" android:label="Agenda">
+		<activity android:name=".view.Agenda" android:label="Agenda" android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
@@ -108,6 +108,12 @@
 				</intent-filter>
 		</activity>
 		<activity android:name=".view.AnnouncementsView" android:label="AnnouncementsView">
+				<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
+		<activity android:name=".view.TestList" android:label="TestList">
 				<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>

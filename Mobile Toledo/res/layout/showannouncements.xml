@@ -3,7 +3,8 @@
         android:orientation="vertical" android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         style="@style/GenLayout">
-        <ExpandableListView android:id="@+id/listView"
-                android:layout_width="fill_parent" android:layout_height="fill_parent" android:scrollbars="none"></ExpandableListView>
+        <ExpandableListView android:id="@+id/list"
+                android:layout_width="fill_parent" android:layout_height="fill_parent" android:scrollbars="none">
+                </ExpandableListView>
 </LinearLayout>
 

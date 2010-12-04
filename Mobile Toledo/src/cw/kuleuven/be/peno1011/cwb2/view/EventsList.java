@@ -2,21 +2,29 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.CalendarController;
@@ -26,32 +34,33 @@ import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import cw.kuleuven.be.peno1011.cwb2.view.widgets.EventAdapter;
 
 public class EventsList extends ListActivity{
-	public static EventsList self;
 	ListView list;
 	CalendarController controller = new CalendarController();
 	int numberOfDays;
+	String span;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
-		  self=this;
 		  
 		  Bundle bundle = getIntent().getExtras();
-		  String span = (String) bundle.get("span");
+		  span = (String) bundle.get("span");
 		  
 		  showEvents(span);
 		  
 	}
-	
+	public void onResume (){
+		super.onResume();
+		showEvents(span);
+	}
 	public void makeAdapter(List<Event> eventsList){
-		final List<Event> events = eventsList;
+		 final List<Event> events = eventsList;
 		 list = getListView();
 		 EventAdapter adapter = new EventAdapter(this, events);
 	     list.setAdapter(adapter);
-	     final Context context = this;
-		  list.setOnItemClickListener(new OnItemClickListener() {
+		 list.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,int position, long id) {	
-					LayoutInflater inflater=LayoutInflater.from(context);
+					LayoutInflater inflater=LayoutInflater.from(EventsList.this);
 					View eventView=inflater.inflate(R.layout.eventview, null);
 					TextView descr = (TextView) eventView.findViewById(R.id.eventdescr);
 					Event event = events.get(position);
@@ -59,13 +68,25 @@ public class EventsList extends ListActivity{
 			        descr.setText(event.getDescription());
 			        
 			        TextView loc = (TextView) eventView.findViewById(R.id.eventloc2);
-			        GPSLocation location = event.getPlace();
+			        final GPSLocation location = event.getPlace();
 			        if(location instanceof Building){
 			        	loc.setText(((Building) location).getName());
 			    	}
 			        else if(location instanceof GPSLocation){
 			        	loc.setText(location.getStreet() + " " + location.getNumber());
 			        }
+			        ImageView marker = (ImageView) eventView.findViewById(R.id.locmarker);
+			        OnClickListener listener =new OnClickListener(){
+
+						@Override
+						public void onClick(View arg0) {
+							Intent intent = new Intent(EventsList.this,GetInfo.class);
+							intent.putExtra("", ((Building) location).getName());
+							
+						}
+			        	
+			        };
+			        loc.setOnClickListener(listener);marker.setOnClickListener(listener);
 			        TextView date = (TextView) eventView.findViewById(R.id.eventdate2);
 			        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm");
 			        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
@@ -88,55 +109,68 @@ public class EventsList extends ListActivity{
 		  if(span.equals("day")){
 			  events = controller.getEvents(1);
 			  numberOfDays=1;
-//			  Toast.makeText(getApplicationContext(), "dag",
-//			          Toast.LENGTH_LONG).show();
 		  }
 		  else if(span.equals("week")){
 			  events = controller.getEvents(7);
 			  numberOfDays=7;
-//			  Toast.makeText(getApplicationContext(), "week",
-//			          Toast.LENGTH_LONG).show();
 		  }
 		  else{
 			  events = controller.getEvents(30);
 			  numberOfDays=30;
-//			  Toast.makeText(getApplicationContext(), "maand",
-//		          Toast.LENGTH_LONG).show();
 		  }
 		  makeAdapter(events);
 	}
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        
-        	menu.add(0, Menu.FIRST, 0, "Categorieën weergeven");
-//        	menu.add(0, 2, 0, "Feestjes");
-//        	menu.add(0, 3, 0, "Cultuur");
-        	menu.add(1,2,0, "Ga naar datum");
+        	menu.add(0, 1, 0, "Lessen");
+        	menu.add(0, 2, 0, "Feestjes");
+        	menu.add(0, 3, 0, "Cultuur");
+//        	menu.add(1,4,0, "Naar datum");
         return true;
     }
 	
 	@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
-        case Menu.FIRST:
-        		//maak keuzelijst
-        	return true;
-        case 2:
-        		//maak calendarpicker
-        	return true;
-//            case Menu.FIRST:
-//      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
-//      		  	makeAdapter(events1);
-//                return true;
-//            case 2:
-//  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
-//      		  	makeAdapter(events2);
-//                return true;
-//            case 3:
-//  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
-//      		  	makeAdapter(events3);
-//                return true;
+//        case Menu.FIRST:
+//        	final String[] options = {"Lessen","Feestjes","Cultuur"};
+//        	List<String> selected = new ArrayList<String>();
+//        	AlertDialog.Builder ab=new AlertDialog.Builder(EventsList.this);
+//    		ab.setTitle("Selecteer weer te geven categorieën");
+//    		ab.setMultiChoiceItems(options, new boolean[]{false, true, false},new DialogInterface.OnMultiChoiceClickListener() {
+//				@Override
+//				public void onClick(DialogInterface dialog, int pos, boolean isChecked) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//            });
+//            ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                	
+//                	
+//            }
+//            });
+//            ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                }
+//            });
+//        	return true;
+            case 1:
+      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
+      		  	makeAdapter(events1);
+                return true;
+            case 2:
+  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
+      		  	makeAdapter(events2);
+                return true;
+            case 3:
+  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
+      		  	makeAdapter(events3);
+                return true;
+//            case 4:
+//            	showDialog(1);
+//        	return true;
         }
         return super.onMenuItemSelected(featureId, item);
     }
@@ -158,4 +192,24 @@ public class EventsList extends ListActivity{
         	noCategory.setVisibility(TextView.VISIBLE);
         }
 	}
+//	@Override
+//	protected Dialog onCreateDialog(int id) {
+//		Calendar calendar = Calendar.getInstance();
+//		int cyear = calendar.get(Calendar.YEAR);
+//		int cmonth = calendar.get(Calendar.MONTH);
+//		int cday = calendar.get(Calendar.DAY_OF_MONTH);
+//		switch (id) {
+//			case 1:
+//				return new DatePickerDialog(this,mDateSetListener,cyear, cmonth, cday);
+//			}
+//	return null;
+//	}
+//	
+//	private DatePickerDialog.OnDateSetListener mDateSetListener =new DatePickerDialog.OnDateSetListener() {
+//		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//			String selectedDate = String.valueOf(monthOfYear+1)+" /"+String.valueOf(dayOfMonth)+" /"+String.valueOf(year);
+//			Toast.makeText(EventsList.this, "Selected Date is ="+selectedDate, Toast.LENGTH_SHORT).show();
+//		}
+//	};
+	
 }

@@ -70,7 +70,7 @@ public class LocationInfo extends Activity {
 					{
 					Bundle b = new Bundle();
 					b.putString("autocomplete_building", textView.getText().toString());
-		
+					
 					Intent intent = new Intent(LocationInfo.this,GetInfo.class);
 					intent.putExtras(b);
 					startActivity(intent);
