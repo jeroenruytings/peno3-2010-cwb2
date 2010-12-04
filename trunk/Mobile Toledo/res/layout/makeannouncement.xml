@@ -14,7 +14,9 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="10dip"
-	        android:text="Melding voor het vak:"/>
+	        android:text="Melding voor het vak:"
+	        android:paddingLeft="4dip"
+	        style="@style/MenuText"/>
 		    <Spinner 
 	        android:id="@+id/courseSpinner"
 	        android:layout_width="fill_parent"
@@ -24,7 +26,9 @@
 	  		<TextView android:id="@+id/title" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
-			android:text="@string/title" />
+			android:text="@string/title" 
+	        android:paddingLeft="4dip"
+	        style="@style/MenuText"/>
 			<EditText android:id="@+id/mtitle"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -32,7 +36,9 @@
 			<TextView android:id="@+id/message"
 			android:layout_width="wrap_content"
 			android:layout_height="fill_parent" 
-			android:text="@string/message" />
+			android:text="@string/message" 
+	        android:paddingLeft="4dip"
+	        style="@style/MenuText"/>
 			<EditText android:id="@+id/mmessage"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -47,11 +53,11 @@
 		 	android:text="@string/reset"
 		  	android:layout_height="wrap_content"
 		  	android:layout_width="wrap_content"
-		  	android:layout_gravity="left|center_vertical"/>
+		  	android:layout_gravity="left"/>
 			<Button android:id="@+id/submit"
 		 	android:text="@string/submit"
 		  	android:layout_height="wrap_content"
 		  	android:layout_width="wrap_content"
-		  	android:layout_gravity="right|center_vertical"/>
+		  	android:layout_gravity="right"/>
 		</FrameLayout>
 </LinearLayout>

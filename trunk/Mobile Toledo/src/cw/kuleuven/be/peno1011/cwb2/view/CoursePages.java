@@ -24,26 +24,22 @@ public class CoursePages extends TabActivity{
 	        ((TextView)findViewById(R.id.titlebar)).setText(courseTitle);
 	        
 	        
-		    Resources res = getResources(); // Resource object to get Drawables
-		    TabHost tabHost = getTabHost();  // The activity TabHost
-		    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
-		    Intent intent;  // Reusable Intent for each tab
+		    Resources res = getResources();//voor afbeeldingen
+		    TabHost tabHost = getTabHost();  
+		    TabHost.TabSpec spec;  
+		    Intent intent;  
 	
 	
-		    // Create an Intent to launch an Activity for the tab (to be reused)
 		    intent = new Intent().setClass(this, CourseInfo.class);
 		    intent.putExtra("courseTitle", courseTitle);
 	
-		    // Initialize a TabSpec for each tab and add it to the TabHost
 		    spec = tabHost.newTabSpec("Info").setIndicator("Info",
 		                      res.getDrawable(R.drawable.tab_info))
 		                  .setContent(intent);
 		    tabHost.addTab(spec);
 	
-		    // Do the same for the other tabs
 		    intent = new Intent().setClass(this, ShowAnnouncements.class);
 		    intent.putExtra("courseTitle", courseTitle);
-		    //TODO/vak meegeven als extra
 		    spec = tabHost.newTabSpec("Meldingen").setIndicator("Meldingen",
 		                      res.getDrawable(R.drawable.tab_announcements))
 		                  .setContent(intent);

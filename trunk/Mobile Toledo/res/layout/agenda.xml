@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"> 
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:padding="0dip">  
+    <RelativeLayout android:id="@+id/header"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="26px" android:layout_width="fill_parent"
+	android:background="@drawable/titlegradient">
+  	<TextView android:id="@+id/titlebar" android:layout_width="wrap_content"
+		android:gravity="center_vertical" 
+		android:textColor="#ffffff" 
+		android:layout_alignParentLeft="true"
+		android:text="Title"
+		android:layout_height="wrap_content" 
+		android:layout_alignParentTop="true"
+		android:layout_margin="2dip"
+		android:textStyle="bold" />
+	</RelativeLayout>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#d6d7d6">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="0dip">
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+           	/>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/gradient"
+            />
+    </LinearLayout>
+</TabHost>
+</LinearLayout>
+    <ImageView android:id="@+id/floatingtab" 
+              android:layout_width="wrap_content" 
+              android:layout_height="wrap_content" 
+              android:text="Floating Tab" 
+              android:padding="0dip" 
+              android:layout_margin="0dip" 
+              android:layout_gravity="right|top" 
+              android:src="@drawable/tab"/> 
+</FrameLayout>

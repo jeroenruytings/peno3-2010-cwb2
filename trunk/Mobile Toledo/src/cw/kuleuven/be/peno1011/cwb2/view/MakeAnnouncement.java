@@ -10,10 +10,12 @@ import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MakeAnnouncement extends Activity{	
@@ -22,10 +24,12 @@ public class MakeAnnouncement extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.makeannouncement);
-	    setTitle(R.string.makeannouncement);
+	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
+	    ((TextView)findViewById(R.id.titlebar)).setText("Mogelijke interacties:");
 	    
-	    if(MainController.getUser().getLevel()>1){
+	    if(MainController.getUser().getLevel()>0){
 		    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 		    List<String> courseTitles = new ArrayList<String>();
 		    for(int i=0;i<courses.size();i++){

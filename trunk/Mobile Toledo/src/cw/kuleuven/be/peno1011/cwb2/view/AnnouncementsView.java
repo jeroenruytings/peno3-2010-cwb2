@@ -19,6 +19,11 @@ public class AnnouncementsView extends TabActivity{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		setContentView(R.layout.tablayout);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+        ((TextView)findViewById(R.id.titlebar)).setText("Meldingen");
+        
 	    TabHost tabHost = getTabHost(); 
 	    TabHost.TabSpec spec; 
 	
