@@ -53,4 +53,21 @@ public class CourseDAO extends DAO{
 		String query = "INSERT INTO course (courseCode,academicYear,course) VALUES ('"+ courseCode + "','" + academicYear + "','" + course +"')";
 		return super.add(query);
 	}
+	
+	@POST
+	@Path ("/addUser")
+	@Produces ("application/json")
+	public String addUser(@FormParam("courseCode") String courseCode, @FormParam("userId") String userId){
+		String query = "INSERT INTO course_user (courseUserId,courseCode,userId) VALUES (NULL,'"+ courseCode + "','" + userId + "')";
+		return super.add(query);
+	}
+	
+	@POST
+	@Path ("/getCourseByUserId")
+	@Produces ("application/json")
+	public String getCourseByUserId(@FormParam("userId") String userId){
+		String query = "SELECT * FROM course_user";
+		if(userId!=null)query+= " WHERE userId like '%" + userId + "%'";
+		return super.get(query);
+	}
 }
