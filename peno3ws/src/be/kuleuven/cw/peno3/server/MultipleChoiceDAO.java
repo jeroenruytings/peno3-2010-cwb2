@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:48:55
+ * 
+ * This is the MultipleChoiceDAO class.
+ * MultipleChoiceDAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
@@ -5,9 +14,19 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MultipleChoiceDAO.
+ */
 @Path ("/MultipleChoiceHandler")
 public class MultipleChoiceDAO extends DAO{
 	
+	/**
+	 * Gets the aswer corresponding to the given user id.
+	 *
+	 * @param userId the user id
+	 * @return the aswer corresponding to the given user id
+	 */
 	@POST
 	@Path ("/getAnswerByUserId")
 	@Produces ("application/json")
@@ -20,6 +39,12 @@ public class MultipleChoiceDAO extends DAO{
 	/*
 	 * Return how many users have voted on the possibleAnswer with the given possibleAnswerId
 	 */
+	/**
+	 * Gets the answer corresponding to the given possible answer id.
+	 *
+	 * @param possibleAnswerId the possible answer id
+	 * @return the answer corresponding to the given possible answer id
+	 */
 	@POST
 	@Path ("/getAnswerByPossibleAnswerId")
 	@Produces ("application/json")
@@ -29,6 +54,11 @@ public class MultipleChoiceDAO extends DAO{
 		return super.get(query);
 	}
 
+	/**
+	 * List answers.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listAnswers")
 	@Produces ("application/json")
@@ -40,6 +70,13 @@ public class MultipleChoiceDAO extends DAO{
 	/*
 	 * Method adds an announcement to the database	
 	 */
+	/**
+	 * Adds the announcement.
+	 *
+	 * @param userId the user id
+	 * @param possibleAnswerId the possible answer id
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addAnswer")
 	@Produces ("application/json")
@@ -48,6 +85,12 @@ public class MultipleChoiceDAO extends DAO{
 			return super.add(query);
 	}
 	
+	/**
+	 * Gets the multiple choice.
+	 *
+	 * @param eventId the event id
+	 * @return the multiple choice
+	 */
 	@POST
 	@Path ("/getMultipleChoiceByEventId")
 	@Produces ("application/json")
@@ -57,6 +100,12 @@ public class MultipleChoiceDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the multiple choice corresponding to the given word.
+	 *
+	 * @param word the word
+	 * @return the multiple choice corresponding to the given word
+	 */
 	@POST
 	@Path ("/getMultipleChoiceByWord")
 	@Produces ("application/json")
@@ -66,6 +115,11 @@ public class MultipleChoiceDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * List multiple choices.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listMultipleChoices")
 	@Produces ("application/json")
@@ -74,6 +128,13 @@ public class MultipleChoiceDAO extends DAO{
 		return super.list(query);
 	}
 	
+	/**
+	 * Adds the multiple choice.
+	 *
+	 * @param question the question
+	 * @param eventId the event id
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addMultipleChoice")
 	@Produces ("application/json")
@@ -82,6 +143,12 @@ public class MultipleChoiceDAO extends DAO{
 			return super.add(query);
 	}
 	
+	/**
+	 * Gets the possible answer corresponding to the given multiple choice id.
+	 *
+	 * @param multipleChoiceId the multiple choice id
+	 * @return the possible answer corresponding to the given multiple choice id
+	 */
 	@POST
 	@Path ("/getPossibleAnswerByMultipleChoiceId")
 	@Produces ("application/json")
@@ -91,6 +158,11 @@ public class MultipleChoiceDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * List possible answers.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listPossibleAnswers")
 	@Produces ("application/json")
@@ -99,6 +171,13 @@ public class MultipleChoiceDAO extends DAO{
 		return super.list(query);
 	}
 	
+	/**
+	 * Adds the possible answer.
+	 *
+	 * @param multipleChoiceId the multiple choice id
+	 * @param answer the answer
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addPossibleAnswer")
 	@Produces ("application/json")

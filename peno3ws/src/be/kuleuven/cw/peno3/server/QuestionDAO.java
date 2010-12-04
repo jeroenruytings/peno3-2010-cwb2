@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:48:55
+ * 
+ * This is the QuestionDAO class.
+ * QuestionDAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
@@ -5,9 +14,19 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class QuestionDAO.
+ */
 @Path ("/QuestionHandler")
 public class QuestionDAO extends DAO{
 	
+	/**
+	 * Gets the question corresponding to the given word.
+	 *
+	 * @param word the word
+	 * @return the question corresponding to the given word
+	 */
 	@POST
 	@Path ("/getQuestionByWord")
 	@Produces ("application/json")
@@ -17,6 +36,12 @@ public class QuestionDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the question corresponding to the given event id.
+	 *
+	 * @param eventId the event id
+	 * @return the question corresponding to the given event id
+	 */
 	@POST
 	@Path ("/getQuestionByEventId")
 	@Produces ("application/json")
@@ -27,6 +52,11 @@ public class QuestionDAO extends DAO{
 	}
 	
 	
+	/**
+	 * List questions.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listQuestions")
 	@Produces ("application/json")
@@ -37,6 +67,13 @@ public class QuestionDAO extends DAO{
 
 	/*
 	 * Method adds an announcement to the database	
+	 */
+	/**
+	 * Adds the question.
+	 *
+	 * @param userId the user id
+	 * @param eventId the event id
+	 * @return the resultstring
 	 */
 	@POST
 	@Path ("/addQuestion")

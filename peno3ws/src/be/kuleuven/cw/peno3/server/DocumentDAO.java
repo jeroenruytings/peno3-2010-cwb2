@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:48:55
+ * 
+ * This is the DocumentDAO class.
+ * DocumentDAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
@@ -5,9 +14,19 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DocumentDAO.
+ */
 @Path ("/DocumentHandler")
 public class DocumentDAO extends DAO{
 	
+	/**
+	 * Gets the document corresponding to the given word.
+	 *
+	 * @param word the word
+	 * @return the document corresponding to the given word
+	 */
 	@POST
 	@Path ("/getDocumentByWord")
 	@Produces ("application/json")
@@ -17,6 +36,12 @@ public class DocumentDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the document corresponding to the given course code. Results are ordered by descending uploaddate.
+	 *
+	 * @param courseCode the course code
+	 * @return the document corresponding to the given course code
+	 */
 	@POST
 	@Path ("/getDocumentByCourseCode")
 	@Produces ("application/json")
@@ -26,6 +51,12 @@ public class DocumentDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the document corresponding to the last upload date. Results are ordered by descending uploaddate.
+	 *
+	 * @param uploadDate the upload date
+	 * @return the document corresponding to the last upload date
+	 */
 	@POST
 	@Path ("/getDocumentByUploadDate")
 	@Produces ("application/json")
@@ -35,6 +66,12 @@ public class DocumentDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the document corresponding to the last changed date. Results are ordered by descending date of the last change.
+	 *
+	 * @param dateLastChange the last changed date
+	 * @return the document  corresponding to the given esponding to the last changed
+	 */
 	@POST
 	@Path ("/getDocumentByDateLastChange")
 	@Produces ("application/json")
@@ -44,6 +81,12 @@ public class DocumentDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the document corresponding to the given user id. Results are ordered by descending uploaddate.
+	 *
+	 * @param userId the user id
+	 * @return the document corresponding to the given user id
+	 */
 	@POST
 	@Path ("/getDocumentByUserId")
 	@Produces ("application/json")
@@ -53,6 +96,11 @@ public class DocumentDAO extends DAO{
 		return super.get(query);
 	}
 
+	/**
+	 * List documents. Results are ordered first by descending uploaddate then by ascending title.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listDocuments")
 	@Produces ("application/json")
@@ -63,6 +111,19 @@ public class DocumentDAO extends DAO{
 
 	/*
 	 * Method adds an announcement to the database	
+	 */
+	/**
+	 * Adds the document.
+	 *
+	 * @param description the description
+	 * @param type the type
+	 * @param size the size
+	 * @param uploadDate the upload date
+	 * @param userId the user id
+	 * @param title the title
+	 * @param link the link
+	 * @param courseCode the course code
+	 * @return the resultstring
 	 */
 	@POST
 	@Path ("/addDocument")

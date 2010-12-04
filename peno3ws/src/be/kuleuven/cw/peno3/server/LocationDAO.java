@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:48:55
+ * 
+ * This is the LocationDAO class.
+ * LocationDAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
@@ -5,9 +14,19 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LocationDAO.
+ */
 @Path ("/LocationHandler")
 public class LocationDAO extends DAO{
 	
+	/**
+	 * Gets the location.
+	 *
+	 * @param locationId the location id
+	 * @return the location
+	 */
 	@POST
 	@Path ("/getLocation")
 	@Produces ("application/json")
@@ -17,6 +36,13 @@ public class LocationDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the location corresponding to the given coordinates.
+	 *
+	 * @param xcoordinate the xcoordinate
+	 * @param ycoordinate the ycoordinate
+	 * @return the location corresponding to the given coordinates
+	 */
 	@POST
 	@Path ("/getLocationByCoordinates")
 	@Produces ("application/json")
@@ -26,6 +52,12 @@ public class LocationDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Gets the location corresponding to the given adress. Results are ordered first by ascending street than by ascending number.
+	 *
+	 * @param word the word
+	 * @return the location corresponding to the given adress
+	 */
 	@POST
 	@Path ("/getLocationByAdress")
 	@Produces ("application/json")
@@ -37,6 +69,17 @@ public class LocationDAO extends DAO{
 
 	/*
 	 * Method adds an announcement to the database	
+	 */
+	/**
+	 * Adds the location.
+	 *
+	 * @param xcoordinate the xcoordinate
+	 * @param ycoordinate the ycoordinate
+	 * @param street the street
+	 * @param number the number
+	 * @param city the city
+	 * @param zipcode the zipcode
+	 * @return the resultstring
 	 */
 	@POST
 	@Path ("/addLocation")
