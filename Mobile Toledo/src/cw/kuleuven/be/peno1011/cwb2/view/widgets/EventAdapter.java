@@ -1,4 +1,4 @@
-package cw.kuleuven.be.peno1011.cwb2.view;
+package cw.kuleuven.be.peno1011.cwb2.view.widgets;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,18 +6,14 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.model.Event;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.Event;
 import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 
 public class EventAdapter extends BaseAdapter implements OnClickListener {
@@ -27,18 +23,6 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	    public EventAdapter(Context context, List<Event> events) {
 	        this.context = context;
 	        this.events = events;
-	    }
-
-	    public int getCount() {
-	        return events.size();
-	    }
-
-	    public Object getItem(int position) {
-	        return events.get(position);
-	    }
-
-	    public long getItemId(int position) {
-	        return position;
 	    }
 
 	    public View getView(int position, View convertView, ViewGroup viewGroup) {
@@ -87,11 +71,22 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 
 	        return convertView;
 	    }
+	    
+	    public int getCount() {
+	        return events.size();
+	    }
+
+	    public Object getItem(int position) {
+	        return events.get(position);
+	    }
+
+	    public long getItemId(int position) {
+	        return position;
+	    }
 
 	    @Override
 	    public void onClick(View view) {
 	        Event event = (Event) view.getTag();
-	        // listPhonebook.remove(view.getId());
 	        notifyDataSetChanged();
 
 	    }

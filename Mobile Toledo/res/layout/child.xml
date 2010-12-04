@@ -6,7 +6,7 @@
                 android:layout_height="45dip" android:paddingLeft="5dip"
                 android:paddingRight="5dip" android:textStyle="bold" android:textSize="17dip"
                 android:gravity="center_vertical" android:id="@+id/tvChild"
-                android:text="Children"
+                android:text="Meldingen hier"
                 android:singleLine="true"
 				android:ellipsize="end"
 				android:textColor="#ffffff"></TextView>

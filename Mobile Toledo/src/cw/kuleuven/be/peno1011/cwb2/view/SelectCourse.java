@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
@@ -28,6 +29,7 @@ public class SelectCourse extends ListActivity{
 			  setListAdapter(new ArrayAdapter<String>(this,
 			          android.R.layout.simple_list_item_1, courseTitles));
 			  ListView lv = getListView();
+//			  lv.setBackgroundDrawable(R.drawable.gradient);
 			  lv.setTextFilterEnabled(true);
 			  lv.setOnItemClickListener(new OnItemClickListener() {
 					@Override
