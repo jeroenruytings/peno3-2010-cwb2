@@ -29,9 +29,10 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-		testGetAppreciation();
-		testAddAppreciation();
-		testListAppreciation();
+//		testGetAppreciation();
+//		testAddAppreciation();
+//		testListAppreciation();
+		testGetDocumentByWord();
 //		testGetAnnouncementByWord();
 //		testAddMap();
 //		testListAnnouncements();
