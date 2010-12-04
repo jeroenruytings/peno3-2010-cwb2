@@ -22,7 +22,7 @@ public class UserDAO extends DAO{
 	@Produces("application/json")
 	public String getUserById(@FormParam("userId") String userId){
 		String query = "SELECT * FROM user";
-		if(userId !=null)query += " WHERE userId like '%" + userId + "%'";
+		if(userId !=null)query += " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
 	

@@ -13,7 +13,7 @@ public class CourseDAO extends DAO{
 	@Produces ("application/json")
 	public String getCourseByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM course";
-		if(courseCode!=null)query += " WHERE courseCode like '%" + courseCode + "%'";
+		if(courseCode!=null)query += " WHERE courseCode like '" + courseCode + "'";
 		return super.get(query);
 	}
 	
@@ -22,7 +22,7 @@ public class CourseDAO extends DAO{
 	@Produces ("application/json")
 	public String getCourseByName(@FormParam("course") String course){
 		String query = "SELECT * FROM course";
-		if(course!=null)query+= " WHERE course like '%" + course + "%'";
+		if(course!=null)query+= " WHERE course like '%" + course + "%' ORDER BY course ASC";
 		return super.get(query);
 	}
 	
@@ -31,7 +31,7 @@ public class CourseDAO extends DAO{
 	@Produces ("application/json")
 	public String getCourseByYear(@FormParam("year") String year){
 		String query = "SELECT * FROM course";
-		if(year!=null)query+= " WHERE academicYear like '%" + year + "%'";
+		if(year!=null)query+= " WHERE academicYear like '%" + year + "%' ORDER BY course ASC";
 		return super.get(query);
 	}
 	
@@ -39,7 +39,7 @@ public class CourseDAO extends DAO{
 	@Path ("/listCourses")
 	@Produces ("application/json")
 	public String listCourses(){
-		String query = "SELECT * FROM course";
+		String query = "SELECT * FROM course ORDER BY academicYear DESC, course ASC";
 		return super.list(query);
 	}
 
@@ -67,7 +67,7 @@ public class CourseDAO extends DAO{
 	@Produces ("application/json")
 	public String getCourseByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM course_user";
-		if(userId!=null)query+= " WHERE userId like '%" + userId + "%'";
+		if(userId!=null)query+= " WHERE userId like '" + userId + "' ORDER BY course ASC";
 		return super.get(query);
 	}
 }

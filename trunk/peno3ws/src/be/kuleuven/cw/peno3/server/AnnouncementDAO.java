@@ -22,7 +22,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM announcement";
-		if(courseCode!=null)query+= " WHERE courseCode like '" + courseCode + "'";
+		if(courseCode!=null)query+= " WHERE courseCode like '" + courseCode + "' ORDER BY date DESC";
 		return super.get(query);
 	}
 	
@@ -48,7 +48,7 @@ public class AnnouncementDAO extends DAO{
 	@Path ("/listAnnouncements")
 	@Produces ("application/json")
 	public String listAnnouncements(){
-		String query = "SELECT * FROM announcement";
+		String query = "SELECT * FROM announcement ORDER BY date DESC";
 		return super.list(query);
 	}
 

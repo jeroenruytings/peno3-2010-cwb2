@@ -22,7 +22,7 @@ public class DocumentDAO extends DAO{
 	@Produces ("application/json")
 	public String getDocumentByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM document";
-		if(courseCode!=null)query+= " WHERE courseCode like '%" + courseCode + "%' ORDER BY uploadDate DESC";
+		if(courseCode!=null)query+= " WHERE courseCode like '" + courseCode + "' ORDER BY uploadDate DESC";
 		return super.get(query);
 	}
 	
@@ -57,7 +57,7 @@ public class DocumentDAO extends DAO{
 	@Path ("/listDocuments")
 	@Produces ("application/json")
 	public String listDocuments(){
-		String query = "SELECT * FROM document";
+		String query = "SELECT * FROM document ORDER BY uploadDate DESC, title ASC";
 		return super.list(query);
 	}
 

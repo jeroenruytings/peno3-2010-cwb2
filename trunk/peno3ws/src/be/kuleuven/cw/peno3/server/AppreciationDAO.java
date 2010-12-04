@@ -8,12 +8,15 @@ import javax.ws.rs.Produces;
 @Path ("/AppreciationHandler")
 public class AppreciationDAO extends DAO{
 
+	/*
+	 * Return the average score for a document or a question by giving the documentId or questionId
+	 */
 	@POST
 	@Path ("/getAppreciation")
 	@Produces ("application/json")
 	public String getAppreciation(@FormParam("docQuestionId") String docQuestionId,@FormParam("isDocument") String isDocument){
-		String query = "SELECT * FROM appreciation";
-		if(docQuestionId != null )query += " WHERE docQuestionId like '%" + docQuestionId + "%' and isDocument like '%" + isDocument + "%'";
+		String query = "SELECT AVG(score) FROM appreciation";
+		if(docQuestionId != null )query += " WHERE docQuestionId like '" + docQuestionId + "' and isDocument like '" + isDocument + "'";
 		return super.get(query);
 	}
 

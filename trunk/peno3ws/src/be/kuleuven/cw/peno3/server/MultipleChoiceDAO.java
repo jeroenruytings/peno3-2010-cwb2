@@ -13,16 +13,19 @@ public class MultipleChoiceDAO extends DAO{
 	@Produces ("application/json")
 	public String getAswerByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM answer";
-		if(userId!=null)query+= " WHERE userId like '%" + userId + "%'";
+		if(userId!=null)query+= " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
 	
+	/*
+	 * Return how many users have voted on the possibleAnswer with the given possibleAnswerId
+	 */
 	@POST
 	@Path ("/getAnswerByPossibleAnswerId")
 	@Produces ("application/json")
 	public String getAnswerByPossibleAnswerId(@FormParam("possibleAnswerId") String possibleAnswerId){
-		String query = "SELECT * FROM answer";
-		if(possibleAnswerId!=null)query+= " WHERE possibleAnswerId like '%" + possibleAnswerId + "%'";
+		String query = "SELECT COUNT(*) FROM answer";
+		if(possibleAnswerId!=null)query+= " WHERE possibleAnswerId like '" + possibleAnswerId + "'";
 		return super.get(query);
 	}
 
@@ -84,7 +87,7 @@ public class MultipleChoiceDAO extends DAO{
 	@Produces ("application/json")
 	public String getPossibleAnswerByMultipleChoiceId(@FormParam("multipleChoiceId") String multipleChoiceId){
 		String query = "SELECT * FROM possibleAnswer";
-		if(multipleChoiceId!=null)query+= " WHERE multipleChoiceId like '%" + multipleChoiceId + "%'";
+		if(multipleChoiceId!=null)query+= " WHERE multipleChoiceId like '" + multipleChoiceId + "'";
 		return super.get(query);
 	}
 	

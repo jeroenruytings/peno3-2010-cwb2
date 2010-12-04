@@ -22,7 +22,7 @@ public class BuildingDAO extends DAO{
 	@Path ("/listBuildings")
 	@Produces ("application/json")
 	public String listBuildings(){
-		String query = "SELECT * FROM building";
+		String query = "SELECT * FROM building ORDER BY name ASC";
 		return super.list(query);
 	}
 	
@@ -50,7 +50,7 @@ public class BuildingDAO extends DAO{
 	@Produces ("application/json")
 	public String getMap(@QueryParam("locationId") String locationId){
 		String query = "SELECT * FROM building_map";
-		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
 	}
 	
@@ -67,7 +67,7 @@ public class BuildingDAO extends DAO{
 	@Produces ("application/json")
 	public String getPicture(@QueryParam("locationId") String locationId){
 		String query = "SELECT * FROM building_picture";
-		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
 	}
 }

@@ -22,7 +22,7 @@ public class QuestionDAO extends DAO{
 	@Produces ("application/json")
 	public String getQuestionByEventId(@FormParam("eventId") String eventId){
 		String query = "SELECT * FROM question";
-		if(eventId!=null)query+= " WHERE eventId like '%" + eventId + "%'";
+		if(eventId!=null)query+= " WHERE eventId like '" + eventId + "'";
 		return super.get(query);
 	}
 	
