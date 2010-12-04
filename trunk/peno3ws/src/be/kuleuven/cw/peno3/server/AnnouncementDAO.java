@@ -22,7 +22,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM announcement";
-		if(courseCode!=null)query+= " WHERE courseCode like '%" + courseCode + "%'";
+		if(courseCode!=null)query+= " WHERE courseCode like '" + courseCode + "'";
 		return super.get(query);
 	}
 	
@@ -31,7 +31,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByExactDate(@FormParam("date") String date){
 		String query = "SELECT * FROM announcement";
-		if(date!=null)query+= " WHERE date= '" + date + "'";
+		if(date!=null)query+= " WHERE date= '" + date + "' ORDER BY date DESC";
 		return super.get(query);
 	}
 	
@@ -40,7 +40,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByStartDate(@FormParam("date") String date){
 		String query = "SELECT * FROM announcement";
-		if(date!=null)query+= " WHERE date>= '" + date + "'";
+		if(date!=null)query+= " WHERE date>= '" + date + "' ORDER BY date DESC";
 		return super.get(query);
 	}
 
