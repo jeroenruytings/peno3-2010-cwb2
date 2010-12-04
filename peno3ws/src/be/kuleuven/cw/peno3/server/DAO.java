@@ -40,7 +40,7 @@ public abstract class DAO {
 	public String list(String query){
 		String result = executeQuery(query);
 		manager.disconnect();
-		return result;
+		return cryptography.encrypt(result);
 	}
 	
 	public String add(String query){
@@ -55,7 +55,7 @@ public abstract class DAO {
 			return result.toString();
 		}
 		result.put("result", "User sucessfully added");
-		return result.toString();
+		return cryptography.encrypt(result.toString());
 	}
 	
 	public String get(String query){

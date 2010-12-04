@@ -20,10 +20,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 @Path ("/BuildingHandler")
-public class BuildingDAO {
-
-	protected DatabaseManager manager = DatabaseManager.getInstance();
-	private Cryptography cryptography = Cryptography.getInstance();
+public class BuildingDAO extends DAO{
 
 	@POST
 	@Path ("/getBuilding")
@@ -31,73 +28,17 @@ public class BuildingDAO {
 	public String getBuilding(@QueryParam("name") String name){
 		String query = "SELECT * FROM building";
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
-		String result = queryForBuildings(query);
-		manager.disconnect();
-		return cryptography.encrypt(result);
+		return super.get(query);
 	}
 
 	@POST
 	@Path ("/listBuildings")
 	@Produces ("application/json")
 	public String listBuildings(){
-
 		String query = "SELECT * FROM building";
-		String result = queryForBuildings(query);
-		manager.disconnect();
-		return result;
+		return super.list(query);
 	}
 	
-	private String queryForBuildings(String query) {
-		JsonArray buildings = new JsonArray();
-		ResultSet rs = manager.query(query);
-		Gson gson = new Gson();
-		try {
-			while(rs.next()) {
-				JsonObject building = (JsonObject) gson.toJsonTree(manager.getColumnValues(rs));
-				JsonElement jsonElement = building.get("locationId");
-				if (!jsonElement.isJsonNull()) {
-					String locationId = jsonElement.getAsString();
-					query = "SELECT * FROM building_map WHERE locationId='" + locationId + "'";
-					JsonArray result = querySimpleTable(query);
-					if(result.size() >0) {
-						for(int i = 0; i<result.size(); i++){
-							building.add("map"+i, result.get(i));
-						}
-					}
-					query = "SELECT * FROM building_picture WHERE locationId='" + locationId + "'";
-					result = querySimpleTable(query);
-					if(result.size()>0) {
-						for(int i=0; i<result.size(); i++) {
-							building.add("picture"+i, result.get(i));
-						}
-					}
-				}
-				buildings.add(building);
-			}
-		} catch (SQLException e) {
-			JSONObject result = new JSONObject();
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-		String asString = buildings.toString();
-		return asString;
-	}
-
-	private JsonArray querySimpleTable(String query) {
-		Vector users = new Vector();
-		ResultSet rs = manager.query(query);
-		Gson gson = new Gson();
-		try {
-			while(rs.next()) {
-				users.add(manager.getColumnValues(rs));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return (JsonArray) gson.toJsonTree(users);
-	}
-
 	/*
 	 * Method adds an announcement to the database	
 	 */
@@ -105,40 +46,16 @@ public class BuildingDAO {
 	@Path ("/addBuilding")
 	@Produces ("application/json")
 	public String addBuilding(@FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
-
-		JSONObject result = new JSONObject();
-		try {
-			String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES (NULL,'"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
-			System.out.println(query);
-			manager.update(query);
-			manager.disconnect();
-			}
-		catch (SQLException e) {
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-		result.put("result", "Building sucessfully added");
-		return result.toString();
+		String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES (NULL,'"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
+		return super.add(query);
 	}
 	
 	@POST
 	@Path ("/addMap")
 	@Produces ("application/json")
 	public String addMap(@FormParam("locationId") String locationId, @FormParam("map") String map){
-
-		JSONObject result = new JSONObject();
-		try {
-			String query = "INSERT INTO building_map (buildingMapId,locationId,map) VALUES (NULL,'"+ locationId + "','" + map + "')";
-			System.out.println(query);
-			manager.update(query);
-			manager.disconnect();
-			}
-		catch (SQLException e) {
-			result.put("result", "SQLException : (ERR:" + e.getErrorCode() + ") " + e.getMessage());
-			return result.toString();
-		}
-		result.put("result", "Building sucessfully added");
-		return result.toString();
+		String query = "INSERT INTO building_map (buildingMapId,locationId,map) VALUES (NULL,'"+ locationId + "','" + map + "')";
+		return super.add(query);
 	}
 	
 }
