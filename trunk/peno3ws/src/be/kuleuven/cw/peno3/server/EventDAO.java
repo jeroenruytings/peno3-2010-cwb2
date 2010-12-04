@@ -16,7 +16,7 @@ public class EventDAO extends DAO{
 	@Produces ("application/json")
 	public String getEventById(@FormParam("eventId") String eventId) {
 		String query = "SELECT * FROM event";
-		if(eventId!=null)query += " WHERE eventId like '%" + eventId + "%'";
+		if(eventId!=null)query+= " WHERE eventId like '%" + eventId + "%'";
 		return super.get(query);
 	}
 	

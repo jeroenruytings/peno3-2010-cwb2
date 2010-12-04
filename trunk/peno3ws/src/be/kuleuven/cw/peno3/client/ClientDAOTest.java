@@ -29,7 +29,10 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-		testGetAnnouncement();
+		testGetAnnouncementByExactDate();
+		testGetAnnouncementByStartDate();
+		testGetAnnouncementByCourseCode();
+		testGetAnnouncementByWord();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
@@ -65,29 +68,16 @@ public class ClientDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void testGetAnnouncement() {
+	private static void testGet(PostMethod postMethod) {
 		try {
 			HttpClient client = new HttpClient();
-			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByWord");
-			method.addParameter("word","test");
-			int returnCode = client.executeMethod(method);
-			String json = cryptography.decrypt(method.getResponseBodyAsString());
-			if(json.contains("[]")) {
+			int returnCode = client.executeMethod(postMethod);
+			String json = cryptography.decrypt(postMethod.getResponseBodyAsString());
+			if(json.contains(cryptography.encrypt("[]"))) {
 					System.out.println("Geen zoekresultaten gevonden");
 				}
 			else {
 				System.out.println(json);
-				Announcement[] obj2 = new Gson().fromJson(json.toString(), Announcement[].class);  
-//				for (Announcement announcement : obj2) {
-//					
-//					System.out.println("Message = "+announcement.getMessage());	
-//					System.out.println("Title = "+announcement.getTitle());	
-//					System.out.println("UserId = "+ announcement.getUserId());	
-//					System.out.println("Coursecode = "+announcement.getCourseCode());	
-//					System.out.println("AnnouncementId = " + announcement.getAnnouncementId());	
-//				}
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -99,6 +89,30 @@ public class ClientDAOTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void testGetAnnouncementByExactDate() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByExactDate");
+		method.addParameter("date","2010-12-29");
+		testGet(method);
+	}
+	
+	public static void testGetAnnouncementByWord() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		method.addParameter("word","test");
+		testGet(method);
+	}
+	
+	public static void testGetAnnouncementByCourseCode() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		method.addParameter("courseCode","Rand");
+		testGet(method);
+	}
+	
+	public static void testGetAnnouncementByStartDate() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByDate");
+		method.addParameter("date","2010-12-29");
+		testGet(method);
 	}
 
 	private static void testAddMap() {
