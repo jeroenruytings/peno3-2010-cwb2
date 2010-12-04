@@ -27,7 +27,7 @@ public class Event {
 		setCategory(category);
 	}
 	
-	private Event(){}
+	private Event(){};
 	
 	private static LinkedHashSet<Event> events;
 	
@@ -37,7 +37,7 @@ public class Event {
 	
 	public static void updateEvents() throws HttpException, IOException{
 		Event[] eventsFromDAO = EventDAO.getInstance().getEvents();
-		for(int i = 0; i < eventsFromDAO.length; i++){
+		for(int i = 0; i< eventsFromDAO.length; i++){
 			events.add(eventsFromDAO[i]);
 		}
 	}
