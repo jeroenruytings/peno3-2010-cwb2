@@ -38,6 +38,9 @@ public class DatabaseManager {
 		return manager;
 	}
 
+	/**
+	 * Makes the connection to our MySQL database
+	 */
 	public void connect(){
 		//      stmt = null;
 		try {
@@ -56,7 +59,9 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Disconnects from our MySQL database
+	 */
 	public void disconnect() {
 		try {
 			if(con != null){
@@ -69,6 +74,12 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * Executes a query
+	 * 
+	 * @param query the query
+	 * @return resultset containing records which satisfied the query
+	 */
 	public ResultSet query(String query){
 		if(con==null) connect();
 		//      System.out.println(query);
@@ -80,6 +91,13 @@ public class DatabaseManager {
 		return null;
 	}
 
+	/**
+	 * Updates the given query in our MySQL database
+	 * 
+	 * @param query the query
+	 * @return
+	 * @throws SQLException
+	 */
 	public int update(String query) throws SQLException{
 		if(con==null) connect();
 		return con.createStatement().executeUpdate(query);

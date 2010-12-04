@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:58:19
+ * 
+ * This is the DAO class.
+ * DAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import java.sql.ResultSet;
@@ -14,10 +23,14 @@ public abstract class DAO {
 	protected DatabaseManager manager = DatabaseManager.getInstance();
 	private Cryptography cryptography = Cryptography.getInstance();
 	
-	public DAO() {
-		// TODO Auto-generated constructor stub
-	}
+	public DAO() {	}
 	
+	/**
+	 * Executes a query
+	 * 
+	 * @param query
+	 * @return an encrypted jsonstring of the results
+	 */
 	@SuppressWarnings({ "static-access", "unchecked" })
 	protected String executeQuery(String query) {
 		JsonArray appreciations = new JsonArray();
@@ -36,13 +49,24 @@ public abstract class DAO {
 		String asString = appreciations.toString();
 		return asString;
 	}
-
+	/**
+	 * Lists all query satisfieing results
+	 * 
+	 * @param query
+	 * @return an encrypted jsonstring of the results
+	 */
 	public String list(String query){
 		String result = executeQuery(query);
 		manager.disconnect();
 		return cryptography.encrypt(result);
 	}
 	
+	/**
+	 * Adds records to the database
+	 * 
+	 * @param query
+	 * @return an encrypted resultstring
+	 */
 	@SuppressWarnings("unchecked")
 	public String add(String query){
 		JSONObject result = new JSONObject();
@@ -59,6 +83,12 @@ public abstract class DAO {
 		return cryptography.encrypt(result.toString());
 	}
 	
+	/**
+	 * Lists all query satisfieing results
+	 * 
+	 * @param query
+	 * @return an encrypted jsonstring of the results
+	 */
 	public String get(String query){
 		String result = executeQuery(query);
 		manager.disconnect();

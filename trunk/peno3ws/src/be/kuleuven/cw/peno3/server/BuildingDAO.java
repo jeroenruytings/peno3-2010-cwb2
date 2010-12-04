@@ -1,3 +1,12 @@
+/*
+ * @author P&O 3 2010 CWB2
+ * @version 4-dec-2010 22:48:22
+ * 
+ * This is the BuildingDAO class.
+ * BuildingDAO will be used to communicate with our MySQL database.
+ * All inside methods are called using the postmethods of a webservice.
+ * All returned strings are encrypted following the standard of our Cryptography class.
+ */
 package be.kuleuven.cw.peno3.server;
 
 import javax.ws.rs.FormParam;
@@ -6,9 +15,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuildingDAO.
+ */
 @Path ("/BuildingHandler")
 public class BuildingDAO extends DAO{
 
+	/**
+	 * Gets the building.
+	 *
+	 * @param name the name
+	 * @return the building
+	 */
 	@POST
 	@Path ("/getBuilding")
 	@Produces ("application/json")
@@ -18,6 +37,11 @@ public class BuildingDAO extends DAO{
 		return super.get(query);
 	}
 
+	/**
+	 * List buildings. Results are ordered by acending buildingname.
+	 *
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/listBuildings")
 	@Produces ("application/json")
@@ -29,6 +53,17 @@ public class BuildingDAO extends DAO{
 	/*
 	 * Method adds an announcement to the database	
 	 */
+	/**
+	 * Adds the building.
+	 *
+	 * @param locationId the location id
+	 * @param name the name
+	 * @param openinghours the openinghours
+	 * @param phonenumber the phonenumber
+	 * @param isRentable the is rentable
+	 * @param googleMap the google map
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addBuilding")
 	@Produces ("application/json")
@@ -37,6 +72,13 @@ public class BuildingDAO extends DAO{
 		return super.add(query);
 	}
 	
+	/**
+	 * Adds the map.
+	 *
+	 * @param locationId the location id
+	 * @param map the map
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addMap")
 	@Produces ("application/json")
@@ -45,6 +87,12 @@ public class BuildingDAO extends DAO{
 		return super.add(query);
 	}
 	
+	/**
+	 * Gets the map.
+	 *
+	 * @param locationId the location id
+	 * @return the map
+	 */
 	@POST
 	@Path ("/getMap")
 	@Produces ("application/json")
@@ -54,6 +102,13 @@ public class BuildingDAO extends DAO{
 		return super.get(query);
 	}
 	
+	/**
+	 * Adds the picture.
+	 *
+	 * @param locationId the location id
+	 * @param picture the picture
+	 * @return the resultstring
+	 */
 	@POST
 	@Path ("/addPicture")
 	@Produces ("application/json")
@@ -62,6 +117,12 @@ public class BuildingDAO extends DAO{
 		return super.add(query);
 	}
 	
+	/**
+	 * Gets the picture.
+	 *
+	 * @param locationId the location id
+	 * @return the picture
+	 */
 	@POST
 	@Path ("/getPicture")
 	@Produces ("application/json")

@@ -1,8 +1,12 @@
+/*
+ * @author feri from androidsnippets
+ * @version 4-dec-2010 23:02:42
+ * Source: http://android.voxisland.com/code_examples/How_to_encrypt_and_decrypt_strings.rhtml
+ * 
+ * This is the Cryptography class.
+ * Cryptography will be used to encrypt and decrypt our data that passes the webservice
+ */
 package be.kuleuven.cw.peno3.server;
-//NOG NIET OPERATIONEEL
-//bron: http://android.voxisland.com/code_examples/How_to_encrypt_and_decrypt_strings.rhtml
-
-
 
 import java.security.SecureRandom;
 
