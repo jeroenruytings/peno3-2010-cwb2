@@ -13,7 +13,7 @@ public class IspDAO extends DAO{
 	@Produces ("application/json")
 	public String getIspByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM isp";
-		if(userId!=null)query+= " WHERE userId like '%" + userId + "%'";
+		if(userId!=null)query+= " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
 
@@ -33,7 +33,7 @@ public class IspDAO extends DAO{
 	@Produces ("application/json")
 	public String getCoursesByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM course_isp";
-		if(userId!=null)query+= " WHERE userId like '%" + userId + "%'";
+		if(userId!=null)query+= " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
 }

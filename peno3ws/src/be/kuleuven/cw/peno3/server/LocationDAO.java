@@ -13,7 +13,7 @@ public class LocationDAO extends DAO{
 	@Produces ("application/json")
 	public String getLocation(@FormParam("locationId") String locationId){
 		String query = "SELECT * FROM location";
-		if(locationId!=null)query+= " WHERE locationId like '" + locationId + "'";
+		if(locationId!=null)query+= " WHERE locationId like '%" + locationId + "%'";
 		return super.get(query);
 	}
 	
@@ -31,7 +31,7 @@ public class LocationDAO extends DAO{
 	@Produces ("application/json")
 	public String getLocationByAdress(@FormParam("word") String word){
 		String query = "SELECT * FROM location";
-		if(word!=null)query+= " WHERE street like '%" + word + "%' or city like '%" + word + "%'";
+		if(word!=null)query+= " WHERE street like '%" + word + "%' or city like '%" + word + "%' ORDER BY street ASC, number ASC";
 		return super.get(query);
 	}
 
