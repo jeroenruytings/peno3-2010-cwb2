@@ -1,5 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,6 +8,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.commons.httpclient.HttpException;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Agenda;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
@@ -51,6 +54,13 @@ public class CalendarController {
 	}
 	
 	public List<Event> getEvents(int numberOfDays){ // recente
+		try {
+			Event.updateEvents();
+		} catch (HttpException e) {
+			return null;
+		} catch (IOException e) {
+			return null;
+		}
 		LinkedHashSet<Event> allEvents = Event.getEvents();
 		//List<Event> allEvents = agenda.getEvents();
         List<Event> events = new ArrayList<Event>();
