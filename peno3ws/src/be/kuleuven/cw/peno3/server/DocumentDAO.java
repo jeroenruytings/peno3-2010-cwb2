@@ -13,7 +13,7 @@ public class DocumentDAO extends DAO{
 	@Produces ("application/json")
 	public String getDocumentByWord(@FormParam("word") String word){
 		String query = "SELECT * FROM document";
-		if(word!=null)query+= " WHERE title like '%" + word + "%' or description like '%" + word + "%' ORDER BY uploadDate";
+		if(word!=null)query+= " WHERE title like '%" + word + "%' or description like '%" + word + "%' ORDER BY uploadDate DESC";
 		return super.get(query);
 	}
 	
