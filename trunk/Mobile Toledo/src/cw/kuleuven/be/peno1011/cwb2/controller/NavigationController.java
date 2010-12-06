@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.google.android.maps.GeoPoint;
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
@@ -169,6 +171,11 @@ public class NavigationController{
 		String rentable = "ja";
 		String isrentable = "Mogelijkheid tot huren: " + rentable;
 		return isrentable;
+	}
+
+	public static GeoPoint getCoordinates(String from) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
