@@ -41,16 +41,12 @@ public class EventsList extends Activity{
 		  setContentView(R.layout.eventlist);
 		  
 		  Bundle bundle = getIntent().getExtras();
-		  span = (String) bundle.get("span");
-		  date = (Date) bundle.get("date");
-		  if(date==null){
-			  date= new Date();
+		  try{
+			  span = (String) bundle.get("span");
+			  date = (Date) bundle.get("date");
 		  }
-		  else{
-			  	SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");	
-			  	RelativeLayout rel = (RelativeLayout) findViewById(R.id.titlebg);
-			  	rel.setVisibility(View.VISIBLE);
-		        ((TextView)findViewById(R.id.titlebar)).setText("Gebeurtenissen op " + sdf1.format(date));
+		  catch(NullPointerException ne){
+			  
 		  }
 		  showEvents(date,span);
 		  
