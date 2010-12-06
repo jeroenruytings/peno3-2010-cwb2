@@ -36,4 +36,10 @@
 <string name="multiple">Meerkeuzevraag beantwoorden</string>
 <string name="location">$s</string>
 <string name="stats">Statistieken</string>
+
+<string name="vanadres">OF Van (adres):</string>
+<string name="vangebouw"> Van (gebouw):</string>
+<string name="naargebouw">Naar (gebouw):</string>
+<string name="naaradres">OF Naar (adres):</string>
+<string name="navigeer">Navigeer!</string>
 </resources>
