@@ -6,32 +6,28 @@ import android.location.Location;
 
 
 public class User {
-	private final String userId;
-	private final String firstName;
-	private final String lastName;
+	private String userId;
+	private String firstName;
+	private String lastName;
 	private String password;
-	private int level;
-	private final Date birthDate;
+	private int rank;
+	private Date birthDate;
 	private ISP isp;
-	private Location location;
 	
-	public User(String userId, String firstName, String lastName,String password, int level, Date birthDate, ISP isp) {
+	private User(){
+		
+	}
+	
+	public User(String userId, String firstName, String lastName,String password, int rank, Date birthDate, ISP isp) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		setPassword(password);
-		setLevel(level);
+		setRank(rank);
 		this.birthDate = birthDate;
 		setIsp(isp);
 	}
-	public void setLocation(Location location)
-	{
-		this.location=location;
-	}
-	public Location getLocation()
-	{
-		return location;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -40,12 +36,12 @@ public class User {
 		this.password = password;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getRank() {
+		return rank;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setRank(int level) {
+		this.rank = level;
 	}
 
 	public ISP getIsp() {

@@ -37,7 +37,7 @@ public class UserDAO {
 			return new User(null,null,null,null,-1,null,null);
 		}
 		
-		User user = new Gson().fromJson(json.toString(), User.class);  
+		User[] user = new Gson().fromJson(json.toString(), User[].class);  
 		
 //		int start, end;
 		
@@ -57,7 +57,7 @@ public class UserDAO {
 //		User user = new User(userId,firstName,lastName,password,1,null,null);
 		
 		
-		return user;
+		return user[0];
 		
 	}
 }

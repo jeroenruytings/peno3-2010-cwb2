@@ -30,7 +30,7 @@ public class MultipleView extends Activity{
 			 Bundle bundle = getIntent().getExtras();
 		     final Lecture lecture = (Lecture) bundle.get("lecture");
 		     User user = MainController.getUser();
-				if(user.getLevel()==1){ 
+				if(user.getRank()==1){ 
 					poseMultiple(lecture);
 				}
 				else{

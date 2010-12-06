@@ -28,7 +28,7 @@ public class InteractionMenu extends Activity{
 	    ImageButton statsButton = (ImageButton) findViewById(R.id.statsbutton);
 	
 	    //moet nog geimplementeerd worden:
-    	if(MainController.getUser().getLevel()>0){ //als gebruiker een prof is, ziet de menu er anders uit!
+    	if(MainController.getUser().getRank()>0){ //als gebruiker een prof is, ziet de menu er anders uit!
 	    	makeAnnouncementButton.setVisibility(View.VISIBLE);
 	    	statsButton.setVisibility(View.VISIBLE);
 	    	TextView makeAnnouncementText = (TextView) findViewById(R.id.makeannouncement);
