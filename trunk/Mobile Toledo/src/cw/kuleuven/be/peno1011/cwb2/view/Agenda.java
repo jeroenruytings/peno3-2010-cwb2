@@ -1,5 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,29 +14,29 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
 public class Agenda extends TabActivity{
 	private TextView title;
+	private boolean isMainAgenda = false;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		
-//		Bundle bundle = getIntent().getExtras();
-//		Date date = (Date) bundle.get("date");
-		
 		Bundle bundle = getIntent().getExtras();
+		Date date = new Date();
 		try{
-			final String day = (String) bundle.get("day");
+			date = (Date) bundle.get("date");
 		}
 		catch(NullPointerException ne){
 			
 		}
+
 //		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.agenda);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");	
 		title = (TextView) findViewById(R.id.titlebar);
-		title.setText("Agenda" );
+		title.setText("Agenda voor " + sdf1.format(date));
 //		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
 //        ((TextView)findViewById(R.id.titlebar)).setText("Agenda");
 		
@@ -44,22 +45,28 @@ public class Agenda extends TabActivity{
 
 	    Intent intent1 = new Intent().setClass(this, EventsList.class);
 	    intent1.putExtra("span", "day");
-	    spec = tabHost.newTabSpec("day").setIndicator("Vandaag")
+	    intent1.putExtra("date", date);
+	    spec = tabHost.newTabSpec("day").setIndicator("Deze dag")
 	                  .setContent(intent1);
 	    tabHost.addTab(spec);
 	
 	    Intent intent2 = new Intent().setClass(this, EventsList.class);
 	    intent2.putExtra("span", "week");
+	    intent2.putExtra("date", date);
 	    spec = tabHost.newTabSpec("week").setIndicator("Deze week")
 	                  .setContent(intent2);
 	    tabHost.addTab(spec);
-	
-	    Intent intent3 = new Intent().setClass(this, EventsList.class);
-	    intent3.putExtra("span", "month");
-	    spec = tabHost.newTabSpec("month").setIndicator("Deze maand")
-	                  .setContent(intent3);
-	    tabHost.addTab(spec);
-	
+	    
+	    Date current = new Date();
+	    if(date.getDate()==(current.getDate())&& date.getMonth()==current.getMonth() && date.getYear()==current.getYear()){
+	    	Intent intent3 = new Intent().setClass(this, EventsList.class);
+		    intent3.putExtra("span", "month");
+		    intent3.putExtra("date", date);
+		    spec = tabHost.newTabSpec("month").setIndicator("Deze maand")
+		                  .setContent(intent3);
+		    tabHost.addTab(spec);
+		    isMainAgenda = true;
+	    }
 	    tabHost.setCurrentTab(0);
 	    
 	    ImageView tab = (ImageView) findViewById(R.id.floatingtab);
@@ -87,14 +94,15 @@ public class Agenda extends TabActivity{
 	
 	private DatePickerDialog.OnDateSetListener mDateSetListener =new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-			String selectedDate = String.valueOf(dayOfMonth)+" /"+String.valueOf(monthOfYear+1)+" /"+String.valueOf(year);
 			Calendar cal = Calendar.getInstance();
-			cal.set(year, monthOfYear, dayOfMonth);
+			cal.set(year, monthOfYear, dayOfMonth,0,0);
 			Date date = cal.getTime();
-			Intent i = new Intent(Agenda.this, EventsList.class);
-			i.putExtra("span", "day");
+			Intent i = new Intent(Agenda.this, Agenda.class);
 			i.putExtra("date", date);
 	        startActivity(i);
+	        if(!isMainAgenda){
+	        	finish();
+	        }
 		}
 	};
 }

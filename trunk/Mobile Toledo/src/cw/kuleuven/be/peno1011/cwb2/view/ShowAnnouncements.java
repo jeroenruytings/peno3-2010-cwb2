@@ -39,7 +39,7 @@ public class ShowAnnouncements extends Activity {
                     new ArrayList<ArrayList<Announcement>>());
     
             listView.setAdapter(adapter);
-            final List<Announcement> announcements = controller.recentAnnouncements(7);
+            final List<Announcement> announcements = controller.courseAnnouncements(controller.findCourse(courseTitle));
             int i = 0;
             while (i != announcements.size())
             {
@@ -74,8 +74,7 @@ public class ShowAnnouncements extends Activity {
                     @Override
                 public boolean onChildClick(ExpandableListView parent, View view, int groupPosition, int childPosition, long id)
                 {
-//                            String title = (String) adapter.getChild(groupPosition, childPosition);
-                            Announcement announcement = (Announcement) adapter.getChild(groupPosition, childPosition);
+                    Announcement announcement = (Announcement) adapter.getChild(groupPosition, childPosition);
                     showOneAnnouncement(announcement);
                     return false;
                 }
@@ -88,6 +87,9 @@ public class ShowAnnouncements extends Activity {
             {
                 adapter.addItem(announcements.get(i));
                 i++;
+            }
+            for(int j=0;j<adapter.getGroupCount();j++){
+            	listView.expandGroup(j);
             }
         }
         
