@@ -29,7 +29,7 @@ public class MakeAnnouncement extends Activity{
 	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
 	    ((TextView)findViewById(R.id.titlebar)).setText("Mogelijke interacties:");
 	    
-	    if(MainController.getUser().getLevel()>0){
+	    if(MainController.getUser().getRank()>0){
 		    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 		    List<String> courseTitles = new ArrayList<String>();
 		    for(int i=0;i<courses.size();i++){
