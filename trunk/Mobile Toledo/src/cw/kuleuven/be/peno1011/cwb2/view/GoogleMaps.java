@@ -76,9 +76,13 @@ public class GoogleMaps extends MapActivity{
 	    mapView.setBuiltInZoomControls(true);
  
 	    mapOverlays = mapView.getOverlays();
-	    drawable = this.getResources().getDrawable(R.drawable.androidmarker);
+	    drawable = this.getResources().getDrawable(R.drawable.marker);
 	    itemizedOverlay = new MapOverlay(drawable);
-	    GeoPoint point = new GeoPoint((int) 50.863665*1000000, (int) 4.679747*1000000);
+	    LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+	    int latitude = (int) location.getLatitude();
+	    int longitude = (int) location.getLongitude();
+	    GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
