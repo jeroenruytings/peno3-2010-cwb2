@@ -2,15 +2,11 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,13 +14,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.CalendarController;
@@ -33,28 +29,39 @@ import cw.kuleuven.be.peno1011.cwb2.model.Event;
 import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import cw.kuleuven.be.peno1011.cwb2.view.widgets.EventAdapter;
 
-public class EventsList extends ListActivity{
+public class EventsList extends Activity{
 	ListView list;
 	CalendarController controller = new CalendarController();
 	int numberOfDays;
 	String span;
+	Date date;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
+		  setContentView(R.layout.eventlist);
 		  
 		  Bundle bundle = getIntent().getExtras();
 		  span = (String) bundle.get("span");
-		  
-		  showEvents(span);
+		  date = (Date) bundle.get("date");
+		  if(date==null){
+			  date= new Date();
+		  }
+		  else{
+			  	SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");	
+			  	RelativeLayout rel = (RelativeLayout) findViewById(R.id.titlebg);
+			  	rel.setVisibility(View.VISIBLE);
+		        ((TextView)findViewById(R.id.titlebar)).setText("Gebeurtenissen op " + sdf1.format(date));
+		  }
+		  showEvents(date,span);
 		  
 	}
 	public void onResume (){
 		super.onResume();
-		showEvents(span);
+		  showEvents(date,span);
 	}
 	public void makeAdapter(List<Event> eventsList){
 		 final List<Event> events = eventsList;
-		 list = getListView();
+		 ListView list = (ListView) findViewById(R.id.listevents);
 		 EventAdapter adapter = new EventAdapter(this, events);
 	     list.setAdapter(adapter);
 		 list.setOnItemClickListener(new OnItemClickListener() {
@@ -75,6 +82,9 @@ public class EventsList extends ListActivity{
 			        else if(location instanceof GPSLocation){
 			        	loc.setText(location.getStreet() + " " + location.getNumber());
 			        }
+			        else{
+			        	loc.setText("Niet gespecifieerd");
+			        }
 			        ImageView marker = (ImageView) eventView.findViewById(R.id.locmarker);
 			        OnClickListener listener =new OnClickListener(){
 
@@ -86,9 +96,11 @@ public class EventsList extends ListActivity{
 						}
 			        	
 			        };
-			        loc.setOnClickListener(listener);marker.setOnClickListener(listener);
+			        if(!loc.getText().equals("Niet gespecifieerd")){
+			        	loc.setOnClickListener(listener);marker.setOnClickListener(listener);
+			        }
 			        TextView date = (TextView) eventView.findViewById(R.id.eventdate2);
-			        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+			        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 			        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
 			        Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
 			        date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
@@ -104,18 +116,18 @@ public class EventsList extends ListActivity{
 				}
 		  });
 	}
-	public void showEvents(String span){
+	public void showEvents(Date date,String span){
 		List<Event> events = new ArrayList<Event>();
 		  if(span.equals("day")){
-			  events = controller.getEvents(1);
+			  events = controller.getEvents(date,1);
 			  numberOfDays=1;
 		  }
 		  else if(span.equals("week")){
-			  events = controller.getEvents(7);
+			  events = controller.getEvents(date,7);
 			  numberOfDays=7;
 		  }
 		  else{
-			  events = controller.getEvents(30);
+			  events = controller.getEvents(date,30);
 			  numberOfDays=30;
 		  }
 		  makeAdapter(events);
