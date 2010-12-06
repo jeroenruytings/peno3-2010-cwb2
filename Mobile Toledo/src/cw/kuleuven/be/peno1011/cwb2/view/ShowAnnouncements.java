@@ -41,13 +41,15 @@ public class ShowAnnouncements extends Activity {
             listView.setAdapter(adapter);
             final List<Announcement> announcements = controller.recentAnnouncements(7);
             int i = 0;
-            while (i != announcements.size()-1)
+            while (i != announcements.size())
             {
                 adapter.addItem(announcements.get(i));
                 i++;
                 
             }
-            
+            for(int j=0;j<adapter.getGroupCount()-1;j++){
+            	listView.expandGroup(j);
+            }
             listView.setOnChildClickListener(new OnChildClickListener()
             {
                     @Override

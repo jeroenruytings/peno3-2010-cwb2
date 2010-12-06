@@ -45,7 +45,7 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        	loc.setText(location.getStreet() + " " + location.getNumber());
 	        }
 	        TextView date = (TextView) convertView.findViewById(R.id.eventdate);
-	        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+	        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 	        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
 	        Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
 	        

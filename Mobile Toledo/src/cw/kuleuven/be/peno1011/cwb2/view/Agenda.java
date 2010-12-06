@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -17,8 +18,12 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
 public class Agenda extends TabActivity{
+	private TextView title;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
+		
+//		Bundle bundle = getIntent().getExtras();
+//		Date date = (Date) bundle.get("date");
 		
 		Bundle bundle = getIntent().getExtras();
 		try{
@@ -29,8 +34,8 @@ public class Agenda extends TabActivity{
 		}
 //		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.agenda);
-		TextView title = (TextView) findViewById(R.id.titlebar);
-		title.setText("Agenda voor (datum)" );
+		title = (TextView) findViewById(R.id.titlebar);
+		title.setText("Agenda" );
 //		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
 //        ((TextView)findViewById(R.id.titlebar)).setText("Agenda");
 		
@@ -83,7 +88,13 @@ public class Agenda extends TabActivity{
 	private DatePickerDialog.OnDateSetListener mDateSetListener =new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 			String selectedDate = String.valueOf(dayOfMonth)+" /"+String.valueOf(monthOfYear+1)+" /"+String.valueOf(year);
-			Toast.makeText(Agenda.this, selectedDate, Toast.LENGTH_SHORT).show();
+			Calendar cal = Calendar.getInstance();
+			cal.set(year, monthOfYear, dayOfMonth);
+			Date date = cal.getTime();
+			Intent i = new Intent(Agenda.this, EventsList.class);
+			i.putExtra("span", "day");
+			i.putExtra("date", date);
+	        startActivity(i);
 		}
 	};
 }
