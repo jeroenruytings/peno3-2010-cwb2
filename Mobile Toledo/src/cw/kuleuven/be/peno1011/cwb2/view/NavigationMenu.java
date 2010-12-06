@@ -39,7 +39,7 @@ public class NavigationMenu extends MapActivity{
 			
 			@Override
 			public void onClick(View arg0) {
-				Intent intent1 = new Intent(NavigationMenu.this,ShowRoute.class);
+				Intent intent1 = new Intent(NavigationMenu.this,RouteMenu.class);
 				startActivity(intent1);
 				finish();
 			}
