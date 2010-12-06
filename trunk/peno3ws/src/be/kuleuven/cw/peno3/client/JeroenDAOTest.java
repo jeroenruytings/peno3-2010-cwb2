@@ -34,9 +34,52 @@ public class JeroenDAOTest {
 		//testListAppreciations();
 		//testGetAppreciation();
 		//testAddEvent();
-		testListEvents();
+		//testListEvents();
+		testAddDocument();
 	}
 	
+	public static void testAddDocument() {
+			try {
+				HttpClient client = new HttpClient();
+				
+				PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/DocumentHandler/addDocument");
+				method.addParameter("description","test");
+				method.addParameter("type",".doc");
+				method.addParameter("size","400");
+				method.addParameter("userId","s0199104");
+				method.addParameter("link","www.testlink.com");
+				method.addParameter("courseCode","H432105");
+				method.addParameter("title","Test");
+				
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(2010, 11, 29, 22, 14);
+				Date date = calendar.getTime();
+				String dateString = cryptography.toMysqlDate(date);
+				method.addParameter("uploadDate", dateString);
+				
+				calendar.set(2010, 11, 29, 22, 14);
+				date = calendar.getTime();
+				dateString = cryptography.toMysqlDate(date);
+				method.addParameter("dateLastChange", dateString);
+				
+				int response = client.executeMethod(method);
+				String encryptedJson = method.getResponseBodyAsString();
+				System.out.println(encryptedJson);
+				//String json = cryptography.decrypt(encryptedJson);
+				//System.out.println(json);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+
 	public static void testGetUser(){
 		try {
 			HttpClient client = new HttpClient();

@@ -20,6 +20,9 @@ public class Event {
 		setCategory(category);
 	}
 	
+	private Event() {
+	}
+	
 	public String getTitle() {
 		return title;
 	}
