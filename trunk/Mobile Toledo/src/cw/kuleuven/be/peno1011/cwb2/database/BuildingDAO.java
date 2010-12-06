@@ -3,6 +3,8 @@ package cw.kuleuven.be.peno1011.cwb2.database;
 
 import java.util.ArrayList;
 
+import com.google.android.maps.GeoPoint;
+
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
@@ -60,5 +62,12 @@ public class BuildingDAO {
 		// if naam komt voor in database exists = true;
 		
 		return exists;
+	}
+	public GeoPoint getBuildingCoordinates(String buildingname){
+		int lat = 0;
+		int lng = 0;
+		// vraag latitude en longitude op 
+		GeoPoint gp = new GeoPoint((int)(lat*1E6),(int)(lng*1E6));
+		return gp;
 	}
 }
