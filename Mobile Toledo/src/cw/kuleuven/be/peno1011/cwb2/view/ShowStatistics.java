@@ -29,27 +29,49 @@ public class ShowStatistics extends Activity {
 			  
 			  final String[] possibleAnswers = multipleChoice.getPossibleAnswers();
 			  final int size = possibleAnswers.length;
+			  final int[] answers = multipleChoice.getAnswers();
 			  
+			  /// Dit moet misschien in een controller komen
+			  int a=0;
+			  int b=0;
+			  int c=0;
+			  int d=0;
+			  int e=0;
+			  
+			  for(int i = 0; i < answers.length; i++) {
+		            if(answers[i] == 1) {
+		                a++;
+		            } else if (size == 2) {
+		            	b++;
+		            }  else if (size == 3) {
+		            	c++;
+		            }else if (size == 4) {
+		            	d++;
+		            }else if (size == 5) {
+		            	e++;
+		            }
+		                
+			 }
 			  
 			 if (size == 2){
-			 
+								 
 	         final ProgressBar stata = (ProgressBar) findViewById(R.id.sa);
-	         stata.setProgress(50);
+	         stata.setProgress((a/answers.length)*100);
 	         	         
 			 final ProgressBar statb = (ProgressBar) findViewById(R.id.sb);
-	         statb.setProgress(50);
+	         statb.setProgress((b/answers.length)*100);
 	         
 			 } else if (size == 3) {
 	         final ProgressBar statc = (ProgressBar) findViewById(R.id.sc);
-	         statc.setProgress(50);
+	         statc.setProgress((c/answers.length)*100);
 	         
 			 } else if (size == 4) {
 	         final ProgressBar statd = (ProgressBar) findViewById(R.id.sd);
-	         statd.setProgress(50);
+	         statd.setProgress((d/answers.length)*100);
 	         
 			 } else if (size == 5) {
 	         final ProgressBar state = (ProgressBar) findViewById(R.id.se);
-	         state.setProgress(50);
+	         state.setProgress((e/answers.length)*100);
 			 } else {
 				 
 			 }
