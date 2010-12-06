@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  <LinearLayout
+  	android:orientation = "vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content">
+  		<TextView android:id="@+id/vangebouw"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/vangebouw"
+		style="@style/FontStyle1" />
+		<EditText android:id="@+id/mvangebouw"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"/>
+  		<TextView android:id="@+id/naargebouw"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/naargebouw"
+		style="@style/FontStyle1" />
+		<EditText android:id="@+id/mnaargebouw"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"/>
+		<TextView android:id="@+id/vanadres" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:text="@string/vanadres"
+		style="@style/FontStyle1" />
+		<EditText android:id="@+id/mvanadres"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"/>
+		<TextView android:id="@+id/naaradres"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/naaradres"
+		style="@style/FontStyle1" />
+		<EditText android:id="@+id/mnaaradres"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"/>
+		<Button android:id="@+id/navigate"
+	 	android:text="@string/navigeer"
+	  	android:layout_height="wrap_content"
+	  	android:layout_width="wrap_content"
+	  	android:layout_gravity="right"/>
+	 </LinearLayout>
+</LinearLayout>
