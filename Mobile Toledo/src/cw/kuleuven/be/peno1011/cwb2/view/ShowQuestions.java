@@ -54,6 +54,7 @@ public class ShowQuestions extends ListActivity {
 				}
 		  });
 		 
+		  // Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
 		  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
   		ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
   		    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -62,11 +63,13 @@ public class ShowQuestions extends ListActivity {
   		});      
 	  }
 		  				
-				
+		//dit is de functie van als er op een willekeurige vraag wordt geklikt		
 	private void getInfoQuestion(Question question){
 		LayoutInflater inflater=LayoutInflater.from(ShowQuestions.this);
 		View questionview=inflater.inflate(R.layout.questionview, null);
 		
+		//dit is de custom alertdialog met een eigen view die dan een rating toelaat.
+		//deze view is te vinden bij layout/questionview.xml
 		AlertDialog.Builder ab=new AlertDialog.Builder(ShowQuestions.this);
 		ab.setTitle(question.getQuestioner().getFirstName() + " "+ question.getQuestioner().getLastName());
 		ab.setMessage(question.getMessage());
