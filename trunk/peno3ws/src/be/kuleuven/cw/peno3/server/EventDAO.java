@@ -46,7 +46,7 @@ public class EventDAO extends DAO{
 	@Path ("/listEvents")
 	@Produces ("application/json")
 	public String listEvents(){
-		String query = "SELECT * FROM event SORT BY startDate DESC";
+		String query = "SELECT * FROM event ORDER BY startDate DESC";
 		return super.list(query);
 	}
 
