@@ -36,6 +36,21 @@ public class BuildingDAO extends DAO{
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
 		return super.get(query);
 	}
+	
+	/**
+	 * Gets the building.
+	 *
+	 * @param name the name
+	 * @return the building
+	 */
+	@POST
+	@Path ("/getBuildingById")
+	@Produces ("application/json")
+	public String getBuildingById(@QueryParam("locationId") String locationId){
+		String query = "SELECT * FROM building";
+		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		return super.get(query);
+	}
 
 	/**
 	 * List buildings. Results are ordered by acending buildingname.
