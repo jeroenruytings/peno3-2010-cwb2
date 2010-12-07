@@ -16,8 +16,8 @@ public class Lecture extends Event implements Serializable{
 	private ArrayList <Question> questions = new ArrayList<Question>();
 	
 	
-	public Lecture(Room room, Course course, Date startDate, String category, GPSLocation place, Date stopDate) {
-		super(course.getCourseName(), category, place, category, startDate, stopDate);
+	public Lecture(Room room, Course course, Date startDate, String category, Date stopDate) {
+		super(course.getCourseName(), category, category, startDate, stopDate, room.getBuilding(), room);
 		setRoom(room);
 		setCourse(course);
 	}
