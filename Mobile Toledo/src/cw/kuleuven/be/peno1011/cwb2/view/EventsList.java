@@ -141,29 +141,6 @@ public class EventsList extends Activity{
 	@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
-//        case Menu.FIRST:
-//        	final String[] options = {"Lessen","Feestjes","Cultuur"};
-//        	List<String> selected = new ArrayList<String>();
-//        	AlertDialog.Builder ab=new AlertDialog.Builder(EventsList.this);
-//    		ab.setTitle("Selecteer weer te geven categorieën");
-//    		ab.setMultiChoiceItems(options, new boolean[]{false, true, false},new DialogInterface.OnMultiChoiceClickListener() {
-//				@Override
-//				public void onClick(DialogInterface dialog, int pos, boolean isChecked) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//            });
-//            ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int whichButton) {
-//                	
-//                	
-//            }
-//            });
-//            ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int whichButton) {
-//                }
-//            });
-//        	return true;
             case 1:
       		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
       		  	makeAdapter(events1);
@@ -176,9 +153,6 @@ public class EventsList extends Activity{
   		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
       		  	makeAdapter(events3);
                 return true;
-//            case 4:
-//            	showDialog(1);
-//        	return true;
         }
         return super.onMenuItemSelected(featureId, item);
     }
