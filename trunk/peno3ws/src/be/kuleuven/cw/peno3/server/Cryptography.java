@@ -61,12 +61,13 @@ public class Cryptography {
 	}
 
 	private byte[] getRawKey(byte[] seed) throws Exception {
-		KeyGenerator kgen = KeyGenerator.getInstance("AES");
-		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-		sr.setSeed(seed);
-	    kgen.init(128, sr); // 192 and 256 bits may not be available
-	    SecretKey skey = kgen.generateKey();
-	    byte[] raw = skey.getEncoded();
+//		KeyGenerator kgen = KeyGenerator.getInstance("AES");
+//		SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+//		sr.setSeed(seed);
+//	    kgen.init(128, sr); // 192 and 256 bits may not be available
+//	    SecretKey skey = kgen.generateKey();
+//	    byte[] raw = skey.getEncoded();
+		byte[] raw = {119, -106, 119, 101, -97, 32, 103, -52, 89, -10, 10, -10, -102, 84, -1, -63};
 	    return raw;
 	}
 
