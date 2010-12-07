@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
@@ -23,6 +25,10 @@ public class SelectCourse extends ListActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		setContentView(R.layout.selectcourse);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+        ((TextView)findViewById(R.id.titlebar)).setText("Selecteer een vak");
         
 		try{
 			  String[] courseTitles = getCourseTitles();
