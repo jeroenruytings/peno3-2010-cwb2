@@ -61,6 +61,10 @@ public class ShowQuestions extends ListActivity {
   		ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
   		    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
   		        Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
+  		        
+  		      //TODO/ in database steken.
+  			//dao.insert(ratingbar.getRating().intValue());
+  		        
   		    }
   		});      
 	  }
