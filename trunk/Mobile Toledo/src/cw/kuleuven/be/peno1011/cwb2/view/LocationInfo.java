@@ -10,9 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,7 +26,10 @@ public class LocationInfo extends Activity {
 		 @Override
 		 protected void onCreate(Bundle savedInstanceState) {
 		     super.onCreate(savedInstanceState);
-		     setContentView(R.layout.infoon);
+		     requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+				setContentView(R.layout.infoon);
+				getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+		        ((TextView)findViewById(R.id.titlebar)).setText("Informatie over een locatie");
 
 		     control = NavigationController.getInstance();
 		   

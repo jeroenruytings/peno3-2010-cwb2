@@ -15,11 +15,13 @@
    <ImageButton android:id="@+id/compassbutton"
  	 android:src="@drawable/compassbutton"
   	android:layout_width="wrap_content"
-  	android:layout_height="wrap_content"/>
+  	android:layout_height="wrap_content"
+  	android:layout_marginRight="2dip"/>
   	<ImageButton android:id="@+id/calendarbutton"
   android:src="@drawable/calendarbutton"
   android:layout_width="wrap_content"
-  android:layout_height="wrap_content"/>
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="2dip"/>
   </TableRow>
   <TableRow>
    <TextView android:id="@+id/compass" 
@@ -27,23 +29,27 @@
 	android:layout_height="wrap_content" 
 	android:text="@string/compass" 
 	android:layout_gravity="center"
-	style="@style/MenuText"/>
+	style="@style/MenuText"
+	/>
 	<TextView android:id="@+id/calendar" 
  	android:layout_width="wrap_content"
 	android:layout_height="wrap_content" 
 	android:text="@string/calendar" 
 	android:layout_gravity="center"
-	style="@style/MenuText"/>
+	style="@style/MenuText"
+	/>
   </TableRow>
   <TableRow android:layout_marginTop="20dip">
 <ImageButton android:id="@+id/interactionbutton"
   android:src="@drawable/interactionbutton"
   android:layout_width="wrap_content"
-  android:layout_height="wrap_content"/>
+  android:layout_height="wrap_content"
+  android:layout_marginRight="2dip"/>
 <ImageButton android:id="@+id/coursebutton"
   android:src="@drawable/coursebutton"
   android:layout_width="wrap_content"
-  android:layout_height="wrap_content"/>
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="2dip"/>
   </TableRow>
  <TableRow>
  <TextView android:id="@+id/interaction" 

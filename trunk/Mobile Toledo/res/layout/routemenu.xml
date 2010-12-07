@@ -48,7 +48,8 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"/>
-		<Button android:id="@+id/navigate"
+		<ImageButton android:id="@+id/navigate"
+		android:src="@drawable/showroute"
 	 	android:text="@string/navigeer"
 	  	android:layout_height="wrap_content"
 	  	android:layout_width="wrap_content"

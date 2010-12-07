@@ -1,25 +1,16 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-import com.google.android.maps.GeoPoint;
-
-import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+import cw.kuleuven.be.peno1011.cwb2.R;
 
 
 
@@ -28,9 +19,12 @@ public class RouteMenu extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.routemenu);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+        ((TextView)findViewById(R.id.titlebar)).setText("Een route definiëren");
 		
-		Button navigationbutton = (Button) findViewById(R.id.navigate);
+		ImageButton navigationbutton = (ImageButton) findViewById(R.id.navigate);
 		navigationbutton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

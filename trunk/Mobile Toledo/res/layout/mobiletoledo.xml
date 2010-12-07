@@ -16,7 +16,9 @@
 	<LinearLayout
   	android:orientation = "vertical"
   	android:layout_width="fill_parent"
-  	android:layout_height="wrap_content">
+  	android:layout_height="wrap_content"
+  	android:layout_marginLeft="5dip"
+  	android:layout_marginRight="5dip">
   		<TextView android:id="@+id/username" 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
@@ -39,7 +41,9 @@
 	</LinearLayout>
  	<FrameLayout
   	android:layout_width="match_parent"
-  	android:layout_height="match_parent">
+  	android:layout_height="match_parent"
+  	android:layout_marginLeft="5dip"
+  	android:layout_marginRight="5dip">
 	  	<CheckBox android:id="@+id/rememberme"
 	 	android:text="@string/rememberme"
 	 	android:layout_width="wrap_content"
