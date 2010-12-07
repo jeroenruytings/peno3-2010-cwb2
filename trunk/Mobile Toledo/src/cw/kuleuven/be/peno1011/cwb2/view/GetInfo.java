@@ -43,8 +43,7 @@ public class GetInfo extends Activity {
 	 	telephonenr.setText(control.getTelephonenr(location));
 	 	TextView openinghours = (TextView)findViewById(R.id.openinghours);
 	 	openinghours.setText(control.getOpeninghours(location));
-		TextView rentable = (TextView) findViewById(R.id.rentable);
-	 	rentable.setText(control.isRentable(location));
+		
 	 	
 	 	ImageButton navigatebutton = (ImageButton) findViewById(R.id.locationinfonavigate);
 	 	navigatebutton.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +66,20 @@ public class GetInfo extends Activity {
 	    g.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	        	
-	        	if(position == 0){
-	            Toast.makeText(GetInfo.this, "Locatie", Toast.LENGTH_SHORT).show();
+	        //	if(position == 0){
+	        //    Toast.makeText(GetInfo.this, "Locatie", Toast.LENGTH_SHORT).show();
 	          //  Toast toast = new Toast(getApplicationContext());
 	           // toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 	           // toast.setDuration(Toast.LENGTH_LONG);
 	           // toast.setView(v.setLayoutParams(new Gallery.LayoutParams(225, 350)));
 	           // toast.show();
 
-	          	}
-	        	else if(position ==1){
+	          //	}
+	        	if(position ==0){
 		        Toast.makeText(GetInfo.this, "On the scene", Toast.LENGTH_SHORT).show();
   		       	}
 	        	else{
-		        Toast.makeText(GetInfo.this, "Verdieping" + (position-2), Toast.LENGTH_SHORT).show();
+		        Toast.makeText(GetInfo.this, "Verdieping" + (position-1), Toast.LENGTH_SHORT).show();
 	        	}
 	        
 	        }
