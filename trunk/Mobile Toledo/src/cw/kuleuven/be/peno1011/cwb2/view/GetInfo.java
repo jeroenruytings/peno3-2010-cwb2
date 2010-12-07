@@ -61,7 +61,7 @@ public class GetInfo extends Activity {
 				b.putString("to", location);
 				b.putBoolean("frombuilding", false);
 				b.putBoolean("tobuilding", true);
-				Intent intent = new Intent(GetInfo.this,ShowLocation.class);
+				Intent intent = new Intent(GetInfo.this,ShowRoute.class);
 				intent.putExtras(b);
 				startActivity(intent);
 				//intent moet doorgegeven worden aan navigeer naar met van eigen locatie
