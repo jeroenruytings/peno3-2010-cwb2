@@ -31,14 +31,11 @@ public class Agenda extends TabActivity{
 		catch(NullPointerException ne){
 			
 		}
-
-//		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		
 		setContentView(R.layout.agenda);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");	
 		title = (TextView) findViewById(R.id.titlebar);
 		title.setText("Agenda voor " + sdf1.format(date));
-//		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
-//        ((TextView)findViewById(R.id.titlebar)).setText("Agenda");
 		
 	    TabHost tabHost = getTabHost();  
 	    TabHost.TabSpec spec; 

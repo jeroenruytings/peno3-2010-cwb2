@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -31,7 +32,11 @@ public class GetInfo extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.getinfo);
+	    requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		setContentView(R.layout.getinfo);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
+        ((TextView)findViewById(R.id.titlebar)).setText("Informatie van locatie");
+        
 	    control = NavigationController.getInstance();
 	    Bundle b = this.getIntent().getExtras();
 		location = b.getString("autocomplete_building");
