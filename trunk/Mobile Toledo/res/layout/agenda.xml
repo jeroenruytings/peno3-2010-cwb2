@@ -52,5 +52,5 @@
               android:padding="0dip" 
               android:layout_margin="0dip" 
               android:layout_gravity="right|top" 
-              android:src="@drawable/go_to"/> 
+              android:src="@drawable/todate"/> 
 </FrameLayout>
