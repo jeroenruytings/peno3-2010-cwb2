@@ -15,32 +15,41 @@ public class Event {
 	private String description;
 	private Date startDate;
 	private Date stopDate;
-	private GPSLocation place;
-	private String category;
+	private Building building;
+	private String categorie;
+	private Room room;
 	
-	public Event(String title,String description, GPSLocation place, String category, Date startDate, Date stopDate) {
-		this.title=title;
+	public Event(String title,String description, String categorie, Date startDate, Date stopDate, Building building, Room room) {
+		setTitle(title);
 		setDescription(description);
 		setStartDate(startDate);
 		setStopDate(stopDate);
-		setPlace(place);
-		setCategory(category);
+		setCategorie(categorie);
+		setRoom(room);
+		setBuilding(building);
 	}
 	
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	private Event(){};
-	
-	private static LinkedHashSet<Event> events;
-	
-	public static LinkedHashSet<Event> getEvents(){
-		return events;
-	}
-	
-	public static void updateEvents() throws HttpException, IOException{
-		Event[] eventsFromDAO = EventDAO.getInstance().getEvents();
-		for(int i = 0; i< eventsFromDAO.length; i++){
-			events.add(eventsFromDAO[i]);
-		}
-	}
 	
 	public String getTitle() {
 		return title;
@@ -70,20 +79,12 @@ public class Event {
 		this.stopDate = stopDate;
 	}
 
-	public GPSLocation getPlace() {
-		return place;
+	public String getCategorie() {
+		return categorie;
 	}
 
-	public void setPlace(GPSLocation place) {
-		this.place = place;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
 	}
 
 }

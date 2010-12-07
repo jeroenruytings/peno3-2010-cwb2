@@ -46,6 +46,8 @@ public class EventDAO {
 		
 		Event[] events = new Gson().fromJson(json.toString(), Event[].class);  
 
+		
+		
 		return events;
 	}
 }

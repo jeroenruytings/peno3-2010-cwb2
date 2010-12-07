@@ -1,12 +1,19 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import android.app.Activity;
+import org.apache.commons.httpclient.HttpException;
+
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +21,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.CalendarController;
@@ -29,35 +36,44 @@ import cw.kuleuven.be.peno1011.cwb2.model.Event;
 import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import cw.kuleuven.be.peno1011.cwb2.view.widgets.EventAdapter;
 
-public class EventsList extends Activity{
+public class EventsList extends ListActivity{
 	ListView list;
 	CalendarController controller = new CalendarController();
 	int numberOfDays;
 	String span;
-	Date date;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
-		  setContentView(R.layout.eventlist);
 		  
 		  Bundle bundle = getIntent().getExtras();
-		  try{
-			  span = (String) bundle.get("span");
-			  date = (Date) bundle.get("date");
-		  }
-		  catch(NullPointerException ne){
-			  
-		  }
-		  showEvents(date,span);
+		  span = (String) bundle.get("span");
+		  
+		  try {
+			showEvents(span);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		  
 	}
 	public void onResume (){
 		super.onResume();
-		  showEvents(date,span);
+		try {
+			showEvents(span);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void makeAdapter(List<Event> eventsList){
 		 final List<Event> events = eventsList;
-		 ListView list = (ListView) findViewById(R.id.listevents);
+		 list = getListView();
 		 EventAdapter adapter = new EventAdapter(this, events);
 	     list.setAdapter(adapter);
 		 list.setOnItemClickListener(new OnItemClickListener() {
@@ -71,32 +87,28 @@ public class EventsList extends Activity{
 			        descr.setText(event.getDescription());
 			        
 			        TextView loc = (TextView) eventView.findViewById(R.id.eventloc2);
-			        final GPSLocation location = event.getPlace();
-			        if(location instanceof Building){
-			        	loc.setText(((Building) location).getName());
-			    	}
-			        else if(location instanceof GPSLocation){
-			        	loc.setText(location.getStreet() + " " + location.getNumber());
-			        }
-			        else{
-			        	loc.setText("Niet gespecifieerd");
-			        }
+			        loc.setText("MOET NOG AANGEVULD WORDEN!");
+//			        TODO final GPSLocation location = event.getPlace();
+//			        if(location instanceof Building){
+//			        	loc.setText(((Building) location).getName());
+//			    	}
+//			        else if(location instanceof GPSLocation){
+//			        	loc.setText(location.getStreet() + " " + location.getNumber());
+//			        }
 			        ImageView marker = (ImageView) eventView.findViewById(R.id.locmarker);
 			        OnClickListener listener =new OnClickListener(){
 
 						@Override
 						public void onClick(View arg0) {
 							Intent intent = new Intent(EventsList.this,GetInfo.class);
-							intent.putExtra("", ((Building) location).getName());
+							//TODO intent.putExtra("", ((Building) location).getName());
 							
 						}
 			        	
 			        };
-			        if(!loc.getText().equals("Niet gespecifieerd")){
-			        	loc.setOnClickListener(listener);marker.setOnClickListener(listener);
-			        }
+			        loc.setOnClickListener(listener);marker.setOnClickListener(listener);
 			        TextView date = (TextView) eventView.findViewById(R.id.eventdate2);
-			        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+			        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm");
 			        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
 			        Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
 			        date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
@@ -112,18 +124,18 @@ public class EventsList extends Activity{
 				}
 		  });
 	}
-	public void showEvents(Date date,String span){
+	public void showEvents(String span) throws HttpException, IOException{
 		List<Event> events = new ArrayList<Event>();
 		  if(span.equals("day")){
-			  events = controller.getEvents(date,1);
+			  events = controller.getEvents(1);
 			  numberOfDays=1;
 		  }
 		  else if(span.equals("week")){
-			  events = controller.getEvents(date,7);
+			  events = controller.getEvents(7);
 			  numberOfDays=7;
 		  }
 		  else{
-			  events = controller.getEvents(date,30);
+			  events = controller.getEvents(30);
 			  numberOfDays=30;
 		  }
 		  makeAdapter(events);
@@ -141,31 +153,84 @@ public class EventsList extends Activity{
 	@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()) {
+//        case Menu.FIRST:
+//        	final String[] options = {"Lessen","Feestjes","Cultuur"};
+//        	List<String> selected = new ArrayList<String>();
+//        	AlertDialog.Builder ab=new AlertDialog.Builder(EventsList.this);
+//    		ab.setTitle("Selecteer weer te geven categorieën");
+//    		ab.setMultiChoiceItems(options, new boolean[]{false, true, false},new DialogInterface.OnMultiChoiceClickListener() {
+//				@Override
+//				public void onClick(DialogInterface dialog, int pos, boolean isChecked) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//            });
+//            ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                	
+//                	
+//            }
+//            });
+//            ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                }
+//            });
+//        	return true;
             case 1:
-      		  	List<Event> events1 = controller.getCategoryEvents(numberOfDays,"college");
+			List<Event> events1 = null;
+			try {
+				events1 = controller.getCategoryEvents(numberOfDays,"college");
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
       		  	makeAdapter(events1);
                 return true;
             case 2:
-  		  		List<Event> events2 = controller.getCategoryEvents(numberOfDays,"party");
+			List<Event> events2 = null;
+			try {
+				events2 = controller.getCategoryEvents(numberOfDays,"party");
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
       		  	makeAdapter(events2);
                 return true;
             case 3:
-  		  		List<Event> events3 = controller.getCategoryEvents(numberOfDays,"culture");
+			List<Event> events3 = null;
+			try {
+				events3 = controller.getCategoryEvents(numberOfDays,"culture");
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
       		  	makeAdapter(events3);
                 return true;
+//            case 4:
+//            	showDialog(1);
+//        	return true;
         }
         return super.onMenuItemSelected(featureId, item);
     }
 	public void setCategory(Event event, View view){
-		if(event.getCategory().equals("college")) {
+		if(event.getCategorie().equals("college")) {
         	TextView blueCategory = (TextView) view.findViewById(R.id.bcat2);
         	blueCategory.setVisibility(TextView.VISIBLE);
         }
-        else if(event.getCategory().equals("party")) {
+        else if(event.getCategorie().equals("party")) {
         	TextView redCategory = (TextView) view.findViewById(R.id.rcat2);
         	redCategory.setVisibility(TextView.VISIBLE);
         }
-        else if(event.getCategory().equals("culture")) {
+        else if(event.getCategorie().equals("culture")) {
         	TextView orangeCategory = (TextView) view.findViewById(R.id.ocat2);
         	orangeCategory.setVisibility(TextView.VISIBLE);
         }

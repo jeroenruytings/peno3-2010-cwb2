@@ -37,13 +37,14 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        title.setText(event.getTitle());
 	        
 	        TextView loc = (TextView) convertView.findViewById(R.id.eventloc);
-	        GPSLocation location = event.getPlace();
-	        if(location instanceof Building){
-	        	loc.setText(((Building) location).getName());
-	    	}
-	        else if(location instanceof GPSLocation){
-	        	loc.setText(location.getStreet() + " " + location.getNumber());
-	        }
+	        loc.setText("MOET NOG AANGEVULD WORDEN!");
+//	        TODO GPSLocation location = event.getPlace();
+//	        if(location instanceof Building){
+//	        	loc.setText(((Building) location).getName());
+//	    	}
+//	        else if(location instanceof GPSLocation){
+//	        	loc.setText(location.getStreet() + " " + location.getNumber());
+//	        }
 	        TextView date = (TextView) convertView.findViewById(R.id.eventdate);
 	        SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 	        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm");
@@ -52,15 +53,15 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
 	        
 
-	        if(event.getCategory().equals("college")) {
+	        if(event.getCategorie().equals("college")) {
 	        	TextView blueCategory = (TextView) convertView.findViewById(R.id.bcat);
 	        	blueCategory.setVisibility(TextView.VISIBLE);
 	        }
-	        else if(event.getCategory().equals("party")) {
+	        else if(event.getCategorie().equals("party")) {
 	        	TextView redCategory = (TextView) convertView.findViewById(R.id.rcat);
 	        	redCategory.setVisibility(TextView.VISIBLE);
 	        }
-	        else if(event.getCategory().equals("culture")) {
+	        else if(event.getCategorie().equals("culture")) {
 	        	TextView orangeCategory = (TextView) convertView.findViewById(R.id.ocat);
 	        	orangeCategory.setVisibility(TextView.VISIBLE);
 	        }

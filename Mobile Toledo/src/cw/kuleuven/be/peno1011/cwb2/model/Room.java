@@ -12,30 +12,89 @@ import java.lang.reflect.Array;
  */
 public class Room {
 	
-	private  int[] coordinates = new int [2];
+	private int xcoordinate;
+	private int ycoordinate;
 	private String function;
-	private String accomodation;
-	private Array responsibles;
+	private Building building;
+	private boolean wireless;
+	private String link;
+	private int capacity;
 	
-	
-	public Room(int[] coordinates, String function, String accomodation,
-			Array responsibles) {
-		
-		setCoordinates(coordinates);
-		setFunction(function);
-		setAccomodation(accomodation);
-		setResponsibles(responsibles);
+	public int getXcoordinate() {
+		return xcoordinate;
 	}
 
-	
-	
-	public int[] getCoordinates() {
-		return coordinates;
+
+
+	public void setXcoordinate(int xcoordinate) {
+		this.xcoordinate = xcoordinate;
 	}
 
-	public void setCoordinates(int[] coordinates) {
-		this.coordinates = coordinates;
+
+
+	public int getYcoordinate() {
+		return ycoordinate;
 	}
+
+
+
+	public void setYcoordinate(int ycoordinate) {
+		this.ycoordinate = ycoordinate;
+	}
+
+
+
+	public boolean isWireless() {
+		return wireless;
+	}
+
+
+
+	public void setWireless(boolean wireless) {
+		this.wireless = wireless;
+	}
+
+
+
+	public String getLink() {
+		return link;
+	}
+
+
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+
+
+	public Building getBuilding() {
+		return building;
+	}
+
+
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
+
+
+	public Room(){
+	}
+
 
 	public String getFunction() {
 		return function;
@@ -45,21 +104,6 @@ public class Room {
 		this.function = function;
 	}
 
-	public String getAccomodation() {
-		return accomodation;
-	}
-
-	public void setAccomodation(String accomodation) {
-		this.accomodation = accomodation;
-	}
-
-	public Array getResponsibles() {
-		return responsibles;
-	}
-
-	public void setResponsibles(Array responsibles) {
-		this.responsibles = responsibles;
-	}
 	
 
 	

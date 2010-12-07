@@ -10,17 +10,12 @@ public class GPSLocation {
 	private int number;
 	private int zipCode;
 	private String city;
-	private Location location;
+	private int xcoordinate;
+	private int ycoordinate;
 	
-	public GPSLocation(int[] coordinates, String street, int number, int zipCode, String city) {
-		this.street=street;
-		this.number=number;
-		this.zipCode=zipCode;
-		this.city=city;
+	public GPSLocation(){
 	}
-	public Location getLocation() {
-		return location;
-	}
+	
 	public String getStreet() {
 		return street;
 	}
@@ -35,5 +30,21 @@ public class GPSLocation {
 
 	public String getCity() {
 		return city;
+	}
+
+	public void setXcoordinate(int xcoordinate) {
+		this.xcoordinate = xcoordinate;
+	}
+
+	public int getXcoordinate() {
+		return xcoordinate;
+	}
+
+	public void setYcoordinate(int ycoordinate) {
+		this.ycoordinate = ycoordinate;
+	}
+
+	public int getYcoordinate() {
+		return ycoordinate;
 	}
 }
