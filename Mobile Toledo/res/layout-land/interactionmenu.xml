@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  style="@style/GenLayout"
+  android:gravity="center_vertical|center_horizontal">
+  
+ <TableLayout
+  android:orientation="vertical"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TableRow>
+	  	<ImageButton android:id="@+id/multiplebutton"
+	    android:src="@drawable/multiplebutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+	  	<ImageButton android:id="@+id/questionbutton"
+	    android:src="@drawable/questionbutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+	    <ImageButton android:id="@+id/announcementsbutton"
+	 	android:src="@drawable/announcementbutton"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"/>
+  </TableRow>
+  <TableRow>
+	<TextView android:id="@+id/multiple" 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:text="Meerkeuzevragen" 
+                android:layout_gravity="center"
+                style="@style/MenuText"/>
+		<TextView android:id="@+id/questions" 
+	 	android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/questions" 
+		android:layout_gravity="center"
+		style="@style/MenuText"/>
+		<TextView android:id="@+id/announcements" 
+	 	android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="Aankondigingen" 
+		android:layout_gravity="center"
+		style="@style/MenuText"/>
+  </TableRow>
+  <TableRow android:layout_marginTop="10dip">
+<ImageButton android:id="@+id/makeannouncementbutton"
+	 	android:src="@drawable/makeannouncementbutton"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  	android:visibility="gone"/>
+<ImageButton android:id="@+id/statsbutton"
+	    android:src="@drawable/resultsbutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"/>	  	
+  </TableRow>
+ <TableRow>
+<TextView android:id="@+id/makeannouncement" 
+	 	android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/makeannouncement" 
+		android:layout_gravity="center"
+		android:visibility="gone"
+		style="@style/MenuText"/>
+		<TextView android:id="@+id/stats" 
+	 	android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="@string/stats" 
+		android:layout_gravity="center"
+		style="@style/MenuText"
+		android:visibility="gone"/>
+		
+  </TableRow>
+</TableLayout>  	
+</LinearLayout>

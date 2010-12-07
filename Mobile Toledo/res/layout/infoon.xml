@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:orientation="vertical"
     android:layout_width="fill_parent" 
-    android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_height="fill_parent"
+    android:padding="10dp"
+    style="@style/GenLayout">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Locatie" />
+        android:text="Locatie"
+        style="@style/FontStyle1" />
     <AutoCompleteTextView android:id="@+id/autocomplete_building"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>

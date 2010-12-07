@@ -55,7 +55,7 @@ public class InteractionMenu extends Activity{
 			
 			@Override
 			public void onClick(View view) {
-				Intent intent = new Intent(InteractionMenu.this,ShowAnnouncements.class);
+				Intent intent = new Intent(InteractionMenu.this,AnnouncementsView.class);
 				startActivity(intent);
 			}
 	    });

@@ -45,7 +45,7 @@ public class MainMenu extends Activity {
 	    });
 	    ImageButton interactionButton = (ImageButton) findViewById(R.id.interactionbutton);
 	    interactionButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View view) {
 				Intent intent = new Intent(MainMenu.this,InteractionMenu.class);
