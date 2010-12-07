@@ -50,8 +50,17 @@ public class GetInfo extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
+				
+				if (control.isBuilding(location) == false){
+					location = control.getBuilding(location);
+					
+				}
+				
 				Bundle b = new Bundle();
-				b.putString("locationname", location);
+				b.putString("from", "ownloaction");
+				b.putString("to", location);
+				b.putBoolean("frombuilding", false);
+				b.putBoolean("tobuilding", true);
 				Intent intent = new Intent(GetInfo.this,ShowLocation.class);
 				intent.putExtras(b);
 				startActivity(intent);
