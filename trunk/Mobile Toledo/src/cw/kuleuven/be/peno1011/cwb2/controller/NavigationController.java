@@ -1,8 +1,10 @@
 
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -173,9 +175,46 @@ public class NavigationController{
 		return isrentable;
 	}
 
-	public static GeoPoint getCoordinates(String from) {
-		// TODO Auto-generated method stub
-		return null;
+	public static GeoPoint getCoordinates(String name) throws IOException {
+		String nameurl;
+		// Verwijder komma's uit name
+    	if (name.contains(",")){
+    	String[] split = name.split(",");
+    	int i = 0;
+    	String name1 = "";
+    	while(i!=split.length){
+    		name1 = name1 + split[i]+" ";
+    		i++;
+    	}
+    	nameurl = name1; }
+    	else{
+    		nameurl = name;
+    	}
+    	//Vervang spaties in nameurl door %20
+    	nameurl = nameurl.replace(" ", "%20");
+    	
+    	//Maak verbinding met httpURL
+		String httpURL = "http://maps.google.com/maps/geo?q="+nameurl+"&output=csv&oe=utf8&sensor=false";
+        URL myurl = new URL(httpURL);
+        HttpURLConnection con = (HttpURLConnection)myurl.openConnection();
+        InputStream ins = con.getInputStream();
+        InputStreamReader isr = new InputStreamReader(ins);
+        BufferedReader in =new BufferedReader(isr);
+
+        String inputLine = in.readLine();
+        
+        //Vraag de lengteligging en breedteligging op 
+        int eerste = inputLine.indexOf(",");
+        int tweede = inputLine.indexOf(",", eerste+1);
+        int derde = inputLine.indexOf(",", tweede+1);
+        String eerstegetal = inputLine.substring(tweede+1, derde);
+        String tweedegetal = inputLine.substring(derde+1, inputLine.length());
+        Double lat = Double.parseDouble(eerstegetal);
+        Double lng = Double.parseDouble(tweedegetal);
+        
+        //Maak nieuw geopoint van de opgegeven plaats
+        GeoPoint gp = new GeoPoint((int)(lat*1E6),(int)(lng*1E6));
+        return gp;
 	}
 	
 
