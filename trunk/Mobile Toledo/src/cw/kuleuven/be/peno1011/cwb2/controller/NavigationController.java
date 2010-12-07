@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapActivity;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
@@ -34,7 +35,7 @@ import android.os.Bundle;
 
 //opmerking: user kan statisch opgeslagen worden in de globale controller,
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
-public class NavigationController{
+public class NavigationController {
 	private BuildingDAO dao;
 	private static NavigationController navigationController;
 	private static LocationListener listener;
@@ -223,6 +224,9 @@ public class NavigationController{
 		return building;
 		
 	}
+	
+
+
 	
 
 }

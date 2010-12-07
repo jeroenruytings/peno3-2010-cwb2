@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.io.IOException;
+import android.location.LocationManager;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,7 +26,9 @@ import cw.kuleuven.be.peno1011.cwb2.model.MyOverLay;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -34,7 +37,7 @@ public class ShowRoute extends MapActivity {
 	MapView mapView;
 	String from;
 	String to;
-	GeoPoint gpto;
+	GeoPoint gpfrom;
 	Boolean frombuilding;
 	Boolean tobuilding;
 
@@ -56,13 +59,30 @@ public class ShowRoute extends MapActivity {
 		frombuilding = b.getBoolean("frombuilding");
 		tobuilding = b.getBoolean("tobuilding");
 		BuildingDAO buildingdao = BuildingDAO.getInstance();
-		if (frombuilding == true){
+		
+		if (from =="ownlocation"){
+			LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+			Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		    int latitude = (int) location.getLatitude();
+		    int longitude = (int) location.getLongitude();
+		    GeoPoint gpfrom4 = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
+		    gpfrom = gpfrom4;
+		    GeoPoint gpto4 = buildingdao.getBuildingCoordinates(to);
+		    try {
+				DrawPath("","",gpfrom4,gpto4,Color.GREEN,mapView);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		
+		}
+		else if (frombuilding == true){
 			// navigeer vanaf gebouw
 			if (tobuilding==true){
 				//navigeer vanaf gebouw naar ander gebouw
 				GeoPoint gpfrom1 = buildingdao.getBuildingCoordinates(from);
 				GeoPoint gpto1 = buildingdao.getBuildingCoordinates(to);
-				gpto = gpto1;
+				gpfrom = gpfrom1;
 				try {
 					//Teken route
 					DrawPath("","",gpfrom1,gpto1,Color.GREEN,mapView);
@@ -76,7 +96,7 @@ public class ShowRoute extends MapActivity {
 				GeoPoint gpfrom2 = buildingdao.getBuildingCoordinates(from);
 				try {
 					GeoPoint gpto2 = NavigationController.getCoordinates(to);
-					gpto = gpto2;
+					gpfrom = gpfrom2;
 					//Teken route
 					DrawPath("","",gpfrom2,gpto2,Color.GREEN,mapView);
 				} catch (IOException e1) {
@@ -93,7 +113,7 @@ public class ShowRoute extends MapActivity {
 				GeoPoint gpto3 = buildingdao.getBuildingCoordinates(to);
 				try {
 					GeoPoint gpfrom3 = NavigationController.getCoordinates(from);
-					gpto = gpto3;
+					gpfrom = gpfrom3;
 					//teken route
 					DrawPath("","",gpfrom3,gpto3,Color.GREEN,mapView);
 				} catch (IOException e) {
@@ -106,7 +126,7 @@ public class ShowRoute extends MapActivity {
 				try {
 					GeoPoint gpfrom4 = NavigationController.getCoordinates(from);
 					GeoPoint gpto4 = NavigationController.getCoordinates(to);
-					gpto = gpto4;
+					gpfrom = gpfrom4;
 					//teken route
 					DrawPath("","",gpfrom4,gpto4,Color.GREEN,mapView);
 				} catch (IOException e) {
@@ -116,7 +136,7 @@ public class ShowRoute extends MapActivity {
 			}
 		}
 		//Toon kaart en beweeg de kaart naar bepaald punt
-		mapView.getController().animateTo(gpto);
+		mapView.getController().animateTo(gpfrom);
 		mapView.invalidate();
 
 		}
