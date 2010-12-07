@@ -61,7 +61,6 @@ public class RoomDAO extends DAO{
 	 * @param accomodation the accomodation
 	 * @param capacity the capacity
 	 * @param wireless the wireless
-	 * @param picture the picture
 	 * @param link the link
 	 * @param xcoordinate the xcoordinate
 	 * @param ycoordinate the ycoordinate
