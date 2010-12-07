@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
+  android:orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   style="@style/GenLayout"
   android:gravity="center_vertical|center_horizontal">
   
  <TableLayout
-  android:orientation="horizontal"
+  android:orientation="vertical"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content">
   <TableRow>
@@ -22,6 +22,12 @@
 		  android:src="@drawable/go_to"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
+		  <ImageButton
+		  android:id="@+id/locationinfobutton"
+		  android:src="@drawable/info"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  />
   </TableRow>
   <TableRow>
    <TextView
@@ -38,17 +44,7 @@
 		  android:layout_height="wrap_content"
 		  android:layout_gravity="center"
 		  style="@style/MenuText"/>
-  </TableRow>
-  <TableRow android:layout_marginTop="20dip">
-<ImageButton
-		  android:id="@+id/locationinfobutton"
-		  android:src="@drawable/info"
-		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
-		  />
-  </TableRow>
- <TableRow>
- <TextView
+		   <TextView
 		  android:id="@+id/locationinfo"
 		  android:text="@string/locationinfo"
 		  android:layout_width="wrap_content"
