@@ -70,8 +70,8 @@ public class RoomDAO extends DAO{
 	@POST
 	@Path ("/addRoom")
 	@Produces ("application/json")
-	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function, @FormParam("accomodation") String accomodation, @FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("picture") String picture, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
-			String query = "INSERT INTO room (roomId,locationId,function,accomodation,capacity,wireless,picture,link,xcoordinate,ycoordinate) VALUES ('"+ roomId + "','" + locationId + "','" + function + "','" + accomodation + "','" + capacity + "','" + wireless + "','" + picture + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
+	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
+			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate) VALUES ('"+ roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
 			return super.add(query);
 	}
 	

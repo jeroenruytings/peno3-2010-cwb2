@@ -67,8 +67,8 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/addBuilding")
 	@Produces ("application/json")
-	public String addBuilding(@FormParam("locationId") String locationId, @FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber, @FormParam("isRentable") String isRentable , @FormParam("googleMap") String googleMap){
-		String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,isRentable,googleMap) VALUES ('" +locationId + "','"+ name + "','" + openinghours + "','" + phonenumber + "','" + isRentable + "','" + googleMap +"')";
+	public String addBuilding(@FormParam("locationId") String locationId, @FormParam("name") String name, @FormParam("openinghours") String openinghours, @FormParam("phonenumber") String phonenumber){
+		String query = "INSERT INTO building (locationId,name,openinghours,phonenumber,googleMap) VALUES ('" +locationId + "','"+ name + "','" + openinghours + "','" + phonenumber +"')";
 		return super.add(query);
 	}
 	
