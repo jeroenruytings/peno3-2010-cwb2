@@ -210,6 +210,19 @@ public class NavigationController{
         GeoPoint gp = new GeoPoint((int)(lat*1E6),(int)(lng*1E6));
         return gp;
 	}
+
+	public boolean isBuilding(String location) {
+		// als de locatie een building is return true als de locatie een room is return false
+		boolean isbuilding = true;
+		return isbuilding;
+	}
+
+	public String getBuilding(String location) {
+				// zoek het gebouw op waarin het lokaal zich bevindt
+		String building = "";
+		return building;
+		
+	}
 	
 
 }
