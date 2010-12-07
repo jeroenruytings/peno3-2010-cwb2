@@ -50,9 +50,9 @@ public class NavigationMenu extends MapActivity{
 			
 			@Override
 			public void onClick(View arg0) {
-			//	Intent intent2 = new Intent(NavigationMenu.this,LocationInfo.class);
-				//startActivity(intent2);
-			//	finish();
+				Intent intent2 = new Intent(NavigationMenu.this,LocationInfo.class);
+				startActivity(intent2);
+				finish();
 			}
 		});
 		
