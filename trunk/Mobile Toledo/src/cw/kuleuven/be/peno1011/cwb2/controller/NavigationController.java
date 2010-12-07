@@ -168,12 +168,6 @@ public class NavigationController{
 		return telephonenr;
 	}
 
-	public String isRentable(String location) {
-		// geef of m verhuurbaar is
-		String rentable = "ja";
-		String isrentable = "Mogelijkheid tot huren: " + rentable;
-		return isrentable;
-	}
 
 	public static GeoPoint getCoordinates(String name) throws IOException {
 		String nameurl;
