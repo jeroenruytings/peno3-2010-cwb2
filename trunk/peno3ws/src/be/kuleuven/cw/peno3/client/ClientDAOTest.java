@@ -266,9 +266,10 @@ public class ClientDAOTest {
     	try {
 			HttpClient client = new HttpClient();
 			
-			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/LectureHandler/getLectureByDate");
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/getCourseByDateAndCourseCode");
 			method.addParameter("courseCode", "H44444");
-			method.addParameter("date","20101215170700");
+			method.addParameter("userId", "s0215121");
+			method.addParameter("date", "20101215170700");
 			int returnCode = client.executeMethod(method);
 
 			System.out.println(cryptography.decrypt(method.getResponseBodyAsString()));
