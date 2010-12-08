@@ -86,7 +86,10 @@ public class SelectCourse extends Activity{
 		return courseTitles;
 	}
 	private Lecture findLecture(Course course){
-        Date currentDate = new Date();
+        //We kunnen deze methode ook aan de server meegeven.
+		//dan sparen we tijd uit.
+		
+		Date currentDate = new Date();
         List<Lecture> lectures = course.getLectures();
         Lecture lecture = null;
         //TODO/indien meerdere lectures(zoals ANA A-groep en B-groep tegelijk -> keuze geven

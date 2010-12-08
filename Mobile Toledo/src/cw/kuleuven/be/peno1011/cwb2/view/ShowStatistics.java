@@ -2,6 +2,7 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,8 +14,12 @@ public class ShowStatistics extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 	         super.onCreate(savedInstanceState);
-	         try{
-		         setContentView(R.layout.statistics);
+	         
+	         
+	 		setContentView(R.layout.statistics);
+	 		
+	        try{
+		         
 		         
 		         //haalt lecture op
 				  Bundle bundle = getIntent().getExtras();
