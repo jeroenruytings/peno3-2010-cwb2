@@ -29,6 +29,8 @@ public class CourseDAO {
             return courseDAO;
     }
     
+    
+    
     public ArrayList<Course> getCourseByUserId(String userId) throws HttpException, IOException{
 		ArrayList<Course> courses = new ArrayList<Course>();		
 		
@@ -64,16 +66,11 @@ public class CourseDAO {
 				if(jsonRelational.contains("[]")) {
 					relationalCourse[0] = null;
 				}
-//				courseArray[counter].setCourse(relationalCourse[0]);
 				else {
 					courses.add(relationalCourse[0]);
 					counter++;
 				}
-			}
-			
-			// courses = (ArrayList<Course>) Arrays.asList(courseArray);
-			
-			
+			}			
 		}
 		return courses;
 	}
