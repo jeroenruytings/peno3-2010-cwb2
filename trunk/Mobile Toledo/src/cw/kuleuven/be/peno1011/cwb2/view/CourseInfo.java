@@ -16,45 +16,30 @@ public class CourseInfo extends Activity{
 	     super.onCreate(savedInstanceState);
 	     setContentView(R.layout.courseinfo);
 	     
-	     try{
-	     
 		     Bundle bundle = getIntent().getExtras();
-			 final String courseTitle = (String) bundle.get("courseTitle");
+			 Course course = (Course) bundle.get("course");
 			 
-	
-	
-			 List<Course> courses = MainController.getUser().getIsp().getCourses();
-				String[] courseTitles = new String[courses.size()];
-				
-				Course course = null;
-				
-				for(int i = 0;i< courses.size();i++){
-					String courseName = courses.get(i).getCourseName();
-					courseTitles[i] = courseName;
-					if (courseTitle == courseName){
-						course = courses.get(i);
-					}
-				}
-			 
-					 
-			 String prof= course.getProf().getFirstName() + " " + course.getProf().getLastName();
-			 String code = course.getCourseCode();
-			 String year = course.getAcademicYear();
+			 String prof= "Geen prof gespecifieerd";
+			 String code = "onbekend";
+			 String year = "onbekend";
+			 try{
+				 prof= course.getProf().getFirstName() + " " + course.getProf().getLastName();
+				 code = course.getCourseCode();
+				 year = course.getAcademicYear();
+			 }
+			 catch(NullPointerException ne){
+		    	 Toast.makeText(getApplicationContext(), "Waarschuwing: Een aantal vakgegevens ontbreken.",
+				          Toast.LENGTH_LONG).show();
+		     }
 			 
 			 TextView proftxt = (TextView) findViewById(R.id.prof);
-			 proftxt.setText("professor" + ": " + prof);
+			 proftxt.setText("Professor" + ": " + prof);
 			 
 			 TextView codetxt = (TextView) findViewById(R.id.code);
-			 codetxt.setText("code van de cursus" + ": " + code);
+			 codetxt.setText("Code van de cursus" + ": " + code);
 			 
 			 TextView yeartxt = (TextView) findViewById(R.id.year);
-			 yeartxt.setText("academiejaar" + ": " + year);
-		
-		}
-	     catch(NullPointerException ne){
-	    	 Toast.makeText(getApplicationContext(), "Fout bij het opvragen van het vak, probeer nog eens of log nog eens opnieuw in.",
-			          Toast.LENGTH_LONG).show();
-	     }
-	     
+			 yeartxt.setText("Academiejaar" + ": " + year);
+
 	}
 }

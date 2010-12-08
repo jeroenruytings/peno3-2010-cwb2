@@ -8,22 +8,24 @@
 	  <LinearLayout
 	  	android:orientation = "vertical"
 	  	android:layout_width="fill_parent"
-	  	android:layout_height="wrap_content">
+	  	android:layout_height="wrap_content"
+	  	android:gravity="center"
+	  	android:padding="5dip"
+	  	android:layout_marginTop="10dip">
 	  		<TextView android:id="@+id/prof"
 			android:layout_width="wrap_content"
-			android:layout_height="fill_parent">
-			</TextView>
-			<TextView android:id="@+id/prof"
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent">
-			</TextView>
-			<TextView android:id="@+id/code"
-			android:layout_width="wrap_content"
-			android:layout_height="fill_parent">
+			android:layout_height="fill_parent"
+			android:textColor="#ffffff">
 			</TextView>
 			<TextView android:id="@+id/year"
 			android:layout_width="wrap_content"
-			android:layout_height="fill_parent">
+			android:layout_height="fill_parent"
+			android:textColor="#ffffff">
+			</TextView>
+			<TextView android:id="@+id/code"
+			android:layout_width="wrap_content"
+			android:layout_height="fill_parent"
+			android:textColor="#ffffff">
 			</TextView>
 	  </LinearLayout>
 </LinearLayout>

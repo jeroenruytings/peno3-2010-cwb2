@@ -33,7 +33,7 @@ public class MakeAnnouncement extends Activity{
 		    final List<Course> courses = MainController.getUser().getIsp().getCourses();
 		    List<String> courseTitles = new ArrayList<String>();
 		    for(int i=0;i<courses.size();i++){
-		    	courseTitles.set(i, courses.get(i).getCourseName());
+		    	courseTitles.add(courses.get(i).getCourseName());
 		    }
 		    final Spinner s = (Spinner) findViewById(R.id.courseSpinner);
 		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
