@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Course {
-	private String courseName;
+	private String course;
 	private String courseCode;
 	private User prof;
 	private String academicYear;
@@ -17,14 +17,14 @@ public class Course {
 			User prof, String academicYear) {
 		setProf(prof);
 		this.courseCode = courseCode;
-		this.courseName = courseName;
+		this.course = course;
 		this.academicYear = academicYear;
 	}
 	
 	private Course(){}
 
 	public String getCourseName() {
-		return courseName;
+		return course;
 	}
 
 	public String getCourseCode() {
