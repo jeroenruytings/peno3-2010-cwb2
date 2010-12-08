@@ -67,19 +67,19 @@ public class EventsList extends ListActivity{
                  final List<Event> events = eventsList;
                  list = getListView();
                  EventAdapter adapter = new EventAdapter(this, events);
-             list.setAdapter(adapter);
+                 list.setAdapter(adapter);
                  list.setOnItemClickListener(new OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view,int position, long id) {       
-                                        LayoutInflater inflater=LayoutInflater.from(EventsList.this);
-                                        View eventView=inflater.inflate(R.layout.eventview, null);
-                                        TextView descr = (TextView) eventView.findViewById(R.id.eventdescr);
-                                        Event event = events.get(position);
-                                        setCategory(event,eventView);
-                                descr.setText(event.getDescription());
-                                
-                                TextView loc = (TextView) eventView.findViewById(R.id.eventloc2);
-                                loc.setText("MOET NOG AANGEVULD WORDEN!");
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,int position, long id) {       
+                                LayoutInflater inflater=LayoutInflater.from(EventsList.this);
+                                View eventView=inflater.inflate(R.layout.eventview, null);
+                                TextView descr = (TextView) eventView.findViewById(R.id.eventdescr);
+                                Event event = events.get(position);
+                                setCategory(event,eventView);
+                        descr.setText(event.getDescription());
+                        
+                        TextView loc = (TextView) eventView.findViewById(R.id.eventloc2);
+                        loc.setText("MOET NOG AANGEVULD WORDEN!");
 //                              TODO final GPSLocation location = event.getPlace();
 //                              if(location instanceof Building){
 //                                      loc.setText(((Building) location).getName());
@@ -87,33 +87,33 @@ public class EventsList extends ListActivity{
 //                              else if(location instanceof GPSLocation){
 //                                      loc.setText(location.getStreet() + " " + location.getNumber());
 //                              }
-                                ImageView marker = (ImageView) eventView.findViewById(R.id.locmarker);
-                                OnClickListener listener =new OnClickListener(){
+                        ImageView marker = (ImageView) eventView.findViewById(R.id.locmarker);
+                        OnClickListener listener =new OnClickListener(){
 
-                                                @Override
-                                                public void onClick(View arg0) {
-                                                        Intent intent = new Intent(EventsList.this,GetInfo.class);
-                                                        //TODO intent.putExtra("", ((Building) location).getName());
-                                                        
-                                                }
-                                        
-                                };
-                                loc.setOnClickListener(listener);marker.setOnClickListener(listener);
-                                TextView date = (TextView) eventView.findViewById(R.id.eventdate2);
-                                SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-                                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-                                Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
-                                date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
-                                        
-                                        AlertDialog.Builder ab=new AlertDialog.Builder(EventsList.this);
-                                        ab.setTitle(events.get(position).getTitle());
-                                        ab.setView(eventView);
-                                ab.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                }
-                                });
-                                ab.show();
-                                }
+                                        @Override
+                                        public void onClick(View arg0) {
+                                                Intent intent = new Intent(EventsList.this,GetInfo.class);
+                                                //TODO intent.putExtra("", ((Building) location).getName());
+                                                
+                                        }
+                                
+                        };
+                        loc.setOnClickListener(listener);marker.setOnClickListener(listener);
+                        TextView date = (TextView) eventView.findViewById(R.id.eventdate2);
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+                        Date startDate = event.getStartDate();Date stopDate = event.getStopDate();
+                        date.setText(sdf1.format(startDate) + " - " + sdf2.format(stopDate));
+                                
+                                AlertDialog.Builder ab=new AlertDialog.Builder(EventsList.this);
+                                ab.setTitle(events.get(position).getTitle());
+                                ab.setView(eventView);
+                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                        });
+                        ab.show();
+                        }
                   });
         }
         public void showEvents(String span) throws HttpException, IOException{
