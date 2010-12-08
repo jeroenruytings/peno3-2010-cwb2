@@ -31,7 +31,7 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/getBuilding")
 	@Produces ("application/json")
-	public String getBuilding(@QueryParam("name") String name){
+	public String getBuilding(@FormParam("name") String name){
 		String query = "SELECT * FROM building";
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
 		return super.get(query);
@@ -46,7 +46,7 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/getBuildingById")
 	@Produces ("application/json")
-	public String getBuildingById(@QueryParam("locationId") String locationId){
+	public String getBuildingById(@FormParam("locationId") String locationId){
 		String query = "SELECT * FROM building";
 		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
@@ -111,7 +111,7 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/getMap")
 	@Produces ("application/json")
-	public String getMap(@QueryParam("locationId") String locationId){
+	public String getMap(@FormParam("locationId") String locationId){
 		String query = "SELECT * FROM building_map";
 		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
@@ -141,7 +141,7 @@ public class BuildingDAO extends DAO{
 	@POST
 	@Path ("/getPicture")
 	@Produces ("application/json")
-	public String getPicture(@QueryParam("locationId") String locationId){
+	public String getPicture(@FormParam("locationId") String locationId){
 		String query = "SELECT * FROM building_picture";
 		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
