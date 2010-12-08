@@ -1,16 +1,25 @@
 package cw.kuleuven.be.peno1011.cwb2.database;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.methods.PostMethod;
 
 import com.google.android.maps.GeoPoint;
+import com.google.gson.Gson;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
 public class BuildingDAO {
 	
 	private static BuildingDAO buildingDAO;
+	private Cryptography cryptography = Cryptography.getInstance();
 	
 	// Singleton has a private constructor
 	private BuildingDAO(){
@@ -34,12 +43,26 @@ public class BuildingDAO {
 		return deleted;
 	}
 	
-	public ArrayList<Building> getBuildings()
-	{
-		ArrayList<Building> buildings = null;
-		return buildings;
+	public ArrayList<Building> getBuildings() throws HttpException, IOException{
+		ArrayList<Building> buildings = new ArrayList<Building>();		
 		
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuldingHandler/listBuldings");
+				
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		if(json.contains("[]")) {
+			buildings = null;
+		}
+		else {
+			Building[] buildingArray = new Gson().fromJson(json.toString(), Building[].class);
+			buildings = (ArrayList<Building>) Arrays.asList(buildingArray);
+		}
+		return buildings;
 	}
+
 	
 	public ArrayList<Room> getRooms()
 	{
