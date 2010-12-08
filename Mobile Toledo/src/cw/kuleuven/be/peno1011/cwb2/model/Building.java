@@ -12,7 +12,7 @@ public class Building
 {
 	private String name;
 	private String openinghours;
-	private String phoneNumber;
+	private String phonenumber;
 	private ArrayList<Room> rooms;
 	private GPSLocation location;
 
@@ -28,12 +28,12 @@ public class Building
 		this.name = name;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhonenumber(String phoneNumber) {
+		this.phonenumber = phoneNumber;
 	}
 
 
