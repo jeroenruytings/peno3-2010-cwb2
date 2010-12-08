@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.commons.httpclient.HttpException;
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 
@@ -62,18 +64,28 @@ public class NavigationController {
 	
 	public String[] getBuildingNames()
 	{
-	//	dao = BuildingDAO.getInstance();
-		//ArrayList<Building> buildings = dao.getBuildings();
-		String [] buildingnames = new String []{
-		//Iterator<Building> it = buildings.iterator(); 
-			//{	
-				//	while (it.hasNext()){
-					//buildingnames.add(it.next().getName());
-					//}
-			//}
-			
-			"haai","hoi","hoor","heftig","helding shana","Lise is de max!"
-		};
+		ArrayList<Building> buildings = null;
+		dao = BuildingDAO.getInstance();
+		try {
+			buildings = dao.getBuildings();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String [] buildingnames = new String [buildings.lastIndexOf(buildings)+1];
+		Iterator<Building> it = buildings.iterator(); 
+		{
+			int i = 0;
+			while (it.hasNext()){
+					Array.set(buildingnames,i,it.next().getName());
+					i++;
+					}
+			}
+	
+
 		
 		return buildingnames;
 	} 
