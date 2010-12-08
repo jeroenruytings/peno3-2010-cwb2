@@ -20,7 +20,14 @@ public class Questions extends Activity{
 		setContentView(R.layout.question);
 
 		Bundle bundle = getIntent().getExtras();
-		final Lecture lecture = (Lecture) bundle.get("lecture"); 	 
+		Lecture lecture;
+		try{
+			lecture = (Lecture) bundle.get("lecture"); 
+		}
+		catch(NullPointerException ne){
+			lecture = null;
+		}
+			 
 		 
 		 Button resetbutton = (Button) findViewById(R.id.reset);
 

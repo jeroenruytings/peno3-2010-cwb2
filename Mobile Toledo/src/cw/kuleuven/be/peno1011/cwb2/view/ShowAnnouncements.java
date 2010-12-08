@@ -15,6 +15,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
+import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.view.widgets.ExpandableAdapter;
 
 public class ShowAnnouncements extends Activity {
@@ -27,11 +28,7 @@ public class ShowAnnouncements extends Activity {
         
         try{
             Bundle bundle = getIntent().getExtras();
-            final String courseTitle = (String) bundle.get("courseTitle");
-            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);            
-            setContentView(R.layout.showannouncements);
-            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
-            ((TextView)findViewById(R.id.titlebar)).setText("Aankondigingen");
+            Course course = (Course) bundle.get("course");
     
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             
@@ -39,7 +36,7 @@ public class ShowAnnouncements extends Activity {
                     new ArrayList<ArrayList<Announcement>>());
     
             listView.setAdapter(adapter);
-            final List<Announcement> announcements = controller.courseAnnouncements(controller.findCourse(courseTitle));
+            final List<Announcement> announcements = controller.courseAnnouncements(course);
             int i = 0;
             while (i != announcements.size())
             {
@@ -81,7 +78,7 @@ public class ShowAnnouncements extends Activity {
             });
             adapter = new ExpandableAdapter(this, new ArrayList<String>(),
                     new ArrayList<ArrayList<Announcement>>());
-           listView.setAdapter(adapter);
+            listView.setAdapter(adapter);
             int i = 0;
             while (i != announcements.size()-1)
             {

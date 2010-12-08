@@ -1,9 +1,14 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Course {
+public class Course  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7925129656165780396L;
 	private String course;
 	private String courseCode;
 	private User prof;
