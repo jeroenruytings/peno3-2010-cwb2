@@ -21,6 +21,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
 public class ShowQuestions extends ListActivity {
 	
+	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.question);
@@ -38,7 +39,7 @@ public class ShowQuestions extends ListActivity {
 					displayStrings[questions.size()-i-1] = displayString;
 					}
 					catch(NullPointerException ne){//Lecture=zero
-						String displayString = "??" + ": " + questions.get(i).getMessage();
+						String displayString = "Vraag" + ": " + questions.get(i).getMessage();
 						displayStrings[questions.size()-i-1] = displayString;
 					}
 		  	  }
@@ -56,17 +57,7 @@ public class ShowQuestions extends ListActivity {
 				}
 		  });
 		 
-		  // Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
-		  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
-  		ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-  		    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-  		        Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
-  		        
-  		      //TODO/ in database steken.
-  			//dao.insert(ratingbar.getRating().intValue());
-  		        
-  		    }
-  		});      
+		      
 	  }
 		  				
 		//dit is de functie van als er op een willekeurige vraag wordt geklikt		
@@ -83,11 +74,23 @@ public class ShowQuestions extends ListActivity {
 		ab.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	
 	    	public void onClick(DialogInterface dialog, int whichButton) {
-			            	
+	    		
+  		// Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
+	  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
+	  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+	  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+	  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
+	    				  		        
+	  //TODO/ in database steken.
+	  //dao.insert(ratingbar.getRating().intValue());
+	    				  		        
+	    				  		    }
+	    				  		});		        	
 	    		
 			        }
 			        });
-			        ab.show();	 
+			        ab.show();	
+	
 	
 	}
 	
