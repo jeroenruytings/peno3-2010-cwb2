@@ -47,7 +47,7 @@ public class LoginController {
 		try {
 			isp = IspDAO.getInstance().getIsp(userId);
 			if(isp!=null) {
-				ArrayList<Course> courses = CourseDAO.getInstance().getCourses(userId);
+				ArrayList<Course> courses = CourseDAO.getInstance().getCourseByUserId(userId);
 				isp.setCourses(courses);
 				user.setIsp(isp);
 			}		

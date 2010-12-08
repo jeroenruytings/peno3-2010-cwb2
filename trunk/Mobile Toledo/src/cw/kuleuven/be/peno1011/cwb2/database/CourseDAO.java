@@ -29,12 +29,12 @@ public class CourseDAO {
             return courseDAO;
     }
     
-    public ArrayList<Course> getCourses(String username) throws HttpException, IOException{
+    public ArrayList<Course> getCourseByUserId(String userId) throws HttpException, IOException{
 		ArrayList<Course> courses = new ArrayList<Course>();		
 		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByUserId");
-		method.addParameter("userId", username);
+		method.addParameter("userId", userId);
 		
 		int response = client.executeMethod(method);
 		String encryptedJson = method.getResponseBodyAsString();
