@@ -42,7 +42,7 @@ public class NavigationMenu extends MapActivity{
 				Intent intent1 = new Intent(NavigationMenu.this,RouteMenu.class);
 				intent1.putExtra("errortype", "noerror");
 				startActivity(intent1);
-				finish();
+				
 			}
 		});
 		
@@ -53,7 +53,7 @@ public class NavigationMenu extends MapActivity{
 			public void onClick(View arg0) {
 				Intent intent2 = new Intent(NavigationMenu.this,LocationInfo.class);
 				startActivity(intent2);
-				finish();
+				
 			}
 		});
 		
