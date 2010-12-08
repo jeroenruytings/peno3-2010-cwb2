@@ -7,25 +7,25 @@ import android.location.Location;
  */
 public class GPSLocation {
 	private String street;
-	private int number;
-	private int zipCode;
+	private String number;
+	private int zipcode;
 	private String city;
-	private int xcoordinate;
-	private int ycoordinate;
+	private double xcoordinate;
+	private double ycoordinate;
 	
-	public GPSLocation(){
+	private GPSLocation(){
 	}
 	
 	public String getStreet() {
 		return street;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public int getZipCode() {
-		return zipCode;
+	public int getZipcode() {
+		return zipcode;
 	}
 
 	public String getCity() {
@@ -36,7 +36,7 @@ public class GPSLocation {
 		this.xcoordinate = xcoordinate;
 	}
 
-	public int getXcoordinate() {
+	public double getXcoordinate() {
 		return xcoordinate;
 	}
 
@@ -44,7 +44,7 @@ public class GPSLocation {
 		this.ycoordinate = ycoordinate;
 	}
 
-	public int getYcoordinate() {
+	public double getYcoordinate() {
 		return ycoordinate;
 	}
 }
