@@ -125,7 +125,7 @@ public class CourseDAO extends DAO{
 	@Produces ("application/json")
 	public String getCourseByUserId(@FormParam("userId") String userId){
 		String query = "SELECT * FROM course_user";
-		if(userId!=null)query+= " WHERE userId like '" + userId + "' ORDER BY course ASC";
+		if(userId!=null)query+= " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
 }
