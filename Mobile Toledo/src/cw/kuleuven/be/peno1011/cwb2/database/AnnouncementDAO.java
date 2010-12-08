@@ -23,11 +23,50 @@ import com.google.gson.JsonParseException;
 public class AnnouncementDAO {
         
         private static AnnouncementDAO announcementDAO;
+    	private Cryptography cryptography = Cryptography.getInstance();
         
         // Singleton
         private AnnouncementDAO(){
                 
         }
+        
+        public User getAnnouncement(String username) throws HttpException, IOException{
+    		
+    		HttpClient client = new HttpClient();
+    		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementById");
+    		method.addParameter("userId", username);
+    		
+    		int response = client.executeMethod(method);
+    		String encryptedJson = method.getResponseBodyAsString();
+    		String json = cryptography.decrypt(encryptedJson);
+    		
+    		if(json.contains("[]")) {
+    			return new User(null,null,null,null,-1,null,null);
+    		}
+    		
+    		User[] user = new Gson().fromJson(json.toString(), User[].class);  
+    		
+//    		int start, end;
+    		
+//    		start = json.indexOf("userId")+9;
+//    		end = json.indexOf(",", start)-1;
+//    		String userId = json.substring(start,end);
+//    		start = json.indexOf("lastName")+11;
+//    		end = json.indexOf(",", start)-1;
+//    		String lastName = json.substring(start, end);
+//    		start = json.indexOf("firstName")+12;
+//    		end = json.indexOf(",", start)-1;
+//    		String firstName = json.substring(start, end);
+//    		start = json.indexOf("password")+11;
+//    		end = json.indexOf(",", start)-1;
+//    		String password = json.substring(start, end);
+//    		
+//    		User user = new User(userId,firstName,lastName,password,1,null,null);
+    		
+    		
+    		return user[0];
+    		
+    	}
         
         public static AnnouncementDAO getInstance() {
                 if (announcementDAO == null){

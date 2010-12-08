@@ -19,15 +19,8 @@ public class Questions extends Activity{
 		
 		setContentView(R.layout.question);
 
-		
-				
-		
 		Bundle bundle = getIntent().getExtras();
-		final Lecture lecture = (Lecture) bundle.get("lecture"); 
-		 
-				 
-		 
-		 
+		final Lecture lecture = (Lecture) bundle.get("lecture"); 	 
 		 
 		 Button resetbutton = (Button) findViewById(R.id.reset);
 
