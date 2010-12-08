@@ -33,10 +33,11 @@ public class ClientDAOTest {
 //		testAddAppreciation();
 //		testListAppreciation();
 //		testGetDocumentByWord();
-		testGetAnnouncementByStartDate();
+//		testGetAnnouncementByStartDate();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
+		testGetLectureByDate();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -259,6 +260,28 @@ public class ClientDAOTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         IOUtils.copy(stream, output);
         return output.toString();
+    }
+    
+    private static void testGetLectureByDate() {
+    	try {
+			HttpClient client = new HttpClient();
+			
+			PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/LectureHandler/getLectureByDate");
+			method.addParameter("courseCode", "H44444");
+			method.addParameter("date","20101215170700");
+			int returnCode = client.executeMethod(method);
+
+			System.out.println(cryptography.decrypt(method.getResponseBodyAsString()));
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }
