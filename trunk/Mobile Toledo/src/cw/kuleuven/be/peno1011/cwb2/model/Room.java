@@ -104,6 +104,13 @@ public class Room {
 		this.function = function;
 	}
 
+
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	
