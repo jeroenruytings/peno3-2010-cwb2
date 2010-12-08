@@ -19,9 +19,19 @@ public class TestOnWeb {
 	public static void main(String[] args) throws HttpException, IOException {
 		//testGetUser();
 		//testGetEvents();
-		testUser();
+		//testUser();
+		testBuilding();
 	}
 	
+	private static void testBuilding() throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingById");
+		methodBuilding.addParameter("locationId","2");
+		int returnCode = client.executeMethod(methodBuilding);
+		String jsonBuilding = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
+		System.out.println(jsonBuilding);
+	}
+
 	private static Cryptography cryptography = Cryptography.getInstance();
 
 	
