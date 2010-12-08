@@ -15,7 +15,8 @@
 	  	<ImageButton android:id="@+id/multiplebutton"
 	    android:src="@drawable/multiplebutton"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
+	    android:layout_height="wrap_content"
+	    android:layout_marginRight="2dip"/>
 	  	<ImageButton android:id="@+id/questionbutton"
 	    android:src="@drawable/questionbutton"
 	    android:layout_width="wrap_content"
@@ -33,18 +34,21 @@
 		android:layout_height="wrap_content" 
 		android:text="@string/questions" 
 		android:layout_gravity="center"
-		style="@style/MenuText"/>
+		style="@style/MenuText"
+		android:layout_marginLeft="2dip"/>
   </TableRow>
   <TableRow android:layout_marginTop="20dip">
 <ImageButton android:id="@+id/announcementsbutton"
 	 	android:src="@drawable/announcementbutton"
 	  	android:layout_width="wrap_content"
-	  	android:layout_height="wrap_content"/>
+	  	android:layout_height="wrap_content"
+	  	android:layout_marginRight="2dip"/>
 <ImageButton android:id="@+id/makeannouncementbutton"
 	 	android:src="@drawable/makeannouncementbutton"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
-	  	android:visibility="gone"/>
+	  	android:visibility="gone"
+	  	android:layout_marginLeft="2dip"/>
   </TableRow>
  <TableRow>
  <TextView android:id="@+id/announcements" 

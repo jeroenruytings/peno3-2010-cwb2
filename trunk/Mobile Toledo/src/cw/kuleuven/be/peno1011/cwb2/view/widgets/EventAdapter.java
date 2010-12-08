@@ -37,7 +37,14 @@ public class EventAdapter extends BaseAdapter implements OnClickListener {
 	        title.setText(event.getTitle());
 	        
 	        TextView loc = (TextView) convertView.findViewById(R.id.eventloc);
-	        loc.setText("MOET NOG AANGEVULD WORDEN!");
+	        String buildingName="";String roomName="";
+            if(!(event.getBuilding() == null)){
+            	buildingName=event.getBuilding().getName();
+            }
+            if(!(event.getRoom()==null)){
+            	roomName=event.getRoom().getName();
+            }
+            loc.setText(buildingName + roomName);
 //	        TODO GPSLocation location = event.getPlace();
 //	        if(location instanceof Building){
 //	        	loc.setText(((Building) location).getName());
