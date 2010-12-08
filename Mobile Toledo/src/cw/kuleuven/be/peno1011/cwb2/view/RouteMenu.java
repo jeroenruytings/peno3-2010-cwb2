@@ -10,18 +10,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 
 
 
 public class RouteMenu extends Activity {
-
+private Boolean frombuilding;
+private Boolean tobuilding;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -59,12 +63,52 @@ public class RouteMenu extends Activity {
                 this, android.R.layout.simple_spinner_item, destinationType);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s1.setAdapter(adapter);
-        
-        
+        s1.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				if (position == 0){
+					frombuilding = true;
+				}
+				else{
+					frombuilding = false;
+				}
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	    });
+
 		Spinner s2 = (Spinner) findViewById(R.id.toSpinner);
         s2.setAdapter(adapter);
+        s2.setOnItemSelectedListener(new OnItemSelectedListener() {
+	
 
-		
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int position, long id) {
+				if (position ==0){
+					tobuilding = true;
+				}
+				else {
+					tobuilding = false;
+				}
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	    });
+
 		ImageButton navigationbutton = (ImageButton) findViewById(R.id.navigate);
 		navigationbutton.setOnClickListener(new View.OnClickListener() {
 			
@@ -77,10 +121,13 @@ public class RouteMenu extends Activity {
 	}
 	
 	private void Navigate(){
-	String from = "";
-	String to = "";
-	Boolean frombuilding = false;
-	Boolean tobuilding = false;
+
+	
+	EditText van = (EditText) findViewById(R.id.mfrom);
+	EditText naar = (EditText) findViewById(R.id.mto);
+	
+	String van1 = van.getEditableText().toString();
+	String naar1 = naar.getEditableText().toString();
 //		EditText vangebouw = (EditText) findViewById(R.id.mvangebouw);
 //		EditText vanadres = (EditText) findViewById(R.id.mvanadres);
 //		EditText naargebouw = (EditText) findViewById(R.id.mnaargebouw);
@@ -147,8 +194,8 @@ public class RouteMenu extends Activity {
 		
 		Intent intent = new Intent(RouteMenu.this,ShowRoute.class);
 		Bundle bundle = new Bundle();
-		bundle.putString("from", from);
-		bundle.putString("to", to);
+		bundle.putString("from", van1);
+		bundle.putString("to", naar1);
 		bundle.putBoolean("frombuilding", frombuilding);
 		bundle.putBoolean("tobuilding", tobuilding);
 		intent.putExtras(bundle);

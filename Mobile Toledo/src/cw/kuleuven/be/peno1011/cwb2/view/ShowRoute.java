@@ -128,7 +128,7 @@ public class ShowRoute extends MapActivity {
 						e.printStackTrace();
 					}
 
-		}
+		}}
 			
 		if(gpto.getLatitudeE6() == 0 && gpto.getLongitudeE6() == 0){
 			if(gpto.getLatitudeE6() == 0 && gpto.getLongitudeE6() == 0 && gpfrom.getLatitudeE6() == 0 && gpfrom.getLongitudeE6() == 0){
@@ -162,10 +162,15 @@ public class ShowRoute extends MapActivity {
 		}
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(gpfrom);
+		if(frombuilding == true && tobuilding == true){
+			mapView.getController().setZoom(20);
+		}
+		else{
 		mapView.getController().setZoom(15);
+		}
 		mapView.invalidate();
 
-		}}}
+ 		}}
 
 
 
@@ -186,7 +191,7 @@ public class ShowRoute extends MapActivity {
 		Double fromlng = ((fromgp.getLongitudeE6())/(1E6));
 		Double tolat = ((togp.getLatitudeE6())/(1E6));
 		Double tolng = ((togp.getLongitudeE6())/(1E6));
-		
+		 
 	// verbind met de google map route webservice en geef vertrek en aankomst op
 		StringBuilder urlString = new StringBuilder();
 		urlString.append("http://maps.google.com/maps?f=d&hl=en"); 
