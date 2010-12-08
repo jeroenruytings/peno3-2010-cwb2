@@ -37,17 +37,13 @@ public class LectureDAO extends DAO{
 	}
 	
 	/**
-	 * Gets the lecture corresponding to the given room id.
-	 *
-	 * @param roomId the room id
-	 * @return the lecture corresponding to the given room id
+	 * 
 	 */
 	@POST
-	@Path ("/getLectureByRoomId")
+	@Path ("/getLectureByDate")
 	@Produces ("application/json")
-	public String getLectureByRoomId(@FormParam("roomId") String roomId){
-		String query = "SELECT * FROM lecture";
-		if(roomId!=null)query+= " WHERE roomId like '" + roomId + "'";
+	public String getLectureByDate(@FormParam("courseCode") String courseCode, @FormParam("date") String date) {
+		String query = "SELECT * FROM event INNER JOIN lecture USING (eventId) WHERE courseCode like '" + courseCode + "' AND " + date + " BETWEEN startDate AND stopDate";
 		return super.get(query);
 	}
 	
@@ -77,8 +73,8 @@ public class LectureDAO extends DAO{
 	@POST
 	@Path ("/addLecture")
 	@Produces ("application/json")
-	public String addLecture(@FormParam("eventId") String eventId, @FormParam("roomId") String roomId, @FormParam("courseCode") String courseCode){
-			String query = "INSERT INTO lecture (eventId,roomId,courseCode) VALUES ('"+ eventId + "','" + roomId + "','" + courseCode + "')";
+	public String addLecture(@FormParam("eventId") String eventId, @FormParam("courseCode") String courseCode){
+			String query = "INSERT INTO lecture (eventId,courseCode) VALUES ('"+ eventId + "','" + courseCode + "')";
 			return super.add(query);
 	}
 }
