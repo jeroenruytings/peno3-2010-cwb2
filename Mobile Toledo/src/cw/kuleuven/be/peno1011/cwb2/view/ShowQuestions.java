@@ -12,11 +12,10 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
@@ -26,8 +25,9 @@ public class ShowQuestions extends ListActivity {
 	
 	
 	public void onCreate(Bundle savedInstanceState) {
-		  super.onCreate(savedInstanceState);
+	   super.onCreate(savedInstanceState);
 		  
+		try{
 		  //haalt lecture
 		  Bundle bundle = getIntent().getExtras();
 		  final Lecture lecture = (Lecture) bundle.get("lecture");		  
@@ -61,7 +61,11 @@ public class ShowQuestions extends ListActivity {
 				
 				}
 		  });
-		 
+		}
+		catch(NullPointerException ne){
+			Toast.makeText(getApplicationContext(), "Fout bij het opvragen van de vragen.",
+			          Toast.LENGTH_LONG).show();
+		}
 		      
 	  }
 		  				
