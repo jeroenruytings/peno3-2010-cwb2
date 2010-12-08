@@ -20,7 +20,8 @@ public class TestOnWeb {
 		//testGetUser();
 		//testGetEvents();
 		//testUser();
-		testBuilding();
+		//testBuilding();
+		testGetCourseByCourseCode();
 	}
 	
 	private static void testBuilding() throws HttpException, IOException {
@@ -34,6 +35,14 @@ public class TestOnWeb {
 
 	private static Cryptography cryptography = Cryptography.getInstance();
 
+	private static void testGetCourseByCourseCode() throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByCourseCode");
+		methodBuilding.addParameter("courseCode","H44444");
+		int returnCode = client.executeMethod(methodBuilding);
+		String jsonBuilding = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
+		System.out.println(jsonBuilding);
+	}
 	
 	private static void testUser() throws HttpException, IOException{
 		HttpClient client = new HttpClient();
