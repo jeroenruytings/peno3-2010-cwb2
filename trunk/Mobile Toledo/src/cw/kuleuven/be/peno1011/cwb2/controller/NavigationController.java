@@ -22,7 +22,9 @@ import com.google.android.maps.MapActivity;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.Room;
 import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -38,7 +40,8 @@ import android.os.Bundle;
 //opmerking: user kan statisch opgeslagen worden in de globale controller,
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
 public class NavigationController {
-	private BuildingDAO dao;
+	private RoomDAO dao2;
+	private BuildingDAO dao1;
 	private static NavigationController navigationController;
 	private static LocationListener listener;
 	private Criteria criteria;
@@ -65,9 +68,9 @@ public class NavigationController {
 	public String[] getBuildingNames()
 	{
 		ArrayList<Building> buildings = null;
-		dao = BuildingDAO.getInstance();
+		dao1 = BuildingDAO.getInstance();
 		try {
-			buildings = dao.getBuildings();
+			buildings = dao1.listBuildings();
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,20 +94,36 @@ public class NavigationController {
 	} 
 	public String[] getRoomNames()
 	{
-		//zelfde als getBuildingNames()
-		// use dao.getRooms();
-		String [] roomnames = new String []{
-				"kamer", "kat","kooi, kraai"
-		};
-		return roomnames;
-		
-	}
+		ArrayList<Room> rooms = null;
+		dao2 = RoomDAO.getInstance();
+		try {
+				rooms = dao2.listRooms();
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String [] buildingnames = new String [rooms.lastIndexOf(rooms)+1];
+		Iterator<Room> it = rooms.iterator(); 
+		{
+			int i = 0;
+			while (it.hasNext()){
+					Array.set(buildingnames,i,it.next());
+					i++;
+			}
+		}
+		return buildingnames;
+			}
+	
 	
 	public boolean buildingExists(String buildingname)
 	{
 		Boolean existing = false;
-		dao = BuildingDAO.getInstance();
-		existing = dao.buildingExists(buildingname);
+		dao1
+		= BuildingDAO.getInstance();
+		existing = dao1.buildingExists(buildingname);
 		existing = true;
 		return existing;
 	}
