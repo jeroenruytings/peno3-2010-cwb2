@@ -105,16 +105,16 @@ public class NavigationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String [] buildingnames = new String [rooms.lastIndexOf(rooms)+1];
+		String [] roomnames = new String [rooms.lastIndexOf(rooms)+1];
 		Iterator<Room> it = rooms.iterator(); 
 		{
 			int i = 0;
 			while (it.hasNext()){
-					Array.set(buildingnames,i,it.next());
+					Array.set(roomnames,i,it.next().getName());
 					i++;
 			}
 		}
-		return buildingnames;
+		return roomnames;
 			}
 	
 	
