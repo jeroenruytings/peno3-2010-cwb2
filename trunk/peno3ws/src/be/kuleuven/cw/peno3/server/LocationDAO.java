@@ -21,6 +21,23 @@ import javax.ws.rs.Produces;
 @Path ("/LocationHandler")
 public class LocationDAO extends DAO{
 	
+	
+	/**
+	 * Gets the location corresponding to the given location id.
+	 *
+	 * @param locationId the location id
+	 * @return the room corresponding to the given location id
+	 */
+	@POST
+	@Path ("/getLocationByLocationId")
+	@Produces ("application/json")
+	public String getLocationByLocationId(@FormParam("locationId") String locationId){
+		String query = "SELECT * FROM room";
+		if(locationId!=null)query+= " WHERE locationId like '" + locationId + "'";
+		return super.get(query);
+	}
+	
+	
 	/**
 	 * Gets the location.
 	 *

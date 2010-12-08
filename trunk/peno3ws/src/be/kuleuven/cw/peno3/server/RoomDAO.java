@@ -35,6 +35,22 @@ public class RoomDAO extends DAO{
 		if(locationId!=null)query+= " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
 	}
+	
+	/**
+	 * Gets the room corresponding to the given room id.
+	 *
+	 * @param room the location id
+	 * @return the room corresponding to the given room id
+	 */
+	@POST
+	@Path ("/getRoomByRoomId")
+	@Produces ("application/json")
+	public String getRoomByRoomId(@FormParam("roomId") String roomId){
+		String query = "SELECT * FROM room";
+		if(roomId!=null)query+= " WHERE roomId like '" + roomId + "'";
+		return super.get(query);
+	}
+	
 
 	/**
 	 * List rooms.
