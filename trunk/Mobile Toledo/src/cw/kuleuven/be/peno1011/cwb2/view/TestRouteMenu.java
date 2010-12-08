@@ -14,7 +14,7 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 
 
 
-public class RouteMenu extends Activity {
+public class TestRouteMenu extends Activity {
 
 	
 	public void onCreate(Bundle savedInstanceState){
@@ -128,7 +128,7 @@ public class RouteMenu extends Activity {
 				tobuilding = true;
 			}
 		
-		Intent intent = new Intent(RouteMenu.this,ShowRoute.class);
+		Intent intent = new Intent(TestRouteMenu.this,ShowRoute.class);
 		Bundle bundle = new Bundle();
 		bundle.putString("from", from);
 		bundle.putString("to", to);
