@@ -48,7 +48,7 @@ public class BuildingDAO extends DAO{
 	@Produces ("application/json")
 	public String getBuildingById(@QueryParam("locationId") String locationId){
 		String query = "SELECT * FROM building";
-		if(locationId !=null)query += " WHERE locationId like '%" + locationId + "%'";
+		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
 	}
 
