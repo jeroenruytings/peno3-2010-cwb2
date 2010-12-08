@@ -56,10 +56,10 @@ public class GoogleMaps extends MapActivity{
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
 	       //draw the map
-	    
-        mapView.invalidate();
         mc = mapView.getController();
         mc.animateTo(point);
+        mapView.invalidate();
+
         
 	}
 	
