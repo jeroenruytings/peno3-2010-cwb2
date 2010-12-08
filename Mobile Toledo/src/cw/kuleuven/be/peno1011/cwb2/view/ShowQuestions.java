@@ -8,11 +8,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
@@ -24,29 +27,31 @@ public class ShowQuestions extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
-		  setContentView(R.layout.question);
 		  
-		  
+		  //haalt lecture
 		  Bundle bundle = getIntent().getExtras();
-		  final Lecture lecture = (Lecture) bundle.get("lecture");
-		  
+		  final Lecture lecture = (Lecture) bundle.get("lecture");		  
 		  final ArrayList<Question> questions = lecture.getQuestions();
 		  
-		  String[] displayStrings = new String[questions.size()];
+		  //Plaatst een titel vanboven
+		  requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);            
+          setContentView(R.layout.showquestions);
+          getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
+          ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
+          
+		  // maakt een string[] displayStrings aan van de alles messages van de questions
+          // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
+          //TODO De database sorteren op score, dit is een integer van 0 tot 5
+		  final String[] displayStrings = new String[questions.size()];
 		  	  for(int i = 0;i< questions.size();i++){
-					try{
-					String displayString = "Vraag"+ ": " + questions.get(i).getMessage();
+					
+		  		  	String displayString = "Vraag"+ ": " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
 					displayStrings[questions.size()-i-1] = displayString;
-					}
-					catch(NullPointerException ne){//Lecture=zero
-						String displayString = "Vraag" + ": " + questions.get(i).getMessage();
-						displayStrings[questions.size()-i-1] = displayString;
-					}
+					
 		  	  }
 		  
-		  	  
-		  setListAdapter(new ArrayAdapter<String>(this,
-		          android.R.layout.simple_list_item_1, displayStrings));
+		  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
+		  setListAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
 		  ListView lv = getListView();
 		  lv.setTextFilterEnabled(true);
 		  lv.setOnItemClickListener(new OnItemClickListener() {
