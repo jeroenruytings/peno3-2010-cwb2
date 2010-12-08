@@ -9,6 +9,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 import com.google.gson.Gson;
 
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Event;
 
 public class EventDAO {
@@ -45,7 +46,31 @@ public class EventDAO {
 //		String string = new String(test);
 		
 		Event[] events = new Gson().fromJson(json.toString(), Event[].class);  
-
+		
+		int endLocationId = 0;
+		int startLocationId = 0;
+		int startRoomId = 0;
+		int endRoomId = 0;
+		int counter = 0;
+		
+		while(counter < events.length){
+			startLocationId = json.indexOf("locationId",endLocationId)+12;
+			endLocationId = json.indexOf(",", startLocationId);
+			String locationId = json.substring(startLocationId,endLocationId);
+			
+			startRoomId = json.indexOf("roomId",startRoomId)+8;
+			endRoomId = json.indexOf("}", startRoomId);
+			String roomId = json.substring(startRoomId,endRoomId);
+					
+			PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingById");
+			methodBuilding.addParameter("locationId",locationId);
+			returnCode = client.executeMethod(methodBuilding);
+			String jsonBuilding = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
+			Building[] buildings = new Gson().fromJson(jsonBuilding.toString(), Building[].class);
+			events[counter].setBuilding(buildings[0]);
+			
+			counter++;
+		}
 		
 		
 		return events;
