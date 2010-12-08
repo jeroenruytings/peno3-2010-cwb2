@@ -43,11 +43,11 @@ public class BuildingDAO {
 		return deleted;
 	}
 	
-	public ArrayList<Building> getBuildings() throws HttpException, IOException{
+	public ArrayList<Building> listBuildings() throws HttpException, IOException{
 		ArrayList<Building> buildings = new ArrayList<Building>();		
 		
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuldingHandler/listBuldings");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/listBuildings");
 				
 		int response = client.executeMethod(method);
 		String encryptedJson = method.getResponseBodyAsString();
