@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  style="@style/GenLayout"
+  android:gravity="center_vertical|center_horizontal">
+  
+ <TableLayout
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  <TableRow android:layout_marginTop="10dip">
+   <ImageButton android:id="@+id/compassbutton"
+ 	 android:src="@drawable/compassbutton"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_marginRight="2dip"/>
+  	<ImageButton android:id="@+id/calendarbutton"
+  android:src="@drawable/calendarbutton"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="2dip"/>
+  </TableRow>
+  <TableRow>
+   <TextView android:id="@+id/compass" 
+ 	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:text="@string/compass" 
+	android:layout_gravity="center"
+	style="@style/MenuText"
+	/>
+	<TextView android:id="@+id/calendar" 
+ 	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:text="@string/calendar" 
+	android:layout_gravity="center"
+	style="@style/MenuText"
+	/>
+  </TableRow>
+  <TableRow android:layout_marginTop="10dip">
+<ImageButton android:id="@+id/interactionbutton"
+  android:src="@drawable/interactionbutton"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginRight="2dip"/>
+<ImageButton android:id="@+id/coursebutton"
+  android:src="@drawable/coursebutton"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_marginLeft="2dip"/>
+  </TableRow>
+ <TableRow>
+ <TextView android:id="@+id/interaction" 
+ 	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:text="@string/interaction" 
+	android:layout_gravity="center"
+	style="@style/MenuText"/>
+   <TextView android:id="@+id/course" 
+ 	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 
+	android:text="@string/course" 
+	android:layout_gravity="center"
+	style="@style/MenuText"/>
+  </TableRow>
+</TableLayout>  	
+</LinearLayout>

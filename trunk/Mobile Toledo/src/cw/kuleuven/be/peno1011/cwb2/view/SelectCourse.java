@@ -3,7 +3,7 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 import java.util.Date;
 import java.util.List;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 
-public class SelectCourse extends ListActivity{	
+public class SelectCourse extends Activity{	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -32,9 +32,9 @@ public class SelectCourse extends ListActivity{
         
 		try{
 			  String[] courseTitles = getCourseTitles();
-			  setListAdapter(new ArrayAdapter<String>(this,
+			  ListView lv = (ListView) findViewById(R.id.courseList);
+			  lv.setAdapter(new ArrayAdapter<String>(this,
 			          android.R.layout.simple_list_item_1, courseTitles));
-			  ListView lv = getListView();
 //			  lv.setBackgroundDrawable(R.drawable.gradient);
 			  lv.setTextFilterEnabled(true);
 			  lv.setOnItemClickListener(new OnItemClickListener() {

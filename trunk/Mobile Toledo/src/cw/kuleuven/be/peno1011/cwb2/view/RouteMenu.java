@@ -19,13 +19,17 @@ public class RouteMenu extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.routemenu);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
         ((TextView)findViewById(R.id.titlebar)).setText("Een route definiëren");
+        
 		TextView errorView = (TextView) findViewById(R.id.errorm);
-		Bundle b = this.getIntent().getExtras();
-		String error = b.getString("errortype");
+		Bundle b = getIntent().getExtras();
+        String error = (String) b.get("errortype");
+		Toast toast = Toast.makeText(this, error, Toast.LENGTH_SHORT);
+		toast.show();
 		if (error == "fromandto"){
 			errorView.setVisibility(TextView.VISIBLE);
 		}
@@ -50,8 +54,8 @@ public class RouteMenu extends Activity {
 	}
 	
 	private void Navigate(){
-	String from = null;
-	String to = null;
+	String from = "";
+	String to = "";
 	Boolean frombuilding = false;
 	Boolean tobuilding = false;
 		EditText vangebouw = (EditText) findViewById(R.id.mvangebouw);
