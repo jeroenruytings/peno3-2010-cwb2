@@ -12,6 +12,8 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 import android.content.Context;
 
+import cw.kuleuven.be.peno1011.cwb2.database.CourseDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.IspDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.UserDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.local.LoginDbAdaptor;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
@@ -40,6 +42,22 @@ public class LoginController {
 	
 	
 	public void login(User user){
+		String userId = user.getUserId();
+		ISP isp;
+		try {
+			isp = IspDAO.getInstance().getIsp(userId);
+			if(isp!=null) {
+				ArrayList<Course> courses = CourseDAO.getInstance().getCourses(userId);
+				isp.setCourses(courses);
+				user.setIsp(isp);
+			}		
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MainController.getInstance().setUser(user);
 	}
 

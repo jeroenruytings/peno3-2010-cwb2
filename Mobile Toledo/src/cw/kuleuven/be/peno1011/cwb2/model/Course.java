@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Course {
-	private final String courseName;
-	private final String courseCode;
+	private String courseName;
+	private String courseCode;
 	private User prof;
-	private final String academicYear;
+	private String academicYear;
 	private ArrayList<Lecture> lectures;
 	private ArrayList<Document> documents;
 	private LinkedList<Announcement> announcements;
@@ -20,6 +20,8 @@ public class Course {
 		this.courseName = courseName;
 		this.academicYear = academicYear;
 	}
+	
+	private Course(){}
 
 	public String getCourseName() {
 		return courseName;
