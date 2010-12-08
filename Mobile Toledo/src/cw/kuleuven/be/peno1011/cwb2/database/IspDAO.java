@@ -30,12 +30,12 @@ public class IspDAO {
 		return ispDAO;
 	}
 	
-	public ISP getIsp(String username) throws HttpException, IOException{
+	public ISP getIsp(String userId) throws HttpException, IOException{
 		ISP isp;		
 		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/IspHandler/getIspByUserId");
-		method.addParameter("userId", username);
+		method.addParameter("userId", userId);
 		
 		int response = client.executeMethod(method);
 		String encryptedJson = method.getResponseBodyAsString();
