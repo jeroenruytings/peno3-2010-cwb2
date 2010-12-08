@@ -21,7 +21,8 @@ public class TestOnWeb {
 		//testGetEvents();
 		//testUser();
 		//testBuilding();
-		testGetCourseByCourseCode();
+		//testGetCourseByCourseCode();
+		testGetLectureByCourseCode();
 	}
 	
 	private static void testBuilding() throws HttpException, IOException {
@@ -113,5 +114,16 @@ public class TestOnWeb {
 		
 		Event[] events = new Gson().fromJson(json.toString(), Event[].class);  
 
+	}
+	
+	public static void testGetLectureByCourseCode() throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/LectureHandler/getLectureByCourseCode");
+		method.addParameter("courseCode","H44444");
+		int returnCode = client.executeMethod(method);
+		String json = cryptography.decrypt(method.getResponseBodyAsString());
+		
+		System.out.println(json);
 	}
 }

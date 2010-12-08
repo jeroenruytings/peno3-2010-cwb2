@@ -66,9 +66,6 @@ public class LectureDAO extends DAO{
 		return super.get(query);
 	}
 
-	/*
-	 * Method adds an announcement to the database	
-	 */
 	/**
 	 * Adds the lecture.
 	 *
