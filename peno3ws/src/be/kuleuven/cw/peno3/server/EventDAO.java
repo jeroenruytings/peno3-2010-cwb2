@@ -71,4 +71,12 @@ public class EventDAO extends DAO{
 		String query = "INSERT INTO event (eventId,description,startDate,stopDate,locationId,categorie,title) VALUES (NULL,'"+ description + "'," + startDate + "," + stopDate + ",'" + locationId + "','" + categorie + "','" + title +"')";
 		return super.add(query);
 	}
+	
+	@POST
+	@Path("/listEventsWithLocations")
+	@Produces("application/json")
+	public String listEventsWithLocations(){
+		String query = "SELECT * FROM event INNER JOIN building USING (locationId) INNER JOIN room USING (roomId)";
+		return super.list(query);
+	}
 }
