@@ -19,10 +19,24 @@ public class RouteMenu extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.routemenu);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
         ((TextView)findViewById(R.id.titlebar)).setText("Een route definiëren");
+		TextView errorView = (TextView) findViewById(R.id.errorm);
+		Bundle b = this.getIntent().getExtras();
+		String error = b.getString("errortype");
+		if (error == "fromandto"){
+			errorView.setVisibility(TextView.VISIBLE);
+		}
+		else if (error == "from"){
+			errorView.setVisibility(TextView.VISIBLE);
+		}
+		else if (error == "to"){
+			errorView.setVisibility(TextView.VISIBLE);
+		}
+		else if (error == "noerror"){}
+
 		
 		ImageButton navigationbutton = (ImageButton) findViewById(R.id.navigate);
 		navigationbutton.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +112,5 @@ public class RouteMenu extends Activity {
 		bundle.putBoolean("tobuilding", tobuilding);
 		intent.putExtras(bundle);
 		startActivity(intent);
-		finish();
 	}}
 }
