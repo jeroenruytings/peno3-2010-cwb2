@@ -10,6 +10,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 import com.google.gson.Gson;
 
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
 
@@ -32,7 +33,7 @@ public class CourseDAO {
 		ArrayList<Course> courses = new ArrayList<Course>();		
 		
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/IspHandler/getIspByUserId");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByUserId");
 		method.addParameter("userId", username);
 		
 		int response = client.executeMethod(method);
@@ -44,7 +45,35 @@ public class CourseDAO {
 		}
 		else {
 			Course[] courseArray = new Gson().fromJson(json.toString(), Course[].class);
-			courses = (ArrayList<Course>) Arrays.asList(courseArray);
+			
+			int endId = 0;
+			int startId = 0;
+			int counter = 0;
+			String relationalName = "courseCode";
+			
+			while(counter < courseArray.length){
+				startId = json.indexOf(relationalName,endId)+ relationalName.length() + 3;
+				endId = json.indexOf("}", startId)-1;
+				String courseCode = json.substring(startId,endId);
+						
+				PostMethod methodRelational = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByCourseCode");
+				methodRelational.addParameter(relationalName,courseCode);
+				int returnCode = client.executeMethod(methodRelational);
+				String jsonRelational = cryptography.decrypt(methodRelational.getResponseBodyAsString());
+				Course[] relationalCourse = new Gson().fromJson(jsonRelational.toString(), Course[].class);
+				if(jsonRelational.contains("[]")) {
+					relationalCourse[0] = null;
+				}
+//				courseArray[counter].setCourse(relationalCourse[0]);
+				else {
+					courses.add(relationalCourse[0]);
+					counter++;
+				}
+			}
+			
+			// courses = (ArrayList<Course>) Arrays.asList(courseArray);
+			
+			
 		}
 		return courses;
 	}

@@ -14,6 +14,8 @@ public class ISP {
 		setStudies(studies);
 		setPhase(phase);
 	}
+	
+	private ISP() { }
 
 	public ArrayList<Course> getCourses() {
 		return courses;
