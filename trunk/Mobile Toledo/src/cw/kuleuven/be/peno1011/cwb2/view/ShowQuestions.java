@@ -86,7 +86,7 @@ public class ShowQuestions extends ListActivity {
 	  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 	  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
 	    				  		        
-	  //TODO/ in database steken.
+	  //TODO/ in database steken en kijken of de functie .intValue werkt die een integer van een float maakt.
 	  //dao.insert(ratingbar.getRating().intValue());
 	    				  		        
 	    				  		    }

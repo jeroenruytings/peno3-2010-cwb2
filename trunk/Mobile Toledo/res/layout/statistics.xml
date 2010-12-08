@@ -10,6 +10,13 @@
 		  	android:orientation = "vertical"
 		  	android:layout_width="fill_parent"
 		  	android:layout_height="wrap_content">
+		  	<TextView android:id="@+id/title" 
+			 	android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:layout_gravity="top"
+				android:textStyle="bold"
+				android:typeface="serif">
+				</TextView>				
 	   	 <ProgressBar android:id="@+id/sa"
 		    android:indeterminateOnly="false" 
 		    android:progressDrawable="@android:drawable/progress_horizontal" 
@@ -17,12 +24,12 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		    </ProgressBar> 
-		    <TextView android:id="@+id/multiplefeedback" 
+		    <TextView android:id="@+id/msga" 
 			 	android:layout_width="wrap_content"
 				android:layout_height="wrap_content" 
 				android:layout_gravity="center"
-				android:typeface="serif"
-				android:text="Antwoord A"/>
+				android:typeface="serif">
+				</TextView>
 		<ProgressBar android:id="@+id/sb"
 		    android:indeterminateOnly="false" 
 		    android:progressDrawable="@android:drawable/progress_horizontal" 
@@ -30,12 +37,11 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
-		  	<TextView android:id="@+id/multiplefeedback" 
+		  	<TextView android:id="@+id/msgb" 
 			 	android:layout_width="wrap_content"
 				android:layout_height="wrap_content" 
 				android:layout_gravity="center"
-				android:typeface="serif"
-				android:text="Antwoord B">
+				android:typeface="serif">
 			</TextView>
 		
 		<ProgressBar android:id="@+id/sc"
@@ -45,12 +51,11 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
-		  	<TextView android:id="@+id/multiplefeedback" 
+		  	<TextView android:id="@+id/msgc" 
 			 	android:layout_width="wrap_content"
 				android:layout_height="wrap_content" 
 				android:layout_gravity="center"
-				android:typeface="serif"
-				android:text="Antwoord C">
+				android:typeface="serif">
 				</TextView>
 			<ProgressBar android:id="@+id/sd"
 		    android:indeterminateOnly="false" 
@@ -59,12 +64,11 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
-		  	<TextView android:id="@+id/multiplefeedback" 
+		  	<TextView android:id="@+id/msgd" 
 			 	android:layout_width="wrap_content"
 				android:layout_height="wrap_content" 
 				android:layout_gravity="center"
-				android:typeface="serif"
-				android:text="Antwoord D">
+				android:typeface="serif">
 			</TextView>
 			<ProgressBar android:id="@+id/se"
 		    android:indeterminateOnly="false" 
@@ -73,12 +77,11 @@
 		    android:minHeight="20dip" 
 		    android:maxHeight="20dip">
 		  	</ProgressBar>
-		  	<TextView android:id="@+id/multiplefeedback" 
+		  	<TextView android:id="@+id/msge" 
 			 	android:layout_width="wrap_content"
 				android:layout_height="wrap_content" 
 				android:layout_gravity="center"
-				android:typeface="serif"
-				android:text="Antwoord E">
+				android:typeface="serif">
 			</TextView>
 		  </LinearLayout>    
  </LinearLayout>
