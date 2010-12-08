@@ -42,7 +42,7 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
-		<activity android:name=".view.GoogleMaps" android:label="GoogleMaps">
+		<activity android:name=".view.GoogleMaps" android:label="GoogleMaps"  android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
