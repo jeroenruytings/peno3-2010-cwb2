@@ -32,17 +32,18 @@ public class ShowStatistics extends Activity {
 
 	         setContentView(R.layout.statistics);
 	         
-
+	         //haalt lecture op
 			  Bundle bundle = getIntent().getExtras();
 			  final Lecture lecture = (Lecture) bundle.get("lecture");
 			  
+			  //haalt meerkeuzevraag op (slechts 1 per les, wordt anders overschreven)
+			  //en haalt variabelen op
 			  final MultipleChoice multipleChoice = lecture.getMultipleChoice();
-			  
 			  final String[] possibleAnswers = multipleChoice.getPossibleAnswers();
 			  final int size = possibleAnswers.length;
 			  final int[] answers = multipleChoice.getAnswers();
-			  String hallo = possibleAnswers[1];
-			 			  
+						 			  
+			  //plaatst titel in textview
 			  TextView title = (TextView) findViewById(R.id.title);
 				 title.setText(multipleChoice.getQuestion());
 				
@@ -55,6 +56,7 @@ public class ShowStatistics extends Activity {
 			  int d=0;
 			  int e=0;
 			  
+			  // telt veschillende antwoorden
 			  for(int i = 0; i < answers.length; i++) {
 		            if(answers[i] == 0) {
 		                a++;
@@ -69,7 +71,10 @@ public class ShowStatistics extends Activity {
 		            }
 		                
 			 }
-			  
+			 
+			  //toont het aantal antwoorden in een progressbar
+			  //toont verschillende antwoorden in textview
+			  //toont deze enkel als ze bestaan, anders zijn ze leeg en dus niet gegeven.			  
 			 if (size == 2){
 								 
 	         final ProgressBar stata = (ProgressBar) findViewById(R.id.sa);
