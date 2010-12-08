@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+ android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  style="@style/GenLayout">
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  style="@style/GenLayout">
+  >
   <LinearLayout
   	android:orientation = "vertical"
   	android:layout_width="fill_parent"
@@ -20,6 +26,7 @@
 		android:text="Startlocatie niet gevonden"
 		android:textStyle="bold"
 		android:textSize="14px"
+		android:visibility="gone"
 		/>
   		<TextView android:id="@+id/vangebouw"
 		android:layout_width="wrap_content"
@@ -67,3 +74,4 @@
 	  	android:layout_gravity="right"/>
 	 </LinearLayout>
 </LinearLayout>
+</ScrollView>
