@@ -9,8 +9,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 import com.google.gson.Gson;
 
-import cw.kuleuven.be.peno1011.cwb2.model.Building;
-import cw.kuleuven.be.peno1011.cwb2.model.Event;
+import cw.kuleuven.be.peno1011.cwb2.model.*;
 
 public class EventDAO {
 	
@@ -61,13 +60,35 @@ public class EventDAO {
 			startRoomId = json.indexOf("roomId",startRoomId)+8;
 			endRoomId = json.indexOf("}", startRoomId);
 			String roomId = json.substring(startRoomId,endRoomId);
-					
-			PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingById");
-			methodBuilding.addParameter("locationId",locationId);
-			returnCode = client.executeMethod(methodBuilding);
-			String jsonBuilding = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
-			Building[] buildings = new Gson().fromJson(jsonBuilding.toString(), Building[].class);
-			events[counter].setBuilding(buildings[0]);
+			
+			if(! locationId.equals("0")){
+				PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingById");
+				methodBuilding.addParameter("locationId",locationId);
+				returnCode = client.executeMethod(methodBuilding);
+				String jsonBuilding = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
+				Building[] buildings = new Gson().fromJson(jsonBuilding.toString(), Building[].class);
+				Building currentBuilding = buildings[0];
+				
+				PostMethod methodLocation = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/LocationHandler/getLocation");
+				methodLocation.addParameter("locationId", locationId);
+				returnCode = client.executeMethod(methodLocation);
+				String jsonLocation = cryptography.decrypt(methodLocation.getResponseBodyAsString());
+				GPSLocation[] locations = new Gson().fromJson(jsonLocation.toString(), GPSLocation[].class);
+				GPSLocation currentLocation = locations[0];
+				
+				currentBuilding.setLocation(currentLocation);
+				events[counter].setBuilding(currentBuilding);
+			}
+			
+			if(! roomId.equals("0")){
+				PostMethod methodBuilding = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getRoomByRoomId");
+				methodBuilding.addParameter("roomId",roomId);
+				returnCode = client.executeMethod(methodBuilding);
+				String jsonRoom = cryptography.decrypt(methodBuilding.getResponseBodyAsString());
+				Room[] rooms = new Gson().fromJson(jsonRoom.toString(), Room[].class);
+				Room currentRoom = rooms[0];
+				events[counter].setRoom(currentRoom);
+			}
 			
 			counter++;
 		}

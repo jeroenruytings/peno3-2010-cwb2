@@ -44,6 +44,22 @@ public class Building
 	public void setRooms(ArrayList<Room> rooms) {
 		this.rooms = rooms;
 	}
+
+	public String getOpeninghours() {
+		return openinghours;
+	}
+
+	public void setOpeninghours(String openinghours) {
+		this.openinghours = openinghours;
+	}
+
+	public GPSLocation getLocation() {
+		return location;
+	}
+
+	public void setLocation(GPSLocation location) {
+		this.location = location;
+	}
     
 }
 
