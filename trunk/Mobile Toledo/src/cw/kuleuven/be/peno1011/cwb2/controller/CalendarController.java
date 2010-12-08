@@ -73,22 +73,13 @@ public class CalendarController {
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
         cal.add(Calendar.DAY_OF_MONTH, numberOfDays);
-        Date maxDate = cal.getTime();
+        Date maxDate = cal.getTime();        
         
-        Iterator<Event> it = allEvents.iterator();
-        while(it.hasNext()){
-        	Event currentEvent = it.next();
-        	if(currentEvent.getStartDate().compareTo(currentDate)>0 || currentEvent.getStopDate().compareTo(maxDate)<0){
-        		events.add(currentEvent);
+        for(int i=allEvents.size()-1;i>-1;i--){
+        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 && allEvents.get(i).getStartDate().compareTo(maxDate)<0){
+        		events.add(allEvents.get(i));
         	}
         }
-        
-        
-//        for(int i=0;i<allEvents.size();i++){
-//        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 || allEvents.get(i).getStopDate().compareTo(maxDate)<0){
-//        		events.add(allEvents.get(i));
-//        	}
-//        }
 		//eventueel sort events?
 		return events; 
 	}

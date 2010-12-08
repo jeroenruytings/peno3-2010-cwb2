@@ -114,7 +114,7 @@ public class MobileToledo extends Activity {
 			user = LoginController.getInstance().getUser(username);
 		} catch (HttpException e) {
 			Context context = getApplicationContext();
-			CharSequence text = "No internet connection!";
+			CharSequence text = "Geen internetverbinding!";
     		int duration = Toast.LENGTH_SHORT;
     		Toast toast = Toast.makeText(context, text, duration);
     		toast.show();
@@ -122,9 +122,16 @@ public class MobileToledo extends Activity {
 			
 		}
 		
-		if (user == null || ! user.getPassword().equals(password)){
+		if (user == null){
 			Context context = getApplicationContext();
-    		CharSequence text = "Invalid combination username-password!";
+    		CharSequence text = "Gebruiker niet gevonden!";
+    		int duration = Toast.LENGTH_SHORT;
+    		Toast toast = Toast.makeText(context, text, duration);
+    		toast.show();
+		}
+		else if(! user.getPassword().equals(password)){
+			Context context = getApplicationContext();
+    		CharSequence text = "Onjuist wachtwoord bij gebruiker" + user.getUserId();;
     		int duration = Toast.LENGTH_SHORT;
     		Toast toast = Toast.makeText(context, text, duration);
     		toast.show();
