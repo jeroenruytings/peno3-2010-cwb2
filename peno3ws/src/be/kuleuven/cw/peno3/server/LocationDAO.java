@@ -84,8 +84,8 @@ public class LocationDAO extends DAO{
 	@POST
 	@Path ("/addLocation")
 	@Produces ("application/json")
-	public String addLocation(@FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate, @FormParam("street") String street, @FormParam("number") String number, @FormParam("city") String city, @FormParam("zipcode") String zipcode){
-			String query = "INSERT INTO location (locationId,xcoordinate,ycoordinate,street,number,city,zipcode) VALUES (NULL,'"+ xcoordinate + "','" + ycoordinate + "','" + street + "','" + number + "','" + city +"','" + zipcode + "')";
+	public String addLocation(@FormParam("locationId") String locationId, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate, @FormParam("street") String street, @FormParam("number") String number, @FormParam("city") String city, @FormParam("zipcode") String zipcode){
+			String query = "INSERT INTO location (locationId,xcoordinate,ycoordinate,street,number,city,zipcode) VALUES ('"+ locationId + "','" + xcoordinate + "','" + ycoordinate + "','" + street + "','" + number + "','" + city +"','" + zipcode + "')";
 			return super.add(query);
 	}
 }

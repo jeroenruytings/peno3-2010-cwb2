@@ -86,7 +86,7 @@ public class RoomDAO extends DAO{
 	@Path ("/addRoom")
 	@Produces ("application/json")
 	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
-			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate) VALUES ('"+ roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
+			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate) VALUES (NULL,'" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
 			return super.add(query);
 	}
 	
