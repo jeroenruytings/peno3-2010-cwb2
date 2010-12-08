@@ -128,4 +128,33 @@ public class CourseDAO extends DAO{
 		if(userId!=null)query+= " WHERE userId like '" + userId + "'";
 		return super.get(query);
 	}
+	
+	/**
+	 * 
+	 * @param userId
+	 * @param date
+	 * @param courseCode
+	 * @return
+	 */
+	@POST
+	@Path ("/getCourseByDateAndCourseCode")
+	@Produces ("application/json")
+	public String getCourseByDateAndCourseCode(@FormParam("userId") String userId, @FormParam("date") String date, @FormParam("courseCode") String courseCode) {
+		String query = "SELECT * FROM lecture, course_isp, event WHERE lecture.courseCode like '" + courseCode + "' AND " + date + " BETWEEN event.startDate AND event.stopDate AND course_isp.userId like '"+ userId + "'";
+		return super.get(query);
+	}
+	
+	/**
+	 * 
+	 * @param courseCode
+	 * @return
+	 */
+	@POST
+	@Path("/initializeCourse")
+	@Produces ("application/json")
+	public String initializeCourse(@FormParam("courseCode") String courseCode) {
+		String query = "SELECT * FROM course, course_user, user WHERE course.courseCode like '"+ courseCode + "' AND course_user.courseCode = course.courseCode AND user.userId = course_user.userId";
+		return super.get(query);
+	}
+	
 }
