@@ -132,7 +132,7 @@ public class RoomDAO extends DAO{
 	@Path ("/addPicture")
 	@Produces ("application/json")
 	public String addPicture(@FormParam("roomId") String roomId, @FormParam("picture") String picture){
-		String query = "INSERT INTO room_picture (roomPictureId,locationId,picture) VALUES (NULL,'"+ roomId + "','" + picture + "')";
+		String query = "INSERT INTO room_picture (roomPictureId,roomId,picture) VALUES (NULL,'"+ roomId + "','" + picture + "')";
 		return super.add(query);
 	}
 }
