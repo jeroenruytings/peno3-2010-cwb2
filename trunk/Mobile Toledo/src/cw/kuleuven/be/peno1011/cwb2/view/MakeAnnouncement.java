@@ -63,6 +63,7 @@ public class MakeAnnouncement extends Activity{
 	                EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	                int courseLocation = s.getSelectedItemPosition();
 	                InfoController.getInstance().insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	                finish();
 	            }
 	
 	        });
