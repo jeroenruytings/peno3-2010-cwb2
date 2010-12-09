@@ -85,7 +85,7 @@ public class RoomDAO extends DAO{
 	@POST
 	@Path ("/addRoom")
 	@Produces ("application/json")
-	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
+	public String addRoom(@FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
 			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate) VALUES (NULL,'" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
 			return super.add(query);
 	}
@@ -93,7 +93,7 @@ public class RoomDAO extends DAO{
 	@POST
 	@Path ("/addRoomWithoutCoordinates")
 	@Produces ("application/json")
-	public String addRoomWithoutCoordinates(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link){
+	public String addRoomWithoutCoordinates(@FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link){
 			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link) VALUES (NULL,'" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "')";
 			return super.add(query);
 	}
