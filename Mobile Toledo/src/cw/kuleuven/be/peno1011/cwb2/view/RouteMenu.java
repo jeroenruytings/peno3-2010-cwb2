@@ -128,69 +128,30 @@ private Boolean tobuilding;
 	
 	String van1 = van.getEditableText().toString();
 	String naar1 = naar.getEditableText().toString();
-//		EditText vangebouw = (EditText) findViewById(R.id.mvangebouw);
-//		EditText vanadres = (EditText) findViewById(R.id.mvanadres);
-//		EditText naargebouw = (EditText) findViewById(R.id.mnaargebouw);
-//		EditText naaradres = (EditText) findViewById(R.id.mnaaradres);
-		
-		
-//			String svanadres = vanadres.getEditableText().toString();
-//			String svangebouw = vangebouw.getEditableText().toString();
-//			String snaaradres = naaradres.getEditableText().toString();
-//			String snaargebouw = naargebouw.getEditableText().toString();
-//			if (svangebouw.equals("")==false && svanadres.equals("")==false){
-//				Context context = getApplicationContext();
-//        		CharSequence text = "Gelieve maar één startlocatie op te geven";
-//        		int duration = Toast.LENGTH_SHORT;
-//        		Toast toast = Toast.makeText(context, text, duration);
-//        		toast.show();
-//			}
-//			else if (snaargebouw.equals("")==false && snaaradres.equals("")==false){
-//				Context context = getApplicationContext();
-//        		CharSequence text = "Gelieve maar één bestemming op te geven";
-//        		int duration = Toast.LENGTH_LONG;
-//        		Toast toast = Toast.makeText(context, text, duration);
-//        		toast.show();
-//			}
-//			else if (svangebouw.equals("") && svanadres.equals("")){
-//				if(snaargebouw.equals("") && snaaradres.equals("")){
-//					Context context = getApplicationContext();
-//	        		CharSequence text = "Gelieve een bestemming en vertrekpunt op te geven";
-//	        		int duration = Toast.LENGTH_SHORT;
-//	        		Toast toast = Toast.makeText(context, text, duration);
-//	        		toast.show();
-//				}
-//				else{
-//				Context context = getApplicationContext();
-//        		CharSequence text = "Gelieve een vertrekpunt op te geven";
-//        		int duration = Toast.LENGTH_SHORT;
-//        		Toast toast = Toast.makeText(context, text, duration);
-//        		toast.show();
-//			}}
-//			else if (snaargebouw.equals("") && snaaradres.equals("")){
-//				Context context = getApplicationContext();
-//        		CharSequence text = "Gelieve een bestemming op te geven";
-//        		int duration = Toast.LENGTH_SHORT;
-//        		Toast toast = Toast.makeText(context, text, duration);
-//        		toast.show();
-//			}
-//
-//			else{
-//			if (svangebouw.equals("")){
-//				from = svanadres;
-//				
-//			}
-//			else{
-//				from = svangebouw;
-//				frombuilding = true;
-//			}
-//			if(snaargebouw.equals("")){
-//				to = snaaradres;
-//			}
-//			else{
-//				to = snaargebouw; 
-//				tobuilding = true;
-//			}
+	
+	if (van1.equals("")){
+		if (naar1.equals("")){
+			Context context = getApplicationContext();
+    		CharSequence text = "Gelieve een startlocatie en bestemming op te geven";
+    		int duration = Toast.LENGTH_LONG;
+    		Toast toast = Toast.makeText(context, text, duration);
+    		toast.show();
+		}
+		else{
+		Context context = getApplicationContext();
+		CharSequence text = "Gelieve een startlocatie op te geven";
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
+	}}
+	else if (naar1.equals("")){
+		Context context = getApplicationContext();
+		CharSequence text = "Gelieve een bestemming op te geven";
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
+	}
+	else{
 		
 		Intent intent = new Intent(RouteMenu.this,ShowRoute.class);
 		Bundle bundle = new Bundle();
@@ -200,5 +161,5 @@ private Boolean tobuilding;
 		bundle.putBoolean("tobuilding", tobuilding);
 		intent.putExtras(bundle);
 		startActivity(intent);
-	}
+	}}
 }

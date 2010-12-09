@@ -184,7 +184,7 @@ public class ShowRoute extends MapActivity {
 
 
 	//Teken een route
-	private void DrawPath(String src, String dest,GeoPoint fromgp, GeoPoint togp, int color, MapView mMapView01) throws IOException
+	private void DrawPath(String src, String dest,GeoPoint fromgp, GeoPoint togp, int color, MapView map) throws IOException
 	{
 		//Vraag lengte- en breedteligging op van vertrek- en aankomstpunt
 		Double fromlat = ((fromgp.getLatitudeE6())/(1E6));
@@ -192,66 +192,70 @@ public class ShowRoute extends MapActivity {
 		Double tolat = ((togp.getLatitudeE6())/(1E6));
 		Double tolng = ((togp.getLongitudeE6())/(1E6));
 		 
-	// verbind met de google map route webservice en geef vertrek en aankomst op
+	// verbind met de google map route webservice
 		StringBuilder urlString = new StringBuilder();
 		urlString.append("http://maps.google.com/maps?f=d&hl=en"); 
-		urlString.append("&saddr=");//from
+		//geef lengte- en breedteligging van vertrekpunt op
+		urlString.append("&saddr=");
 		urlString.append(Double.toString(fromlat));
 		urlString.append(",");
 	    urlString.append(Double.toString(fromlng));
-		urlString.append("&daddr=");//to
+	    //Geef lengte- en breedteligging van bestemming op
+		urlString.append("&daddr=");
 		urlString.append(Double.toString(tolat));
 		urlString.append(",");
 		urlString.append(Double.toString(tolng));
-		//Vraag de output(route) op in kml file en vraag een wandelroute
+		//Vraag de output(reeks coördinaten van de route) op in kml file en vraag een wandelroute
 		urlString.append("&ie=UTF8&0&om=0&output=kml&dirflg=w");
 
 		Log.d("xxx","URL="+urlString.toString());
 		//vraag kml bestand op en haal coördinaten van de route eruitt
-		org.w3c.dom.Document doc = null;
-		HttpURLConnection urlConnection= null;
+		org.w3c.dom.Document document = null;
+		HttpURLConnection connectie= null;
 		URL url = null;
 		try
-			{ 
+			{  //Verbind met de URL
 				url = new URL(urlString.toString());
-				urlConnection=(HttpURLConnection)url.openConnection();
-				urlConnection.setRequestMethod("GET");
-				urlConnection.setDoOutput(true);
-				urlConnection.setDoInput(true);
-				urlConnection.connect(); 
+				connectie=(HttpURLConnection)url.openConnection();
+				connectie.setRequestMethod("GET");
+				connectie.setDoOutput(true);
+				connectie.setDoInput(true);
+				connectie.connect(); 
 			
-				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-				DocumentBuilder db = dbf.newDocumentBuilder();
-				doc =  db.parse(urlConnection.getInputStream()); 
+				DocumentBuilderFactory documentbuilderfactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder documentbuilder = documentbuilderfactory.newDocumentBuilder();
+				document =  documentbuilder.parse(connectie.getInputStream()); 
 			
-			if(((org.w3c.dom.Document) doc).getElementsByTagName("GeometryCollection").getLength()>0)
+			if(((org.w3c.dom.Document) document).getElementsByTagName("GeometryCollection").getLength()>0)
 			{
 				//String path = doc.getElementsByTagName("GeometryCollection").item(0).getFirstChild().getFirstChild().getNodeName();
-				String path = ((org.w3c.dom.Document) doc).getElementsByTagName("GeometryCollection").item(0).getFirstChild().getFirstChild().getFirstChild().getNodeValue() ;
-				Log.d("xxx","path="+ path);
-				String [] pairs = path.split(" "); 
-				String[] lngLat = pairs[0].split(","); // lngLat[0]=longitude lngLat[1]=latitude lngLat[2]=height
-				// Maak overlays voor iedere coördinaat
-				GeoPoint startGP = new GeoPoint((int)(Double.parseDouble(lngLat[1])*1E6),(int)(Double.parseDouble(lngLat[0])*1E6));
-				mMapView01.getOverlays().add(new MyOverLay(startGP,startGP,1));
+				String route = ((org.w3c.dom.Document) document).getElementsByTagName("GeometryCollection").item(0).getFirstChild().getFirstChild().getFirstChild().getNodeValue() ;
+				Log.d("xxx","route="+ route);
+				String [] koppels = route.split(" "); 
+				String[] latenlng = koppels[0].split(","); 
+				// latenlng[0]=lengteligging, latenlng[1]=breedteligging, latenlng[2]=hoogte
+				GeoPoint begin = new GeoPoint((int)(Double.parseDouble(latenlng[1])*1E6),(int)(Double.parseDouble(latenlng[0])*1E6));
+				map.getOverlays().add(new MyOverLay(begin,begin,1));
 				GeoPoint gp1;
-				GeoPoint gp2 = startGP; 
-				for(int i=1;i<pairs.length;i++) 
+				GeoPoint gp2 = begin; 
+				//maak overlays voor iedere coördinaat van de route
+				for(int i=1;i<koppels.length;i++) 
 				{
-					lngLat = pairs[i].split(",");
+					latenlng = koppels[i].split(",");
 					gp1 = gp2;
-					gp2 = new GeoPoint((int)(Double.parseDouble(lngLat[1])*1E6),(int)(Double.parseDouble(lngLat[0])*1E6));
-					mMapView01.getOverlays().add(new MyOverLay(gp1,gp2,2,color));
-					Log.d("xxx","pair:" + pairs[i]);
+					gp2 = new GeoPoint((int)(Double.parseDouble(latenlng[1])*1E6),(int)(Double.parseDouble(latenlng[0])*1E6));
+					map.getOverlays().add(new MyOverLay(gp1,gp2,2,color));
+					Log.d("xxx","pair:" + koppels[i]);
 				}
-				mMapView01.getOverlays().add(new MyOverLay(togp,togp, 3)); 
+				//zet de bestemming op kaart
+				map.getOverlays().add(new MyOverLay(togp,togp, 3)); 
 			} 
 		}
 	catch (MalformedURLException e)
 	{
 	e.printStackTrace();
 	}
-	catch (IOException e)
+	catch (IOException e) 
 	{
 	e.printStackTrace();
 	}
