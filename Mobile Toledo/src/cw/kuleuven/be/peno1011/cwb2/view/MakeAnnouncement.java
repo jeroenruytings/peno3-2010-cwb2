@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
@@ -61,15 +62,13 @@ public class MakeAnnouncement extends Activity{
 	            	EditText mTitle = (EditText) findViewById(R.id.mtitle);
 	                EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	                int courseLocation = s.getSelectedItemPosition();
-	                AnnouncementDAO dao = AnnouncementDAO.getInstance();
-	                //TODO/ in database steken.
-	//               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	                InfoController.getInstance().insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
 	            }
 	
 	        });
 	    }
 	    else{
-	    	Toast.makeText(getApplicationContext(), "Gebruiker mag geen announcements aanmaken. Enkel proffesoren/assistenten!",
+	    	Toast.makeText(getApplicationContext(), "Gebruiker mag geen announcements aanmaken. Enkel professoren/assistenten!",
 			          Toast.LENGTH_LONG).show();
 	    }
 

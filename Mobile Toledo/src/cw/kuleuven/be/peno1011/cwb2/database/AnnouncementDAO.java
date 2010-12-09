@@ -75,20 +75,21 @@ public class AnnouncementDAO {
                 return announcementDAO;
         }
         
-        public void add(String userId, String message, Date date, String title, String courseCode) {
+        public void add(String userId, String message, String date, String title, String courseCode) {
                 try {
                         HttpClient client = new HttpClient();
                         // maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
-                        PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/addAnnouncement");
+                        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/addAnnouncement");
+                        
                         method.addParameter("userId", userId);
                         method.addParameter("message", message);
-                        method.addParameter("date", date.toString());
+                        method.addParameter("date", date);
                         method.addParameter("title", title);
                         method.addParameter("courseCode", courseCode);
-                        // voert de methode ook werkelijk uit en retourneert een onbekend getal
+                        // voert de methode ook werkelijk uit en retourneert een  getal
                         int returnCode = client.executeMethod(method);
-                        // displayt de respone op de postmethode
-                        System.out.println(method.getResponseBodyAsString());
+                        String encryptedJson = method.getResponseBodyAsString();
+                        
                 } catch (IllegalArgumentException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

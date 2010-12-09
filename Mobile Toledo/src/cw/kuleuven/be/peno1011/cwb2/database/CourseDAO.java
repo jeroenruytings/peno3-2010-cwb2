@@ -35,7 +35,7 @@ public class CourseDAO {
 		ArrayList<Course> courses = new ArrayList<Course>();		
 		
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByUserId");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/IspHandler/getCoursesByUserId");
 		method.addParameter("userId", userId);
 		
 		int response = client.executeMethod(method);
