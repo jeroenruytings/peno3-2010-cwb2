@@ -89,14 +89,16 @@ public class BuildingDAO {
 		return exists;
 	}
 	public GeoPoint getBuildingCoordinates(String buildingname){
-		
+				
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuilding");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingAndLocationByName");
 		method.addParameter("name", buildingname);
+		String json = null;
 		
-		int response;
 		try {
-			response = client.executeMethod(method);
+			int response = client.executeMethod(method);
+			String encryptedJson = method.getResponseBodyAsString();
+			json = cryptography.decrypt(encryptedJson);
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,50 +106,21 @@ public class BuildingDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String encryptedJson = null;
-		try {
-			encryptedJson = method.getResponseBodyAsString();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String json = cryptography.decrypt(encryptedJson);
 		
 		Building[] buildings = new Gson().fromJson(json.toString(), Building[].class);
-		Building currentbuilding = buildings[0];
+		GPSLocation[] locations = new Gson().fromJson(json.toString(), GPSLocation[].class);
 		
-		int startLocationId = json.indexOf("locationId")+12;
-		int endLocationId = json.indexOf(",", startLocationId);
-		String locationId = json.substring(startLocationId,endLocationId);
+		double lat = 0;
+		double lng = 0;
 		
-		PostMethod methodLocation = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/LocationHandler/getLocation");
-		methodLocation.addParameter("locationId", locationId);
-		
-		try {
-			response = client.executeMethod(methodLocation);
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(buildings.length > 0){
+			Building currentbuilding = buildings[0];
+			GPSLocation currentlocation = locations[0];
+			currentbuilding.setLocation(currentlocation);
+			lat = currentbuilding.getLocation().getXcoordinate();
+			lng = currentbuilding.getLocation().getYcoordinate();
 		}
-		String encryptedJsonLocation = null;
-		try {
-			encryptedJsonLocation = methodLocation.getResponseBodyAsString();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String jsonLocation = cryptography.decrypt(encryptedJsonLocation);
 		
-		GPSLocation[] locations = new Gson().fromJson(jsonLocation.toString(), GPSLocation[].class);
-		GPSLocation currentlocation = locations[0];
-		
-		currentbuilding.setLocation(currentlocation);
-		 
-		double lat = currentbuilding.getLocation().getXcoordinate();
-		double lng = currentbuilding.getLocation().getYcoordinate();
 		// vraag latitude en longitude op 
 		GeoPoint gp = new GeoPoint((int)(lat*1E6),(int)(lng*1E6));
 		return gp;
