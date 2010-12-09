@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -145,5 +147,34 @@ public class AnnouncementDAO {
         IOUtils.copy(stream, output);
         return output.toString();
     }
+
+	public List<Announcement> getAnnouncements(String courseCode) {
+		HttpClient client = new HttpClient();
+        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByCourseCode");
+        
+        method.addParameter("courseCode", courseCode);
+        String json = null;
+		try {
+			int returnCode = client.executeMethod(method);
+			String encryptedJson = method.getResponseBodyAsString();
+			json = Cryptography.getInstance().decrypt(encryptedJson);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Announcement[] announcements = new Gson().fromJson(json.toString(), Announcement[].class);  
+        
+        List<Announcement> announcementsToReturn = new ArrayList<Announcement>();
+        
+        for(int i = 0; i<announcements.length; i++){
+        	announcementsToReturn.add(announcements[i]);
+        }
+        
+        return announcementsToReturn;
+        
+	}
     
 }

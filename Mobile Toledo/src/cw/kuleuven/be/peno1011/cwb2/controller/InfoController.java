@@ -41,9 +41,7 @@ public class InfoController {
 	}
 	
 	public List<Announcement> courseAnnouncements(Course course){ //1vak
-		List<Announcement> announcements = new LinkedList<Announcement>();
-		announcements.addAll(course.getAnnouncements());
-		return announcements;
+		return AnnouncementDAO.getInstance().getAnnouncements(course.getCourseCode());
 	}
 	
 	public List<Announcement> recentAnnouncements(int maxDaysAgo){ // recente
