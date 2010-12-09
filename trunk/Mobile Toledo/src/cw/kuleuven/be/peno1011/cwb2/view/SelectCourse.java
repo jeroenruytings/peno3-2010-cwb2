@@ -47,10 +47,10 @@ public class SelectCourse extends Activity{
 			            }
 			
 			            if(!nextView.equals(null)){
-			            Course course = MainController.getUser().getIsp().getCourses().get(position);
+			            Course course = MainController.getInstance().getUser().getIsp().getCourses().get(position);
 			            Intent intent = new Intent(SelectCourse.this,(Class<?>) nextView);
                         if(nextView.equals(CoursePages.class)){
-                        	intent.putExtra("course",MainController.getUser().getIsp().getCourses().get(position));
+                        	intent.putExtra("course",MainController.getInstance().getUser().getIsp().getCourses().get(position));
                         }
                         else{
                         	try{
@@ -75,7 +75,7 @@ public class SelectCourse extends Activity{
                   }
         }
         public String[] getCourseTitles(){
-                List<Course> courses = MainController.getUser().getIsp().getCourses();
+                List<Course> courses = MainController.getInstance().getUser().getIsp().getCourses();
                 String[] courseTitles = new String[courses.size()];
                 for(int i = 0;i< courses.size();i++){
                 		try{

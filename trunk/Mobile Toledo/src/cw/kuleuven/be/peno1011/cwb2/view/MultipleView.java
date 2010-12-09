@@ -29,7 +29,7 @@ public class MultipleView extends Activity{
 		try{
 			 Bundle bundle = getIntent().getExtras();
 		     final Lecture lecture = (Lecture) bundle.get("lecture");
-		     User user = MainController.getUser();
+		     User user = MainController.getInstance().getUser();
 				if(user.getRank()==1){ 
 					poseMultiple(lecture);
 				}
@@ -68,7 +68,7 @@ public class MultipleView extends Activity{
             	Toast msg = Toast.makeText(MultipleView.this, Integer.toString(whichButton) , Toast.LENGTH_LONG);
             	msg.show();
     		    MultipleChoice multiple = lecture.getMultipleChoice();
-            	multiple.addResponder(MainController.getUser());
+            	multiple.addResponder(MainController.getInstance().getUser());
             	multiple.addAnswer(whichButton);
             	if(saveMultiple()){
             		TextView feedback = (TextView) findViewById(R.id.multiplefeedback);

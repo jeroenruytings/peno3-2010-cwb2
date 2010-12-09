@@ -18,7 +18,7 @@ public class MainController {
 		MainController.user = user;
 	}
 	
-	public static User getUser(){
+	public User getUser(){
 		return user;
 	}
 }

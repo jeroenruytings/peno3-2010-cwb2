@@ -3,6 +3,7 @@ package cw.kuleuven.be.peno1011.cwb2.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class InfoController {
 	private static InfoController InfoController;
-	private User user = MainController.getUser();
+	private User user = MainController.getInstance().getUser();
 	
 	private InfoController(){
 	}
@@ -62,14 +63,28 @@ public class InfoController {
 //		}
 //		sortAnnouncements(announcements);
 //		return announcements; //postconditie: announcements zijn gesorteerd
-		Announcement a1 = new Announcement(null, null, "Test", "tesst");
-		Announcement a2 = new Announcement(null, null, "Test", "Boodschap");
-		Announcement a3 = new Announcement(null, null, "Test", "tesst");
-		Announcement a4 = new Announcement(null, null, "Test", "tesst");
-		Announcement a5 = new Announcement(null, null, "Test", "tesst");
-		List<Announcement> anns = new ArrayList<Announcement>();
-		anns.add(a1);anns.add(a2);anns.add(a3);anns.add(a4);anns.add(a5);
-        return anns;
+//		Announcement a1 = new Announcement(null, null, "Test", "tesst");
+//		Announcement a2 = new Announcement(null, null, "Test", "Boodschap");
+//		Announcement a3 = new Announcement(null, null, "Test", "tesst");
+//		Announcement a4 = new Announcement(null, null, "Test", "tesst");
+//		Announcement a5 = new Announcement(null, null, "Test", "tesst");
+//		List<Announcement> anns = new ArrayList<Announcement>();
+//		anns.add(a1);anns.add(a2);anns.add(a3);anns.add(a4);anns.add(a5);
+//        return anns;
+		
+		ISP isp = user.getIsp();
+		ArrayList<Course> courses = isp.getCourses();
+		ArrayList<Announcement> announcements = new ArrayList<Announcement>();
+		
+		Iterator<Course> it = courses.iterator();
+		
+		while(it.hasNext()){
+			String courseCode = it.next().getCourseCode();
+			announcements.addAll(AnnouncementDAO.getInstance().getAnnouncements(courseCode));
+		}
+		
+		return announcements;
+		
 	}
 //	public List<Announcement> sortAnnouncements(List<Announcement> announcements){
 //		int i=announcements.size()-1;
@@ -133,7 +148,7 @@ public class InfoController {
 
 	public void insert(String title, String message, Course course) {
 		Date date = new Date();
-		AnnouncementDAO.getInstance().add(MainController.getInstance().getUser().getUserId(), message, Cryptography.getInstance().toMysqlDate(date), title, course.getCourseCode());
+		AnnouncementDAO.getInstance().add(user.getUserId(), message, Cryptography.getInstance().toMysqlDate(date), title, course.getCourseCode());
 	}
 	
 }
