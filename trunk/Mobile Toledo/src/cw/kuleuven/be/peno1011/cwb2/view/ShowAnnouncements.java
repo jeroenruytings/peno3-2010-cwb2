@@ -20,7 +20,7 @@ import cw.kuleuven.be.peno1011.cwb2.view.widgets.ExpandableAdapter;
 
 public class ShowAnnouncements extends Activity {
     private ExpandableAdapter adapter;
-    private InfoController controller = new InfoController();
+    private InfoController controller = InfoController.getInstance();
 
     public void onCreate(Bundle savedInstanceState)
     {

@@ -1,9 +1,13 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.Cryptography;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
@@ -12,11 +16,19 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 
 public class InfoController {
+	private static InfoController InfoController;
 	private User user = MainController.getUser();
 	
-	public InfoController(){
-		
+	private InfoController(){
 	}
+	
+	public static InfoController getInstance(){
+		if (InfoController == null) {
+			InfoController = new InfoController();
+		}
+		return InfoController; 
+	}
+	
 	public List<Announcement> allAnnouncements(){ //allemaal
         ISP isp = user.getIsp();
 		ArrayList<Course> courses = isp.getCourses();
@@ -119,6 +131,11 @@ public class InfoController {
 			}
 		}
 		return displayStrings;
+	}
+
+	public void insert(String title, String message, Course course) {
+		Date date = new Date();
+		AnnouncementDAO.getInstance().add(MainController.getInstance().getUser().getUserId(), message, Cryptography.getInstance().toMysqlDate(date), title, course.getCourseCode());
 	}
 	
 }
