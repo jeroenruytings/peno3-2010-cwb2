@@ -8,7 +8,7 @@ public class Announcement {
 	private User user; //degene die de aankondiging maakte
 	private String title;
 	private String message;
-	private final Course course;
+	private Course course;
 	
 	public Announcement(User user, Course course, String title, String message) {
 		 setDate(date);
@@ -16,6 +16,10 @@ public class Announcement {
 		 setMessage(message);
 		 this.course = course;
 		 setTitle(title);
+	}
+	
+	private Announcement(){
+		
 	}
 
 	public String getTitle() {
