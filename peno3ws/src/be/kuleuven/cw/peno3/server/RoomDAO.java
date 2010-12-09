@@ -90,6 +90,14 @@ public class RoomDAO extends DAO{
 			return super.add(query);
 	}
 	
+	@POST
+	@Path ("/addRoomWithoutCoordinates")
+	@Produces ("application/json")
+	public String addRoomWithoutCoordinates(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link){
+			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link) VALUES (NULL,'" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "')";
+			return super.add(query);
+	}
+	
 	/**
 	 * Gets the room corresponding to the given user id.
 	 *
