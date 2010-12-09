@@ -43,19 +43,21 @@ public class GoogleMaps extends MapActivity{
 	    
 	    //show zoom controls on the map
 	    mapView.setBuiltInZoomControls(true);
- 
+	    // maak een nieuwe overlay
 	    mapOverlays = mapView.getOverlays();
 	    drawable = this.getResources().getDrawable(R.drawable.marker);
 	    itemizedOverlay = new MapOverlay(drawable);
+	    //vraag een nieuwe locationmanager op en vraag laatste locatie
 	    LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 	    int latitude = (int) location.getLatitude();
 	    int longitude = (int) location.getLongitude();
 	    GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
+	    //zet overlay bij laatste locatie
 	    OverlayItem overlayitem = new OverlayItem(point, "", "");
 	    itemizedOverlay.addOverlay(overlayitem);
 	    mapOverlays.add(itemizedOverlay);
-	       //draw the map
+	    //teken de kaart
         mc = mapView.getController();
         mc.animateTo(point);
         mapView.invalidate();

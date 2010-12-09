@@ -11,27 +11,30 @@ import com.google.android.maps.Projection;
 
 public class RouteOverlay extends Overlay{
 	
-	 private GeoPoint gp1;  
-	 private GeoPoint gp2;  
+	 private GeoPoint gp;  
+	 private GeoPoint gpp;  
 	 private int color;  
 	  
-	public RouteOverlay(GeoPoint gp1, GeoPoint gp2, int color) {  
-	        this.gp1 = gp1;  
-	        this.gp2 = gp2;  
+	public RouteOverlay(GeoPoint gp, GeoPoint gpp, int color) {  
+	        this.gp = gp;  
+	        this.gpp = gpp;  
 	        this.color = color;  
 	    }  
-
+	//teken de route
 	@Override
 	public void draw(Canvas canvas, MapView mapView, boolean shadow) {  
+		//vraag een projectie van de kaart op 
 	    Projection projection = mapView.getProjection();  
 	    Paint paint = new Paint();  
 	    Point point = new Point();  
-	    projection.toPixels(gp1, point);  
+	    //bepaal de eigenschappen van de tekening
+	    projection.toPixels(gp, point);  
 	    paint.setColor(color);  
 	    Point point2 = new Point();  
-	    projection.toPixels(gp2, point2);  
+	    projection.toPixels(gpp, point2);  
 	    paint.setStrokeWidth(5);  
 	    paint.setAlpha(120);  
+	    //teken een lijn
 	    canvas.drawLine(point.x, point.y, point2.x, point2.y, paint);  
 	    super.draw(canvas, mapView, shadow);  
 	}  

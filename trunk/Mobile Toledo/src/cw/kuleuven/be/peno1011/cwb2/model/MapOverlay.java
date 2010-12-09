@@ -9,24 +9,24 @@ import com.google.android.maps.OverlayItem;
 
 public class MapOverlay extends ItemizedOverlay {
 	
-	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
-	
+	private ArrayList<OverlayItem> Overlay = new ArrayList<OverlayItem>();
+	//maak een nieuwe mapoverlay
 	public MapOverlay(Drawable defaultMarker) {
 		super(boundCenterBottom(defaultMarker));
 	}
 
 	@Override
 	protected OverlayItem createItem(int i) {
-		return mOverlays.get(i);
+		return Overlay.get(i);
 	}
 
 	@Override
 	public int size() {
-		return mOverlays.size();
+		return Overlay.size();
 	}
-	
+	//voeg nieuwe overlay toe
 	public void addOverlay(OverlayItem overlay) {
-	    mOverlays.add(overlay);
+	    Overlay.add(overlay);
 	    populate();
 	}
 	
