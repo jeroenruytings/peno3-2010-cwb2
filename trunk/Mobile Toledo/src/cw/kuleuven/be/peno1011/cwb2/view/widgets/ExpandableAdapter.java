@@ -27,11 +27,8 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
 
     public void addItem(Announcement announcement) {
-//        if (!groups.contains(announcement.getCourse().getCourseName())) {
-//            groups.add(announcement.getCourse().getCourseName());
-//        }
-        if (!groups.contains("Testvak")) {
-            groups.add("Testvak");
+        if (!groups.contains(announcement.getCourse().getCourseName())) {
+            groups.add(announcement.getCourse().getCourseName());
         }
         int index = groups.indexOf("Testvak");
         if (children.size() < index + 1) {

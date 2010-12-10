@@ -62,8 +62,8 @@ public class ShowAnnouncements extends Activity {
         }
         catch(NullPointerException ne){
         	setContentView(R.layout.showannouncements);  
-            final List<Announcement> announcements = controller.recentAnnouncements(7);//TODO allannouncements
-
+            final List<Announcement> announcements = controller.recentAnnouncements(7);
+            
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             
             listView.setOnChildClickListener(new OnChildClickListener()

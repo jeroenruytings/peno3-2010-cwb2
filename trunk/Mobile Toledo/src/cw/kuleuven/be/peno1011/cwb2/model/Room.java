@@ -19,6 +19,7 @@ public class Room {
 	private boolean wireless;
 	private String link;
 	private int capacity;
+	private String name;
 	
 	public int getXcoordinate() {
 		return xcoordinate;
@@ -107,8 +108,7 @@ public class Room {
 
 
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	
