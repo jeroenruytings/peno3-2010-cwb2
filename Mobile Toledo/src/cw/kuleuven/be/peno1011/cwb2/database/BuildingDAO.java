@@ -45,8 +45,9 @@ public class BuildingDAO {
 		return deleted;
 	}
 	
-	public ArrayList<Building> listBuildings() throws HttpException, IOException{
-		ArrayList<Building> buildings = new ArrayList<Building>();		
+	public Building [] listBuildings() throws IOException {
+		
+		Building[] buildingArray = null;
 		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/listBuildings");
@@ -56,38 +57,41 @@ public class BuildingDAO {
 		String json = cryptography.decrypt(encryptedJson);
 		
 		if(json.contains("[]")) {
-			buildings = null;
+			buildingArray = null;
 		}
 		else {
-			Building[] buildingArray = new Gson().fromJson(json.toString(), Building[].class);
-			buildings = (ArrayList<Building>) Arrays.asList(buildingArray);
+			buildingArray = new Gson().fromJson(json.toString(), Building[].class);
 		}
-		return buildings;
+		return buildingArray;
 	}
 
-	
-	public ArrayList<Room> getRooms()
-	{
-		ArrayList<Room> buildings = null;
-		return buildings;
-	}
-	
-	public Boolean buildingExists(String buildingname)
+
+	public Boolean buildingExists(String buildingname) throws HttpException, IOException
 	{
 		Boolean exists = false;
+		
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuidling");
+		method.addParameter("name", buildingname);
+		
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		if(json.contains("[]")) {
+			exists = false;
+		}
+		else {
+			exists = true;
+		
+		}
 		
 		// if naam komt voor in database exists = true;
 		
 		return exists;
 	}
-	public Boolean roomExists(String roomname)
-	{
-		Boolean exists = false;
+
 		
-		// if naam komt voor in database exists = true;
-		
-		return exists;
-	}
 	public GeoPoint getBuildingCoordinates(String buildingname){
 				
 		HttpClient client = new HttpClient();
