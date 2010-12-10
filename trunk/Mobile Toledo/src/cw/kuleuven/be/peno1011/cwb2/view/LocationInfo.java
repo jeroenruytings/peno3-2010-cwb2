@@ -38,13 +38,13 @@ public class LocationInfo extends Activity {
 		     control = NavigationController.getInstance();
 		   
 				
-			 String [] list1 = control.getBuildingNames();
+			 String [] list = control.getBuildingNames();
 
-			 String [] list2 = control.getRoomNames();
+	//		 String [] list2 = control.getRoomNames();
 
-		   	   String [] list= new String[list1.length+list2.length];
-		   	   System.arraycopy(list1, 0, list, 0, list1.length);
-		   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
+	//	   	   String [] list= new String[list1.length+list2.length];
+	//	   	   System.arraycopy(list1, 0, list, 0, list1.length);
+	//	   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
 
 		     
 		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
@@ -67,8 +67,7 @@ public class LocationInfo extends Activity {
             		Toast toast = Toast.makeText(context, text, duration);
             		toast.show();
 					}
-				else{
-				if(control.buildingExists(textView.getText().toString()) == false)
+				else if(control.buildingExists(textView.getText().toString()) == false)
 					{
             		Context context = getApplicationContext();
             		CharSequence text = "Please, type in a different location";
@@ -87,7 +86,7 @@ public class LocationInfo extends Activity {
 					startActivity(intent);
 					}
 				}
-			}
+			
 		});		
 
 	 }
