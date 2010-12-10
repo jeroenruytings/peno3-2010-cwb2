@@ -131,7 +131,6 @@ public class NavigationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		existing = true;
 		return existing;
 	}
 	
