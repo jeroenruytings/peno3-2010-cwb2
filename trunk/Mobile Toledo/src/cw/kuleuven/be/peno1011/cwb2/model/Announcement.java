@@ -46,6 +46,10 @@ public class Announcement {
 		return user;
 	}
 
+	public void setCourse(Course course){
+		this.course = course;
+	}
+	
 	public Course getCourse() {
 		return course;
 	}

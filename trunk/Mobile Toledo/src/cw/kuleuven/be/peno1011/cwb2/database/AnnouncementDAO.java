@@ -87,11 +87,11 @@ public class AnnouncementDAO {
         return output.toString();
     }
 
-	public List<Announcement> getAnnouncements(String courseCode) {
+	public List<Announcement> getAnnouncements(Course course) {
 		HttpClient client = new HttpClient();
         PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByCourseCode");
         
-        method.addParameter("courseCode", courseCode);
+        method.addParameter("courseCode", course.getCourseCode());
         String json = null;
 		try {
 			int returnCode = client.executeMethod(method);
@@ -109,7 +109,9 @@ public class AnnouncementDAO {
         List<Announcement> announcementsToReturn = new ArrayList<Announcement>();
         
         for(int i = 0; i<announcements.length; i++){
-        	announcementsToReturn.add(announcements[i]);
+        	Announcement currentAnnouncement = announcements[i];
+        	currentAnnouncement.setCourse(course);
+        	announcementsToReturn.add(currentAnnouncement);
         }
         
         return announcementsToReturn;
