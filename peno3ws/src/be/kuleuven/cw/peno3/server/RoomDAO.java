@@ -58,17 +58,27 @@ public class RoomDAO extends DAO{
 	 * @return the resultstring
 	 */
 	@POST
-	@Path ("/listAnnouncements")
+	@Path ("/listRooms")
 	@Produces ("application/json")
 	public String listRooms(){
 		String query = "SELECT * FROM room";
 		return super.list(query);
 	}
 
-	/*
-	 * Method adds an announcement to the database	
-	 */
 	/**
+	 * List all roomnames.
+	 * 
+	 * @return the resultString containing all buildingnames
+	 */
+	@POST
+	@Path ("/listRoomNames")
+	@Produces ("application/json")
+	public String listRoomNames() {
+		String query = "SELECT name FROM room ORDER BY name ASC";
+		return super.list(query);
+	}
+	
+	/** 
 	 * Adds the room.
 	 *
 	 * @param roomId the room id
