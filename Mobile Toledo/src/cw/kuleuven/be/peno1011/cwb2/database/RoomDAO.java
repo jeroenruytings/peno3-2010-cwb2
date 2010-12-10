@@ -43,7 +43,7 @@ public class RoomDAO {
 			roomArray = null;
 		}
 		else {
-			 roomArray = new Gson().fromJson(json.toString(), Room[].class);
+			roomArray = new Gson().fromJson(json.toString(), Room[].class);
 		}
 		return roomArray;
 	}
