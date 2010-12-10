@@ -32,6 +32,7 @@ public class GetInfo extends Activity {
 	private NavigationController control;
 	public String location;
 	public BuildingDAO dao1;
+	public boolean isbuilding;
 	
 	
 	@Override
@@ -91,21 +92,11 @@ public class GetInfo extends Activity {
 
 	    g.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	        	
-	        //	if(position == 0){
-	        //    Toast.makeText(GetInfo.this, "Locatie", Toast.LENGTH_SHORT).show();
-	          //  Toast toast = new Toast(getApplicationContext());
-	           // toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-	           // toast.setDuration(Toast.LENGTH_LONG);
-	           // toast.setView(v.setLayoutParams(new Gallery.LayoutParams(225, 350)));
-	           // toast.show();
-
-	          //	}
-	        	if(position ==0){
-		        Toast.makeText(GetInfo.this, "On the scene", Toast.LENGTH_SHORT).show();
-  		       	}
-	        	else{
-		        Toast.makeText(GetInfo.this, "Verdieping" + (position-1), Toast.LENGTH_SHORT).show();
+	        	if(isbuilding == true){
+		        Toast.makeText(GetInfo.this, "Verdieping " + (position), Toast.LENGTH_SHORT).show();
+	        	}
+	        	else if(isbuilding == false){
+	        	Toast.makeText(GetInfo.this, "Foto " + (position + 1), Toast.LENGTH_SHORT).show();	
 	        	}
 	        
 	        }
@@ -118,11 +109,14 @@ public class GetInfo extends Activity {
 	  	    private Context mContext;
 
 	  	    private Bitmap[] mImages = control.getPictureArray(location);
+	  	    
 	  	    	//control.getPictureArray(location);  
 
 	   	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
+	  	        if(mImages[0]==null){isbuilding = true;}
+	  	        else {isbuilding = false;}
 	  	    }
 
 	  	    public int getCount() {
@@ -140,7 +134,7 @@ public class GetInfo extends Activity {
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
 
-	  	             
+	  	        if(isbuilding == true){position = position +1;}     
 	  	        i.setImageBitmap(mImages[position]);
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);

@@ -162,12 +162,25 @@ public class NavigationController {
 	
 	public Bitmap[] getPictureArray(String locationname)
 	{
-		Bitmap img = downloadFile("http://www.trouwshop.nl/images/upload/20080907_234513_bruidspaar_gira.jpg");
-		Bitmap img2 = downloadFile("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA");
-		Bitmap img3 = downloadFile("http://www.appelogen.be/wp-images/derde_prentje.jpg");
-		Bitmap img4 = downloadFile("http://www.jouwpagina.nl/fotos2/k-mmygirl/catduck.jpg");
+		String [] links = null;
+	//	if(isBuilding(locationname) == true){links = dao1.getPictureArray(locationname);}
+	//	else if(isBuilding(locationname) == false){links = dao2.getPictureArray(locationname);}
+
+		int i = 0;
+		Bitmap[] pictureArray = new Bitmap[links.length];
+			for (String link : links) {
+				Bitmap img = downloadFile(link);
+				Array.set(pictureArray,i,img);
+				
+			}
 		
-		Bitmap [] pictureArray = {img,img2,img3,img4};
+		//Bitmap img = null;
+		//Bitmap img = downloadFile("http://www.trouwshop.nl/images/upload/20080907_234513_bruidspaar_gira.jpg");
+		//Bitmap img2 = downloadFile("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA");
+		//Bitmap img3 = downloadFile("http://www.appelogen.be/wp-images/derde_prentje.jpg");
+		//Bitmap img4 = downloadFile("http://www.jouwpagina.nl/fotos2/k-mmygirl/catduck.jpg");
+		
+		//Bitmap [] pictureArray = {img,img2,img3,img4};
 			
 		return pictureArray;
 	}
