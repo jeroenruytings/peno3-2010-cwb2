@@ -13,9 +13,6 @@ public class CourseDocuments extends Activity{
 
         TextView textview =(TextView) findViewById(R.id.docsView);
         textview.setText("Geen documenten gevonden");
-        setContentView(textview);
-        
-		Bundle bundle = getIntent().getExtras();
     }
 
 }
