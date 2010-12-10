@@ -29,15 +29,15 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-//		testGetAppreciation();
+		testGetAppreciation();
 //		testAddAppreciation();
-//		testListAppreciation();
+//		testListBuildingNames();
 //		testGetDocumentByWord();
 //		testGetAnnouncementByStartDate();
 //		testAddMap();
 //		testListAnnouncements();
 //		testListUsers();
-		testGetLectureByDate();
+//		testGetLectureByDate();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -153,8 +153,8 @@ public class ClientDAOTest {
 		testGet(method);
 	}
 
-	public static void testListAppreciation() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/listAppreciations");
+	public static void testListBuildingNames() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/RoomHandler/listRoomNames");
 		testList(method);
 	}
 	
@@ -168,9 +168,8 @@ public class ClientDAOTest {
 	}
 	
 	public static void testGetAppreciation() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AppreciationHandler/getAppreciation");
-		method.addParameter("docQuestionId", "1234");
-		method.addParameter("isDocument","1");
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/CourseHandler/initializeCourses");
+		method.addParameter("userId", "s0199104");
 		testGet(method);
 	}
 	
