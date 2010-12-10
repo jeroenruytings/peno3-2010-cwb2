@@ -15,6 +15,7 @@ public class Room {
 	private int xcoordinate;
 	private int ycoordinate;
 	private String function;
+	private String name;
 	private Building building;
 	private boolean wireless;
 	private String link;
@@ -93,7 +94,7 @@ public class Room {
 
 
 
-	public Room(){
+	private Room(){
 	}
 
 
@@ -109,6 +110,12 @@ public class Room {
 
 	public String getName() {
 		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	
