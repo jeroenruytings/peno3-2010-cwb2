@@ -47,4 +47,9 @@ public class GPSLocation {
 	public double getYcoordinate() {
 		return ycoordinate;
 	}
+	
+	public String getAdress(){
+	String Adresse = getStreet() + " " + getNumber() +", " + getZipcode() + " " + getCity();
+	return Adresse;
+	}
 }
