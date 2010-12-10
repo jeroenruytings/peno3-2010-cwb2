@@ -31,14 +31,18 @@ public class InfoController {
 	}
 	
 	public List<Announcement> allAnnouncements(){ //allemaal
-        ISP isp = user.getIsp();
+		ISP isp = user.getIsp();
 		ArrayList<Course> courses = isp.getCourses();
-        List<Announcement> announcements = new LinkedList<Announcement>();
-        for (Course course : courses){
-        	announcements.addAll(course.getAnnouncements());
-        }
-        
-        return announcements;
+		ArrayList<Announcement> announcements = new ArrayList<Announcement>();
+		
+		Iterator<Course> it = courses.iterator();
+		
+		while(it.hasNext()){
+			Course course = it.next();
+			announcements.addAll(AnnouncementDAO.getInstance().getAnnouncements(course));
+		}
+		
+		return announcements;
 	}
 	
 	public List<Announcement> courseAnnouncements(Course course){ //1vak
@@ -80,7 +84,7 @@ public class InfoController {
 		
 		while(it.hasNext()){
 			Course course = it.next();
-			announcements.addAll(AnnouncementDAO.getInstance().getAnnouncements(course));
+			announcements.addAll(AnnouncementDAO.getInstance().getRecentAnnouncements(course, maxDaysAgo));
 		}
 		
 		return announcements;

@@ -29,6 +29,7 @@ public class ShowAnnouncements extends Activity {
         try{
             Bundle bundle = getIntent().getExtras();
             Course course = (Course) bundle.get("course");
+            int days = (Integer) bundle.get("period");
     
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             
@@ -61,8 +62,8 @@ public class ShowAnnouncements extends Activity {
                 
         }
         catch(NullPointerException ne){
-        	setContentView(R.layout.showannouncements);  
-            final List<Announcement> announcements = controller.recentAnnouncements(7);
+        	setContentView(R.layout.showannouncements);
+			final List<Announcement> announcements = controller.recentAnnouncements(7);
             
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             
