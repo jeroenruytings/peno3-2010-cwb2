@@ -27,16 +27,33 @@
   android:ellipsize="end"
   android:textColor="#ffffff"/> 
   
+   <TextView
+  android:id="@+id/adressetitle"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="Adres:"/> 
     <TextView
   android:id="@+id/adresse"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
   android:text="@string/location"/> 
+  
+      <TextView
+  android:id="@+id/openinghourstitle"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="Openingsuren: "/> 
     <TextView
   android:id="@+id/openinghours"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
   android:text="@string/location"/> 
+   
+       <TextView
+  android:id="@+id/telephonenrtitle"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:text="Telefoonnummer: "/>
     <TextView
   android:id="@+id/telephonenr"
   android:layout_width="wrap_content"

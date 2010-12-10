@@ -2,12 +2,15 @@ package cw.kuleuven.be.peno1011.cwb2.database;
 
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
+
+import android.location.Location;
 
 import com.google.android.maps.GeoPoint;
 import com.google.gson.Gson;
@@ -129,4 +132,33 @@ public class BuildingDAO {
 		GeoPoint gp = new GeoPoint((int)(lat*1E6),(int)(lng*1E6));
 		return gp;
 	}
+	
+	public Building getBuilding(String buildingname) 
+	{					
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingAndLocationByName");
+		method.addParameter("name", buildingname);
+		String json = null;
+		
+		try {
+			int response = client.executeMethod(method);
+			String encryptedJson = method.getResponseBodyAsString();
+			json = cryptography.decrypt(encryptedJson);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Building[] buildings = new Gson().fromJson(json.toString(), Building[].class);
+		GPSLocation[] locations = new Gson().fromJson(json.toString(),GPSLocation[].class);
+		Building building = buildings[0];
+		GPSLocation location = locations[0];
+		building.setLocation(location);
+		
+		return building;
+				
+		}
 }

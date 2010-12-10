@@ -49,7 +49,11 @@ public class GPSLocation {
 	}
 	
 	public String getAdresse(){
-	String Adresse = getStreet() + " " + getNumber() +", " + getZipcode() + " " + getCity();
+	String Adresse = "";
+	Adresse = getStreet() + " " + getNumber() +", " + getZipcode() + " " + getCity();
+	if (Adresse == ""){
+		Adresse = "adres";
+	}
 	return Adresse;
 	}
 }

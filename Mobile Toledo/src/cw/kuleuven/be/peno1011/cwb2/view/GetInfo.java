@@ -3,6 +3,9 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
+import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +31,8 @@ public class GetInfo extends Activity {
 	 
 	private NavigationController control;
 	public String location;
+	public BuildingDAO dao1;
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,12 +47,19 @@ public class GetInfo extends Activity {
 		location = b.getString("autocomplete_building");
 		TextView locationname = (TextView) findViewById(R.id.locationname);
 	 	locationname.setText(location);
+	 	
+	 	dao1 = BuildingDAO.getInstance();
+	 	Building building = dao1.getBuilding(location);
+	 	
 		TextView adresse = (TextView) findViewById(R.id.adresse);
-	 	adresse.setText(control.getAdresse(location));
+		String adresseString = "Adres";
+		GPSLocation buildinglocation = building.getLocation();
+		if (buildinglocation != null){adresseString = buildinglocation.getAdresse();}
+	 	adresse.setText(adresseString);
 		TextView telephonenr = (TextView) findViewById(R.id.telephonenr);
-	 	telephonenr.setText(control.getTelephonenr(location));
+	 	telephonenr.setText(building.getPhonenumber());
 	 	TextView openinghours = (TextView)findViewById(R.id.openinghours);
-	 	openinghours.setText(control.getOpeninghours(location));
+	 	openinghours.setText(building.getOpeninghours());
 		
 	 	
 	 	ImageButton navigatebutton = (ImageButton) findViewById(R.id.locationinfonavigate);
