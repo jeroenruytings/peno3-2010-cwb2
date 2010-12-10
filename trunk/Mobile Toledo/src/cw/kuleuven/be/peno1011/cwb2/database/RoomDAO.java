@@ -48,6 +48,31 @@ public class RoomDAO {
 		return roomArray;
 	}
 	
+	public String[] listRoomNames() throws HttpException, IOException {
+		Room[] roomNames = null;
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/RoomHandler/listRoomNames");
+		
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		roomNames = new Gson().fromJson(json.toString(), Room[].class);
+		String[] names = new String[roomNames.length];
+		if(roomNames.length!=0) {
+			int i=0;
+			while(i<roomNames.length) {
+				names[i]=roomNames[i].getName();
+				i++;
+			}
+		}
+		else {
+			names = null;
+		}
+		
+		return names;
+	}
+	
 	public Boolean roomExists(String roomname) throws IOException
 	{
 		Boolean exists = false;
