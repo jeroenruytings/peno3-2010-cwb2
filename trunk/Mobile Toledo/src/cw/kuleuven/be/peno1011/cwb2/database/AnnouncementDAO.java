@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -116,6 +117,44 @@ public class AnnouncementDAO {
         
         return announcementsToReturn;
         
+	}
+
+
+
+	public List<Announcement> getRecentAnnouncements(Course course, int numberofdays){
+			HttpClient client = new HttpClient();
+	        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByCourseCode");
+	        
+	        Date date = new Date();
+	        date.setDate(date.getDate()-numberofdays);
+	        
+	        method.addParameter("courseCode", course.getCourseCode());
+	        method.addParameter("date",cryptography.toMysqlDate(date));
+	        
+	        String json = null;
+			try {
+				int returnCode = client.executeMethod(method);
+				String encryptedJson = method.getResponseBodyAsString();
+				json = Cryptography.getInstance().decrypt(encryptedJson);
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        Announcement[] announcements = new Gson().fromJson(json.toString(), Announcement[].class);  
+	        
+	        List<Announcement> announcementsToReturn = new ArrayList<Announcement>();
+	        
+	        for(int i = 0; i<announcements.length; i++){
+	        	Announcement currentAnnouncement = announcements[i];
+	        	currentAnnouncement.setCourse(course);
+	        	announcementsToReturn.add(currentAnnouncement);
+	        }
+	        
+	        return announcementsToReturn;
+	        
 	}
     
 }

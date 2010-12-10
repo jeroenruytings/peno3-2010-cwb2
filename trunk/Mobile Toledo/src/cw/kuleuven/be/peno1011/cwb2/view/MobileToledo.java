@@ -85,22 +85,22 @@ public class MobileToledo extends Activity {
 		});
 	}
        
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        menu.add(0, INSERT_ID, 0, R.string.menu_newuser);
-        return true;
-    }
-	
-	@Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-            case INSERT_ID:
-                createUser();
-                return true;
-        }
-        return super.onMenuItemSelected(featureId, item);
-    }
+//	@Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        menu.add(0, INSERT_ID, 0, R.string.menu_newuser);
+//        return true;
+//    }
+//	
+//	@Override
+//    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+//        switch(item.getItemId()) {
+//            case INSERT_ID:
+//                createUser();
+//                return true;
+//        }
+//        return super.onMenuItemSelected(featureId, item);
+//    }
 	
 	private void createUser() {
         Intent i = new Intent(this, NewUser.class);
