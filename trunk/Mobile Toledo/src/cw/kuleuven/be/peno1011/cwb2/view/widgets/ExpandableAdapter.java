@@ -1,6 +1,7 @@
 package cw.kuleuven.be.peno1011.cwb2.view.widgets;
 
 import java.util.ArrayList;
+import java.util.*;
 
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
@@ -37,18 +38,18 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         children.get(index).add(announcement);
     }
 
-    @Override
+//    @Override
     public Object getChild(int groupPosition, int childPosition) {
         return children.get(groupPosition).get(childPosition);
     }
 
-    @Override
+    //@Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
    
     // Return a child view. You can load your custom layout here.
-    @Override
+   // @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
             View convertView, ViewGroup parent) {
         Announcement announcement = (Announcement) getChild(groupPosition, childPosition);
@@ -61,31 +62,31 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         tv.setText("   " + announcement.getTitle());
         return convertView;
     }
-    @Override
+    //@Override
     public boolean areAllItemsEnabled()
     {
         return true;
     }
-    @Override
+    //@Override
     public int getGroupCount() {
         return groups.size();
     }
-    @Override
+  //  @Override
     public int getChildrenCount(int groupPosition) {
         return children.get(groupPosition).size();
     }
 
-    @Override
+//    @Override
     public Object getGroup(int groupPosition) {
         return groups.get(groupPosition);
     }
 
-    @Override
+    //@Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
-    @Override
+    //@Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
             ViewGroup parent) {
         String group = (String) getGroup(groupPosition);
@@ -99,12 +100,12 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    @Override
+  //  @Override
     public boolean isChildSelectable(int arg0, int arg1) {
         return true;
     }
     
-    @Override
+    //@Override
     public boolean hasStableIds() {
         return true;
     }
