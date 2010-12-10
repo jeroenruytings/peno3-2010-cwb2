@@ -67,6 +67,15 @@ public class AnnouncementDAO extends DAO{
 		return super.get(query);
 	}
 	
+	@POST
+	@Path ("/getAnnouncementByStartDateAndCourseCode")
+	@Produces ("application/json")
+	public String getAnnouncementByStartDateAndCourse(@FormParam("courseCode") String courseCode, @FormParam("date") String date){
+		String query = "SELECT * FROM announcement";
+		if(date!=null)query+= " WHERE courseCode like '" + courseCode + "AND date>= '" + date + "' ORDER BY date DESC";
+		return super.get(query);
+	}
+	
 	/**
 	 * Gets the announcement corresponding to the given start date. Results are ordered by descending date.
 	 *
