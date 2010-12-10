@@ -29,6 +29,9 @@ public class Building
 	}
 
 	public String getPhonenumber() {
+		if(phonenumber == null){
+			phonenumber = "telefoonnummer";
+		}
 		return phonenumber;
 	}
 
@@ -46,11 +49,15 @@ public class Building
 	}
 
 	public String getOpeninghours() {
+		
+		if (openinghours == null){
+			openinghours = "openingsuren";
+		}
 		return openinghours;
 	}
 
 	public void setOpeninghours(String openinghours) {
-		this.openinghours = openinghours;
+			this.openinghours = openinghours;
 	}
 
 	public GPSLocation getLocation() {

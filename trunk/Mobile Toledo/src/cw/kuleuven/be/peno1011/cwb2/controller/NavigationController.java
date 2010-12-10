@@ -183,24 +183,6 @@ public class NavigationController {
     	locationManager.removeUpdates(listener);
     }
 
-	public String getOpeninghours(String location) {
-		// geef de openingsuren
-		String openinghours = "openingsuren";
-		return openinghours;
-	}
-
-	public String getAdresse(String location) {
-		// geef het adres
-		String adresse = "adres";
-		return adresse;
-	}
-
-	public String getTelephonenr(String location) {
-		// geef het telefoonnr
-		String telephonenr = "telefoonnr";
-		return telephonenr;
-	}
-
 
 	public static GeoPoint getCoordinates(String name) throws IOException {
 		String nameurl;
