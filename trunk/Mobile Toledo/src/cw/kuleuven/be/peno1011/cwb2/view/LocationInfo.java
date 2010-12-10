@@ -1,6 +1,10 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 
+import java.io.IOException;
+
+import org.apache.commons.httpclient.HttpException;
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
@@ -33,8 +37,10 @@ public class LocationInfo extends Activity {
 
 		     control = NavigationController.getInstance();
 		   
-		     String [] list1 = control.getBuildingNames();
-		   	 String [] list2 = control.getRoomNames();
+				
+			 String [] list1 = control.getBuildingNames();
+
+			 String [] list2 = control.getRoomNames();
 
 		   	   String [] list= new String[list1.length+list2.length];
 		   	   System.arraycopy(list1, 0, list, 0, list1.length);
