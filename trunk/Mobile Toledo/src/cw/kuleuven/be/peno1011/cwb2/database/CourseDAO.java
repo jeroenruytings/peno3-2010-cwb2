@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
+import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class CourseDAO {
     
@@ -35,7 +36,7 @@ public class CourseDAO {
 		ArrayList<Course> courses = new ArrayList<Course>();		
 		
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/IspHandler/getCoursesByUserId");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/initializeCourses");
 		method.addParameter("userId", userId);
 		
 		int response = client.executeMethod(method);
@@ -47,30 +48,13 @@ public class CourseDAO {
 		}
 		else {
 			Course[] courseArray = new Gson().fromJson(json.toString(), Course[].class);
-			
-			int endId = 0;
-			int startId = 0;
-			int counter = 0;
-			String relationalName = "courseCode";
-			
-			while(counter < courseArray.length){
-				startId = json.indexOf(relationalName,endId)+ relationalName.length() + 3;
-				endId = json.indexOf("}", startId)-1;
-				String courseCode = json.substring(startId,endId);
-						
-				PostMethod methodRelational = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/CourseHandler/getCourseByCourseCode");
-				methodRelational.addParameter(relationalName,courseCode);
-				int returnCode = client.executeMethod(methodRelational);
-				String jsonRelational = cryptography.decrypt(methodRelational.getResponseBodyAsString());
-				Course[] relationalCourse = new Gson().fromJson(jsonRelational.toString(), Course[].class);
-				if(jsonRelational.contains("[]")) {
-					relationalCourse[0] = null;
+			User[] profArray = new Gson().fromJson(json.toString(), User[].class);
+			int i = 0;
+			while(i < courseArray.length){
+					courseArray[i].setProf(profArray[i]);
+					courses.add(courseArray[i]);
+					i++;
 				}
-				else {
-					courses.add(relationalCourse[0]);
-					counter++;
-				}
-			}			
 		}
 		return courses;
 	}
