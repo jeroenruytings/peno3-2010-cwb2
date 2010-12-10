@@ -30,7 +30,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         if (!groups.contains(announcement.getCourse().getCourseName())) {
             groups.add(announcement.getCourse().getCourseName());
         }
-        int index = groups.indexOf("Testvak");
+        int index = groups.indexOf(announcement.getCourse().getCourseName());
         if (children.size() < index + 1) {
             children.add(new ArrayList<Announcement>());
         }

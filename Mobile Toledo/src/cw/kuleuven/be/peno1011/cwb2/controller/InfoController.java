@@ -42,7 +42,7 @@ public class InfoController {
 	}
 	
 	public List<Announcement> courseAnnouncements(Course course){ //1vak
-		return AnnouncementDAO.getInstance().getAnnouncements(course.getCourseCode());
+		return AnnouncementDAO.getInstance().getAnnouncements(course);
 	}
 	
 	public List<Announcement> recentAnnouncements(int maxDaysAgo){ // recente
@@ -70,7 +70,7 @@ public class InfoController {
 //		Announcement a5 = new Announcement(null, null, "Test", "tesst");
 //		List<Announcement> anns = new ArrayList<Announcement>();
 //		anns.add(a1);anns.add(a2);anns.add(a3);anns.add(a4);anns.add(a5);
-//        return anns;
+//        return anns
 		
 		ISP isp = user.getIsp();
 		ArrayList<Course> courses = isp.getCourses();
@@ -79,8 +79,8 @@ public class InfoController {
 		Iterator<Course> it = courses.iterator();
 		
 		while(it.hasNext()){
-			String courseCode = it.next().getCourseCode();
-			announcements.addAll(AnnouncementDAO.getInstance().getAnnouncements(courseCode));
+			Course course = it.next();
+			announcements.addAll(AnnouncementDAO.getInstance().getAnnouncements(course));
 		}
 		
 		return announcements;
