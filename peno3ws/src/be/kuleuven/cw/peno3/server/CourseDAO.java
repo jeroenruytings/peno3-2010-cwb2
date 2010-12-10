@@ -145,16 +145,16 @@ public class CourseDAO extends DAO{
 	}
 	
 	/**
+	 * Initialize all the courses of a user.
 	 * 
 	 * @param courseCode
-	 * @return
+	 * @return all the courses corresponding to the given userId. The course contains also the professors userId, birthdate, firstName and lastName
 	 */
 	@POST
-	@Path("/initializeCourse")
+	@Path("/initializeCourses")
 	@Produces ("application/json")
-	public String initializeCourse(@FormParam("courseCode") String courseCode) {
-		String query = "SELECT * FROM course, course_user, user WHERE course.courseCode like '"+ courseCode + "' AND course_user.courseCode = course.courseCode AND user.userId = course_user.userId";
+	public String initializeCourses(@FormParam("userId") String userId) {
+		String query = "SELECT course.courseCode, course.academicYear, course.course, user.userId, user.firstName, user.lastName, user.birthDate, user.rank  FROM course_isp,course, course_user, user WHERE course_isp.userId like '" + userId + "' AND course_isp.courseCode = course.courseCode AND course_user.userId = user.userId";
 		return super.get(query);
 	}
-	
 }
