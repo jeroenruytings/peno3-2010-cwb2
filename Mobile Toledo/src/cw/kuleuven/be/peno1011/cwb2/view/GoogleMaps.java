@@ -1,9 +1,12 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
+import java.security.Provider;
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
@@ -18,14 +21,16 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import cw.kuleuven.be.peno1011.cwb2.model.MapOverlay;
 
-public class GoogleMaps extends MapActivity{
+public class GoogleMaps extends MapActivity implements LocationListener{
 	private MapView mapView;
 	private MapController mc;
 	List<Overlay> mapOverlays;
 	Drawable drawable;
 	MapOverlay itemizedOverlay;
 	private NavigationController navigationController;
-	
+	Location location;
+	String provider;
+	LocationManager locationmanager;
 	
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -48,21 +53,58 @@ public class GoogleMaps extends MapActivity{
 	    drawable = this.getResources().getDrawable(R.drawable.marker);
 	    itemizedOverlay = new MapOverlay(drawable);
 	    //vraag een nieuwe locationmanager op en vraag laatste locatie
-	    LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-	    int latitude = (int) location.getLatitude();
-	    int longitude = (int) location.getLongitude();
-	    GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
-	    //zet overlay bij laatste locatie
-	    OverlayItem overlayitem = new OverlayItem(point, "", "");
-	    itemizedOverlay.addOverlay(overlayitem);
-	    mapOverlays.add(itemizedOverlay);
-	    //teken de kaart
-        mc = mapView.getController();
-        mc.animateTo(point);
-        mapView.invalidate();
+	    locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	    locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+	    location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		int latitude = (int) location.getLatitude();
+		int longitude = (int) location.getLongitude();
+		GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
+		 //zet overlay bij laatste locatie
+		OverlayItem overlayitem = new OverlayItem(point, "", "");
+		itemizedOverlay.addOverlay(overlayitem);
+		mapOverlays.add(itemizedOverlay);
+		//teken de kaart
+	    mc = mapView.getController();
+	    mc.animateTo(point);
+	    mapView.invalidate();
+	    
+	   
 
         
+	}
+
+	@Override
+	public void onLocationChanged(Location arg0) {
+		
+		 int latitude = (int) arg0.getLatitude();
+		    int longitude = (int) arg0.getLongitude();
+		    GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
+		    //zet overlay bij laatste locatie
+		    OverlayItem overlayitem = new OverlayItem(point, "", "");
+		    itemizedOverlay.addOverlay(overlayitem);
+		    mapOverlays.add(itemizedOverlay);
+		    //teken de kaart
+	        mc = mapView.getController();
+	        mc.animateTo(point);
+	        mapView.invalidate();
+	}
+
+	@Override
+	public void onProviderDisabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
