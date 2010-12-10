@@ -94,7 +94,31 @@ public class BuildingDAO {
 		return exists;
 	}
 
+	public String[] listBuildingNames() throws HttpException, IOException {
+		Building[] buildingNames = null;
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/listBuildingNames");
 		
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		buildingNames = new Gson().fromJson(json.toString(), Building[].class);
+		String[] names = new String[buildingNames.length];
+		if(buildingNames.length!=0) {
+			int i=0;
+			while(i<buildingNames.length) {
+				names[i]=buildingNames[i].getName();
+				i++;
+			}
+		}
+		else {
+			names = null;
+		}
+		
+		return names;
+	}
+	
 	public GeoPoint getBuildingCoordinates(String buildingname){
 				
 		HttpClient client = new HttpClient();
