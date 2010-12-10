@@ -85,16 +85,16 @@ public class RoomDAO extends DAO{
 	@POST
 	@Path ("/addRoom")
 	@Produces ("application/json")
-	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
-			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate) VALUES ('" + roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "')";
+	public String addRoom(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link, @FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate,@FormParam("name") String name){
+			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,xcoordinate,ycoordinate,name) VALUES ('" + roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + xcoordinate + "','" + ycoordinate + "','" + name + "')";
 			return super.add(query);
 	}
 	
 	@POST
 	@Path ("/addRoomWithoutCoordinates")
 	@Produces ("application/json")
-	public String addRoomWithoutCoordinates(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link){
-			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link) VALUES ('" + roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "')";
+	public String addRoomWithoutCoordinates(@FormParam("roomId") String roomId, @FormParam("locationId") String locationId, @FormParam("function") String function,@FormParam("capacity") String capacity, @FormParam("wireless") String wireless, @FormParam("link") String link,@FormParam("name") String name){
+			String query = "INSERT INTO room (roomId,locationId,function,capacity,wireless,link,name) VALUES ('" + roomId + "','" + locationId + "','" + function + "','" + capacity + "','" + wireless + "','" + link + "','" + name + "')";
 			return super.add(query);
 	}
 	
