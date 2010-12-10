@@ -19,12 +19,21 @@ public class CourseInfo extends Activity{
 		     Bundle bundle = getIntent().getExtras();
 			 Course course = (Course) bundle.get("course");
 			 
+			 Toast.makeText(getApplicationContext(), course.getAcademicYear(),
+	                    Toast.LENGTH_LONG).show();
+			 
 			 String prof= "Geen prof gespecifieerd";
 			 String code = "onbekend";
 			 String year = "onbekend";
 			 try{
 				 prof= course.getProf().getFirstName() + " " + course.getProf().getLastName();
 				 code = course.getCourseCode();
+			 }
+			 catch(NullPointerException ne){
+		    	 Toast.makeText(getApplicationContext(), "Waarschuwing: Een aantal vakgegevens ontbreken.",
+				          Toast.LENGTH_LONG).show();
+		     }
+			 try{
 				 year = course.getAcademicYear();
 			 }
 			 catch(NullPointerException ne){
