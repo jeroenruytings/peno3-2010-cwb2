@@ -24,6 +24,7 @@ public class InteractionMenu extends Activity{
 	    ImageButton makeAnnouncementButton = (ImageButton) findViewById(R.id.makeannouncementbutton);
 	    ImageButton announcementsButton = (ImageButton) findViewById(R.id.announcementsbutton);
 	    ImageButton questionButton = (ImageButton) findViewById(R.id.questionbutton);
+	    ImageButton	showquestionButton = (ImageButton) findViewById(R.id.showquestionbutton);
 	    ImageButton multipleButton = (ImageButton) findViewById(R.id.multiplebutton);
 	    ImageButton statsButton = (ImageButton) findViewById(R.id.statsbutton);
 	
@@ -39,6 +40,8 @@ public class InteractionMenu extends Activity{
 	    	text2.setText("Meerkeuze");
 	    	TextView text3 = (TextView) findViewById(R.id.stats);
 	    	text3.setVisibility(View.VISIBLE);
+	    	TextView text4 = (TextView) findViewById(R.id.showquestion);
+	    	text4.setVisibility(View.VISIBLE);
 	    }
 
 
@@ -83,6 +86,15 @@ public class InteractionMenu extends Activity{
 			public void onClick(View view) {
 				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
                 intent.putExtra("nextview",ShowStatistics.class); 
+				startActivity(intent);
+			}
+	    });
+	    showquestionButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",ShowQuestions.class); 
 				startActivity(intent);
 			}
 	    });

@@ -43,12 +43,12 @@
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:layout_marginRight="2dip"/>
-<ImageButton android:id="@+id/makeannouncementbutton"
-	 	android:src="@drawable/makeannouncementbutton"
-	  	android:layout_width="wrap_content"
-	  	android:layout_height="wrap_content"
-	  	android:visibility="gone"
-	  	android:layout_marginLeft="2dip"/>
+<ImageButton android:id="@+id/showquestionbutton"
+	    android:src="@drawable/showquestionbutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:visibility="gone"/>
+
   </TableRow>
  <TableRow>
  <TextView android:id="@+id/announcements" 
@@ -57,30 +57,44 @@
 		android:text="Aankondigingen" 
 		android:layout_gravity="center"
 		style="@style/MenuText"/>
-<TextView android:id="@+id/makeannouncement" 
+<TextView android:id="@+id/showquestion" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
-		android:text="Aankondigen" 
+		android:text="Vragen tonen" 
 		android:layout_gravity="center"
 		android:visibility="gone"
 		style="@style/MenuText"/>
   </TableRow>
     <TableRow android:layout_marginTop="20dip">
+<ImageButton android:id="@+id/makeannouncementbutton"
+	 	android:src="@drawable/makeannouncementbutton"
+	  	android:layout_width="wrap_content"
+	  	android:layout_height="wrap_content"
+	  	android:visibility="gone"
+	  	android:layout_marginLeft="2dip"/>
 <ImageButton android:id="@+id/statsbutton"
 	    android:src="@drawable/resultsbutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:visibility="gone"/>
+
   </TableRow>
  <TableRow>
-<TextView android:id="@+id/stats" 
+ <TextView android:id="@+id/makeannouncement" 
+	 	android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:text="Aankondiging"
+		android:layout_gravity="center"
+		android:visibility="gone"
+		style="@style/MenuText"/>
+ <TextView android:id="@+id/stats" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="@string/stats" 
 		android:layout_gravity="center"
 		style="@style/MenuText"
 		android:visibility="gone"/>
-   
+
   </TableRow>
 </TableLayout>  	
 </LinearLayout>

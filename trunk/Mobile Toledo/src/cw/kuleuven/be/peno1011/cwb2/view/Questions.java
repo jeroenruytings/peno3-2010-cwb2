@@ -54,6 +54,8 @@ public class Questions extends Activity{
 //               	dao.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
 	       
 //	        dao.insert(mMessage.getText().toString(),lecture));
+	       
+	       finish();
 	       }
 
 	    });
