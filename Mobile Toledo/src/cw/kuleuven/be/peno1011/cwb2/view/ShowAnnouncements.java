@@ -80,7 +80,7 @@ public class ShowAnnouncements extends Activity {
                     new ArrayList<ArrayList<Announcement>>());
             listView.setAdapter(adapter);
             int i = 0;
-            while (i != announcements.size()-1)
+            while (i < announcements.size())
             {
                 adapter.addItem(announcements.get(i));
                 i++;
