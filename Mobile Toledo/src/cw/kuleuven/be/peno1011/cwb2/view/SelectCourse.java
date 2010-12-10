@@ -43,7 +43,7 @@ public class SelectCourse extends Activity{
 			            Object nextView = null;
 			            if(!bundle.equals(null))
 			            {
-			                    nextView = bundle.get("nextview");
+			            	nextView = bundle.get("nextview");
 			            }
 			
 			            if(!nextView.equals(null)){
@@ -89,21 +89,21 @@ public class SelectCourse extends Activity{
                 return courseTitles;
         }
         private Lecture findLecture(Course course){
-        //We kunnen deze methode ook aan de server meegeven.
-		//dan sparen we tijd uit.
-		
-		Date currentDate = new Date();
-        List<Lecture> lectures = course.getLectures();
-        Lecture lecture = null;
-        //TODO/indien meerdere lectures(zoals ANA A-groep en B-groep tegelijk -> keuze geven
-        for(int i=0;i<lectures.size();i++){
-                boolean isInBetween = currentDate.compareTo(lectures.get(i).getStartDate())>0 && currentDate.compareTo(lectures.get(i).getStopDate())<0;
-                if(isInBetween){
-                        lecture = lectures.get(i);
-                }
-        }
-        return lecture;
-        }
+	        //We kunnen deze methode ook aan de server meegeven.
+			//dan sparen we tijd uit.
+			
+			Date currentDate = new Date();
+	        List<Lecture> lectures = course.getLectures();
+	        Lecture lecture = null;
+	        //TODO/indien meerdere lectures(zoals ANA A-groep en B-groep tegelijk -> keuze geven
+	        for(int i=0;i<lectures.size();i++){
+	                boolean isInBetween = currentDate.compareTo(lectures.get(i).getStartDate())>0 && currentDate.compareTo(lectures.get(i).getStopDate())<0;
+	                if(isInBetween){
+	                        lecture = lectures.get(i);
+	                }
+	        }
+	        return lecture;
+	        }
 
        
 }

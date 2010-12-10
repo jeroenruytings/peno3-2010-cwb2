@@ -3,15 +3,20 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+  android:layout_height="fill_parent"
+  style="@style/GenLayout">
   	  <LinearLayout
 	  	android:orientation = "vertical"
 	  	android:layout_width="fill_parent"
-	  	android:layout_height="wrap_content">
+	  	android:layout_height="wrap_content"
+	  	android:layout_marginTop="10dip"
+  		android:layout_marginLeft="5dip"
+  		android:layout_marginRight="5dip">
 	  		<TextView android:id="@+id/multi" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
-			android:text="@string/question" />
+			android:text="@string/question" 
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mmulti"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -19,7 +24,8 @@
 			<TextView android:id="@+id/answ1" 
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
-			android:text="Antwoord 1:" />
+			android:text="Antwoord 1:" 
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mansw1"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -28,7 +34,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:text="Antwoord 2:" 
-			android:visibility="gone"/>
+			android:visibility="gone"
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mansw2"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -38,7 +45,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:text="Antwoord 3:" 
-			android:visibility="gone"/>
+			android:visibility="gone"
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mansw3"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -48,7 +56,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:text="Antwoord 4:"
-			android:visibility="gone" />
+			android:visibility="gone" 
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mansw4"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -58,7 +67,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" 
 			android:text="Antwoord 5:" 
-			android:visibility="gone"/>
+			android:visibility="gone"
+			style="@style/FontStyle1"/>
 			<EditText android:id="@+id/mansw5"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -67,16 +77,17 @@
 		</LinearLayout>
 		<FrameLayout
   		android:layout_width="match_parent"
-  		android:layout_height="match_parent">
+  		android:layout_height="match_parent"
+  		android:layout_marginTop="10dip">
 		  	<Button android:id="@+id/reset1"
 		 	android:text="@string/reset"
 		  	android:layout_height="wrap_content"
 		  	android:layout_width="wrap_content"
-		  	android:layout_gravity="left|center_vertical"/>
+		  	android:layout_gravity="left"/>
 			<Button android:id="@+id/submit1"
 		 	android:text="@string/submit"
 		  	android:layout_height="wrap_content"
 		  	android:layout_width="wrap_content"
-		  	android:layout_gravity="right|center_vertical"/>
+		  	android:layout_gravity="right"/>
 		</FrameLayout>
 </LinearLayout>
