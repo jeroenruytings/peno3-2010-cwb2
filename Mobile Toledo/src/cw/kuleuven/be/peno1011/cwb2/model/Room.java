@@ -15,7 +15,6 @@ public class Room {
 	private int xcoordinate;
 	private int ycoordinate;
 	private String function;
-	private String name;
 	private Building building;
 	private boolean wireless;
 	private String link;
