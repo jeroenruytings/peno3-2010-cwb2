@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -25,6 +26,7 @@ import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
+import cw.kuleuven.be.peno1011.cwb2.view.LocationInfo;
 import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -67,8 +69,9 @@ public class NavigationController {
 	
 	public String[] getBuildingNames()
 	{
-		ArrayList<Building> buildings = null;
+		Building [] buildings = null;
 		dao1 = BuildingDAO.getInstance();
+	
 		try {
 			buildings = dao1.listBuildings();
 		} catch (HttpException e) {
@@ -78,26 +81,24 @@ public class NavigationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String [] buildingnames = new String [buildings.lastIndexOf(buildings)+1];
-		Iterator<Building> it = buildings.iterator(); 
-		{
-			int i = 0;
-			while (it.hasNext()){
-					Array.set(buildingnames,i,it.next().getName());
-					i++;
-					}
+		
+		String [] buildingnames = new String [buildings.length];
+		int i = 0;
+			for (Building building: buildings) {
+				Array.set(buildingnames,i,building.getName());
+				i++;
 			}
-	
-
 		
 		return buildingnames;
-	} 
+	}
+	
 	public String[] getRoomNames()
 	{
-		ArrayList<Room> rooms = null;
+		Room [] rooms = null;
 		dao2 = RoomDAO.getInstance();
+	
 		try {
-				rooms = dao2.listRooms();
+			rooms = dao2.listRooms();
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,25 +106,31 @@ public class NavigationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String [] roomnames = new String [rooms.lastIndexOf(rooms)+1];
-		Iterator<Room> it = rooms.iterator(); 
-		{
-			int i = 0;
-			while (it.hasNext()){
-					Array.set(roomnames,i,it.next().getName());
-					i++;
+		
+		String [] roomnames = new String [rooms.length];
+		int i = 0;
+			for (Room room: rooms) {
+				Array.set(roomnames,i,room.getName());
+				i++;
 			}
-		}
+			
 		return roomnames;
-			}
+	}
 	
 	
-	public boolean buildingExists(String buildingname)
+	public boolean buildingExists(String buildingname) 
 	{
 		Boolean existing = false;
-		dao1
-		= BuildingDAO.getInstance();
-		existing = dao1.buildingExists(buildingname);
+		dao1 = BuildingDAO.getInstance();
+		try {
+			existing = dao1.buildingExists(buildingname);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		existing = true;
 		return existing;
 	}
@@ -165,12 +172,7 @@ public class NavigationController {
 			
 		return pictureArray;
 	}
-	
-	public Uri getGoogleMap(String location)
-	{
-		Uri uri = null;
-		return uri;
-	}
+
 	
 	public void startUpdating(){
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1500,15, listener);
