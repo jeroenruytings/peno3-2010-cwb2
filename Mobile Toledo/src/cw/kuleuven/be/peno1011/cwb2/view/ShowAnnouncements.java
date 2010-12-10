@@ -29,8 +29,8 @@ public class ShowAnnouncements extends Activity {
         try{
             Bundle bundle = getIntent().getExtras();
             Course course = (Course) bundle.get("course");
-            int days = (Integer) bundle.get("period");
     
+        	setContentView(R.layout.showannouncements);
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             
             adapter = new ExpandableAdapter(this, new ArrayList<String>(),
@@ -62,8 +62,11 @@ public class ShowAnnouncements extends Activity {
                 
         }
         catch(NullPointerException ne){
+            Bundle bundle = getIntent().getExtras();
+        	int days = (Integer) bundle.get("period");
+        	
         	setContentView(R.layout.showannouncements);
-			final List<Announcement> announcements = controller.recentAnnouncements(7);
+			final List<Announcement> announcements = controller.recentAnnouncements(days);
             
             ExpandableListView listView = (ExpandableListView) findViewById(R.id.list);
             

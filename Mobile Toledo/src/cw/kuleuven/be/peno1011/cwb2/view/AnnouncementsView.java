@@ -35,7 +35,7 @@ public class AnnouncementsView extends TabActivity{
 	    tabHost.addTab(spec);
 	
 	    Intent intent2 = new Intent().setClass(this, ShowAnnouncements.class);
-	    intent2.putExtra("span", 30);
+	    intent2.putExtra("period", 30);
 	    spec = tabHost.newTabSpec("maand").setIndicator("Voorbije maand")
 	                  .setContent(intent2);
 	    tabHost.addTab(spec);
