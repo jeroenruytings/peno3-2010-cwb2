@@ -29,8 +29,8 @@ public class RoomDAO {
 		return roomDAO;
 	}
 	
-	public ArrayList<Room> listRooms() throws HttpException, IOException{
-		ArrayList<Room> rooms = new ArrayList<Room>();		
+	public Room [] listRooms() throws HttpException, IOException{
+		Room [] roomArray = null;
 		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/RoomHandler/listRooms");
@@ -40,13 +40,36 @@ public class RoomDAO {
 		String json = cryptography.decrypt(encryptedJson);
 		
 		if(json.contains("[]")) {
-			rooms = null;
+			roomArray = null;
 		}
 		else {
-			Room[] roomArray = new Gson().fromJson(json.toString(), Room[].class);
-			rooms = (ArrayList<Room>) Arrays.asList(roomArray);
+			 roomArray = new Gson().fromJson(json.toString(), Room[].class);
 		}
-		return rooms;
+		return roomArray;
+	}
+	
+	public Boolean roomExists(String roomname) throws IOException
+	{
+		Boolean exists = false;
+		
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/RoomHandler/getRoom");
+		method.addParameter("name", roomname);
+		
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		if(json.contains("[]")) {
+			exists = false;
+		}
+		else {
+			exists = true;
+		
+		}
+// if naam komt voor in database exists = true;
+		
+		return exists;
 	}
 
 }
