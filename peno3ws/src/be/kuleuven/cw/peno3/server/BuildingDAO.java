@@ -95,9 +95,19 @@ public class BuildingDAO extends DAO{
 		return super.list(query);
 	}
 	
-	/*
-	 * Method adds an announcement to the database	
+	/**
+	 * List all buildingnames.
+	 * 
+	 * @return the resultString containing all buildingnames
 	 */
+	@POST
+	@Path ("/listBuildingNames")
+	@Produces ("application/json")
+	public String listBuildingNames() {
+		String query = "SELECT name FROM building ORDER BY name ASC";
+		return super.list(query);
+	}
+	
 	/**
 	 * Adds the building.
 	 *
