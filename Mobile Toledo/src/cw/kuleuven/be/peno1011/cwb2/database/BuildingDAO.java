@@ -71,7 +71,7 @@ public class BuildingDAO {
 		Boolean exists = false;
 		
 		HttpClient client = new HttpClient();
-		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuidling");
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuilding");
 		method.addParameter("name", buildingname);
 		
 		int response = client.executeMethod(method);
