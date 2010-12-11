@@ -1,5 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,12 @@ public class MakeAnnouncement extends Activity{
 	            	EditText mTitle = (EditText) findViewById(R.id.mtitle);
 	                EditText mMessage = (EditText) findViewById(R.id.mmessage);
 	                int courseLocation = s.getSelectedItemPosition();
-	                InfoController.getInstance().insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+	                try {
+						InfoController.getInstance().insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+					} catch (IOException e) {
+						Toast.makeText(getApplicationContext(), "Fout tijdens het aanmaken van het announcement!",
+						Toast.LENGTH_LONG).show();
+					}
 	                finish();
 	            }
 	

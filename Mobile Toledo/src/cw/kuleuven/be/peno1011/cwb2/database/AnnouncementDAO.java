@@ -42,31 +42,20 @@ public class AnnouncementDAO {
                 return announcementDAO;
         }
         
-        public void add(String userId, String message, String date, String title, String courseCode) {
-                try {
-                        HttpClient client = new HttpClient();
-                        // maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
-                        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/addAnnouncement");
-                        
-                        method.addParameter("userId", userId);
-                        method.addParameter("message", message);
-                        method.addParameter("date", date);
-                        method.addParameter("title", title);
-                        method.addParameter("courseCode", courseCode);
-                        // voert de methode ook werkelijk uit en retourneert een  getal
-                        int returnCode = client.executeMethod(method);
-                        String encryptedJson = method.getResponseBodyAsString();
-                        
-                } catch (IllegalArgumentException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } catch (HttpException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
+        public void add(String userId, String message, String date, String title, String courseCode) throws IOException {
+               
+                HttpClient client = new HttpClient();
+                // maak nieuwe postmethode waarbij de posts op het domein meegegeven als parameter worden geplaatst
+                PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/addAnnouncement");
+                
+                method.addParameter("userId", userId);
+                method.addParameter("message", message);
+                method.addParameter("date", date);
+                method.addParameter("title", title);
+                method.addParameter("courseCode", courseCode);
+                // voert de methode ook werkelijk uit en retourneert een  getal
+                int returnCode = client.executeMethod(method);
+                String encryptedJson = method.getResponseBodyAsString();
         }
         
         public boolean delete(Announcement announcement) {
@@ -123,7 +112,7 @@ public class AnnouncementDAO {
 
 	public List<Announcement> getRecentAnnouncements(Course course, int numberofdays){
 			HttpClient client = new HttpClient();
-	        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByCourseCode");
+	        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByStartDateAndCourse");
 	        
 	        Date date = new Date();
 	        date.setDate(date.getDate()-numberofdays);
