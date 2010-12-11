@@ -53,7 +53,12 @@ public class GetInfo extends Activity {
 	 	
 	 	dao1 = BuildingDAO.getInstance();
 	 	Building building = null;
-		building = dao1.getBuilding(location);
+		try {
+			building = dao1.getBuilding(location);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	 	
 		TextView adresse = (TextView) findViewById(R.id.adresse);
 		String adresseString = "Adres";
