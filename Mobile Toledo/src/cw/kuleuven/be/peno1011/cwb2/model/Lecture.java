@@ -9,7 +9,7 @@ public class Lecture extends Event implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static long serialVersionUID = 1L;
 	private Room room;
 	private MultipleChoice multipleChoice;
 	private ArrayList <Question> questions = new ArrayList<Question>();
@@ -19,6 +19,8 @@ public class Lecture extends Event implements Serializable{
 		super(course.getCourseName(), category, category, startDate, stopDate, room.getBuilding(), room);
 		setRoom(room);
 	}
+	
+	private Lecture(){super();}
 
 	public Room getRoom() {
 		return room;
