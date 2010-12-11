@@ -162,7 +162,30 @@ public class NavigationController {
 	
 	public Bitmap[] getPictureArray(String locationname)
 	{
-		String [] links = null;
+		String[] links;
+		String[] buildingLinks;
+		String[] roomLinks;
+		try {
+			buildingLinks = BuildingDAO.getInstance().getPictures(locationname);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			buildingLinks = null;
+		}
+		
+		try {
+			roomLinks = RoomDAO.getInstance().getPictures(locationname);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			roomLinks = null;
+		}
+		
+		links = buildingLinks;
+		
+		for(int i = 0; i<roomLinks.length; i++){
+			links[buildingLinks.length+i] = roomLinks[i];
+		}
+		
+		
 	//	if(isBuilding(locationname) == true){links = dao1.getPictureArray(locationname);}
 	//	else if(isBuilding(locationname) == false){links = dao2.getPictureArray(locationname);}
 

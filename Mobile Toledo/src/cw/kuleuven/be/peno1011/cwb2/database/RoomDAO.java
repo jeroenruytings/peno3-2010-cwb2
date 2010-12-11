@@ -11,6 +11,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import com.google.gson.Gson;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.PictureLink;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
 public class RoomDAO {
@@ -95,6 +96,21 @@ public class RoomDAO {
 // if naam komt voor in database exists = true;
 		
 		return exists;
+	}
+
+	public String[] getPictures(String roomname) throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/RoomHandler/getPictureByName");
+		method.addParameter("name", roomname);
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		PictureLink[] pictures = new Gson().fromJson(json.toString(), PictureLink[].class);
+		String[] links = null;
+		for(int i = 0; i<pictures.length; i++){
+			links[i] = pictures[i].getPicture();
+		}
+		return links;
 	}
 
 }
