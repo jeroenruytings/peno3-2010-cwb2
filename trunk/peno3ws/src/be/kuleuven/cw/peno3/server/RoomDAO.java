@@ -145,4 +145,13 @@ public class RoomDAO extends DAO{
 		String query = "INSERT INTO room_picture (roomPictureId,roomId,picture) VALUES (NULL,'"+ roomId + "','" + picture + "')";
 		return super.add(query);
 	}
+	
+	@POST
+	@Path("/getPictureByName")
+	@Produces("application/json")
+	public String getPictureByName(@FormParam("name") String name){
+		String query = "SELECT * FROM room_picture INNER JOIN room USING(roomId)";
+		if(name!=null)query+= "WHERE name like '" + name + "'";
+		return super.get(query);
+	}
 }
