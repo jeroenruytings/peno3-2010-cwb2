@@ -1,6 +1,9 @@
 package be.kuleuven.cw.peno3.client;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -22,7 +25,9 @@ public class TestOnWeb {
 		//testUser();
 		//testBuilding();
 		//testGetCourseByCourseCode();
-		testGetLectureByCourseCode();
+		//testGetLectureByCourseCode();
+		testGetAnnouncementByExactDate();
+		//testListAnnouncements();
 	}
 	
 	private static void testBuilding() throws HttpException, IOException {
@@ -57,6 +62,15 @@ public class TestOnWeb {
 		System.out.println(json);
 	}
 	
+	private static void testListAnnouncements() throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/listAnnouncements");
+		
+		int response = client.executeMethod(method);
+		String json = method.getResponseBodyAsString();
+		System.out.println(cryptography.decrypt(json));
+		System.out.println(json);
+	}
 	
 	private static void testGetUser() throws HttpException, IOException{
 		
@@ -126,4 +140,32 @@ public class TestOnWeb {
 		
 		System.out.println(json);
 	}
+	
+	private static void testGetAnnouncementByExactDate() throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/AnnouncementHandler/getAnnouncementByExactDate");
+		
+		//volgende regels zorgen voor toevoegen van de date vertrekkende van een dateobject
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.DAY_OF_MONTH, 5);
+        calendar.set(Calendar.MONTH, 0);
+        calendar.set(Calendar.YEAR, 2011);
+        Date date = calendar.getTime();
+        String dateString = toMysqlDate(date);
+
+		method.addParameter("date",dateString);
+		int returnCode = client.executeMethod(method);
+		String json = cryptography.decrypt(method.getResponseBodyAsString());
+		
+		System.out.println(json);
+	}
+	
+	private static String toMysqlDate(Date date){
+        if (date==null) return "NULL";
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(date);
+       }
 }
