@@ -8,6 +8,8 @@ import org.apache.commons.httpclient.HttpException;
 import cw.kuleuven.be.peno1011.cwb2.R;
 
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
+import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,7 +27,9 @@ import android.widget.Toast;
 
 
 public class LocationInfo extends Activity {
+	
 	private NavigationController control;
+
  
 		 @Override
 		 protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +42,12 @@ public class LocationInfo extends Activity {
 		     control = NavigationController.getInstance();
 		   
 				
-			 String [] list = control.getBuildingNames();
+			 String [] list1 = control.getBuildingNames();
+			 String [] list2 = control.getRoomNames();
 
-	//		 String [] list2 = control.getRoomNames();
-
-	//	   	   String [] list= new String[list1.length+list2.length];
-	//	   	   System.arraycopy(list1, 0, list, 0, list1.length);
-	//	   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
+	   	   String [] list= new String[list1.length+list2.length];
+	   	   System.arraycopy(list1, 0, list, 0, list1.length);
+	   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
 
 		     
 		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
@@ -59,6 +62,9 @@ public class LocationInfo extends Activity {
 			public void onClick(View arg0) {
 				
 				AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
+				boolean buildingexists = control.buildingExists(textView.getText().toString());
+				boolean roomexists = control.roomExists(textView.getText().toString());
+				
 				if(textView.getEditableText().toString().equals(""))
 					{
             		Context context = getApplicationContext();
@@ -67,7 +73,7 @@ public class LocationInfo extends Activity {
             		Toast toast = Toast.makeText(context, text, duration);
             		toast.show();
 					}
-				else if(control.buildingExists(textView.getText().toString()) == false)
+				else if( buildingexists == false && roomexists == false)
 					{
             		Context context = getApplicationContext();
             		CharSequence text = "Please, type in a different location";
@@ -80,6 +86,8 @@ public class LocationInfo extends Activity {
 					{
 					Bundle b = new Bundle();
 					b.putString("autocomplete_building", textView.getText().toString());
+					b.putBoolean("isbuilding", buildingexists);
+					b.putBoolean("isRoom", roomexists);
 					
 					Intent intent = new Intent(LocationInfo.this,GetInfo.class);
 					intent.putExtras(b);
