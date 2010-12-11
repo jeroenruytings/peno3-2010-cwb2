@@ -1,5 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -145,7 +146,7 @@ public class InfoController {
 		return displayStrings;
 	}
 
-	public void insert(String title, String message, Course course) {
+	public void insert(String title, String message, Course course) throws IOException {
 		Date date = new Date();
 		AnnouncementDAO.getInstance().add(user.getUserId(), message, Cryptography.getInstance().toMysqlDate(date), title, course.getCourseCode());
 	}
