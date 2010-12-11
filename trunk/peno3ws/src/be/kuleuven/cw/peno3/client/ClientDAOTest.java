@@ -29,7 +29,7 @@ public class ClientDAOTest {
 	
 	public static void main(String[] args) {
 //		testAddAnnouncements();
-		testGetAppreciation();
+//		testGetAppreciation();
 //		testAddAppreciation();
 //		testListBuildingNames();
 //		testGetDocumentByWord();
@@ -38,6 +38,7 @@ public class ClientDAOTest {
 //		testListAnnouncements();
 //		testListUsers();
 //		testGetLectureByDate();
+		testDate();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -283,5 +284,37 @@ public class ClientDAOTest {
 			e.printStackTrace();
 		}
     }
+    
+    private static void testDate() {
+    	//volgende regels zorgen voor toevoegen van de date vertrekkende van een dateobject
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
+        calendar.set(Calendar.MINUTE, 3);
+        calendar.set(Calendar.DAY_OF_MONTH, 29);
+        calendar.set(Calendar.MONTH, 0);
+        calendar.set(Calendar.YEAR, 2010);
+        Date date = calendar.getTime();
+        String dateString = toMysqlDate(date);
+        System.out.println(dateString);
+
+    }
+    
+    private static String toMysqlDate(Date date){
+        if (date==null) return "NULL";
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+        return sqlValueWithQuotas(sdf.format(date));
+       }
+
+       public static String sqlValueWithQuotas(Object obj){
+        if ( obj == null ) return "NULL";
+        
+        String str = obj.toString();
+        str.replaceAll("'", "\\'");
+        str = '\''+str+'\'';
+        
+        return str;
+        
+       }
+
 
 }
