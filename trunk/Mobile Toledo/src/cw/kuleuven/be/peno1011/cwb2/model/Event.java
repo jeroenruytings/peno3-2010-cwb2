@@ -49,7 +49,7 @@ public class Event {
 		this.title = title;
 	}
 
-	private Event(){};
+	protected Event(){};
 	
 	public String getTitle() {
 		return title;

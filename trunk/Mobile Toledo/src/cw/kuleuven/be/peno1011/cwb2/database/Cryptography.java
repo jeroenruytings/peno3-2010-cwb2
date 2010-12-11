@@ -116,19 +116,10 @@ public class Cryptography {
 	}
 	
     public String toMysqlDate(Date date){
-  	  if (date==null) return "NULL";
-  	  SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-  	  return sqlValueWithQuotas(sdf.format(date));
-  	 }
-
-  	 private static String sqlValueWithQuotas(Object obj){
-  	  if ( obj == null ) return "NULL";
-  	  
-  	  String str = obj.toString();
-  	  str.replaceAll("'", "\\'");
-  	  str = '\''+str+'\'';
-  	  
-  	  return str;
-  	  
+  	  String mysqlDate;
+      if (date==null) mysqlDate= "NULL";
+  	  SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+  	  mysqlDate = sdf.format(date);
+  	  return mysqlDate;
   	 }
 }
