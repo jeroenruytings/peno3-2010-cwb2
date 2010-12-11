@@ -72,7 +72,7 @@ public class AnnouncementDAO extends DAO{
 	@Produces ("application/json")
 	public String getAnnouncementByStartDateAndCourse(@FormParam("courseCode") String courseCode, @FormParam("date") String date){
 		String query = "SELECT * FROM announcement";
-		if(date!=null)query+= " WHERE courseCode like '" + courseCode + "AND date>= '" + date + "' ORDER BY date DESC";
+		if(date!=null)query+= " WHERE courseCode like '" + courseCode + "' AND date>= '" + date + "' ORDER BY date DESC";
 		return super.get(query);
 	}
 	
