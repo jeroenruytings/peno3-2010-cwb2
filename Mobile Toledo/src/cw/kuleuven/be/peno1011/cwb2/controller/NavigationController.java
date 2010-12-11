@@ -179,10 +179,11 @@ public class NavigationController {
 			roomLinks = null;
 		}
 		
-		links = buildingLinks;
-		
-		for(int i = 0; i<roomLinks.length; i++){
-			links[buildingLinks.length+i] = roomLinks[i];
+		if(buildingLinks.length>0){
+			links = buildingLinks;
+		}
+		else{
+			links = roomLinks;
 		}
 		
 		
