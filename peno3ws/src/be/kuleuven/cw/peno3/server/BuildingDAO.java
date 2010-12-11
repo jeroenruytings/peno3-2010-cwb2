@@ -186,4 +186,23 @@ public class BuildingDAO extends DAO{
 		if(locationId !=null)query += " WHERE locationId like '" + locationId + "'";
 		return super.get(query);
 	}
+	
+
+	@POST
+	@Path("/getPictureByName")
+	@Produces("application/json")
+	public String getPictureByName(@FormParam("name") String name){
+		String query = "SELECT * FROM building_picture INNER JOIN building USING(locationId)";
+		if(name!=null)query+= "WHERE name like '" + name + "'";
+		return super.get(query);
+	}
+	
+	@POST
+	@Path ("/getMapByName")
+	@Produces ("application/json")
+	public String getMapByName(@FormParam("name") String name){
+		String query = "SELECT * FROM building_map INNER JOIN building USING(locationId)";
+		if(name !=null)query += " WHERE name like '" + name + "'";
+		return super.get(query);
+	}
 }
