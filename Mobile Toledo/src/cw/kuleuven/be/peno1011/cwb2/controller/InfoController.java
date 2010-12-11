@@ -138,14 +138,9 @@ public class InfoController {
 	public String[] makeStrings(List<Announcement> announcements){
 		String[] displayStrings = new String[announcements.size()];
 		for(int i = 0;i< announcements.size();i++){
-			try{
-			String displayString = announcements.get(i).getCourse().getCourseName() + ": " + announcements.get(i).getTitle();
+			String displayString = announcements.get(i).getTitle();
 			displayStrings[announcements.size()-i-1] = displayString;
-			}
-			catch(NullPointerException ne){//course = null
-				String displayString = "??" + ": " + announcements.get(i).getTitle();
-				displayStrings[announcements.size()-i-1] = displayString;
-			}
+
 		}
 		return displayStrings;
 	}

@@ -45,7 +45,7 @@ public class CourseInfo extends Activity{
 			 proftxt.setText("Professor" + ": " + prof);
 			 
 			 TextView codetxt = (TextView) findViewById(R.id.code);
-			 codetxt.setText("Code van de cursus" + ": " + code);
+			 codetxt.setText("Cursuscode" + ": " + code);
 			 
 			 TextView yeartxt = (TextView) findViewById(R.id.year);
 			 yeartxt.setText("Academiejaar" + ": " + year);
