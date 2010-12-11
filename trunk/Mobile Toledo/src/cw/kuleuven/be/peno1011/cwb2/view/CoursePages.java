@@ -19,7 +19,7 @@ public class CoursePages extends TabActivity{
 		setContentView(R.layout.tablayout);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
 		
-//		try{
+		try{
 			Bundle bundle = getIntent().getExtras();
 		    Course course = (Course) bundle.get("course");
 	        ((TextView)findViewById(R.id.titlebar)).setText("Vakpagina " + course.getCourseName());
@@ -39,7 +39,7 @@ public class CoursePages extends TabActivity{
 		                  .setContent(intent);
 		    tabHost.addTab(spec);
 	
-		    intent = new Intent().setClass(this, ShowAnnouncements.class);
+		    intent = new Intent().setClass(this, CourseAnnouncements.class);
 		    intent.putExtra("course", course);
 		    spec = tabHost.newTabSpec("Meldingen").setIndicator("Meldingen",
 		                      res.getDrawable(R.drawable.tab_announcements))
@@ -54,10 +54,10 @@ public class CoursePages extends TabActivity{
 		    tabHost.addTab(spec);
 	
 		    tabHost.setCurrentTab(0);
-//		}
-//		catch(NullPointerException ne){
-//			Toast.makeText(getApplicationContext(), "Geen vak gespecifieerd.",
-//			          Toast.LENGTH_LONG).show();
-//		}
+		}
+		catch(NullPointerException ne){
+			Toast.makeText(getApplicationContext(), "Geen vak gespecifieerd.",
+			          Toast.LENGTH_LONG).show();
+		}
 	}
 }
