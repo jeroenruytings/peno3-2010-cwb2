@@ -69,36 +69,26 @@ public class NavigationController {
 	
 	public String[] getBuildingNames()
 	{
-		Building [] buildings = null;
+		String [] buildingnames = null;
 		dao1 = BuildingDAO.getInstance();
-	
 		try {
-			buildings = dao1.listBuildings();
+			buildingnames = dao1.listBuildingNames();
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		String [] buildingnames = new String [buildings.length];
-		int i = 0;
-			for (Building building: buildings) {
-				Array.set(buildingnames,i,building.getName());
-				i++;
-			}
-		
+		}	
 		return buildingnames;
 	}
 	
 	public String[] getRoomNames()
 	{
-		Room [] rooms = null;
+		String [] roomnames = null;
 		dao2 = RoomDAO.getInstance();
-	
 		try {
-			rooms = dao2.listRooms();
+			roomnames = dao2.listRoomNames();
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,14 +96,6 @@ public class NavigationController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		String [] roomnames = new String [rooms.length];
-		int i = 0;
-			for (Room room: rooms) {
-				Array.set(roomnames,i,room.getName());
-				i++;
-			}
-			
 		return roomnames;
 	}
 	
@@ -133,6 +115,22 @@ public class NavigationController {
 		}
 		return existing;
 	}
+	
+	 public boolean roomExists(String roomname)
+		{
+			Boolean existing = false;
+			dao2 = RoomDAO.getInstance();
+			try {
+				existing = dao2.roomExists(roomname);
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return existing;
+		}
 	
 	  public Bitmap downloadFile(String fileUrl){
 		  Bitmap mImg = null;
