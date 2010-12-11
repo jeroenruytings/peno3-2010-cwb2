@@ -1,6 +1,8 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
 
+import java.io.IOException;
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
@@ -50,7 +52,13 @@ public class GetInfo extends Activity {
 	 	locationname.setText(location);
 	 	
 	 	dao1 = BuildingDAO.getInstance();
-	 	Building building = dao1.getBuilding(location);
+	 	Building building = null;
+		try {
+			building = dao1.getBuilding(location);
+		} catch (IOException e) {
+			//INDIEN HIJ HET GEBOUW NIET VINDT KOMT HIJ HIER TERECHT!
+			building = new Building();
+		}
 	 	
 		TextView adresse = (TextView) findViewById(R.id.adresse);
 		String adresseString = "Adres";

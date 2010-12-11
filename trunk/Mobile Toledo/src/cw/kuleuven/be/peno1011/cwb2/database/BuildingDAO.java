@@ -18,8 +18,10 @@ import com.google.gson.Gson;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
+import cw.kuleuven.be.peno1011.cwb2.model.PictureLink;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
+
 
 public class BuildingDAO {
 	
@@ -157,25 +159,14 @@ public class BuildingDAO {
 		return gp;
 	}
 	
-	public Building getBuilding(String buildingname) 
+	public Building getBuilding(String buildingname) throws IOException 
 	{					
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingAndLocationByName");
 		method.addParameter("name", buildingname);
-		String json = null;
-		
-		try {
-			int response = client.executeMethod(method);
-			String encryptedJson = method.getResponseBodyAsString();
-			json = cryptography.decrypt(encryptedJson);
-		} catch (HttpException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
 		Building[] buildings = new Gson().fromJson(json.toString(), Building[].class);
 		GPSLocation[] locations = new Gson().fromJson(json.toString(),GPSLocation[].class);
 		Building building = buildings[0];
@@ -184,5 +175,20 @@ public class BuildingDAO {
 		
 		return building;
 				
+	}
+	
+	public String[] getPictures(String buildingname) throws IOException{
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getPictureByName");
+		method.addParameter("name", buildingname);
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		PictureLink[] pictures = new Gson().fromJson(json.toString(), PictureLink[].class);
+		String[] links = null;
+		for(int i = 0; i<pictures.length; i++){
+			links[i] = pictures[i].getPicture();
 		}
+		return links;
+	}
 }
