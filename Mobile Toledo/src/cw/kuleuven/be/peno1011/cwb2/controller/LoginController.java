@@ -46,7 +46,7 @@ public class LoginController {
 	}
 	
 	
-	public void login(User user){
+	public void login(User user, Context context){
 		String userId = user.getUserId();
 		ISP isp;
 		try {
@@ -64,6 +64,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		MainController.getInstance().setUser(user);
+		LoginDbAdaptor.getInstance(context).close();
 	}
 
 	public void remember(String username, String password, Context context) {

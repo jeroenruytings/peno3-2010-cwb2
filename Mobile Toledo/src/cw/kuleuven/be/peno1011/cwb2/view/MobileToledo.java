@@ -138,7 +138,8 @@ public class MobileToledo extends Activity {
 		}
 		
 		else{
-			LoginController.getInstance().login(user);
+			Context context = getApplicationContext();
+			LoginController.getInstance().login(user, context);
 			if(remember)
 				remember(username,password);
 			Intent i = new Intent(this, MainMenu.class);
