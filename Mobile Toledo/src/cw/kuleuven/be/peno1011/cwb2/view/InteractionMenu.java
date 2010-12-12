@@ -33,12 +33,13 @@ public class InteractionMenu extends Activity{
     	if(MainController.getInstance().getUser().getRank()>0){ //als gebruiker een prof is, ziet de menu er anders uit!
 	    	makeAnnouncementButton.setVisibility(View.VISIBLE);
 	    	statsButton.setVisibility(View.VISIBLE);
+	    	showquestionButton.setVisibility(View.VISIBLE);
 	    	TextView makeAnnouncementText = (TextView) findViewById(R.id.makeannouncement);
 	    	makeAnnouncementText.setVisibility(View.VISIBLE);
 	    	TextView text1 = (TextView) findViewById(R.id.questions);
-	    	text1.setText("Vragen");
+	    	//text1.setText("Vragen");
 	    	TextView text2 = (TextView) findViewById(R.id.multiple);
-	    	text2.setText("Meerkeuze");
+	    	//text2.setText("Meerkeuze");
 	    	TextView text3 = (TextView) findViewById(R.id.stats);
 	    	text3.setVisibility(View.VISIBLE);
 	    	TextView text4 = (TextView) findViewById(R.id.showquestion);
