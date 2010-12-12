@@ -154,7 +154,7 @@ public class MultipleView extends Activity{
         submitbutton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-            	
+            	// METHODE IS VERKEERD, EEN MULTIPLECHOICE KAN ONEINDIG VEEL MOGELIJKE ANTWOORDEN HEBBEN
             	EditText multiQuestion = (EditText) findViewById(R.id.submit1);
             	String answ1 = mansw1.getText().toString();
             	String answ2 = mansw2.getText().toString();
@@ -176,7 +176,7 @@ public class MultipleView extends Activity{
 	            		answers.add(answ5);
 	            	}
 	            	answers.add(answ3);answers.add(answ4);answers.add(answ5);
-	            	MultipleChoice multiple = new MultipleChoice(lecture, question, answers);
+	            	MultipleChoice multiple = new MultipleChoice(lecture, question, answers, 1);
 	            	//TODO/ in database steken
             	}
             	else{

@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class MultipleChoice {
 	
 	private String question;
+	private int multipleChoiceId;
 	private String[] possibleAnswers;
 	private ArrayList<User> responders;
 	private int[] answers;
 	
-	public MultipleChoice(Lecture lecture, String question, ArrayList<String> answers) {
+	public MultipleChoice(Lecture lecture, String question, ArrayList<String> answers, int multipleChoiceId) {
 		setQuestion(question);
 		setPossibleAnswers(possibleAnswers);
+		setMultipleChoiceId(multipleChoiceId);
 	}
 
 	public String[] getPossibleAnswers() {
@@ -48,5 +50,13 @@ public class MultipleChoice {
 
 	public void setQuestion(String question) {
 		this.question = question;
+	}
+
+	public void setMultipleChoiceId(int multipleChoiceId) {
+		this.multipleChoiceId = multipleChoiceId;
+	}
+
+	public int getMultipleChoiceId() {
+		return multipleChoiceId;
 	}
 }
