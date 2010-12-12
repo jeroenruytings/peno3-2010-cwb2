@@ -85,11 +85,11 @@ public class ShowQuestions extends ListActivity {
 	    	public void onClick(DialogInterface dialog, int whichButton) {
 	    		
   		// Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
-	  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
-	  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-	  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-	  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
-	    				  		        
+				  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
+				  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+				  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+				  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
+				    				  		        
 	  //TODO/ in database steken en kijken of de functie .intValue werkt die een integer van een float maakt.
 	  //dao.insert(ratingbar.getRating().intValue());
 	    				  		        
