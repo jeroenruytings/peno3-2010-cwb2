@@ -1,10 +1,15 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
+
+import org.apache.commons.httpclient.HttpException;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.QuestionController;
 import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
@@ -21,39 +26,46 @@ public class Questions extends Activity{
 		setContentView(R.layout.question);
 
 		Bundle bundle = getIntent().getExtras();
-		Lecture lecture;
-		try{
-			lecture = (Lecture) bundle.get("lecture"); 
+		final Lecture lecture;
+		if(bundle != null){
+			lecture = (Lecture) bundle.get("lecture");
 		}
-		catch(NullPointerException ne){
+		else{
 			lecture = null;
+			finish();
 		}
-			 
-		 
-		 Button resetbutton = (Button) findViewById(R.id.reset);
+		
+		Button resetbutton = (Button) findViewById(R.id.reset);
 
-	        resetbutton.setOnClickListener(new View.OnClickListener() {
+	    resetbutton.setOnClickListener(new View.OnClickListener() {
 
-	       public void onClick(View view) {
-	        	    EditText mMessage = (EditText) findViewById(R.id.mmessage);
-	            	mMessage.setText("");
-	            }
+		    public void onClick(View view) {
+		    	EditText mQuestion = (EditText) findViewById(R.id.mquestion);
+	        	mQuestion.setText("");
+		    }
 
-	        });
+	    });
 	        
 	        
-	        Button submitbutton = (Button) findViewById(R.id.submit);
+	    Button submitbutton = (Button) findViewById(R.id.submit);
 
-	        submitbutton.setOnClickListener(new View.OnClickListener() {
-	        	
+	    submitbutton.setOnClickListener(new View.OnClickListener() {
+	        
+		    public void onClick(View view) {
+		    	EditText mQuestion = (EditText) findViewById(R.id.mquestion);
 
-	    public void onClick(View view) {
-	      EditText mMessage = (EditText) findViewById(R.id.mmessage);
-	       
-	      QuestionController controller = QuestionController.getInstance();
-	      //controller.insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
-	      finish();
-	       }
+		    	QuestionController controller = QuestionController.getInstance();
+				try {
+					controller.insert(mQuestion.getText().toString(),lecture);
+				} catch (HttpException e) {
+					Toast.makeText(getApplicationContext(), "Geen internetverbinding!",
+					Toast.LENGTH_LONG).show();
+				} catch (IOException e) {
+					Toast.makeText(getApplicationContext(), "Fout tijdens het doorsturen van de vraag!",
+					Toast.LENGTH_LONG).show();
+				}
+		    	finish();
+		    }
 
 	    });
 		
