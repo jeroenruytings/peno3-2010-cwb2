@@ -38,13 +38,13 @@
 		android:layout_marginLeft="2dip"/>
   </TableRow>
   <TableRow>
-	<TextView android:id="@+id/multiple" 
+	<TextView android:id="@+id/multiple2" 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="beantwoorden" 
         android:layout_gravity="center"
         style="@style/MenuText"/>
-		<TextView android:id="@+id/questions" 
+		<TextView android:id="@+id/questions2" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="stellen" 
@@ -82,13 +82,13 @@
 <!--		android:visibility="gone"-->
 </TableRow>
  <TableRow>
- <TextView android:id="@+id/announcements" 
+ <TextView android:id="@+id/announcements2" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="tonen" 
 		android:layout_gravity="center"
 		style="@style/MenuText"/>
-<TextView android:id="@+id/showquestion" 
+<TextView android:id="@+id/showquestion2" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="tonen" 
@@ -128,14 +128,14 @@
 <!--		android:visibility="gone"/>-->
 </TableRow>
 <TableRow>
- <TextView android:id="@+id/makeannouncement" 
+ <TextView android:id="@+id/makeannouncement2" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="maken"
 		android:layout_gravity="center"
 		style="@style/MenuText"/>
 <!--		android:visibility="gone"-->
- <TextView android:id="@+id/stats" 
+ <TextView android:id="@+id/stats2" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="tonen" 
