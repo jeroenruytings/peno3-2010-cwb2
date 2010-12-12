@@ -78,8 +78,8 @@ public class QuestionDAO extends DAO{
 	@POST
 	@Path ("/addQuestion")
 	@Produces ("application/json")
-	public String addQuestion(@FormParam("userId") String userId, @FormParam("eventId") String eventId){
-			String query = "INSERT INTO question (questionId,userId,eventId) VALUES (NULL,'"+ userId + "','" + eventId + "')";
+	public String addQuestion(@FormParam("userId") String userId, @FormParam("eventId") String eventId, @FormParam("question") String question){
+			String query = "INSERT INTO question (questionId,userId,eventId,question) VALUES (NULL,'"+ userId + "','" + eventId + "','" + question + "')";
 			return super.add(query);
 	}
 }
