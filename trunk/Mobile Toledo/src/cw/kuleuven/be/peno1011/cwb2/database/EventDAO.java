@@ -112,7 +112,22 @@ public class EventDAO {
 		return events;
 	}
 	
-	public ArrayList<Event> getEventsByCategoryAndDate(Date startDate, Date stopDate, String category){
+	public ArrayList<Event> getEventsByCategoriesAndDate(Date startDate, Date stopDate, String categorie1, String categorie2) throws HttpException, IOException{
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/EventHandler/getEventsByTwoCategoriesAndDateWithLocation");
+		int returnCode = client.executeMethod(method);
+		String json = cryptography.decrypt(method.getResponseBodyAsString());
+		
+		return null;
+	}
+
+	public ArrayList<Event> getEventsByCategoriesAndDate(Date startDate,
+			Date stopDate, String categorie) throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/EventHandler/getEventsByCategorieAndDateWithLocation");
+		int returnCode = client.executeMethod(method);
+		String json = cryptography.decrypt(method.getResponseBodyAsString());
+		
 		return null;
 	}
 }
