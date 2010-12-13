@@ -62,6 +62,15 @@ public class LectureDAO extends DAO{
 		return super.get(query);
 	}
 
+	@POST
+	@Path ("/initializeLectures")
+	@Produces ("application/json")
+	public String initializeLectures(@FormParam("userId") String userId) {
+		String query = "SELECT lecture.courseCode, event.*, room.* FROM course_isp, room, lecture INNER JOIN event USING (eventId) WHERE course_isp.userId = '" + userId + "' AND course_isp.courseCode = lecture.courseCode AND room.roomId = event.roomId";
+		return super.get(query);
+	}
+	
+	
 	/**
 	 * Adds the lecture.
 	 *
