@@ -70,13 +70,37 @@ public class EventDAO extends DAO{
 	public String addEvent(@FormParam("description") String description, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate, @FormParam("locationId") String locationId, @FormParam("categorie") String categorie, @FormParam("title") String title){
 		String query = "INSERT INTO event (eventId,description,startDate,stopDate,locationId,categorie,title) VALUES (NULL,'"+ description + "'," + startDate + "," + stopDate + ",'" + locationId + "','" + categorie + "','" + title +"')";
 		return super.add(query);
+	}	
+	
+	@POST
+	@Path("/getEventsByCategorieAndDateWithLocation")
+	@Produces("application/json")
+	public String getEventsByCategorieAndDateWithLocation(@FormParam("categorie") String category,@FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
+		String query = "SELECT * FROM event WHERE categorie like '" + category + "' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate + " INNER JOIN building USING (locationId)"; 
+		return super.list(query);
 	}
 	
 	@POST
-	@Path("/listEventsWithLocations")
+	@Path("/getEventsByCategorieAndDate")
 	@Produces("application/json")
-	public String listEventsWithLocations(){
-		String query = "SELECT * FROM event INNER JOIN building USING (locationId) INNER JOIN room USING (roomId)";
+	public String getEventsByCategorieAndDate(@FormParam("categorie") String categorie,@FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
+		String query = "SELECT * FROM event WHERE categorie like '" + categorie + "' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		return super.list(query);
+	}
+	
+	@POST
+	@Path("/getEventsByTwoCategoriesAndDate")
+	@Produces("application/json")
+	public String getEventsTwoByCategoriesAndDate(@FormParam("categorie1") String categorie1,@FormParam("categorie2") String categorie2, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
+		String query = "SELECT * FROM event WHERE categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		return super.list(query);
+	}
+	
+	@POST
+	@Path("/getEventsByTwoCategoriesAndDateWithLocation")
+	@Produces("application/json")
+	public String getEventsTwoByCategoriesAndDateWithLocation(@FormParam("categorie1") String categorie1,@FormParam("categorie2") String categorie2, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
+		String query = "SELECT * FROM event WHERE categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate+ " INNER JOIN building USING (locationId)"; 
 		return super.list(query);
 	}
 }
