@@ -48,7 +48,7 @@ public class CourseInfo extends Activity{
 			 codetxt.setText("Cursuscode" + ": " + code);
 			 
 			 TextView yeartxt = (TextView) findViewById(R.id.year);
-			 yeartxt.setText("Academiejaar" + ": " + year);
+			 yeartxt.setText("Academiejaar" + ": " + year.split("(?<=\\G.{2})"));
 
 	}
 }

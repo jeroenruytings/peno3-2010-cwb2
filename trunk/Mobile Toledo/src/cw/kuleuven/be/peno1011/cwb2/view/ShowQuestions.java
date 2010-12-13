@@ -47,6 +47,7 @@ public class ShowQuestions extends ListActivity {
       getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
       ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
       
+      
 	  // maakt een string[] displayStrings aan van de alles messages van de questions
       // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
       //TODO De database sorteren op score, dit is een integer van 0 tot 5
@@ -54,7 +55,7 @@ public class ShowQuestions extends ListActivity {
 	  	  for(int i = 0;i< questions.size();i++){
 				
 	  		  	String displayString = "Vraag"+ ": " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
-				displayStrings[questions.size()-i-1] = displayString;
+				displayStrings[questions.size()-i] = displayString;
 				
 	  	  }
 	  
