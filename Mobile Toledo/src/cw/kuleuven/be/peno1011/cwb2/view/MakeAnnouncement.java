@@ -65,6 +65,8 @@ public class MakeAnnouncement extends Activity{
 	                int courseLocation = s.getSelectedItemPosition();
 	                try {
 						InfoController.getInstance().insert(mTitle.getText().toString(),mMessage.getText().toString(),courses.get(courseLocation));
+						Toast.makeText(getApplicationContext(), "Announcement succesvol toegevoegd!",
+						Toast.LENGTH_LONG).show();
 					} catch (IOException e) {
 						Toast.makeText(getApplicationContext(), "Fout tijdens het aanmaken van het announcement!",
 						Toast.LENGTH_LONG).show();
