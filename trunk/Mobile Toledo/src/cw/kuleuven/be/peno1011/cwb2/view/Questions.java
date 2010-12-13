@@ -57,6 +57,8 @@ public class Questions extends Activity{
 		    	QuestionController controller = QuestionController.getInstance();
 				try {
 					controller.insert(mQuestion.getText().toString(),lecture);
+					Toast.makeText(getApplicationContext(), "Fout tijdens het aanmaken van het announcement!",
+					Toast.LENGTH_LONG).show();
 				} catch (HttpException e) {
 					Toast.makeText(getApplicationContext(), "Geen internetverbinding!",
 					Toast.LENGTH_LONG).show();
