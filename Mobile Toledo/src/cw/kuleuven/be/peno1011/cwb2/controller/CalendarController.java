@@ -88,8 +88,7 @@ public class CalendarController {
 		ArrayList<Event> events = new ArrayList<Event>();
 		
 		events.addAll(getLectures(numberOfDays));
-		events.addAll(getCategoryEvents(numberOfDays, "party"));
-		events.addAll(getCategoryEvents(numberOfDays, "culture"));
+		events.addAll(getCategoryEvents(numberOfDays, "party", "culture"));
 		
 		return events;
 	}
@@ -124,7 +123,7 @@ public class CalendarController {
 		return lectures;
 	}
 	
-	public List<Event> getCategoryEvents(int numberOfDays,String category) throws HttpException, IOException{
+	public List<Event> getCategoryEvents(int numberOfDays,String categorie1, String categorie2) throws HttpException, IOException{
 //		List<Event> events = getEvents(numberOfDays);
 //		List<Event> categoryEvents = new ArrayList<Event>();
 //		for(int i=0;i<events.size();i++){
@@ -139,7 +138,26 @@ public class CalendarController {
 		stopDate.setHours(0);
 		stopDate.setMinutes(0);
 		stopDate.setSeconds(0);
-		ArrayList<Event> events = EventDAO.getInstance().getEventsByCategoryAndDate(startDate, stopDate, category);
+		ArrayList<Event> events = EventDAO.getInstance().getEventsByCategoriesAndDate(startDate, stopDate, categorie1, categorie2);
+		return events;
+	}
+	
+	public List<Event> getCategoryEvents(int numberOfDays, String categorie) throws HttpException, IOException{
+//		List<Event> events = getEvents(numberOfDays);
+//		List<Event> categoryEvents = new ArrayList<Event>();
+//		for(int i=0;i<events.size();i++){
+//		  		if(events.get(i).getCategorie().equals(category)){
+//		  			categoryEvents.add(events.get(i));
+//		  		}
+//		  	}
+//		return categoryEvents;
+		Date startDate = new Date();
+		Date stopDate = startDate;
+		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		stopDate.setHours(0);
+		stopDate.setMinutes(0);
+		stopDate.setSeconds(0);
+		ArrayList<Event> events = EventDAO.getInstance().getEventsByCategoriesAndDate(startDate, stopDate, categorie);
 		return events;
 	}
 
