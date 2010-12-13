@@ -160,7 +160,7 @@ public class NavigationController {
 	
 	public Bitmap[] getPictureArray(String locationname)
 	{
-		String[] links;
+		String[] links = null;
 		String[] buildingLinks;
 		String[] roomLinks;
 		try {
@@ -177,11 +177,13 @@ public class NavigationController {
 			roomLinks = null;
 		}
 		
-		if(buildingLinks.length>0){
-			links = buildingLinks;
-		}
-		else{
-			links = roomLinks;
+		if(buildingLinks != null && roomLinks != null){
+			if(buildingLinks.length>0){
+				links = buildingLinks;
+			}
+			else{
+				links = roomLinks;
+			}
 		}
 		
 		

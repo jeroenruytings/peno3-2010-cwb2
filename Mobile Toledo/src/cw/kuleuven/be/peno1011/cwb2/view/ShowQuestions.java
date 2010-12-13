@@ -22,7 +22,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
 public class ShowQuestions extends ListActivity {
-	
+
 	
 	public void onCreate(Bundle savedInstanceState) {
 	   super.onCreate(savedInstanceState);
