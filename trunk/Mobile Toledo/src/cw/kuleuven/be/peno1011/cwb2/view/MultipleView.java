@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
-import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
@@ -39,7 +38,7 @@ public class MultipleView extends Activity{
 		}
 		catch(NullPointerException ne){
 			TextView textview = new TextView(this);
-	        textview.setText("Geen les gevonden die momenteen bezig is.");
+	        textview.setText("Geen les van dit vak gevonden die momenteen bezig is.");
 	        setContentView(textview);
 		}
 	}

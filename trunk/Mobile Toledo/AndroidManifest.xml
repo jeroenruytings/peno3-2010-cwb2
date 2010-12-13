@@ -67,6 +67,11 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+		<activity android:name=".view.ShowQuestions" android:label="ShowQuestions">
+			<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 		<activity android:name=".view.MultipleChoice" android:label="MultipleChoice">
 			<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
