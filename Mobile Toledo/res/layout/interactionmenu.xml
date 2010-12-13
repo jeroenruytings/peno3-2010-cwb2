@@ -16,115 +16,51 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_marginRight="2dip"/>
-	  	<ImageButton android:id="@+id/questionbutton"
-	    android:src="@drawable/questionbutton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
-  </TableRow>
-  <TableRow>
-	<TextView android:id="@+id/multiple" 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Meerkeuzevragen" 
-        android:layout_gravity="center"
-        style="@style/MenuText"/>
-		<TextView android:id="@+id/questions" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="Vragen stellen" 
-		android:layout_gravity="center"
-		style="@style/MenuText"
-		android:layout_marginLeft="2dip"/>
-  </TableRow>
- <TableRow android:layout_marginTop="20dip">
- 
-<ImageButton android:id="@+id/announcementsbutton"
+		<ImageButton android:id="@+id/announcementsbutton"
 	 	android:src="@drawable/announcementbutton"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
 	  	android:layout_marginRight="2dip"/>
-<ImageButton android:id="@+id/showquestionbutton"
-	    android:src="@drawable/showquestionbutton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
-<!--	    android:visibility="gone"/>-->
-</TableRow>
- <TableRow>
- <TextView android:id="@+id/announcements" 
+  </TableRow>
+  <TableRow>
+	<TextView android:id="@+id/multiple" 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:text="Meerkeuzevragen" 
+                android:layout_gravity="center"
+                style="@style/MenuText"/>
+     <TextView android:id="@+id/announcements" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:text="Aankondigingen" 
 		android:layout_gravity="center"
 		style="@style/MenuText"/>
-<TextView android:id="@+id/showquestion" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="Vragen" 
-		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<!--		android:visibility="gone"-->
-</TableRow>
- <TableRow>
- <TextView android:id="@+id/announcements2" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="tonen" 
-		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<TextView android:id="@+id/showquestion2" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="tonen" 
-		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<!--		android:visibility="gone"-->
-</TableRow>
+  </TableRow>
+  <TableRow android:layout_marginTop="20dip">
 
-<TableRow android:layout_marginTop="20dip">
-
-<ImageButton android:id="@+id/makeannouncementbutton"
-	 	android:src="@drawable/makeannouncementbutton"
-	  	android:layout_width="wrap_content"
-	  	android:layout_height="wrap_content"
-	  	android:layout_marginLeft="2dip"/>
-<!--	  	android:visibility="gone"-->
-<ImageButton android:id="@+id/statsbutton"
-	    android:src="@drawable/resultsbutton"
+<ImageButton android:id="@+id/showquestionbutton"
+	    android:src="@drawable/showquestionbutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"/>
-<!--	    android:visibility="gone"/>-->
-</TableRow>
+<ImageButton android:id="@+id/questionbutton"
+	    android:src="@drawable/questionbutton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"/>
+  </TableRow>
  <TableRow>
- <TextView android:id="@+id/makeannouncement" 
+ <TextView android:id="@+id/showquestion" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
-		android:text="Aankondiging"
+		android:text="Vragen tonen" 
 		android:layout_gravity="center"
 		style="@style/MenuText"/>
-<!--		android:visibility="gone"-->
- <TextView android:id="@+id/stats" 
+<TextView android:id="@+id/questions" 
 	 	android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
-		android:text="Statistieken" 
+		android:text="@string/questions" 
 		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<!--		android:visibility="gone"/>-->
-</TableRow>
-<TableRow>
- <TextView android:id="@+id/makeannouncement2" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="maken"
-		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<!--		android:visibility="gone"-->
- <TextView android:id="@+id/stats2" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:text="tonen" 
-		android:layout_gravity="center"
-		style="@style/MenuText"/>
-<!--		android:visibility="gone"/>-->
-</TableRow>
+		style="@style/MenuText"
+		android:layout_marginLeft="2dip"/>
+  </TableRow>
 </TableLayout>  	
 </LinearLayout>
