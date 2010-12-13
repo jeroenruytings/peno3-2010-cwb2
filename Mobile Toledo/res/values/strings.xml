@@ -27,12 +27,9 @@
 <string name="menu_newuser">Add new user</string>
 <string name="confirmpassword">Confirm Password</string>
 <string name="createuser">Create user</string>
-<string name="posemultiplechoice">Meerkeuzevraag stellen</string>
-<string name="multiplechoice">Meerkeuzevraag beantwoorden</string>
 <string name="question">Vraag:</string>
 <string name="navigate">Navigeer naar...</string>
 <string name="locationinfo">Info van locatie</string>
-<string name="multiple">Meerkeuzevraag beantwoorden</string>
 <string name="location">$s</string>
 <string name="stats">Statistieken</string>
 <string name="vanadres">OF Van (adres):</string>
