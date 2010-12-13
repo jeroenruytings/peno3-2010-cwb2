@@ -2,6 +2,8 @@ package cw.kuleuven.be.peno1011.cwb2.database;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -108,5 +110,9 @@ public class EventDAO {
 		
 		
 		return events;
+	}
+	
+	public ArrayList<Event> getEventsByCategoryAndDate(Date startDate, Date stopDate, String category){
+		return null;
 	}
 }
