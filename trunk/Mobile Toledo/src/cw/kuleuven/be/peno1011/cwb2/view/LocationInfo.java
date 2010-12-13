@@ -44,11 +44,19 @@ public class LocationInfo extends Activity {
 				
 			 String [] list1 = control.getBuildingNames();
 			 String [] list2 = control.getRoomNames();
-
-	   	   String [] list= new String[list1.length+list2.length];
+			 String[] list;
+			 
+		if(list1 != null && list2 != null){ 
+	   	   list= new String[list1.length+list2.length];
 	   	   System.arraycopy(list1, 0, list, 0, list1.length);
 	   	   System.arraycopy(list2, 0, list, list1.length, list2.length);
-
+	   	}
+		else if(list1 == null){
+			list = list2;
+		}
+		else{
+			list = list1;
+		}
 		     
 		     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
 		     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.autofilllist, list);
