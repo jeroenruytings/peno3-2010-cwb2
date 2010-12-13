@@ -77,6 +77,11 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+		<activity android:name=".view.MultipleView" android:label="MultipleView">
+			<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 		<activity android:name=".view.ShowRoute" android:label="ShowRoute" android:theme="@android:style/Theme.NoTitleBar">
 			<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
@@ -127,11 +132,14 @@
 		</activity>
 		<activity android:name=".view.AnnouncementsView" android:label="AnnouncementsView">
 				<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
-<activity android:name=".view.ShowQuestions"></activity>
+		<activity android:name=".view.Statistics" android:label="Statistics">
+				<intent-filter>
+					<category android:name="android.intent.category.LAUNCHER"/>
+				</intent-filter>
+		</activity>
 </application>
 
 
