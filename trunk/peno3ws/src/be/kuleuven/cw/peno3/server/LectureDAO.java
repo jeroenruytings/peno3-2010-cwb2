@@ -56,7 +56,7 @@ public class LectureDAO extends DAO{
 	@POST
 	@Path ("/getLectureByCourseCode")
 	@Produces ("application/json")
-	public String getAnnouncementByCourseCode(@FormParam("courseCode") String courseCode){
+	public String getLectureByCourseCode(@FormParam("courseCode") String courseCode){
 		String query = "SELECT * FROM lecture";
 		if(courseCode!=null)query+= " WHERE courseCode= '" + courseCode + "'";
 		return super.get(query);
