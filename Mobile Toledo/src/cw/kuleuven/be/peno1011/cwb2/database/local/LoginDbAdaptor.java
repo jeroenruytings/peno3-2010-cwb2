@@ -91,8 +91,12 @@ public class LoginDbAdaptor {
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
-        if(mCursor.getCount() > 0)
-        	return mCursor.getString(2);
+        if(mCursor.getCount() > 0){
+        	String password = mCursor.getString(2);
+        	mCursor.close();
+        	return password;
+        	}
+        mCursor.close();
         return null;
     }
     
@@ -104,8 +108,12 @@ public class LoginDbAdaptor {
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
-        if(mCursor.getCount() > 0)
-        	return mCursor.getString(1);
+        if(mCursor.getCount() > 0){
+        	String username = mCursor.getString(1);
+        	mCursor.close();
+        	return username;
+        }
+        mCursor.close();
         return null;
         }
 }

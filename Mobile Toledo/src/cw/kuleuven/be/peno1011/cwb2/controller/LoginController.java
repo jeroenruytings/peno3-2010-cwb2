@@ -64,7 +64,6 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		MainController.getInstance().setUser(user);
-		LoginDbAdaptor.getInstance(context).close();
 	}
 
 	public void remember(String username, String password, Context context) {
