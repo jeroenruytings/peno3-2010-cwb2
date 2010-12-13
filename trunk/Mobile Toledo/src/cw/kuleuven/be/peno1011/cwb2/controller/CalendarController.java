@@ -17,6 +17,8 @@ import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Event;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
+import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
+import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class CalendarController {
 	private Agenda agenda;
@@ -56,43 +58,89 @@ public class CalendarController {
 	
 	public List<Event> getEvents(int numberOfDays) throws HttpException, IOException{ // recente
 		
-		Event[] eventsFromDAO = EventDAO.getInstance().getEvents();
+//		Event[] eventsFromDAO = EventDAO.getInstance().getEvents();
+//		
+//		//LinkedHashSet<Event> allEvents = Event.getEvents();
+//		//List<Event> allEvents = agenda.getEvents();
+//        ArrayList<Event> allEvents = new ArrayList<Event>();
+//
+//		for(int i = 0; i < eventsFromDAO.length; i++){
+//			allEvents.add(eventsFromDAO[i]);
+//		}
+//			
+//		ArrayList<Event> events = new ArrayList<Event>();
+//		
+//        //List<Event> events = new ArrayList<Event>();
+//        Date currentDate = new Date();
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(currentDate);
+//        cal.add(Calendar.DAY_OF_MONTH, numberOfDays);
+//        Date maxDate = cal.getTime();        
+//        
+//        for(int i=allEvents.size()-1;i>-1;i--){
+//        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 && allEvents.get(i).getStartDate().compareTo(maxDate)<0){
+//        		events.add(allEvents.get(i));
+//        	}
+//        }
+//		//eventueel sort events?
+//		return events; 
 		
-		//LinkedHashSet<Event> allEvents = Event.getEvents();
-		//List<Event> allEvents = agenda.getEvents();
-        ArrayList<Event> allEvents = new ArrayList<Event>();
-
-		for(int i = 0; i < eventsFromDAO.length; i++){
-			allEvents.add(eventsFromDAO[i]);
-		}
-			
 		ArrayList<Event> events = new ArrayList<Event>();
 		
-        //List<Event> events = new ArrayList<Event>();
-        Date currentDate = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(currentDate);
-        cal.add(Calendar.DAY_OF_MONTH, numberOfDays);
-        Date maxDate = cal.getTime();        
-        
-        for(int i=allEvents.size()-1;i>-1;i--){
-        	if(allEvents.get(i).getStartDate().compareTo(currentDate)>0 && allEvents.get(i).getStartDate().compareTo(maxDate)<0){
-        		events.add(allEvents.get(i));
-        	}
-        }
-		//eventueel sort events?
-		return events; 
+		events.addAll(getLectures(numberOfDays));
+		events.addAll(getCategoryEvents(numberOfDays, "party"));
+		events.addAll(getCategoryEvents(numberOfDays, "culture"));
+		
+		return events;
+	}
+
+	private List<Event> getLectures(int numberOfDays) {
+		
+		ArrayList<Event> lectures = new ArrayList<Event>();
+		
+		Date startDate = new Date();
+		Date stopDate = startDate;
+		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		stopDate.setHours(0);
+		stopDate.setMinutes(0);
+		stopDate.setSeconds(0);
+		
+		User user = MainController.getInstance().getUser();
+		Iterator<Course> it = user.getIsp().getCourses().iterator();
+		while (it.hasNext()){
+			Course course = it.next();
+			Iterator<Lecture> iter = course.getLectures().iterator();
+			while(iter.hasNext()){
+				Lecture lecture = iter.next();
+				if(lecture.getStartDate().compareTo(startDate)>0 && lecture.getStartDate().compareTo(stopDate)<0){
+					lectures.add(lecture);
+				}
+				else if(lecture.getStopDate().compareTo(startDate)>0 && lecture.getStopDate().compareTo(stopDate)<0){
+					lectures.add(lecture);
+				}
+			}
+		}
+		
+		return lectures;
 	}
 	
 	public List<Event> getCategoryEvents(int numberOfDays,String category) throws HttpException, IOException{
-		List<Event> events = getEvents(numberOfDays);
-		List<Event> categoryEvents = new ArrayList<Event>();
-		for(int i=0;i<events.size();i++){
-		  		if(events.get(i).getCategorie().equals(category)){
-		  			categoryEvents.add(events.get(i));
-		  		}
-		  	}
-		return categoryEvents;
+//		List<Event> events = getEvents(numberOfDays);
+//		List<Event> categoryEvents = new ArrayList<Event>();
+//		for(int i=0;i<events.size();i++){
+//		  		if(events.get(i).getCategorie().equals(category)){
+//		  			categoryEvents.add(events.get(i));
+//		  		}
+//		  	}
+//		return categoryEvents;
+		Date startDate = new Date();
+		Date stopDate = startDate;
+		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		stopDate.setHours(0);
+		stopDate.setMinutes(0);
+		stopDate.setSeconds(0);
+		ArrayList<Event> events = EventDAO.getInstance().getEventsByCategoryAndDate(startDate, stopDate, category);
+		return events;
 	}
 
 
