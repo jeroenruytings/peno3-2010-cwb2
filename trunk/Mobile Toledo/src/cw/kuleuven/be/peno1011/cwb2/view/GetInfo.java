@@ -123,8 +123,12 @@ public class GetInfo extends Activity {
 	   	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
-	  	        if(mImages[0]==null){isbuilding = true;}
-	  	        else {isbuilding = false;}
+	  	        if(mImages[0]==null){
+	  	        	isbuilding = true;
+	  	        }
+	  	        else {
+	  	        	isbuilding = false;
+	  	        }
 	  	    }
 
 	  	    public int getCount() {
