@@ -19,9 +19,6 @@ public class CourseInfo extends Activity{
 		     Bundle bundle = getIntent().getExtras();
 			 Course course = (Course) bundle.get("course");
 			 
-			 Toast.makeText(getApplicationContext(), course.getAcademicYear(),
-	                    Toast.LENGTH_LONG).show();
-			 
 			 String prof= "Geen prof gespecifieerd";
 			 String code = "onbekend";
 			 String year = "onbekend";

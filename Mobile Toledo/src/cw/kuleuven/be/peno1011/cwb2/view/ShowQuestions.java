@@ -38,7 +38,7 @@ public class ShowQuestions extends ListActivity {
 		}
 		else{
 			lecture = null;
-			//finish();
+			finish();
 		}	  
 	  final ArrayList<Question> questions = lecture.getQuestions();
 	  

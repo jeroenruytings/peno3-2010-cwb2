@@ -93,8 +93,8 @@ public class ShowRoute extends MapActivity {
 					gpfrom = gpfrom2;
 					gpto = gpto2;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					gpto=new GeoPoint(0, 0);
 				}
 
 			}
@@ -110,8 +110,8 @@ public class ShowRoute extends MapActivity {
 					gpfrom = gpfrom3;
 					gpto = gpto3;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					gpto=new GeoPoint(0, 0);
 				}
 
 			}
@@ -124,8 +124,8 @@ public class ShowRoute extends MapActivity {
 						gpfrom = gpfrom4;
 						gpto = gpto4;
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+						gpto=new GeoPoint(0, 0);
 					}
 
 		}}
