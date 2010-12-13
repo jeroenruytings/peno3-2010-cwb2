@@ -63,9 +63,9 @@ public class SelectCourse extends Activity{
                         		Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
                         		toast.show();
                         	}
-                            }
-                            startActivity(intent);
-						  }
+                         }
+                        startActivity(intent);
+						}
 					  }
 					});
                   }
