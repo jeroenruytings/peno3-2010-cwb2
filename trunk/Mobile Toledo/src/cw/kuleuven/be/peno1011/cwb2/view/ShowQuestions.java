@@ -2,50 +2,51 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
-public class ShowQuestions extends ListActivity {
+public class ShowQuestions extends Activity {
 
 	
 	public void onCreate(Bundle savedInstanceState) {
 	   super.onCreate(savedInstanceState);
        
-	   setContentView(R.layout.showquestions);
+	  requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);  
+	  setContentView(R.layout.showquestions);
+      getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
+      ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
   
 	  //haalt lecture
 	  Bundle bundle = getIntent().getExtras();
 	  final Lecture lecture;
 	  
-	  if(bundle != null){
+	  ArrayList<Question> questionList=new ArrayList<Question>();
+	  if(bundle != null && bundle.get("lecture") != null){
 			lecture = (Lecture) bundle.get("lecture");
+			questionList = lecture.getQuestions();
 		}
 		else{
 			lecture = null;
 			finish();
 		}	  
-	  final ArrayList<Question> questions = lecture.getQuestions();
-	  
-	  //Plaatst een titel vanboven
-	  requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);            
-      getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
-      ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
+	  final ArrayList<Question> questions = questionList;
       
       
 	  // maakt een string[] displayStrings aan van de alles messages van de questions
@@ -60,8 +61,8 @@ public class ShowQuestions extends ListActivity {
 	  	  }
 	  
 	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
-	  setListAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
-	  ListView lv = getListView();
+	  ListView lv = (ListView) findViewById(R.id.lv);
+	  lv.setAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
 	  lv.setTextFilterEnabled(true);
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override

@@ -135,7 +135,7 @@
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
-		<activity android:name=".view.Statistics" android:label="Statistics">
+		<activity android:name=".view.ShowStatistics" android:label="ShowStatistics">
 				<intent-filter>
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>

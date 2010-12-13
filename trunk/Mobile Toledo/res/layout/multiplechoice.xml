@@ -8,16 +8,20 @@
 	<LinearLayout
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
+		android:layout_gravity="center_horizontal"
 		xmlns:android="http://schemas.android.com/apk/res/android">
-		<ListView android:id="@+id/multiplelv" 
-		android:layout_height="wrap_content"
-		android:layout_width="fill_parent">
-		</ListView>
-		<TextView android:id="@+id/multiplefeedback" 
-	 	android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_gravity="center"
-		android:typeface="serif"/>
-	</LinearLayout>
+			<TextView android:id="@+id/multiplefeedback" 
+		 	android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:layout_gravity="center_horizontal"
+			android:typeface="serif"
+			android:text="blabla"
+			style="@style/FontStyle1"/>
+			<!--
+			<ListView android:id="@+id/multiplelv" 
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent">
+			</ListView>
+	--></LinearLayout>
 	
 </LinearLayout>

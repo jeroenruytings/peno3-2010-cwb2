@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +24,10 @@ public class MultipleView extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.multiplechoice);
+	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
+	    ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevragen");
 		
 		try{
 			 Bundle bundle = getIntent().getExtras();
@@ -37,9 +41,8 @@ public class MultipleView extends Activity{
 				}   
 		}
 		catch(NullPointerException ne){
-			TextView textview = new TextView(this);
-	        textview.setText("Geen les van dit vak gevonden die momenteen bezig is.");
-	        setContentView(textview);
+			TextView textView = (TextView) findViewById(R.id.multiplefeedback);
+	        textView.setText("Geen les van dit vak gevonden die momenteen bezig is.");
 		}
 	}
 	
@@ -50,8 +53,10 @@ public class MultipleView extends Activity{
 	}
 	
 	private void answerMultiple(final Lecture lecture){
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.multiplechoice);
-	    setTitle(R.string.multiplechoice);
+	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
+	    ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevraag beantwoorden");
 		
 	    MultipleChoice multiple = lecture.getMultipleChoice();
 	    final String[] options = multiple.getPossibleAnswers();
@@ -90,8 +95,10 @@ public class MultipleView extends Activity{
 	}
 	
 	private void poseMultiple(final Lecture lecture){
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.posemultiplechoice);
-	    setTitle(R.string.posemultiplechoice);
+	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);	
+	    ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevraag stellen");
 		
 	    final EditText mansw1 = (EditText) findViewById(R.id.mansw1);
 	    final EditText mansw2 = (EditText) findViewById(R.id.mansw2);

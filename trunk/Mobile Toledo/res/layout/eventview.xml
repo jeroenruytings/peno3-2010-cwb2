@@ -62,8 +62,7 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:gravity="left"
-				android:singleLine="true"
-				android:ellipsize="end"
+				android:singleLine="false"
 				android:textColor="#ffffff"
 				android:padding="0px"
 				android:text="Geen verdere beschrijving"/>
