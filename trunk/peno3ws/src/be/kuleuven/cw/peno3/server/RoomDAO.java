@@ -158,7 +158,7 @@ public class RoomDAO extends DAO{
 	@POST
 	@Path ("/getRoom")
 	@Produces ("application/json")
-	public String getBuilding(@FormParam("name") String name){
+	public String getRoom(@FormParam("name") String name){
 		String query = "SELECT * FROM room";
 		if(name !=null)query += " WHERE name like '%" + name + "%'";
 		return super.get(query);
