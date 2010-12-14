@@ -1,6 +1,5 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
