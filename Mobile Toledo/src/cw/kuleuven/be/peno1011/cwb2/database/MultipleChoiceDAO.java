@@ -9,6 +9,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 import com.google.gson.Gson;
 
+import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Answer;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
 
@@ -86,4 +87,45 @@ public class MultipleChoiceDAO {
 		
 		return multipleChoices;
 	}
+	
+	public void addMultipleChoice (MultipleChoice multipleChoice, int eventId) throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/MultipleChoiceHandler/addMultipleChoice");
+        
+        String question = multipleChoice.getQuestion();
+        method.addParameter("question", question);
+        method.addParameter("eventId", "" + eventId);
+        // voert de methode ook werkelijk uit en retourneert een  getal
+        int returnCode = client.executeMethod(method);
+        
+        PostMethod getMethod = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/MultipleChoiceHandler/getMultipleChoiceByWord");
+        getMethod.addParameter("word", question);
+        int getreturnCode = client.executeMethod(getMethod);
+        String encryptedJson = getMethod.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		MultipleChoice[] multipleChoices = new Gson().fromJson(json.toString(), MultipleChoice[].class);
+		MultipleChoice returnedMultipleChoice = multipleChoices[0];
+		int multipleChoiceId = returnedMultipleChoice.getMultipleChoiceId();
+		
+		ArrayList<Answer> answers = multipleChoice.getAnswers();
+		int i =0;
+		while(i<answers.size()) {
+			HttpClient client2 = new HttpClient();
+			Answer answer = answers.get(i);
+			PostMethod answerMethod = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/MultipleChoiceHandler/addPossibleAnswer");
+			answerMethod.addParameter("answer", answer.getAnswer());
+			answerMethod.addParameter("multipleChoiceId", "" + multipleChoiceId);
+			int answerReturnCode = client2.executeMethod(answerMethod);
+			i++;
+		}
+	}
+	
+	public void addAnswer(String userId, String possibleAnswerId) throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+        PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/MultipleChoiceHandler/addAnswer");
+        method.addParameter("userId", userId);
+        method.addParameter("possibleAnswerId", possibleAnswerId);
+        int returnCode = client.executeMethod(method);
+	}
+	
 }
