@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.httpclient.HttpException;
 import org.xml.sax.SAXException;
 
 import com.google.android.maps.GeoPoint;
@@ -170,11 +171,24 @@ public class ShowRoute extends MapActivity {
 			
 			@Override
 			public void onClick(View arg0) {
+				String nameto = "";
 				Intent intentt = new Intent(ShowRoute.this,GetInfo.class);
 				// vraag gebouw op a.d.h.v coördinaten
+				BuildingDAO buildingdao1 = BuildingDAO.getInstance();
+				
+				try {
+					nameto = buildingdao1.getBuildingNameByCoordinates(gpto);
+				} catch (HttpException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				Bundle b = new Bundle();
-				b.putString("autocomplete_building", "");
+				b.putString("autocomplete_building", nameto);
 				b.putBoolean("isbuilding", true);
+				intentt.putExtras(b);
 				startActivity(intentt);
 			}
 		});
@@ -206,6 +220,7 @@ public class ShowRoute extends MapActivity {
 		});
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(gpfrom);
+		mapView.getController().setCenter(gpfrom);
 		if(frombuilding == true && tobuilding == true){
 			mapView.getController().setZoom(20);
 		}

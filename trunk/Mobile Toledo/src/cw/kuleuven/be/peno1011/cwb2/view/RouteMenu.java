@@ -39,7 +39,7 @@ private String[] list2;
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.routemenu);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
-        ((TextView)findViewById(R.id.titlebar)).setText("Een route definiï¿½ren");
+        ((TextView)findViewById(R.id.titlebar)).setText("Een route definiëren");
         
 		TextView errorView = (TextView) findViewById(R.id.errorm);
 		Bundle b = getIntent().getExtras();
