@@ -19,6 +19,7 @@ public class Event {
 	private String categorie;
 	private Room room;
 	private int eventId;
+	private int roomId;
 	
 	public Event(String title,String description, String categorie, Date startDate, Date stopDate, Building building, Room room) {
 		setTitle(title);
@@ -94,6 +95,14 @@ public class Event {
 
 	public int getEventId() {
 		return eventId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public int getRoomId() {
+		return roomId;
 	}
 
 }

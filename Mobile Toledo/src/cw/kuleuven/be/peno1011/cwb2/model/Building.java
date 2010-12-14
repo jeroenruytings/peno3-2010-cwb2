@@ -12,6 +12,7 @@ public class Building
 	private String openinghours;
 	private String phonenumber;
 	private ArrayList<Room> rooms;
+	private int locationId;
 	private GPSLocation location;
 
 	
@@ -64,6 +65,14 @@ public class Building
 
 	public void setLocation(GPSLocation location) {
 		this.location = location;
+	}
+
+	public void setLocationId(int locationId) {
+		this.locationId = locationId;
+	}
+
+	public int getLocationId() {
+		return locationId;
 	}
     
 }

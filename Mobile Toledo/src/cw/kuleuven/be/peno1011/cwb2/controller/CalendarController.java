@@ -120,8 +120,8 @@ public class CalendarController {
 //		  	}
 //		return categoryEvents;
 		Date startDate = new Date();
-		Date stopDate = startDate;
-		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		Date stopDate = new Date(startDate.getYear(),startDate.getMonth(),startDate.getDate(),startDate.getHours(),startDate.getMinutes(),startDate.getSeconds());
+		stopDate.setDate(stopDate.getDate()+numberOfDays);
 		stopDate.setHours(0);
 		stopDate.setMinutes(0);
 		stopDate.setSeconds(0);
@@ -139,8 +139,7 @@ public class CalendarController {
 //		  	}
 //		return categoryEvents;
 		Date startDate = new Date();
-		Date stopDate = startDate;
-		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		Date stopDate = new Date(startDate.getYear(),startDate.getMonth(),startDate.getDate(),startDate.getHours(),startDate.getMinutes(),startDate.getSeconds());
 		stopDate.setHours(0);
 		stopDate.setMinutes(0);
 		stopDate.setSeconds(0);
