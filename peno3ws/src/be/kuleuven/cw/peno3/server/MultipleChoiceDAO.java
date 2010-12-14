@@ -80,7 +80,7 @@ public class MultipleChoiceDAO extends DAO{
 	@POST
 	@Path ("/addAnswer")
 	@Produces ("application/json")
-	public String addAnnouncement(@FormParam("userId") String userId, @FormParam("possibleAnswerId") String possibleAnswerId){
+	public String addAnswer(@FormParam("userId") String userId, @FormParam("possibleAnswerId") String possibleAnswerId){
 			String query = "INSERT INTO answer (answerId,userId,possibleAnswerId) VALUES (NULL,'"+ userId + "','" + possibleAnswerId + "')";
 			return super.add(query);
 	}
@@ -95,7 +95,7 @@ public class MultipleChoiceDAO extends DAO{
 	@Path ("/getMultipleChoiceByEventId")
 	@Produces ("application/json")
 	public String getMultipleChoiceByEventId(@FormParam("eventId") String eventId){
-		String query = "SELECT possibleanswer.answer, multipleChoice.multipleChoiceId, multipleChoice.question, IFNULL(SubTotal.Total,0) AS Total FROM possibleanswer INNER JOIN multipleChoice AS multipleChoice ON multipleChoice.multipleChoiceId = possibleanswer.multipleChoiceId LEFT JOIN (SELECT answer.possibleAnswerId, COUNT(answer.possibleAnswerId) AS total FROM answer GROUP BY answer.possibleAnswerId) AS SubTotal ON possibleanswer.possibleAnswerId = SubTotal.possibleAnswerId WHERE multipleChoice.eventId = '"+ eventId + "'";
+		String query = "SELECT possibleanswer.answer, possibleanswer.possibleAnswerId, multipleChoice.multipleChoiceId, multipleChoice.question, IFNULL(SubTotal.Total,0) AS Total FROM possibleanswer INNER JOIN multipleChoice AS multipleChoice ON multipleChoice.multipleChoiceId = possibleanswer.multipleChoiceId LEFT JOIN (SELECT answer.possibleAnswerId, COUNT(answer.possibleAnswerId) AS total FROM answer GROUP BY answer.possibleAnswerId) AS SubTotal ON possibleanswer.possibleAnswerId = SubTotal.possibleAnswerId WHERE multipleChoice.eventId = '"+ eventId + "'";
 		return super.get(query);
 	}
 	
