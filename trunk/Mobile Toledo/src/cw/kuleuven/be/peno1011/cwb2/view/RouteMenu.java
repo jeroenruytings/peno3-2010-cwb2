@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -20,20 +21,25 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 
 
 
 public class RouteMenu extends Activity {
 private Boolean frombuilding;
 private Boolean tobuilding;
+private NavigationController control;
+private String[] list1;
+private String[] list2;
+
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		
+
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);	
 		setContentView(R.layout.routemenu);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
-        ((TextView)findViewById(R.id.titlebar)).setText("Een route definiëren");
+        ((TextView)findViewById(R.id.titlebar)).setText("Een route definiï¿½ren");
         
 		TextView errorView = (TextView) findViewById(R.id.errorm);
 		Bundle b = getIntent().getExtras();
@@ -56,6 +62,31 @@ private Boolean tobuilding;
 		catch(NullPointerException ne){
 			
 		}
+		
+		
+		
+		///////////////////////////
+		
+		control = NavigationController.getInstance();
+		final String [] list = control.getBuildingNames();
+		final String [] list0 = {""};	
+		
+		list1 = list;
+		list2 = list;
+		
+				
+		AutoCompleteTextView textViewFrom = (AutoCompleteTextView) findViewById(R.id.mfrom);
+		final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, R.layout.autofilllist, list1);
+		textViewFrom.setAdapter(adapter1);
+		
+		AutoCompleteTextView textViewTo = (AutoCompleteTextView) findViewById(R.id.mto);
+		final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.autofilllist, list2);
+		textViewTo.setAdapter(adapter2);
+		
+		
+		///////////////////////
+		
+		
 		String[] destination = new String[]{"Gebouw","Adres"};
 		List<String> destinationType = (List<String>) Arrays.asList(destination);
 		Spinner s1 = (Spinner) findViewById(R.id.fromSpinner);
@@ -66,15 +97,26 @@ private Boolean tobuilding;
         s1.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 
+
+
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int position, long id) {
 				if (position == 0){
 					frombuilding = true;
+					list1 = list;	
+					AutoCompleteTextView textViewFrom = (AutoCompleteTextView) findViewById(R.id.mfrom);
+					ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(RouteMenu.this, R.layout.autofilllist, list1);
+					textViewFrom.setAdapter(adapter1);
+					
 				}
 				else{
 					frombuilding = false;
-				}
+					list1 = list0;
+					AutoCompleteTextView textViewFrom = (AutoCompleteTextView) findViewById(R.id.mfrom);
+					ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(RouteMenu.this, R.layout.autofilllist, list1);
+					textViewFrom.setAdapter(adapter1);
+					}
 				
 			}
 
@@ -95,9 +137,17 @@ private Boolean tobuilding;
 					int position, long id) {
 				if (position ==0){
 					tobuilding = true;
+					list2 = list;
+					AutoCompleteTextView textViewTo = (AutoCompleteTextView) findViewById(R.id.mto);
+					ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(RouteMenu.this, R.layout.autofilllist, list2);
+					textViewTo.setAdapter(adapter2);
 				}
 				else {
 					tobuilding = false;
+					list2 = list0;
+					AutoCompleteTextView textViewTo = (AutoCompleteTextView) findViewById(R.id.mto);
+					ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(RouteMenu.this, R.layout.autofilllist, list2);
+					textViewTo.setAdapter(adapter2);
 				}
 				
 			}
@@ -120,11 +170,12 @@ private Boolean tobuilding;
 		
 	}
 	
+		
 	private void Navigate(){
 
 	
-	EditText van = (EditText) findViewById(R.id.mfrom);
-	EditText naar = (EditText) findViewById(R.id.mto);
+	AutoCompleteTextView van = (AutoCompleteTextView) findViewById(R.id.mfrom);
+	AutoCompleteTextView naar = (AutoCompleteTextView) findViewById(R.id.mto);
 	
 	String van1 = van.getEditableText().toString();
 	String naar1 = naar.getEditableText().toString();
@@ -162,4 +213,7 @@ private Boolean tobuilding;
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}}
+	
+
 }
+
