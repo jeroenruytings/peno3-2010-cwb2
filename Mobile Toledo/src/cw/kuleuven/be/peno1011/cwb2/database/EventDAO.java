@@ -113,8 +113,14 @@ public class EventDAO {
 	}
 	
 	public ArrayList<Event> getEventsByCategoriesAndDate(Date startDate, Date stopDate, String categorie1, String categorie2) throws HttpException, IOException{
+		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/EventHandler/getEventsByTwoCategoriesAndDateWithLocation");
+		method.addParameter("categorie1",categorie1);
+		method.addParameter("categorie2",categorie2);
+		method.addParameter("startDate", cryptography.toMysqlDate(startDate));
+		method.addParameter("stopDate", cryptography.toMysqlDate(stopDate));
+		
 		int returnCode = client.executeMethod(method);
 		String json = cryptography.decrypt(method.getResponseBodyAsString());
 		
@@ -123,8 +129,13 @@ public class EventDAO {
 
 	public ArrayList<Event> getEventsByCategoriesAndDate(Date startDate,
 			Date stopDate, String categorie) throws HttpException, IOException {
+		
 		HttpClient client = new HttpClient();
 		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/EventHandler/getEventsByCategorieAndDateWithLocation");
+		method.addParameter("categorie",categorie);
+		method.addParameter("startDate", cryptography.toMysqlDate(startDate));
+		method.addParameter("stopDate", cryptography.toMysqlDate(stopDate));
+		
 		int returnCode = client.executeMethod(method);
 		String json = cryptography.decrypt(method.getResponseBodyAsString());
 		

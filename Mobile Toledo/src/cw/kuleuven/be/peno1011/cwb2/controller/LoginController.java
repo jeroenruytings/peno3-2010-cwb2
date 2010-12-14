@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -53,6 +54,28 @@ public class LoginController {
 			isp = IspDAO.getInstance().getIsp(userId);
 			if(isp!=null) {
 				ArrayList<Course> courses = CourseDAO.getInstance().getCourseByUserId(userId);
+				ArrayList<Course> coursesWithLectures = LectureDAO.getInstance().initializeLectures(userId);
+				
+				Iterator<Course> it = coursesWithLectures.iterator();
+				
+				while(it.hasNext()){
+					Course currentCourse = it.next();
+					Boolean found = false;
+					int index = 0;
+					Course course;
+					Iterator<Course> iter = courses.iterator();
+					while(!found){
+						course = iter.next();
+						if(course.getCourseCode().equals(currentCourse.getCourseCode())){
+							found = true;
+							index = courses.indexOf(course);
+						}
+					}
+					Course test = courses.get(index);
+					ArrayList<Lecture> lectures = courses.get(index).getLectures();
+					ArrayList<Lecture> lecture = currentCourse.getLectures();
+					courses.get(index).getLectures().addAll(currentCourse.getLectures());	
+				}
 				isp.setCourses(courses);
 				user.setIsp(isp);	
 			}		
