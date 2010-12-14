@@ -108,7 +108,7 @@ public class GetInfo extends Activity {
 				}
 				
 				Bundle b = new Bundle();
-				b.putString("from", "ownloaction");
+				b.putString("from", "ownlocation");
 				b.putString("to", location);
 				b.putBoolean("frombuilding", false);
 				b.putBoolean("tobuilding", true);
