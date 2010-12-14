@@ -7,6 +7,7 @@ public class Answer {
 	private int total;
 	private String answer;
 	private ArrayList<User> users;
+	private String possibleAnswerId;
 	
 	public Answer(int multipleChoiceId, int total, String answer, ArrayList<User> users){
 		setTotal(total);
@@ -48,6 +49,14 @@ public class Answer {
 
 	public int getMultipleChoiceId() {
 		return multipleChoiceId;
+	}
+
+	public void setPossibleAnswerId(String possibleAnswerId) {
+		this.possibleAnswerId = possibleAnswerId;
+	}
+
+	public String getPossibleAnswerId() {
+		return possibleAnswerId;
 	}
 	
 }
