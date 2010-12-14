@@ -113,7 +113,7 @@ public class RoomDAO {
 		String encryptedJson = method.getResponseBodyAsString();
 		String json = cryptography.decrypt(encryptedJson);
 		PictureLink[] pictures = new Gson().fromJson(json.toString(), PictureLink[].class);
-		String[] links = null;
+		String[] links = new String[pictures.length];
 		for(int i = 0; i<pictures.length; i++){
 			links[i] = pictures[i].getPicture();
 		}
@@ -133,6 +133,9 @@ public class RoomDAO {
 		Room[] rooms = new Gson().fromJson(json.toString(), Room[].class);
 		GPSLocation[] locations = new Gson().fromJson(json.toString(),GPSLocation[].class);
 		Room room = rooms[0];
+		Building[] buildings = new Gson().fromJson(json.toString(),Building[].class);
+		Building building = buildings[0];
+		room.setBuilding(building);
 		
 		return room;
 	}
