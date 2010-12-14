@@ -6,42 +6,25 @@ public class MultipleChoice {
 	
 	private String question;
 	private int multipleChoiceId;
-	private String[] possibleAnswers;
-	private ArrayList<User> responders;
-	private int[] answers;
+	private ArrayList<Answer> answers;
 	
-	public MultipleChoice(Lecture lecture, String question, ArrayList<String> answers, int multipleChoiceId) {
+	public MultipleChoice(Lecture lecture, String question, ArrayList<Answer> answers, int multipleChoiceId) {
 		setQuestion(question);
-		setPossibleAnswers(possibleAnswers);
+		setAnswers(answers);
 		setMultipleChoiceId(multipleChoiceId);
 	}
+	private MultipleChoice() { }
 
-	public String[] getPossibleAnswers() {
-		return possibleAnswers;
-	}
-
-	public void setPossibleAnswers(String[] possibleAnswers) {
-		this.possibleAnswers = possibleAnswers;
-	}
-
-	public ArrayList<User> getResponders() {
-		return responders;
-	}
-
-	public void setResponders(ArrayList<User> responders) {
-		this.responders = responders;
-	}
-	
-	public void addResponder(User user){
-		responders.add(user);
-	}
-
-	public int[] getAnswers() {
+	public ArrayList<Answer> getAnswers() {
 		return answers;
 	}
 
-	public void addAnswer(int i) {
-		answers[answers.length] = i;
+	public void setAnswers(ArrayList<Answer> answers) {
+		this.answers = answers;
+	}
+
+	public void addAnswer(Answer answer) {
+		answers.add(answer);
 	}
 
 	public String getQuestion() {
