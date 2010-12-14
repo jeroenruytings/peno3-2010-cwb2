@@ -5,7 +5,7 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   android:gravity="center_horizontal"
-  android:layout_marginTop="10dip"
+  android:layout_marginTop="20dip"
   style="@style/GenLayout">
 	  		<TextView android:id="@+id/docsView"
 			android:layout_width="wrap_content"

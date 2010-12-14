@@ -2,28 +2,19 @@ package cw.kuleuven.be.peno1011.cwb2.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.httpclient.HttpException;
 
 import cw.kuleuven.be.peno1011.cwb2.database.EventDAO;
-import cw.kuleuven.be.peno1011.cwb2.model.Agenda;
-import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Event;
-import cw.kuleuven.be.peno1011.cwb2.model.ISP;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
-public class CalendarController {
-	private Agenda agenda;
-	
-	
+public class CalendarController {	
 	
 	/**
 	 * @param agenda
@@ -50,11 +41,7 @@ public class CalendarController {
 //		  agenda.setEvents(events);
 		//TODO/DAO haalt de juiste (!) events uit db en steekt ze in de agenda
 	}
-	
-	public List<Event> getAllEvents(){
-		
-		return agenda.getEvents();
-	}
+
 	
 	public List<Event> getEvents(int numberOfDays) throws HttpException, IOException{ // recente
 		
@@ -162,9 +149,4 @@ public class CalendarController {
 	}
 
 
-	public void updateCalendar(){ //android kalender updaten, dmv events in agenda
-		List<Event> events = agenda.getEvents();
-		//TODO/voor elke event de gegevens in de android kalender steken -> dmv ical object?
-		//alternatief: haal google calendargegevens op
-	}
 }

@@ -2,14 +2,24 @@ package cw.kuleuven.be.peno1011.cwb2.model;
 
 import java.util.Date;
 
+/**
+ * Modelclass of announcements
+ *
+ */
 public class Announcement {
 	
 	private Date date;
-	private User user; //degene die de aankondiging maakte
+	private User user; 
 	private String title;
 	private String message;
 	private Course course;
 	
+	/**
+	 * @param user
+	 * @param course
+	 * @param title
+	 * @param message
+	 */
 	public Announcement(User user, Course course, String title, String message) {
 		 setDate(date);
 		 setUser(user);
