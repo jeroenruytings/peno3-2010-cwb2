@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Lecture extends Event implements Serializable{
+public class Lecture extends Event{
 	
 	/**
 	 * 
 	 */
-	private static long serialVersionUID = 1L;
 	private Room room;
 	private MultipleChoice multipleChoice;
 	private ArrayList <Question> questions = new ArrayList<Question>();
