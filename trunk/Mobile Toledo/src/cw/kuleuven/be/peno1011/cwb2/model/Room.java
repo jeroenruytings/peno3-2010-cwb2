@@ -1,6 +1,6 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
-import java.lang.reflect.Array;
+import java.io.Serializable;
 
 
 
@@ -10,8 +10,12 @@ import java.lang.reflect.Array;
  * 
  *
  */
-public class Room {
+public class Room implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3251290524395051026L;
 	private int xcoordinate;
 	private int ycoordinate;
 	private String function;
