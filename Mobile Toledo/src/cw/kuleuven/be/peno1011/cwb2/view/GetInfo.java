@@ -122,8 +122,7 @@ public class GetInfo extends Activity {
 	 	
 	 	
 	 	Gallery g = (Gallery) findViewById(R.id.gallery);   
-	 	g.setVisibility(View.VISIBLE);
-	    g.setAdapter(new ImageAdapter(this,isbuilding));
+	    g.setAdapter(new ImageAdapter(this));
 	
 
 	    g.setOnItemClickListener(new OnItemClickListener() {
@@ -149,7 +148,7 @@ public class GetInfo extends Activity {
 	  	    
 	  	    
 	  	    
-	   	    public ImageAdapter(Context c,boolean isbuilding) {
+	   	    public ImageAdapter(Context c) {
 		  	    mImages = control.getPictureArray(location, isbuilding);
 		  	    Bitmap [] notfound = {BitmapFactory.decodeResource(GetInfo.this.getResources(),R.drawable.imagenotfound)};
 		  	    if (mImages == null){
@@ -175,10 +174,10 @@ public class GetInfo extends Activity {
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
 	  	        	   	        
-	  	        i.setImageBitmap(mImages[position]); 
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);
 	  	        i.setBackgroundResource(mGalleryItemBackground);
+	  	        i.setImageBitmap(mImages[position]); 
 	  	        
 	  	        return i;
 	  	    }
