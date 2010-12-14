@@ -1,16 +1,15 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
-import java.security.Provider;
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -49,14 +48,22 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 	    mapView.setBuiltInZoomControls(true);
 	    // maak een nieuwe overlay
 	    mapOverlays = mapView.getOverlays();
-	    Button b1 = (Button) findViewById(R.id.aangekomen);
+	    ImageView b1 = (ImageView) findViewById(R.id.aangekomen);
 	    b1.setVisibility(View.GONE);
-	    Button b2 = (Button) findViewById(R.id.sat);
+	    ImageView b2 = (ImageView) findViewById(R.id.sat);
 	    b2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				mapView.setSatellite(true);
+			}
+		});
+	    ImageView b3 = (ImageView) findViewById(R.id.card);
+	    b2.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				
 			}
 		});
 	    drawable = this.getResources().getDrawable(R.drawable.marker);
