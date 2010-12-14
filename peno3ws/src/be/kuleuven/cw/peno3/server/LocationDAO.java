@@ -52,6 +52,15 @@ public class LocationDAO extends DAO{
 		return super.get(query);
 	}
 	
+	@POST
+	@Path ("/getBuildingAndLocationByCoordinates")
+	@Produces ("application/json")
+	public String getBuildingAndLocationByCoordinates(@FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
+		String query = "SELECT * FROM location INNER JOIN building USING(locationId)";
+		if(xcoordinate!=null && ycoordinate!=null)query += " WHERE xcoordinate like '" + xcoordinate + "' or ycoordinate like '" + ycoordinate + "'";
+		return super.get(query);
+	}
+	
 	/**
 	 * Gets the location corresponding to the given adress. Results are ordered first by ascending street than by ascending number.
 	 *
