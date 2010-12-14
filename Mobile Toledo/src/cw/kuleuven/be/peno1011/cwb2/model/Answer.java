@@ -1,14 +1,19 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
 
+import java.util.ArrayList;
+
 public class Answer {
 	private int total;
 	private String answer;
-	private User user;
+	private ArrayList<User> users;
 	
-	public Answer(int total, String answer){
+	public Answer(int total, String answer, ArrayList<User> users){
 		setTotal(total);
 		setAnswer(answer);
+		setUsers(users);
 	}
+	
+	private Answer() { }
 	
 	public void setTotal(int total) {
 		this.total = total;
@@ -23,12 +28,16 @@ public class Answer {
 		return answer;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
+	
+	public void addUser(User user) {
+		users.add(user);
 	}
 
-	public User getUser() {
-		return user;
+	public ArrayList<User> getUsers() {
+		return users;
 	}
 	
 }
