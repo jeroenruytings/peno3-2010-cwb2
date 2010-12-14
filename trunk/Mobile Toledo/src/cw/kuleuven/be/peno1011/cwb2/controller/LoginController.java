@@ -73,9 +73,6 @@ public class LoginController {
 							index = courses.indexOf(course);
 						}
 					}
-					Course test = courses.get(index);
-					ArrayList<Lecture> lectures = courses.get(index).getLectures();
-					ArrayList<Lecture> lecture = currentCourse.getLectures();
 					courses.get(index).getLectures().addAll(currentCourse.getLectures());	
 				}
 				isp.setCourses(courses);

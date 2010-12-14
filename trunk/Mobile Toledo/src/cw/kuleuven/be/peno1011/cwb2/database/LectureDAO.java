@@ -14,6 +14,7 @@ import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
+import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
 public class LectureDAO {
 	private static LectureDAO lectureDAO;
@@ -67,6 +68,11 @@ public class LectureDAO {
 		else {
 			lectures = new Gson().fromJson(json.toString(), Lecture[].class);
 			Course[] coursesDAO = new Gson().fromJson(json.toString(), Course[].class);
+			Room[] rooms = new Gson().fromJson(json.toString(),Room[].class);
+			
+			for(int i=0; i<rooms.length;i++){
+				lectures[i].setRoom(rooms[i]);
+			}
 			
 			for(int i = 0; i<coursesDAO.length; i++){
 				if(!courses.contains(coursesDAO[i])){
