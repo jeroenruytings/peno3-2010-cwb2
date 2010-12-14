@@ -193,7 +193,7 @@ public class MultipleView extends Activity{
                                 answers.add(new Answer(0,0,answ5,new ArrayList<User>()));
                         }
 //                        answers.add(answ3);answers.add(answ4);answers.add(answ5);
-                        MultipleChoice multiple = new MultipleChoice(lecture, question, answers, 1);
+                        MultipleChoice multiple = new MultipleChoice(question, answers, 1);
                         //TODO/ in database steken
                 }
                 else{
