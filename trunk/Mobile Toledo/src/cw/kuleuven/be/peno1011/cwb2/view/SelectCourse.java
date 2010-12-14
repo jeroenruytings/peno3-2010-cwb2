@@ -55,7 +55,9 @@ public class SelectCourse extends Activity{
                         else{
                         	try{
                         		Lecture lecture = findLecture(course);
-                        		intent.putExtra("lecture",lecture);
+                        		int lectureId = lecture.getEventId();
+                        		intent.putExtra("lecture",lectureId);
+                        		intent.putExtra("courseCode",course.getCourseCode());
                         	}
                         	catch(Exception e){
                         		Context context = getApplicationContext();

@@ -7,8 +7,10 @@ import org.apache.commons.httpclient.HttpException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.QuestionController;
@@ -23,15 +25,17 @@ public class Questions extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);  
 		setContentView(R.layout.question);
+	      getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
+	      ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
 
 		Bundle bundle = getIntent().getExtras();
-		final Lecture lecture;
+		int lectureId = 0;
 		if(bundle != null){
-			lecture = (Lecture) bundle.get("lecture");
+			lectureId = (Integer) bundle.get("lecture");
 		}
 		else{
-			lecture = null;
 			finish();
 		}
 		
@@ -45,7 +49,8 @@ public class Questions extends Activity{
 		    }
 
 	    });
-	        
+	      
+	    final int id = lectureId;
 	        
 	    Button submitbutton = (Button) findViewById(R.id.submit);
 
@@ -56,9 +61,7 @@ public class Questions extends Activity{
 
 		    	QuestionController controller = QuestionController.getInstance();
 				try {
-					controller.insert(mQuestion.getText().toString(),lecture);
-					Toast.makeText(getApplicationContext(), "Fout tijdens het aanmaken van het announcement!",
-					Toast.LENGTH_LONG).show();
+					controller.insert(mQuestion.getText().toString(),id);
 				} catch (HttpException e) {
 					Toast.makeText(getApplicationContext(), "Geen internetverbinding!",
 					Toast.LENGTH_LONG).show();

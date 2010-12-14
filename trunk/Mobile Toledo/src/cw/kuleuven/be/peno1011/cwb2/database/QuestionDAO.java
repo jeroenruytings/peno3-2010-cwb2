@@ -17,7 +17,7 @@ public class QuestionDAO {
 		return QuestionDAO; 
 	}
 
-	public void addQuestion(String userId, String question, int eventId) throws HttpException, IOException {
+	public void addQuestion(String userId, String question, String eventId) throws HttpException, IOException {
 		HttpClient client = new HttpClient();
         PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/QuestionHandler/addQuestion");
         
