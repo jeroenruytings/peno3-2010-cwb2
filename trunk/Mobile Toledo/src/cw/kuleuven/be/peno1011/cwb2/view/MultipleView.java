@@ -49,6 +49,7 @@ public class MultipleView extends Activity{
                 return isSaved;
         }
        
+        //VRAAG BEANTWOORDEN
         private void answerMultiple(final Lecture lecture){
                 requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);              
                 setContentView(R.layout.multiplechoice);
@@ -70,6 +71,7 @@ public class MultipleView extends Activity{
 	            public void onClick(DialogInterface dialog, int whichButton) {
 	            }
 	        });
+	        //op ingeven drukken
 	        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int whichButton) {
 	                Toast msg = Toast.makeText(MultipleView.this, Integer.toString(whichButton) , Toast.LENGTH_LONG);
@@ -89,6 +91,7 @@ public class MultipleView extends Activity{
 	               
 	        }
 	        });
+	        //op annuleer drukken
 	        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
 	            public void onClick(DialogInterface dialog, int whichButton) {
 	                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
@@ -98,6 +101,7 @@ public class MultipleView extends Activity{
 	        ab.show();
         }
        
+        //VRAAG STELLEN
         private void poseMultiple(final Lecture lecture){
             requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);              
             setContentView(R.layout.posemultiplechoice);
@@ -173,7 +177,7 @@ public class MultipleView extends Activity{
                 EditText mansw5 = (EditText) findViewById(R.id.mansw1);
                 String answ5 = mansw5.getText().toString();
                 String question = multiQuestion.getText().toString();
-                if(question.equals("") || answ1.equals("") || answ2.equals("")){
+                if(!question.equals("") || !answ1.equals("") || !answ2.equals("")){
                         ArrayList<Answer> answers = new ArrayList<Answer>();
                         answers.add(new Answer(0,0,answ1,new ArrayList<User>()));answers.add(new Answer(0,0,answ2,new ArrayList<User>()));
                         if(!answ3.equals("")){
