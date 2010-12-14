@@ -94,8 +94,8 @@ public class MultipleChoiceDAO extends DAO{
 	@POST
 	@Path ("/getMultipleChoiceByEventId")
 	@Produces ("application/json")
-	public String getMultipleChoice(@FormParam("eventId") String eventId){
-		String query = "SELECT possibleanswer.answer, multipleChoice.multipleChoiceId, multipleChoice.question, IFNULL(SubTotal.Total,0) AS Total FROM possibleanswer INNER JOIN multipleChoice AS multipleChoice ON multipleChoice.multipleChoiceId = possibleanswer.multipleChoiceId LEFT JOIN (SELECT answer.possibleAnswerId, COUNT(answer.possibleAnswerId) AS Total FROM answer GROUP BY answer.possibleAnswerId) AS SubTotal ON possibleanswer.possibleAnswerId = SubTotal.possibleAnswerId WHERE multipleChoice.eventId = '"+ eventId + "'";
+	public String getMultipleChoiceByEventId(@FormParam("eventId") String eventId){
+		String query = "SELECT possibleanswer.answer, multipleChoice.multipleChoiceId, multipleChoice.question, IFNULL(SubTotal.Total,0) AS Total FROM possibleanswer INNER JOIN multipleChoice AS multipleChoice ON multipleChoice.multipleChoiceId = possibleanswer.multipleChoiceId LEFT JOIN (SELECT answer.possibleAnswerId, COUNT(answer.possibleAnswerId) AS total FROM answer GROUP BY answer.possibleAnswerId) AS SubTotal ON possibleanswer.possibleAnswerId = SubTotal.possibleAnswerId WHERE multipleChoice.eventId = '"+ eventId + "'";
 		return super.get(query);
 	}
 	
