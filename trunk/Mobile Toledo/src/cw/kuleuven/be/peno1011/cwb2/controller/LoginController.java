@@ -18,12 +18,14 @@ import cw.kuleuven.be.peno1011.cwb2.database.CourseDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.Cryptography;
 import cw.kuleuven.be.peno1011.cwb2.database.IspDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.LectureDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.MultipleChoiceDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.UserDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.local.LoginDbAdaptor;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
+import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class LoginController {
@@ -77,7 +79,7 @@ public class LoginController {
 					courses.get(index).getLectures().addAll(currentCourse.getLectures());	
 				}
 				isp.setCourses(courses);
-				user.setIsp(isp);	
+				user.setIsp(isp);
 			}		
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block
