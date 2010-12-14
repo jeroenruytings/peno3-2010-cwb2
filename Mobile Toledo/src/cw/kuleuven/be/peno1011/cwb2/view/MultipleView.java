@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
 import cw.kuleuven.be.peno1011.cwb2.model.Answer;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
@@ -28,7 +29,9 @@ public class MultipleView extends Activity{
                
                 try{
                      Bundle bundle = getIntent().getExtras();
-                     final Lecture lecture = (Lecture) bundle.get("lecture");
+                     int lectureId = (Integer) bundle.get("lecture");
+                     String courseCode = (String) bundle.get("courseCode");
+                     Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
                      User user = MainController.getInstance().getUser();
                                 if(user.getRank()==1){
                                         poseMultiple(lecture);
@@ -51,8 +54,8 @@ public class MultipleView extends Activity{
        
         //VRAAG BEANTWOORDEN
         private void answerMultiple(final Lecture lecture){
-                requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);              
-                setContentView(R.layout.multiplechoice);
+            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);              
+            setContentView(R.layout.multiplechoice);
             getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);    
             ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevraag beantwoorden");
                

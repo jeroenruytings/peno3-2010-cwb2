@@ -13,6 +13,7 @@ import cw.kuleuven.be.peno1011.cwb2.database.Cryptography;
 import cw.kuleuven.be.peno1011.cwb2.model.Announcement;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
+import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 
@@ -149,6 +150,30 @@ public class InfoController {
 	public void insert(String title, String message, Course course) throws IOException {
 		Date date = new Date();
 		AnnouncementDAO.getInstance().add(user.getUserId(), message, Cryptography.getInstance().toMysqlDate(date), title, course.getCourseCode());
+	}
+	
+	public Lecture findLectureById(int id, String courseCode) {
+		List<Course> courses=MainController.getInstance().getUser().getIsp().getCourses();
+		Course course = null;
+		boolean isFound = false;
+		for(int i=0;i<courses.size() && !isFound;i++){
+			if(courses.get(i).getCourseCode().equals(courseCode)){
+				isFound = true;
+				course=courses.get(i);
+			}
+		}
+		Lecture lecture = null;
+		if(course != null){
+			boolean isFound2 = false;
+			List<Lecture> lectures = course.getLectures();
+			for(int i=0;i<lectures.size() && !isFound2;i++){
+				if(lectures.get(i).getEventId()==(id)){
+					isFound = true;
+					lecture = lectures.get(i);
+				}
+			}
+		}
+		return lecture;
 	}
 	
 }

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
@@ -28,22 +28,29 @@ public class ShowQuestions extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	   super.onCreate(savedInstanceState);
        
-	  requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);  
-	  setContentView(R.layout.showquestions);
-      getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
-      ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
+//	  requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);  
+//	  setContentView(R.layout.showquestions);
+//      getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);         
+//      ((TextView)findViewById(R.id.titlebar)).setText("Vragen");
   
 	  //haalt lecture
 	  Bundle bundle = getIntent().getExtras();
-	  final Lecture lecture;
 	  
 	  ArrayList<Question> questionList=new ArrayList<Question>();
-	  if(bundle != null && bundle.get("lecture") != null){
-			lecture = (Lecture) bundle.get("lecture");
-			questionList = lecture.getQuestions();
+	  if(bundle != null && bundle.get("lecture") != null && bundle.get("courseCode") != null){
+			int lectureId = (Integer) bundle.get("lecture");
+			String courseCode = (String) bundle.get("courseCode");
+			Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
+			Toast.makeText(ShowQuestions.this, lecture.getTitle(), Toast.LENGTH_SHORT).show();
+//			Toast.makeText(ShowQuestions.this, lecture.getQuestions().get(0).getMessage(), Toast.LENGTH_SHORT).show();
+			try{
+				questionList = lecture.getQuestions();
+			}
+			catch(NullPointerException ne){
+				Toast.makeText(ShowQuestions.this, "Geen les gevonden", Toast.LENGTH_SHORT).show();
+			}
 		}
 		else{
-			lecture = null;
 			finish();
 		}	  
 	  final ArrayList<Question> questions = questionList;
@@ -52,25 +59,24 @@ public class ShowQuestions extends Activity {
 	  // maakt een string[] displayStrings aan van de alles messages van de questions
       // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
       //TODO De database sorteren op score, dit is een integer van 0 tot 5
-//	  final String[] displayStrings = new String[questions.size()];
-//	  	  for(int i = 0;i< questions.size();i++){
-//				
-//	  		  	String displayString = "Vraag"+ ": " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
-//				displayStrings[questions.size()-i] = displayString;
-//				
-//	  	  }
-//	  
-//	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
-//	  ListView lv = (ListView) findViewById(R.id.lv);
-//	  lv.setAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
-//	  lv.setTextFilterEnabled(true);
-//	  lv.setOnItemClickListener(new OnItemClickListener() {
-//			@Override
-//			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
-//				getInfoQuestion(questions.get(questions.size()-position-1));	
-//			
-//			}
-//	  });
+	  final String[] displayStrings = new String[questions.size()];
+	  	  for(int i = 0;i< questions.size();i++){
+	  		  	String displayString = "Vraag: " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
+				displayStrings[i] = displayString;
+				
+	  	  }
+	  
+	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
+	  ListView lv = (ListView) findViewById(R.id.lv);
+	  lv.setAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
+	  lv.setTextFilterEnabled(true);
+	  lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
+				getInfoQuestion(questions.get(questions.size()-position-1));	
+
+			}
+	  });
 	      
 	  }
 		  				
