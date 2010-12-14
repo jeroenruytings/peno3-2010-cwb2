@@ -160,9 +160,11 @@ public class NavigationController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		
-		for(String link : links){
-			link.replace(" ", "%20");
+		if(links != null){
+			for(String link : links){
+				link.replace(" ", "%20");
+			}
+			
 		}
 		
 		
