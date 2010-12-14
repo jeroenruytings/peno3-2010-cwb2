@@ -3,9 +3,12 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 
 import java.io.IOException;
 
+import org.apache.commons.httpclient.HttpException;
+
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.NavigationController;
 import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
 import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import android.app.Activity;
@@ -34,6 +37,7 @@ public class GetInfo extends Activity {
 	private NavigationController control;
 	public String location;
 	public BuildingDAO dao1;
+	public RoomDAO dao2;
 	public boolean isbuilding;
 	
 	
@@ -52,14 +56,33 @@ public class GetInfo extends Activity {
 		TextView locationname = (TextView) findViewById(R.id.locationname);
 	 	locationname.setText(location);
 	 	
-	 	dao1 = BuildingDAO.getInstance();
 	 	Building building = null;
-		try {
+	 	if (isbuilding == true){
+	 	dao1 = BuildingDAO.getInstance();
+	 	  try {
 			building = dao1.getBuilding(location);
-		} catch (IOException e) {
+	 	  } 
+	 	  catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+	 	  }
+	 	}
+	 	else{
+	 	dao2 = RoomDAO.getInstance();
+	 		try {
+				building = dao2.getRoom(location).getBuilding();
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	 	
+	 		
+	 	}
+		
+		
 	 	
 		TextView adresse = (TextView) findViewById(R.id.adresse);
 		String adresseString = "Adres";
@@ -70,7 +93,7 @@ public class GetInfo extends Activity {
 	 	telephonenr.setText(building.getPhonenumber());
 	 	TextView openinghours = (TextView)findViewById(R.id.openinghours);
 	 	openinghours.setText(building.getOpeninghours());
-		
+	 	
 	 	
 	 	ImageButton navigatebutton = (ImageButton) findViewById(R.id.locationinfonavigate);
 	 	navigatebutton.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +119,11 @@ public class GetInfo extends Activity {
 			}
 		});
 	 	
-	    Gallery g = (Gallery) findViewById(R.id.gallery);
-	    g.setAdapter(new ImageAdapter(this));
+	 	
+	 	Gallery g = (Gallery) findViewById(R.id.gallery);   
+	    ImageAdapter adapt = new ImageAdapter(this,isbuilding);
+	    g.setAdapter(adapt);
+	
 
 	    g.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -110,23 +136,26 @@ public class GetInfo extends Activity {
 	        
 	        }
 	    });
+	}
 
-	}	  	 
+		  	 
 	  	class ImageAdapter extends BaseAdapter {
 
 	  		private int mGalleryItemBackground;
 	  	    private Context mContext;
 
-	  	    private Bitmap[] mImages = control.getPictureArray(location, isbuilding);
+	  	    private Bitmap[] mImages = null;
+	  	    private int [] IImages = {R.drawable.imagenotfound};;
 	  	    
 	  	    
-	   	    public ImageAdapter(Context c) {
-		  	    
+	   	    public ImageAdapter(Context c,boolean isbuilding) {
+		  	    mImages = control.getPictureArray(location, isbuilding);
 	  	        mContext = c;
 	  	       	  	    }
 
 	  	    public int getCount() {
-	  	        return mImages.length;
+	  	    	return mImages.length;
+	  	     	
 	  	    }
 
 	  	    public Object getItem(int position) {
@@ -140,13 +169,8 @@ public class GetInfo extends Activity {
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
 	  	        
-	  	        if (mImages != null){	  	        
-	  	        i.setImageBitmap(mImages[position]);
-	  	        }
-	  	        else {
-	  	        i.setImageResource(R.drawable.imagenotfound);
-	  	        }
-	  	        
+	  //	       	if (mImages != null){ 	        
+	  	        i.setImageBitmap(mImages[position]); 
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);
 	  	        i.setBackgroundResource(mGalleryItemBackground);
@@ -155,6 +179,7 @@ public class GetInfo extends Activity {
 	  	    }
 
 		  	}
+
 		    
 	}
 

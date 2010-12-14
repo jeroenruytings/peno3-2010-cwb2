@@ -81,14 +81,13 @@
   android:layout_height="wrap_content"
   android:layout_gravity="right"
   android:layout_marginLeft="5dip"/>
-  
   </FrameLayout>
 
- <!--<Gallery 
+	<Gallery 
     android:id="@+id/gallery"
     android:layout_below="@id/frame"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:visibility="visible"/>
     
-  --></RelativeLayout>
+</RelativeLayout>

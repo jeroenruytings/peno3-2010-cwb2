@@ -171,13 +171,15 @@ public class NavigationController {
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			links = null;
 		}
-			Bitmap[] pictureArray = new Bitmap[links.length];
-			for (int i = 0; i<links.length;i++) {
+		Bitmap[] pictureArray = null;
+		if (links != null){
+			pictureArray = new Bitmap[links.length];
+			for (int i = 0; i<links.length ; i++) {
 				Bitmap img = downloadFile(links[i]);
 				Array.set(pictureArray,i,img);		
 			}
+		}
 			return pictureArray;		
 	}
 
