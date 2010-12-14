@@ -49,6 +49,7 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 	    	Intent intent = new Intent(GoogleMaps.this,NavigationMenu.class);
 	    	intent.putExtra("gps", "geengps");
 	    	startActivity(intent);
+	    	finish();
 	    }
 	    else{
 	    setContentView(R.layout.googlemaps);
