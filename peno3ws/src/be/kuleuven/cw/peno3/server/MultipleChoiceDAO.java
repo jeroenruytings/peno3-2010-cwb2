@@ -152,7 +152,7 @@ public class MultipleChoiceDAO extends DAO{
 	@Path ("/getPossibleAnswerByMultipleChoiceId")
 	@Produces ("application/json")
 	public String getPossibleAnswerByMultipleChoiceId(@FormParam("multipleChoiceId") String multipleChoiceId){
-		String query = "SELECT * FROM possibleAnswer";
+		String query = "SELECT * FROM possibleanswer";
 		if(multipleChoiceId!=null)query+= " WHERE multipleChoiceId like '" + multipleChoiceId + "'";
 		return super.get(query);
 	}
@@ -166,7 +166,7 @@ public class MultipleChoiceDAO extends DAO{
 	@Path ("/listPossibleAnswers")
 	@Produces ("application/json")
 	public String listPossibleAnswers(){
-		String query = "SELECT * FROM possibleAnswer";
+		String query = "SELECT * FROM possibleanswer";
 		return super.list(query);
 	}
 	
@@ -181,7 +181,7 @@ public class MultipleChoiceDAO extends DAO{
 	@Path ("/addPossibleAnswer")
 	@Produces ("application/json")
 	public String addPossibleAnswer(@FormParam("multipleChoiceId") String multipleChoiceId, @FormParam("answer") String answer){
-			String query = "INSERT INTO possibleAnswer (possibleAnswerId,multipleChoiceId,answer) VALUES (NULL,'"+ multipleChoiceId + "','" + answer + "')";
+			String query = "INSERT INTO possibleanswer (possibleAnswerId,multipleChoiceId,answer) VALUES (NULL,'"+ multipleChoiceId + "','" + answer + "')";
 			return super.add(query);
 	}
 }
