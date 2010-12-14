@@ -38,7 +38,8 @@ public class ClientDAOTest {
 //		testListAnnouncements();
 //		testListUsers();
 //		testGetLectureByDate();
-		testDate();
+//		testDate();
+		testGetAnnouncementByStartDateAndCourseCode();
 	}
 	
 	private static void testAddAnnouncements() {
@@ -130,9 +131,10 @@ public class ClientDAOTest {
 		}
 	}
 	
-	public static void testGetAnnouncementByExactDate() {
-		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByExactDate");
-		method.addParameter("date","20101222");
+	public static void testGetAnnouncementByStartDateAndCourseCode() {
+		PostMethod method = new PostMethod("http://" + ipAdress.getIp() + "/AnnouncementHandler/getAnnouncementByStartDateAndCourseCode");
+		method.addParameter("courseCode", "H04125a");
+		method.addParameter("date","20101211173000");
 		testGet(method);
 	}
 	
