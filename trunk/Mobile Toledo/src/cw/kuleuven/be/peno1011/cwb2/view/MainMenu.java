@@ -31,6 +31,7 @@ public class MainMenu extends Activity {
         		//Context context = getApplicationContext();
 				//Intent intent = new Intent(context, NavigationMenu.class);
 				Intent intent = new Intent(MainMenu.this,NavigationMenu.class);
+				intent.putExtra("gps", "welgps");
 				startActivity(intent);
 			}
 	    });

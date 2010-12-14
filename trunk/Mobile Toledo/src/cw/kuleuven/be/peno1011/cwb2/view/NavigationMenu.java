@@ -23,6 +23,16 @@ public class NavigationMenu extends MapActivity{
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);		
         ((TextView)findViewById(R.id.titlebar)).setText("Navigatie");
 		
+        TextView errorView = (TextView) findViewById(R.id.error);
+        Bundle b = getIntent().getExtras();
+        String gpsontvangst = (String) b.get("gps");
+        if (gpsontvangst.equals("geengps")){
+        	errorView.setVisibility(View.VISIBLE);
+        }
+        else{
+        	errorView.setVisibility(View.GONE);
+        }
+        
 		ImageButton button1 = (ImageButton) findViewById(R.id.ownlocationbutton);
 		button1.setOnClickListener(new View.OnClickListener() {
 			

@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ShowRoute extends MapActivity {
@@ -162,7 +163,7 @@ public class ShowRoute extends MapActivity {
 			e.printStackTrace();
 		}
 		
-		Button b1 = (Button) findViewById(R.id.aangekomen);
+		ImageView b1 = (ImageView) findViewById(R.id.aangekomen);
 		if(tobuilding == true){
 		b1.setVisibility(View.VISIBLE);
 		b1.setOnClickListener(new View.OnClickListener() {
@@ -183,13 +184,24 @@ public class ShowRoute extends MapActivity {
 			b1.setVisibility(View.GONE);
 		}
 
-		Button b2 = (Button) findViewById(R.id.sat);
+		ImageView b2 = (ImageView) findViewById(R.id.sat);
 		b2.setVisibility(View.VISIBLE);
 		b2.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				mapView.setSatellite(true);
+			}
+		});
+		
+		ImageView b3 = (ImageView) findViewById(R.id.card);
+		b3.setVisibility(View.VISIBLE);
+		b3.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				mapView.setTraffic(false);
+				
 			}
 		});
 		mapView.setBuiltInZoomControls(true);
@@ -200,6 +212,7 @@ public class ShowRoute extends MapActivity {
 		else{
 		mapView.getController().setZoom(15);
 		}
+		mapView.setSatellite(false);
 		mapView.invalidate();
 
  		}}
