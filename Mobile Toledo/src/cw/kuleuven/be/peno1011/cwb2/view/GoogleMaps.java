@@ -79,8 +79,6 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 	    drawable = this.getResources().getDrawable(R.drawable.marker);
 	    itemizedOverlay = new MapOverlay(drawable);
 	    locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
-	    
 	    float a = location.getAccuracy();
 		double latitude =  location.getLatitude();
 		double longitude = location.getLongitude();
@@ -94,6 +92,7 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 		mapView.setTraffic(true);
 	    mc = mapView.getController();
 	    mc.animateTo(point);
+	    mc.setZoom(15);
 	    mapView.invalidate();
 	}}
 
@@ -106,6 +105,7 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 		    //zet overlay bij laatste locatie
 		    mapOverlays.clear();
 		    OverlayItem overlayitem = new OverlayItem(point, "", "");
+		    itemizedOverlay.removeOverlays();
 		    itemizedOverlay.addOverlay(overlayitem);
 		    mapOverlays.add(itemizedOverlay);
 		    //teken de kaart

@@ -122,6 +122,7 @@ public class GetInfo extends Activity {
 	 	
 	 	
 	 	Gallery g = (Gallery) findViewById(R.id.gallery);   
+	 	g.setVisibility(View.VISIBLE);
 	    g.setAdapter(new ImageAdapter(this,isbuilding));
 	
 
