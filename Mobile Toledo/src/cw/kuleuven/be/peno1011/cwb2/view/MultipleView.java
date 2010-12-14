@@ -1,6 +1,10 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.httpclient.HttpException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,41 +13,47 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
 import cw.kuleuven.be.peno1011.cwb2.controller.MainController;
+import cw.kuleuven.be.peno1011.cwb2.controller.MultipleController;
 import cw.kuleuven.be.peno1011.cwb2.model.Answer;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class MultipleView extends Activity{    
+	private int lectureId;
        
         @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-               
-                try{
+              String courseCode="";
+              try{
                      Bundle bundle = getIntent().getExtras();
-                     int lectureId = (Integer) bundle.get("lecture");
-                     String courseCode = (String) bundle.get("courseCode");
+                     lectureId = (Integer) bundle.get("lecture");
+                     courseCode = (String) bundle.get("courseCode");
+                }
+              catch(NullPointerException ne){
+              		Toast.makeText(MultipleView.this, "Geen les van dit vak gevonden die momenteel bezig is." , Toast.LENGTH_LONG).show();
+                      finish();
+              }
                      Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
                      User user = MainController.getInstance().getUser();
-                                if(user.getRank()==1){
-                                        poseMultiple(lecture);
+                                if(user.getRank()==0){
+                                        answerMultiple(lecture);
                                 }
                                 else{
-                                        answerMultiple(lecture);
+                                        poseMultiple(lecture);
                                 }  
-                }
-                catch(NullPointerException ne){
-                		Toast.makeText(MultipleView.this, "Geen les van dit vak gevonden die momenteel bezig is." , Toast.LENGTH_LONG).show();
-                        finish();
-                }
         }
        
         //TODO: saven naar database
@@ -59,49 +69,79 @@ public class MultipleView extends Activity{
             getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);    
             ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevraag beantwoorden");
                
-            MultipleChoice multiple = lecture.getMultipleChoice();
-            final ArrayList<Answer> answers = multiple.getAnswers();
-            ArrayList<String> answerStrings = new ArrayList<String>();
-            for(int i=0;i<answers.size();i++){
-            	answerStrings.add(answers.get(i).getAnswer());
-            }
-            String[] answerArray = (String[]) answerStrings.toArray();
-//            final String[] options = multiple.getAnswers();
-           
-	        AlertDialog.Builder ab=new AlertDialog.Builder(MultipleView.this);
-	                ab.setTitle(multiple.getQuestion());
-	                ab.setSingleChoiceItems(answerArray, 0,new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int whichButton) {
-	            }
-	        });
-	        //op ingeven drukken
-	        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int whichButton) {
-	                Toast msg = Toast.makeText(MultipleView.this, Integer.toString(whichButton) , Toast.LENGTH_LONG);
-	                msg.show();
-	                MultipleChoice multiple = lecture.getMultipleChoice();
-	                ArrayList<Answer> newAnswers = answers;
-	                newAnswers.get(whichButton).setTotal(answers.get(whichButton).getTotal()+1);
-	                multiple.setAnswers(answers);
-	                if(saveMultiple()){
-	                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-	                        feedback.setText("Meerkeuzevraag beantwoordt");
-	                }
-	                else{
-	                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-	                        feedback.setText("Fout bij verzenden meerkeuzevraag");
-	                }
-	               
-	        }
-	        });
-	        //op annuleer drukken
-	        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int whichButton) {
-	                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-	                feedback.setText("Meerkeuzevraag niet beantwoordt");
-	            }
-	        });
-	        ab.show();
+            List<MultipleChoice> multipleChoices = null;
+			try {
+				multipleChoices = MultipleController.getInstance().getMultiple(lecture.getEventId());
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(getApplicationContext(), "http",
+	                      Toast.LENGTH_LONG).show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(getApplicationContext(), "io",
+	                      Toast.LENGTH_LONG).show();
+			}
+			final List<MultipleChoice> multiples=multipleChoices;
+			ArrayList<String> multipleTitles = new ArrayList<String>();
+			if(multiples != null){
+				for(int i=0;i<multiples.size();i++){
+					multipleTitles.add(multiples.get(i).getQuestion());
+				}
+				ListView lv = (ListView) findViewById(R.id.multiplelv);
+	            lv.setAdapter(new ArrayAdapter<String>(this,
+	                    android.R.layout.simple_list_item_1, multipleTitles));
+	            lv.setTextFilterEnabled(true);
+	            lv.setOnItemClickListener(new OnItemClickListener() {
+			            @Override
+			            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+			            MultipleChoice multiple = multiples.get(position);
+			            final ArrayList<Answer> answers = multiple.getAnswers();
+			            ArrayList<String> answerStrings = new ArrayList<String>();
+			            for(int i=0;i<answers.size();i++){
+			            	answerStrings.add(answers.get(i).getAnswer());
+			            }
+			            String[] answerArray = (String[]) answerStrings.toArray();
+			//            final String[] options = multiple.getAnswers();
+			           
+				        AlertDialog.Builder ab=new AlertDialog.Builder(MultipleView.this);
+				                ab.setTitle(multiple.getQuestion());
+				                ab.setSingleChoiceItems(answerArray, 0,new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int whichButton) {
+				            }
+				        });
+				        //op ingeven drukken
+				        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int whichButton) {
+				                Toast msg = Toast.makeText(MultipleView.this, Integer.toString(whichButton) , Toast.LENGTH_LONG);
+				                msg.show();
+				                MultipleChoice multiple = lecture.getMultipleChoice();
+				                ArrayList<Answer> newAnswers = answers;
+				                newAnswers.get(whichButton).setTotal(answers.get(whichButton).getTotal()+1);
+				                multiple.setAnswers(answers);
+				                if(saveMultiple()){
+				                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+				                        feedback.setText("Meerkeuzevraag beantwoordt");
+				                }
+				                else{
+				                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+				                        feedback.setText("Fout bij verzenden meerkeuzevraag");
+				                }
+				               
+				        }
+				        });
+				        //op annuleer drukken
+				        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
+				            public void onClick(DialogInterface dialog, int whichButton) {
+				                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+				                feedback.setText("Meerkeuzevraag niet beantwoordt");
+				            }
+				        });
+				        ab.show();
+			            }});
+			}
+			
         }
        
         //VRAAG STELLEN
@@ -172,7 +212,7 @@ public class MultipleView extends Activity{
 
             public void onClick(View view) {
                 // METHODE IS VERKEERD, EEN MULTIPLECHOICE KAN ONEINDIG VEEL MOGELIJKE ANTWOORDEN HEBBEN
-                EditText multiQuestion = (EditText) findViewById(R.id.submit1);
+                EditText multiQuestion = (EditText) findViewById(R.id.mmulti);
                 String answ1 = mansw1.getText().toString();
                 String answ2 = mansw2.getText().toString();
                 String answ3 = mansw3.getText().toString();
@@ -194,11 +234,19 @@ public class MultipleView extends Activity{
                         }
 //                        answers.add(answ3);answers.add(answ4);answers.add(answ5);
                         MultipleChoice multiple = new MultipleChoice(question, answers, 1);
-                        //TODO/ in database steken
+                        try {
+							MultipleController.getInstance().insert(multiple, lectureId);
+						} catch (HttpException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
                 }
                 else{
-                                      Toast.makeText(getApplicationContext(), "Gelieve een vraag en minstens 2 mogelijke antwoorden in te geven!",
-                                  Toast.LENGTH_LONG).show();
+                          Toast.makeText(getApplicationContext(), "Gelieve een vraag en minstens 2 mogelijke antwoorden in te geven!",
+                      Toast.LENGTH_LONG).show();
                 }
                
             }
