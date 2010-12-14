@@ -46,18 +46,18 @@ public class LocationDAO extends DAO{
 	@POST
 	@Path ("/getLocationByCoordinates")
 	@Produces ("application/json")
-	public String getLocationByCoordinates(@FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
+	public String getLocationByCoordinates(@FormParam("xcoordinatemin") String xcoordinatemin,@FormParam("xcoordinatemax") String xcoordinatemax, @FormParam("ycoordinatemin") String ycoordinatemin,  @FormParam("ycoordinatemax") String ycoordinatemax){
 		String query = "SELECT * FROM location";
-		if(xcoordinate!=null && ycoordinate!=null)query+= " WHERE xcoordinate like '" + xcoordinate + "' or ycoordinate like '" + ycoordinate + "'";
+		if(xcoordinatemin!=null && ycoordinatemax!=null && xcoordinatemax!=null && ycoordinatemin!=null)query += " WHERE xcoordinate BETWEEN " + xcoordinatemin + " AND " +xcoordinatemax+ " AND ycoordinate BETWEEN " + ycoordinatemin + " AND " + ycoordinatemax;
 		return super.get(query);
 	}
 	
 	@POST
 	@Path ("/getBuildingAndLocationByCoordinates")
 	@Produces ("application/json")
-	public String getBuildingAndLocationByCoordinates(@FormParam("xcoordinate") String xcoordinate, @FormParam("ycoordinate") String ycoordinate){
+	public String getBuildingAndLocationByCoordinates(@FormParam("xcoordinatemin") String xcoordinatemin,@FormParam("xcoordinatemax") String xcoordinatemax, @FormParam("ycoordinatemin") String ycoordinatemin,  @FormParam("ycoordinatemax") String ycoordinatemax){
 		String query = "SELECT * FROM location INNER JOIN building USING(locationId)";
-		if(xcoordinate!=null && ycoordinate!=null)query += " WHERE xcoordinate like '" + xcoordinate + "' or ycoordinate like '" + ycoordinate + "'";
+		if(xcoordinatemin!=null && ycoordinatemax!=null && xcoordinatemax!=null && ycoordinatemin!=null)query += " WHERE xcoordinate BETWEEN " + xcoordinatemin + " AND " +xcoordinatemax+ " AND ycoordinate BETWEEN " + ycoordinatemin + " AND " + ycoordinatemax;
 		return super.get(query);
 	}
 	
