@@ -179,15 +179,15 @@ public class MultipleView extends Activity{
                 String question = multiQuestion.getText().toString();
                 if(question.equals("") || answ1.equals("") || answ2.equals("")){
                         ArrayList<Answer> answers = new ArrayList<Answer>();
-                        answers.add(new Answer(0,answ1,new ArrayList<User>()));answers.add(new Answer(0,answ2,new ArrayList<User>()));
+                        answers.add(new Answer(0,0,answ1,new ArrayList<User>()));answers.add(new Answer(0,0,answ2,new ArrayList<User>()));
                         if(!answ3.equals("")){
-                                answers.add(new Answer(0,answ3,new ArrayList<User>()));
+                                answers.add(new Answer(0,0,answ3,new ArrayList<User>()));
                         }
                         if(!answ4.equals("")){
-                                answers.add(new Answer(0,answ4,new ArrayList<User>()));
+                                answers.add(new Answer(0,0,answ4,new ArrayList<User>()));
                         }
                         if(!answ5.equals("")){
-                                answers.add(new Answer(0,answ5,new ArrayList<User>()));
+                                answers.add(new Answer(0,0,answ5,new ArrayList<User>()));
                         }
 //                        answers.add(answ3);answers.add(answ4);answers.add(answ5);
                         MultipleChoice multiple = new MultipleChoice(lecture, question, answers, 1);
