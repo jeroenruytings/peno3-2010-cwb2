@@ -46,6 +46,7 @@ public class ShowRoute extends MapActivity {
 	GeoPoint gpto;
 	Boolean frombuilding;
 	Boolean tobuilding;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -153,13 +154,44 @@ public class ShowRoute extends MapActivity {
 		else{
 		//Toon kaart en beweeg de kaart naar bepaald punt
 		setContentView(R.layout.googlemaps);
-		MapView mapView = (MapView) findViewById(R.id.mapview);
+		mapView = (MapView) findViewById(R.id.mapview);
 		try {
 			DrawPath("","",gpfrom,gpto,Color.GREEN,mapView);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Button b1 = (Button) findViewById(R.id.aangekomen);
+		if(tobuilding == true){
+		b1.setVisibility(View.VISIBLE);
+		b1.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intentt = new Intent(ShowRoute.this,GetInfo.class);
+				// vraag gebouw op a.d.h.v coördinaten
+				Bundle b = new Bundle();
+				b.putString("autocomplete_building", "");
+				b.putBoolean("isbuilding", true);
+				startActivity(intentt);
+			}
+		});
+		}
+		
+		else{
+			b1.setVisibility(View.GONE);
+		}
+
+		Button b2 = (Button) findViewById(R.id.sat);
+		b2.setVisibility(View.VISIBLE);
+		b2.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				mapView.setSatellite(true);
+			}
+		});
 		mapView.setBuiltInZoomControls(true);
 		mapView.getController().animateTo(gpfrom);
 		if(frombuilding == true && tobuilding == true){
