@@ -71,7 +71,7 @@ public class LocationInfo extends Activity {
 				
 				AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autocomplete_building);
 				boolean buildingexists = control.buildingExists(textView.getText().toString());
-				boolean roomexists = control.roomExists(textView.getText().toString());
+ 				boolean roomexists = control.roomExists(textView.getText().toString());
 				
 				if(textView.getEditableText().toString().equals(""))
 					{
@@ -95,7 +95,7 @@ public class LocationInfo extends Activity {
 					Bundle b = new Bundle();
 					b.putString("autocomplete_building", textView.getText().toString());
 					b.putBoolean("isbuilding", buildingexists);
-					b.putBoolean("isRoom", roomexists);
+					
 					
 					Intent intent = new Intent(LocationInfo.this,GetInfo.class);
 					intent.putExtras(b);

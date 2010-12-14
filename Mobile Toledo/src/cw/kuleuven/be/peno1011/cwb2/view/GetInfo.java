@@ -48,6 +48,7 @@ public class GetInfo extends Activity {
 	    control = NavigationController.getInstance();
 	    Bundle b = this.getIntent().getExtras();
 		location = b.getString("autocomplete_building");
+		isbuilding = b.getBoolean("isbuilding");
 		TextView locationname = (TextView) findViewById(R.id.locationname);
 	 	locationname.setText(location);
 	 	
@@ -116,20 +117,13 @@ public class GetInfo extends Activity {
 	  		private int mGalleryItemBackground;
 	  	    private Context mContext;
 
-	  	    private Bitmap[] mImages = control.getPictureArray(location);
+	  	    private Bitmap[] mImages = control.getPictureArray(location, isbuilding);
 	  	    
-	  	    	//control.getPictureArray(location);  
-
+	  	    
 	   	    public ImageAdapter(Context c) {
 		  	    
 	  	        mContext = c;
-	  	        if(mImages[0]==null){
-	  	        	isbuilding = true;
-	  	        }
-	  	        else {
-	  	        	isbuilding = false;
-	  	        }
-	  	    }
+	  	       	  	    }
 
 	  	    public int getCount() {
 	  	        return mImages.length;
@@ -145,13 +139,18 @@ public class GetInfo extends Activity {
 
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
-
-	  	        if(isbuilding == true){position = position +1;}     
+	  	        
+	  	        if (mImages != null){	  	        
 	  	        i.setImageBitmap(mImages[position]);
+	  	        }
+	  	        else {
+	  	        i.setImageResource(R.drawable.imagenotfound);
+	  	        }
+	  	        
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);
 	  	        i.setBackgroundResource(mGalleryItemBackground);
-
+	  	        
 	  	        return i;
 	  	    }
 

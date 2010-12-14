@@ -87,8 +87,14 @@ public class BuildingDAO {
 			exists = false;
 		}
 		else {
+			Building[] buildings = new Gson().fromJson(json.toString(), Building[].class);
+			if(buildings.length != 1){
+				exists = false;
+			}
+			else {
 			exists = true;
-		
+			}
+		return exists;
 		}
 		
 		// if naam komt voor in database exists = true;
