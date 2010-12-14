@@ -197,4 +197,37 @@ public class BuildingDAO {
 		}
 		return links;
 	}
+	
+	public String getBuildingNameByCoordinates(GeoPoint gp) throws HttpException, IOException{
+		
+		double latitude = (gp.getLatitudeE6())/(1E6);
+		double longitude = (gp.getLongitudeE6())/(1E6);
+		
+		double xcoordinatemin = latitude - 0.000002;
+		double xcoordinatemax = latitude + 0.000002;
+		
+		double ycoordinatemin = longitude - 0.000002;
+		double ycoordinatemax = longitude + 0.000002;
+		
+		String xmin = ""+xcoordinatemin;
+		String xmax = ""+xcoordinatemax;
+		String ymin = ""+ycoordinatemin;
+		String ymax = ""+ycoordinatemax;
+		
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/LocationHandler/getBuildingAndLocationByCoordinates");
+		method.addParameter("xcoordinatemin", xmin);
+		method.addParameter("xcoordinatemax", xmax);
+		method.addParameter("ycoordinatemin", ymin);
+		method.addParameter("ycoordinatemax", ymax);
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		
+		if(!json.contains("[]")){
+			Building[] buildings = new Gson().fromJson(json.toString(), Building[].class);
+			return buildings[0].getName();
+		}
+		return null;
+	}
 }
