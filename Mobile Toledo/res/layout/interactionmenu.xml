@@ -20,7 +20,7 @@
 	 	android:src="@drawable/announcementbutton"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
-	  	android:layout_marginRight="2dip"/>
+	  	android:layout_marginLeft="2dip"/>
   </TableRow>
   <TableRow>
 	<TextView android:id="@+id/multiple" 
@@ -41,11 +41,13 @@
 <ImageButton android:id="@+id/showquestionbutton"
 	    android:src="@drawable/showquestionbutton"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
+	    android:layout_height="wrap_content"
+	    android:layout_marginRight="2dip"/>
 <ImageButton android:id="@+id/questionbutton"
 	    android:src="@drawable/questionbutton"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"/>
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="2dip"/>
   </TableRow>
  <TableRow>
  <TextView android:id="@+id/showquestion" 
@@ -60,7 +62,7 @@
 		android:text="@string/questions" 
 		android:layout_gravity="center"
 		style="@style/MenuText"
-		android:layout_marginLeft="2dip"/>
+		android:layout_marginLeft="3dip"/>
   </TableRow>
 </TableLayout>  	
 </LinearLayout>
