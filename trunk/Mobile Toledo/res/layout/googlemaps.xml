@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.maps.MapView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mapview"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+
+   <FrameLayout xmlns:android=
+   "http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   >
+
+<view android:id="@+id/mapview"
+   class="com.google.android.maps.MapView"
+   android:layout_width="fill_parent"
+   android:layout_height="fill_parent"
+   android:layout_weight="1" 
     android:clickable="true"
-    android:apiKey="0KzMc1oXyU0p6aAW4O5YC-DgCJix2YA9YwBeoOQ"
-/>
+    android:apiKey="0KzMc1oXyU0p6aAW4O5YC-DgCJix2YA9YwBeoOQ"/>
+
+<LinearLayout xmlns:android=
+   "http://schemas.android.com/apk/res/android"
+   android:orientation="horizontal"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:background="#550000ff"
+   android:padding="2px"
+   >
+<Button android:id="@+id/sat"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_marginLeft="40px"
+   android:text="Satelliet" />
+   
+<Button android:id="@+id/aangekomen"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_marginLeft="40px"
+   android:text="Aangekomen!" />   
+
+</LinearLayout>
+
+
+</FrameLayout>
+   
