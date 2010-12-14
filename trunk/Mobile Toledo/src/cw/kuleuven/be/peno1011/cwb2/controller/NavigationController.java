@@ -158,60 +158,27 @@ public class NavigationController {
 	  }
 
 	
-	public Bitmap[] getPictureArray(String locationname)
+	public Bitmap[] getPictureArray(String locationname, boolean isbuilding)
 	{
 		String[] links = null;
-		String[] buildingLinks;
-		String[] roomLinks;
-		try {
-			buildingLinks = BuildingDAO.getInstance().getPictures(locationname);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			buildingLinks = null;
-		}
 		
 		try {
-			roomLinks = RoomDAO.getInstance().getPictures(locationname);
+			if(isbuilding == true){
+			links = BuildingDAO.getInstance().getPictures(locationname);
+			}	
+			else if (isbuilding == false){
+			links = RoomDAO.getInstance().getPictures(locationname);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			roomLinks = null;
+			links = null;
 		}
-		
-		if(buildingLinks != null && roomLinks != null){
-			if(buildingLinks.length>0){
-				links = buildingLinks;
-			}
-			else{
-				links = roomLinks;
-			}
 			Bitmap[] pictureArray = new Bitmap[links.length];
 			for (int i = 0; i<links.length;i++) {
 				Bitmap img = downloadFile(links[i]);
 				Array.set(pictureArray,i,img);		
 			}
-			return pictureArray;
-		}
-		return null;
-		
-		
-	//	if(isBuilding(locationname) == true){links = dao1.getPictureArray(locationname);}
-	//	else if(isBuilding(locationname) == false){links = dao2.getPictureArray(locationname);}
-
-//		Bitmap[] pictureArray = new Bitmap[links.length];
-//		for (int i = 0; i<links.length;i++) {
-//			Bitmap img = downloadFile(links[i]);
-//			Array.set(pictureArray,i,img);		
-//		}
-//		
-//		//Bitmap img = null;
-//		//Bitmap img = downloadFile("http://www.trouwshop.nl/images/upload/20080907_234513_bruidspaar_gira.jpg");
-//		//Bitmap img2 = downloadFile("http://t2.gstatic.com/images?q=tbn:a-HKIJ5FgdO_VM:http://www.facebook.com/profile/pic.php?uid=AAAAAQAQZZMBjRztdGKy7zNLtrdyDAAAAApfkafD0SgsVaSJ4V-Hc7KA");
-//		//Bitmap img3 = downloadFile("http://www.appelogen.be/wp-images/derde_prentje.jpg");
-//		//Bitmap img4 = downloadFile("http://www.jouwpagina.nl/fotos2/k-mmygirl/catduck.jpg");
-//		
-//		//Bitmap [] pictureArray = {img,img2,img3,img4};
-//			
-//		return pictureArray;
+			return pictureArray;		
 	}
 
 	
@@ -276,8 +243,22 @@ public class NavigationController {
 
 	public String getBuilding(String location) {
 				// zoek het gebouw op waarin het lokaal zich bevindt
-		String building = "";
-		return building;
+		String buildingname = "";
+		
+		RoomDAO dao = RoomDAO.getInstance();
+		Room room = null;
+		try {
+			room = dao.getRoom(location);
+		} catch (HttpException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Building building = room.getBuilding();
+		buildingname = building.getName();
+		return buildingname;
 		
 	}
 	

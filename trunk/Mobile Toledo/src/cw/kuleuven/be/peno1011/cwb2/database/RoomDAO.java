@@ -11,6 +11,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import com.google.gson.Gson;
 
 import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.GPSLocation;
 import cw.kuleuven.be.peno1011.cwb2.model.PictureLink;
 import cw.kuleuven.be.peno1011.cwb2.model.Room;
 
@@ -90,7 +91,13 @@ public class RoomDAO {
 			exists = false;
 		}
 		else {
+			Room[] rooms = new Gson().fromJson(json.toString(), Room[].class);
+			if(rooms.length!=1){
+				exists = false;
+			}
+			else{
 			exists = true;
+			}
 		
 		}
 // if naam komt voor in database exists = true;
@@ -113,4 +120,22 @@ public class RoomDAO {
 		return links;
 	}
 
+
+
+	public Room getRoom(String location) throws HttpException, IOException {
+		
+		HttpClient client = new HttpClient();
+		PostMethod method = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/RoomHandler/getRoom");
+		method.addParameter("name", location);
+		int response = client.executeMethod(method);
+		String encryptedJson = method.getResponseBodyAsString();
+		String json = cryptography.decrypt(encryptedJson);
+		Room[] rooms = new Gson().fromJson(json.toString(), Room[].class);
+		GPSLocation[] locations = new Gson().fromJson(json.toString(),GPSLocation[].class);
+		Room room = rooms[0];
+		
+		return room;
+	}
 }
+
+
