@@ -44,7 +44,7 @@ public class ShowQuestions extends Activity {
 //			Toast.makeText(ShowQuestions.this, lecture.getTitle(), Toast.LENGTH_SHORT).show();
 //			Toast.makeText(ShowQuestions.this, lecture.getQuestions().get(0).getMessage(), Toast.LENGTH_SHORT).show();
 			try{
-				questionList = getQuestionsByLecture(lectureId);
+//				questionList = getQuestionsByLecture(lectureId);
 			}
 			catch(NullPointerException ne){
 				Toast.makeText(ShowQuestions.this, "Geen les gevonden", Toast.LENGTH_SHORT).show();
