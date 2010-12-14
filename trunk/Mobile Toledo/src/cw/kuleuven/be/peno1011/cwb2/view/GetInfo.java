@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -121,8 +122,7 @@ public class GetInfo extends Activity {
 	 	
 	 	
 	 	Gallery g = (Gallery) findViewById(R.id.gallery);   
-	    ImageAdapter adapt = new ImageAdapter(this,isbuilding);
-	    g.setAdapter(adapt);
+	    g.setAdapter(new ImageAdapter(this,isbuilding));
 	
 
 	    g.setOnItemClickListener(new OnItemClickListener() {
@@ -145,11 +145,16 @@ public class GetInfo extends Activity {
 	  	    private Context mContext;
 
 	  	    private Bitmap[] mImages = null;
-	  	    private int [] IImages = {R.drawable.imagenotfound};;
+	  	    
 	  	    
 	  	    
 	   	    public ImageAdapter(Context c,boolean isbuilding) {
 		  	    mImages = control.getPictureArray(location, isbuilding);
+		  	    Bitmap [] notfound = {BitmapFactory.decodeResource(GetInfo.this.getResources(),R.drawable.imagenotfound)};
+		  	    if (mImages == null){
+		  	    mImages = notfound;
+		  	    }
+		  	    
 	  	        mContext = c;
 	  	       	  	    }
 
@@ -168,8 +173,7 @@ public class GetInfo extends Activity {
 
 	  	    public View getView(int position, View convertView, ViewGroup parent) {
 	  	        ImageView i = new ImageView(mContext);
-	  	        
-	  //	       	if (mImages != null){ 	        
+	  	        	   	        
 	  	        i.setImageBitmap(mImages[position]); 
 	  	        i.setLayoutParams(new Gallery.LayoutParams(200, 300));
 	  	        i.setScaleType(ImageView.ScaleType.FIT_XY);
