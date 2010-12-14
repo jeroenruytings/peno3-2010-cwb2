@@ -14,10 +14,11 @@ public class CourseInfo extends Activity{
 	@Override
 	 protected void onCreate(Bundle savedInstanceState) {
 	     super.onCreate(savedInstanceState);
-	     setContentView(R.layout.courseinfo);
-	     
+	   	     
 		     Bundle bundle = getIntent().getExtras();
 			 Course course = (Course) bundle.get("course");
+			 
+			  setContentView(R.layout.courseinfo);
 			 
 			 String prof= "Geen prof gespecifieerd";
 			 String code = "onbekend";
