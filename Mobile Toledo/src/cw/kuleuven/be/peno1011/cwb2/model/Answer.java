@@ -3,14 +3,16 @@ package cw.kuleuven.be.peno1011.cwb2.model;
 import java.util.ArrayList;
 
 public class Answer {
+	private int multipleChoiceId;
 	private int total;
 	private String answer;
 	private ArrayList<User> users;
 	
-	public Answer(int total, String answer, ArrayList<User> users){
+	public Answer(int multipleChoiceId, int total, String answer, ArrayList<User> users){
 		setTotal(total);
 		setAnswer(answer);
 		setUsers(users);
+		setMultipleChoiceId(multipleChoiceId);
 	}
 	
 	private Answer() { }
@@ -38,6 +40,14 @@ public class Answer {
 
 	public ArrayList<User> getUsers() {
 		return users;
+	}
+
+	public void setMultipleChoiceId(int multipleChoiceId) {
+		this.multipleChoiceId = multipleChoiceId;
+	}
+
+	public int getMultipleChoiceId() {
+		return multipleChoiceId;
 	}
 	
 }
