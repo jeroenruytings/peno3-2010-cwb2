@@ -214,7 +214,7 @@ public class ShowRoute extends MapActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				mapView.setTraffic(false);
+				mapView.setSatellite(false);
 				
 			}
 		});
