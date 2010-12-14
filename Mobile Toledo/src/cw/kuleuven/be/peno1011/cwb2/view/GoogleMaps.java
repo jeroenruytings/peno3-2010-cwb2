@@ -2,6 +2,7 @@ package cw.kuleuven.be.peno1011.cwb2.view;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -40,7 +42,15 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 	/**Called when the activity is first created*/
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
+	    locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	    location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+	    if (location == null){
+	    	Intent intent = new Intent(GoogleMaps.this,NavigationMenu.class);
+	    	intent.putExtra("gps", "geengps");
+	    	startActivity(intent);
+	    }
+	    else{
 	    setContentView(R.layout.googlemaps);
 	    //Set the mapview
 	    mapView = (MapView) findViewById(R.id.mapview);
@@ -59,19 +69,18 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 			}
 		});
 	    ImageView b3 = (ImageView) findViewById(R.id.card);
-	    b2.setOnClickListener(new View.OnClickListener() {
+	    b3.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
-				
+				mapView.setSatellite(false);
 			}
 		});
 	    drawable = this.getResources().getDrawable(R.drawable.marker);
 	    itemizedOverlay = new MapOverlay(drawable);
-	    //vraag een nieuwe locationmanager op en vraag laatste locatie
-	    locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	    locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-	    location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+	    
 	    float a = location.getAccuracy();
 		double latitude =  location.getLatitude();
 		double longitude = location.getLongitude();
@@ -86,15 +95,16 @@ public class GoogleMaps extends MapActivity implements LocationListener{
 	    mc = mapView.getController();
 	    mc.animateTo(point);
 	    mapView.invalidate();
-	}
+	}}
 
 	@Override
 	public void onLocationChanged(Location arg0) {
 		
-		 double latitude =  arg0.getLatitude();
+		 	double latitude =  arg0.getLatitude();
 		    double longitude =  arg0.getLongitude();
 		    GeoPoint point = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
 		    //zet overlay bij laatste locatie
+		    mapOverlays.clear();
 		    OverlayItem overlayitem = new OverlayItem(point, "", "");
 		    itemizedOverlay.addOverlay(overlayitem);
 		    mapOverlays.add(itemizedOverlay);
