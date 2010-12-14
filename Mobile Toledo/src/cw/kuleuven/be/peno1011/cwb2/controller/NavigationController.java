@@ -5,39 +5,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.apache.commons.httpclient.HttpException;
 
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-
-import cw.kuleuven.be.peno1011.cwb2.R;
-import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
-import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
-import cw.kuleuven.be.peno1011.cwb2.model.Building;
-import cw.kuleuven.be.peno1011.cwb2.model.Room;
-import cw.kuleuven.be.peno1011.cwb2.view.LocationInfo;
-import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Bundle;
+
+import com.google.android.maps.GeoPoint;
+
+import cw.kuleuven.be.peno1011.cwb2.database.BuildingDAO;
+import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
+import cw.kuleuven.be.peno1011.cwb2.model.Building;
+import cw.kuleuven.be.peno1011.cwb2.model.Room;
+import cw.kuleuven.be.peno1011.cwb2.view.OwnLocationManager;
 
 //opmerking: user kan statisch opgeslagen worden in de globale controller,
 //daarom kunnen we user hier als veld schrappen een gewoon daar een statische get oproepen
@@ -163,10 +151,10 @@ public class NavigationController {
 		String[] links = null;
 		
 		try {
-			if(isbuilding == true){
+			if(isbuilding){
 			links = BuildingDAO.getInstance().getPictures(locationname);
 			}	
-			else if (isbuilding == false){
+			else if (!isbuilding){
 			links = RoomDAO.getInstance().getPictures(locationname);
 			}
 		} catch (IOException e) {

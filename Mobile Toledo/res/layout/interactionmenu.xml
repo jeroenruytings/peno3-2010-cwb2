@@ -15,12 +15,12 @@
 	    android:src="@drawable/multiplebutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_marginRight="2dip"/>
+	    android:layout_marginRight="3dip"/>
 		<ImageButton android:id="@+id/announcementsbutton"
 	 	android:src="@drawable/announcementbutton"
 	  	android:layout_width="wrap_content"
 	  	android:layout_height="wrap_content"
-	  	android:layout_marginLeft="2dip"/>
+	  	android:layout_marginLeft="3dip"/>
   </TableRow>
   <TableRow>
 	<TextView android:id="@+id/multiple" 
@@ -42,12 +42,12 @@
 	    android:src="@drawable/showquestionbutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_marginRight="2dip"/>
+	    android:layout_marginRight="3dip"/>
 <ImageButton android:id="@+id/questionbutton"
 	    android:src="@drawable/questionbutton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_marginLeft="2dip"/>
+	    android:layout_marginLeft="3dip"/>
   </TableRow>
  <TableRow>
  <TextView android:id="@+id/showquestion" 

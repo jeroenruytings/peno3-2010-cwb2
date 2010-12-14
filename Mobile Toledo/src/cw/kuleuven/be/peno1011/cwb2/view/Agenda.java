@@ -16,6 +16,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import cw.kuleuven.be.peno1011.cwb2.R;
 
+/**
+ * This class can display lectures, parties and cultural/social events,
+ * for one day,week or month or by category.
+ */
 public class Agenda extends TabActivity{
 	private TextView title;
 	private boolean isMainAgenda = false;

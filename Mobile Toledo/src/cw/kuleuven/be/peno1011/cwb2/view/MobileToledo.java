@@ -21,6 +21,9 @@ import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.LoginController;
 import cw.kuleuven.be.peno1011.cwb2.model.User;
 
+/**
+ * First-called activity, representing the loginscreen of MobileToledo.
+ */
 public class MobileToledo extends Activity {
 	
 	private boolean remember = false;
