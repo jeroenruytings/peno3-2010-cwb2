@@ -13,6 +13,7 @@ public class MultipleChoice {
 		setAnswers(answers);
 		setMultipleChoiceId(multipleChoiceId);
 	}
+	private MultipleChoice() { }
 
 	public ArrayList<Answer> getAnswers() {
 		return answers;
