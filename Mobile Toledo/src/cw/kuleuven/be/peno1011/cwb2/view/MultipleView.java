@@ -25,10 +25,6 @@ public class MultipleView extends Activity{
         @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
-            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);              
-            setContentView(R.layout.multiplechoice);
-            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);    
-            ((TextView)findViewById(R.id.titlebar)).setText("Meerkeuzevragen");
                
                 try{
                      Bundle bundle = getIntent().getExtras();
@@ -42,8 +38,8 @@ public class MultipleView extends Activity{
                                 }  
                 }
                 catch(NullPointerException ne){
-                        TextView textView = (TextView) findViewById(R.id.multiplefeedback);
-                textView.setText("Geen les van dit vak gevonden die momenteen bezig is.");
+                		Toast.makeText(MultipleView.this, "Geen les van dit vak gevonden die momenteel bezig is." , Toast.LENGTH_LONG).show();
+                        finish();
                 }
         }
        
