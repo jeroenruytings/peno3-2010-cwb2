@@ -13,7 +13,7 @@ public class Course  implements Serializable{
 	private String courseCode;
 	private User prof;
 	private String academicYear;
-	private ArrayList<Lecture> lectures;
+	private ArrayList<Lecture> lectures = new ArrayList<Lecture>();
 	private ArrayList<Document> documents;
 	private LinkedList<Announcement> announcements;
 	
