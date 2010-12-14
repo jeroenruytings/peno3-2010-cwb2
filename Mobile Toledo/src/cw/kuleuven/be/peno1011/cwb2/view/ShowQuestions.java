@@ -40,11 +40,11 @@ public class ShowQuestions extends Activity {
 	  if(bundle != null && bundle.get("lecture") != null && bundle.get("courseCode") != null){
 			int lectureId = (Integer) bundle.get("lecture");
 			String courseCode = (String) bundle.get("courseCode");
-			Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
+//			Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
 //			Toast.makeText(ShowQuestions.this, lecture.getTitle(), Toast.LENGTH_SHORT).show();
 //			Toast.makeText(ShowQuestions.this, lecture.getQuestions().get(0).getMessage(), Toast.LENGTH_SHORT).show();
 			try{
-				questionList = lecture.getQuestions();
+				questionList = getQuestionsByLecture(lectureId);
 			}
 			catch(NullPointerException ne){
 				Toast.makeText(ShowQuestions.this, "Geen les gevonden", Toast.LENGTH_SHORT).show();
