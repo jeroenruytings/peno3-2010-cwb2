@@ -1,4 +1,4 @@
-package cw.kuleuven.be.peno1011.cwb2.database;
+	package cw.kuleuven.be.peno1011.cwb2.database;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -133,7 +133,14 @@ public class RoomDAO {
 		Room[] rooms = new Gson().fromJson(json.toString(), Room[].class);
 		GPSLocation[] locations = new Gson().fromJson(json.toString(),GPSLocation[].class);
 		Room room = rooms[0];
-		Building[] buildings = new Gson().fromJson(json.toString(),Building[].class);
+		
+		
+		PostMethod method2 = new PostMethod("http://ariadne.cs.kuleuven.be/peno-cwb2/BuildingHandler/getBuildingById");
+		method2.addParameter("locationId", ""+room.getLocationId());
+		int response2 = client.executeMethod(method2);
+		String encryptedJson2 = method2.getResponseBodyAsString();
+		String json2 = cryptography.decrypt(encryptedJson2);
+		Building[] buildings = new Gson().fromJson(json2.toString(),Building[].class);
 		Building building = buildings[0];
 		room.setBuilding(building);
 		
