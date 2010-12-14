@@ -1,7 +1,5 @@
 package cw.kuleuven.be.peno1011.cwb2.model;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Map;
 
 
 /**

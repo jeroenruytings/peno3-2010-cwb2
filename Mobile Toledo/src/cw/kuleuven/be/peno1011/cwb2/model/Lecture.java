@@ -6,13 +6,7 @@ import java.util.Date;
 
 public class Lecture extends Event implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2674469354560990145L;
-	/**
-	 * 
-	 */
 	private Room room;
 	private MultipleChoice multipleChoice;
 	private ArrayList <Question> questions = new ArrayList<Question>();

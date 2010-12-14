@@ -22,7 +22,6 @@ public class Course  implements Serializable{
 			User prof, String academicYear) {
 		setProf(prof);
 		this.courseCode = courseCode;
-		this.course = course;
 		this.academicYear = academicYear;
 	}
 	

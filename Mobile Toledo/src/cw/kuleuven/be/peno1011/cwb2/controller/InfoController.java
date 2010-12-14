@@ -2,10 +2,8 @@ package cw.kuleuven.be.peno1011.cwb2.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import cw.kuleuven.be.peno1011.cwb2.database.AnnouncementDAO;
