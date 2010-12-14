@@ -76,7 +76,7 @@ public class EventDAO extends DAO{
 	@Path("/getEventsByCategorieAndDateWithLocation")
 	@Produces("application/json")
 	public String getEventsByCategorieAndDateWithLocation(@FormParam("categorie") String category,@FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
-		String query = "SELECT * FROM event INNER JOIN building USING (locationId) WHERE categorie like '" + category + "' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		String query = "SELECT * FROM event INNER JOIN building USING (locationId) WHERE (categorie like '" + category + "') AND (startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate+")"; 
 		return super.list(query);
 	}
 	
@@ -84,7 +84,7 @@ public class EventDAO extends DAO{
 	@Path("/getEventsByCategorieAndDate")
 	@Produces("application/json")
 	public String getEventsByCategorieAndDate(@FormParam("categorie") String categorie,@FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
-		String query = "SELECT * FROM event WHERE categorie like '" + categorie + "' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		String query = "SELECT * FROM event WHERE (categorie like '" + categorie + "') AND (startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate+")"; 
 		return super.list(query);
 	}
 	
@@ -92,7 +92,7 @@ public class EventDAO extends DAO{
 	@Path("/getEventsByTwoCategoriesAndDate")
 	@Produces("application/json")
 	public String getEventsByTwoCategoriesAndDate(@FormParam("categorie1") String categorie1,@FormParam("categorie2") String categorie2, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
-		String query = "SELECT * FROM event WHERE categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		String query = "SELECT * FROM event WHERE (categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"') AND (startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate+")"; 
 		return super.list(query);
 	}
 	
@@ -100,7 +100,7 @@ public class EventDAO extends DAO{
 	@Path("/getEventsByTwoCategoriesAndDateWithLocation")
 	@Produces("application/json")
 	public String getEventsByTwoCategoriesAndDateWithLocation(@FormParam("categorie1") String categorie1,@FormParam("categorie2") String categorie2, @FormParam("startDate") String startDate, @FormParam("stopDate") String stopDate){
-		String query = "SELECT * FROM event INNER JOIN building USING (locationId) WHERE categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"' AND startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate; 
+		String query = "SELECT * FROM event INNER JOIN building USING (locationId) WHERE (categorie like '" + categorie1 + "' OR categorie like '" + categorie2 +"') AND (startDate BETWEEN " + startDate + " AND " + stopDate + " OR stopDate BETWEEN " + startDate + " AND " + stopDate+")"; 
 		return super.list(query);
 	}
 }
