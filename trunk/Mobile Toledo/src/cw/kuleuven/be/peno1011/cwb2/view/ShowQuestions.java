@@ -52,25 +52,25 @@ public class ShowQuestions extends Activity {
 	  // maakt een string[] displayStrings aan van de alles messages van de questions
       // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
       //TODO De database sorteren op score, dit is een integer van 0 tot 5
-	  final String[] displayStrings = new String[questions.size()];
-	  	  for(int i = 0;i< questions.size();i++){
-				
-	  		  	String displayString = "Vraag"+ ": " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
-				displayStrings[questions.size()-i] = displayString;
-				
-	  	  }
-	  
-	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
-	  ListView lv = (ListView) findViewById(R.id.lv);
-	  lv.setAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
-	  lv.setTextFilterEnabled(true);
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
-				getInfoQuestion(questions.get(questions.size()-position-1));	
-			
-			}
-	  });
+//	  final String[] displayStrings = new String[questions.size()];
+//	  	  for(int i = 0;i< questions.size();i++){
+//				
+//	  		  	String displayString = "Vraag"+ ": " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
+//				displayStrings[questions.size()-i] = displayString;
+//				
+//	  	  }
+//	  
+//	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
+//	  ListView lv = (ListView) findViewById(R.id.lv);
+//	  lv.setAdapter(new ArrayAdapter<String>(this,R.layout.showquestions, displayStrings));
+//	  lv.setTextFilterEnabled(true);
+//	  lv.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
+//				getInfoQuestion(questions.get(questions.size()-position-1));	
+//			
+//			}
+//	  });
 	      
 	  }
 		  				
