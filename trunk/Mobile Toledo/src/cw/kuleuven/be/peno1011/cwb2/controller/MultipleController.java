@@ -2,6 +2,7 @@ package cw.kuleuven.be.peno1011.cwb2.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.httpclient.HttpException;
 
@@ -35,9 +36,14 @@ public class MultipleController{
 	
 	//TODO: Controller moet nog gemaakt worden.ook DAO:  getmultiple
 	//Dit is om multiple in te steken, is dit wel nodig???
-	public void insert(String question, Lecture lecture) throws HttpException, IOException {
+	public void insert(MultipleChoice multiple, int eventId) throws HttpException, IOException {
 		
-		MultipleChoiceDAO.getInstance().getMultipleChoice(lecture.getEventId());
+		MultipleChoiceDAO.getInstance().addMultipleChoice(multiple,eventId);
+	}
+	
+	public List<MultipleChoice> getMultiple(int eventId) throws HttpException, IOException{
+		List<MultipleChoice> multiples = MultipleChoiceDAO.getInstance().getMultipleChoice(eventId);
+		return multiples;
 	}
 	
 	

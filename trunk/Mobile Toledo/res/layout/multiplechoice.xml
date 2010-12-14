@@ -17,11 +17,11 @@
 			android:typeface="serif"
 			android:text="blabla"
 			style="@style/FontStyle1"/>
-			<!--
+			
 			<ListView android:id="@+id/multiplelv" 
 			android:layout_height="wrap_content"
 			android:layout_width="fill_parent">
 			</ListView>
-	--></LinearLayout>
+	</LinearLayout>
 	
 </LinearLayout>
