@@ -236,12 +236,18 @@ public class MultipleView extends Activity{
                         MultipleChoice multiple = new MultipleChoice(question, answers, 1);
                         try {
 							MultipleController.getInstance().insert(multiple, lectureId);
+							Toast.makeText(getApplicationContext(), "Meerkeuzevraag aangemaakt.",
+				                      Toast.LENGTH_LONG).show();
 						} catch (HttpException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Toast.makeText(getApplicationContext(), "http",
+				                      Toast.LENGTH_LONG).show();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Toast.makeText(getApplicationContext(), "io",
+				                      Toast.LENGTH_LONG).show();
 						}
                 }
                 else{
