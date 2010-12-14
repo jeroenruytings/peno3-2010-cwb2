@@ -56,15 +56,15 @@ public class InteractionMenu extends Activity{
 				startActivity(intent);
 			}
 	    });
-//	    multipleButton.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View view) {
-//				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
-//                intent.putExtra("nextview",MultipleView.class); 
-//				startActivity(intent);
-//			}
-//	    });
+	    multipleButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",MultipleView.class); 
+				startActivity(intent);
+			}
+	    });
 	    showquestionButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -91,15 +91,15 @@ public class InteractionMenu extends Activity{
 				startActivity(intent);
 			}
 	    });
-//	    multipleButton.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View view) {
-//				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
-//                intent.putExtra("nextview",MultipleView.class); 
-//				startActivity(intent);
-//			}
-//	    });
+	    multipleButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",MultipleView.class); 
+				startActivity(intent);
+			}
+	    });
 	    showquestionButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -119,7 +119,6 @@ public class InteractionMenu extends Activity{
 			}
 	    });
 //	    statsButton.setOnClickListener(new View.OnClickListener() {
-//			
 //			@Override
 //			public void onClick(View view) {
 //				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
