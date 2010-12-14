@@ -20,6 +20,7 @@ public class Room {
 	private String link;
 	private int capacity;
 	private String name;
+	private int locationId;
 	
 	private Room(){}
 	
@@ -96,5 +97,13 @@ public class Room {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setLocationId(int locationId) {
+		this.locationId = locationId;
+	}
+
+	public int getLocationId() {
+		return locationId;
 	}	                                     
 }
