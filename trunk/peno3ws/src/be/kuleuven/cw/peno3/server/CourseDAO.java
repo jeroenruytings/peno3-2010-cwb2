@@ -154,7 +154,7 @@ public class CourseDAO extends DAO{
 	@Path("/initializeCourses")
 	@Produces ("application/json")
 	public String initializeCourses(@FormParam("userId") String userId) {
-		String query = "SELECT course.courseCode, course.academicYear, course.course, user.userId, user.firstName, user.lastName, user.birthDate, user.rank  FROM course_isp,course, course_user, user WHERE course_isp.userId like '" + userId + "' AND course_isp.courseCode = course.courseCode AND course_user.userId = user.userId";
+		String query = "SELECT course.courseCode, course.academicYear, course.course, user.userId, user.firstName, user.lastName, user.birthDate, user.rank FROM course_isp,course, course_user, user WHERE course_isp.userId like '"+ userId +"' AND course_isp.courseCode = course.courseCode AND course_user.userId = user.userId AND course_isp.courseCode = course_user.courseCode";
 		return super.get(query);
 	}
 }
