@@ -22,6 +22,7 @@ import cw.kuleuven.be.peno1011.cwb2.database.MultipleChoiceDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.RoomDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.UserDAO;
 import cw.kuleuven.be.peno1011.cwb2.database.local.LoginDbAdaptor;
+import cw.kuleuven.be.peno1011.cwb2.model.Answer;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.ISP;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
