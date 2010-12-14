@@ -8,7 +8,7 @@ public class MultipleChoice {
 	private int multipleChoiceId;
 	private ArrayList<Answer> answers;
 	
-	public MultipleChoice(Lecture lecture, String question, ArrayList<Answer> answers, int multipleChoiceId) {
+	public MultipleChoice(String question, ArrayList<Answer> answers, int multipleChoiceId) {
 		setQuestion(question);
 		setAnswers(answers);
 		setMultipleChoiceId(multipleChoiceId);
