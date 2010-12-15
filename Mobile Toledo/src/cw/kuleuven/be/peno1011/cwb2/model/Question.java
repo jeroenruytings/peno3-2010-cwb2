@@ -4,7 +4,7 @@ public class Question {
 	
 	private User questioner;
 	private Lecture lecture;
-	private String message;
+	private String question;
 	private Appreciation appreciation;
 	private int questionId;
 	
@@ -28,7 +28,7 @@ public class Question {
 	}
 	
 	public String getMessage() {
-		return message;
+		return question;
 	}
 
 	public User getQuestioner() {
@@ -36,7 +36,7 @@ public class Question {
 	}
 	
 	public void setMessage(String message) {
-		this.message = message;
+		this.question = message;
 	}
 	
 	

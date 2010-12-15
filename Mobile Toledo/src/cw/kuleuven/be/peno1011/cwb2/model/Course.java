@@ -14,7 +14,7 @@ public class Course  implements Serializable{
 	private User prof;
 	private String academicYear;
 	private ArrayList<Lecture> lectures = new ArrayList<Lecture>();
-	private ArrayList<Document> documents;
+	private ArrayList<Document> documents = new ArrayList<Document>();
 	private LinkedList<Announcement> announcements;
 	
 	
