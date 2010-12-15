@@ -102,7 +102,8 @@ public class GetInfo extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				
-				if (control.isBuilding(location) == false){
+				control = NavigationController.getInstance();
+				if (control.buildingExists(location) == false){
 					location = control.getBuilding(location);
 					
 				}
