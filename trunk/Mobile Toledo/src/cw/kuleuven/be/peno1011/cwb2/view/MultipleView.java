@@ -32,7 +32,7 @@ import cw.kuleuven.be.peno1011.cwb2.model.User;
 
 public class MultipleView extends Activity{    
 	private int lectureId;
-       
+    private int itemPressed;
         @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
@@ -57,8 +57,18 @@ public class MultipleView extends Activity{
         }
        
         //TODO: saven naar database
-        private boolean saveMultiple(){
+        private boolean saveMultiple(String answerId){
                 boolean isSaved = false;
+                try {
+					MultipleController.getInstance().addAnswer(MainController.getInstance().getUser().getUserId(), answerId);
+					isSaved = true;
+                } catch (HttpException e) {
+					e.printStackTrace();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+                
                 return isSaved;
         }
        
@@ -96,50 +106,51 @@ public class MultipleView extends Activity{
 	            lv.setOnItemClickListener(new OnItemClickListener() {
 			            @Override
 			            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-			            MultipleChoice multiple = multiples.get(position);
-			            final ArrayList<Answer> answers = multiple.getAnswers();
-			            ArrayList<String> answerStrings = new ArrayList<String>();
-			            for(int i=0;i<answers.size();i++){
-			            	answerStrings.add(answers.get(i).getAnswer());
-			            }
-			            String[] answerArray = (String[]) answerStrings.toArray();
-			//            final String[] options = multiple.getAnswers();
-			           
-				        AlertDialog.Builder ab=new AlertDialog.Builder(MultipleView.this);
-				                ab.setTitle(multiple.getQuestion());
-				                ab.setSingleChoiceItems(answerArray, 0,new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int whichButton) {
+				            MultipleChoice multiple = multiples.get(position);
+				            final ArrayList<Answer> answers = multiple.getAnswers();
+				            ArrayList<String> answerStrings = new ArrayList<String>();
+				            String[] answerArray = new String[answers.size()];
+				            for(int i=0;i<answers.size();i++){
+				            	answerArray[i] = answers.get(i).getAnswer();
 				            }
-				        });
-				        //op ingeven drukken
-				        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int whichButton) {
-				                Toast msg = Toast.makeText(MultipleView.this, Integer.toString(whichButton) , Toast.LENGTH_LONG);
-				                msg.show();
-				                MultipleChoice multiple = lecture.getMultipleChoice();
-				                ArrayList<Answer> newAnswers = answers;
-				                newAnswers.get(whichButton).setTotal(answers.get(whichButton).getTotal()+1);
-				                multiple.setAnswers(answers);
-				                if(saveMultiple()){
-				                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-				                        feedback.setText("Meerkeuzevraag beantwoordt");
-				                }
-				                else{
-				                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-				                        feedback.setText("Fout bij verzenden meerkeuzevraag");
-				                }
-				               
-				        }
-				        });
-				        //op annuleer drukken
-				        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
-				            public void onClick(DialogInterface dialog, int whichButton) {
-				                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-				                feedback.setText("Meerkeuzevraag niet beantwoordt");
-				            }
-				        });
-				        ab.show();
-			            }});
+	//			            String[] answerArray = (String[]) answerStrings.toArray();
+				//            final String[] options = multiple.getAnswers();
+				           itemPressed=0;
+					        AlertDialog.Builder ab=new AlertDialog.Builder(MultipleView.this);
+					                ab.setTitle(multiple.getQuestion());
+					                ab.setSingleChoiceItems(answerArray, 0,new DialogInterface.OnClickListener() {
+					                	public void onClick(DialogInterface dialog, int whichButton) {
+					                		itemPressed=whichButton;
+					                	}
+					        });
+					        //op ingeven drukken
+					        ab.setPositiveButton("Ingeven", new DialogInterface.OnClickListener() {
+					            public void onClick(DialogInterface dialog, int whichButton) {
+					            	String answerId = answers.get(itemPressed).getPossibleAnswerId();
+//					                MultipleChoice multiple = lecture.getMultipleChoice();
+//					                ArrayList<Answer> newAnswers = answers;
+//					                newAnswers.get(itemPressed).setTotal(answers.get(itemPressed).getTotal()+1);
+//					                multiple.setAnswers(answers);
+					                if(saveMultiple(answerId)){
+					                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+					                        feedback.setText("Meerkeuzevraag beantwoordt");
+					                }
+					                else{
+					                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+					                        feedback.setText("Fout bij verzenden meerkeuzevraag");
+					                }
+					               
+					        }
+					        });
+					        //op annuleer drukken
+					        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
+					            public void onClick(DialogInterface dialog, int whichButton) {
+					                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
+					                feedback.setText("Meerkeuzevraag niet beantwoordt");
+					            }
+					        });
+					        ab.show();
+				          }});
 			}
 			
         }
