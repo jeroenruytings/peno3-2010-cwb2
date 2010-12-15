@@ -85,8 +85,8 @@ public class CalendarController {
 		ArrayList<Event> lectures = new ArrayList<Event>();
 		
 		Date startDate = new Date();
-		Date stopDate = startDate;
-		stopDate.setDate(stopDate.getDate()+numberOfDays+1);
+		Date stopDate = new Date(startDate.getYear(),startDate.getMonth(),startDate.getDate(),startDate.getHours(),startDate.getMinutes(),startDate.getSeconds());
+		stopDate.setDate(stopDate.getDate()+numberOfDays);
 		stopDate.setHours(0);
 		stopDate.setMinutes(0);
 		stopDate.setSeconds(0);
