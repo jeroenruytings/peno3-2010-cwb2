@@ -1,6 +1,10 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.httpclient.HttpException;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import cw.kuleuven.be.peno1011.cwb2.R;
+import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
+import cw.kuleuven.be.peno1011.cwb2.controller.MultipleController;
 import cw.kuleuven.be.peno1011.cwb2.model.Answer;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.MultipleChoice;
@@ -29,12 +35,28 @@ public class ShowStatistics extends Activity {
 		         
 		         //haalt lecture op
 				  Bundle bundle = getIntent().getExtras();
-				  final Lecture lecture = (Lecture) bundle.get("lecture");
+				  int lectureId = (Integer) bundle.get("lecture");
+                  String courseCode = (String) bundle.get("courseCode");
 				  
+                  Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
 				  //haalt meerkeuzevraag op (slechts 1 per les, wordt anders overschreven)
 				  //en haalt variabelen op
-				  final MultipleChoice multipleChoice = lecture.getMultipleChoice();
-				  MultipleChoice multiple = lecture.getMultipleChoice();
+                  List<MultipleChoice> multipleChoices = null;
+                  try {
+      				multipleChoices = MultipleController.getInstance().getMultiple(lecture.getEventId());
+      			} catch (HttpException e) {
+      				// TODO Auto-generated catch block
+      				e.printStackTrace();
+      				Toast.makeText(getApplicationContext(), "http",
+      	                      Toast.LENGTH_LONG).show();
+      			} catch (IOException e) {
+      				// TODO Auto-generated catch block
+      				e.printStackTrace();
+      				Toast.makeText(getApplicationContext(), "io",
+      	                      Toast.LENGTH_LONG).show();
+      			}
+      			MultipleChoice multiple=multipleChoices.get(0);
+      			try{
 		            ArrayList<Answer> answers = multiple.getAnswers();
 //		            ArrayList<String> answerStrings = new ArrayList<String>();
 //		            for(int i=0;i<answers.size();i++){
@@ -46,7 +68,7 @@ public class ShowStatistics extends Activity {
 							 			  
 				  //plaatst titel in textview
 				  TextView title = (TextView) findViewById(R.id.title);
-					 title.setText(multipleChoice.getQuestion());
+					 title.setText(multiple.getQuestion());
 					
 //				  
 //				  
@@ -73,10 +95,18 @@ public class ShowStatistics extends Activity {
 //			                
 //				 }
 				 int a = answers.get(0).getTotal();
-				 int b = answers.get(0).getTotal();
-				 int c = answers.get(0).getTotal();
-				 int d = answers.get(0).getTotal();
-				 int e = answers.get(0).getTotal();
+				 int b = answers.get(1).getTotal();
+				 int c = 0;
+				 int d = 0;
+				 int e = 0;
+				 try{
+					 c = answers.get(2).getTotal();
+					 d = answers.get(3).getTotal();
+					 e = answers.get(4).getTotal();
+				 }
+				 catch(NullPointerException ne){
+					 
+				 }
 				 
 				 int total = a+b+c+d+e;
 				  //toont het aantal antwoorden in een progressbar
@@ -125,6 +155,12 @@ public class ShowStatistics extends Activity {
 					  Toast.makeText(getApplicationContext(), "Fout bij het opvragen van de statistieken.",
 					          Toast.LENGTH_LONG).show(); 
 				  }
+      			}
+      			catch(NullPointerException ne){
+      				Toast.makeText(getApplicationContext(), "Fout bij het opvragen van de meerkeuzevraag",
+    	                      Toast.LENGTH_LONG).show();
+      			}
+
 	     }
 	 }
 	 
