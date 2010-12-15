@@ -154,15 +154,16 @@ public class NavigationController {
 			if(isbuilding == true){
 			links = BuildingDAO.getInstance().getPictures(locationname);
 			}	
-			else if (!isbuilding == false){
+			else if (isbuilding == false){
 			links = RoomDAO.getInstance().getPictures(locationname);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
 		if(links != null){
-			for(String link : links){
-				link.replace(" ", "%20");
+		
+			for(int i = 0 ; i<links.length ; i++ ){
+				links[i] = links[i].replaceAll(" ", "%20");
 			}
 			
 		}
