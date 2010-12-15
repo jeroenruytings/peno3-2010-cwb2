@@ -66,24 +66,28 @@ public class ShowRoute extends MapActivity {
 		
 		BuildingDAO buildingdao = BuildingDAO.getInstance();
 		
-		if (from =="ownlocation"){
+		if (from.equals("ownlocation")){
 			LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			try{
+			if (location == null){
+				Intent i = new Intent(ShowRoute.this,NavigationMenu.class);
+				i.putExtra("gps", "geengps");
+				startActivity(i);
+				finish(); 
+			}
+			else{
 		    int latitude = (int) location.getLatitude();
 		    int longitude = (int) location.getLongitude();
 		    GeoPoint gpfrom5 = new GeoPoint((int)(latitude*1E6),(int)(longitude*1E6));
 		    gpfrom = gpfrom5;
 		    GeoPoint gpto5 = buildingdao.getBuildingCoordinates(to);
-		    gpto = gpto5;}
-			catch(NullPointerException nullie){
-				Intent i = new Intent(ShowRoute.this,NavigationMenu.class);
-				i.putExtra("gps", "geengps");
-				startActivity(i);
-				finish();
-			}
+		    gpto = gpto5;
+		    frombuilding = false;
+		    tobuilding = true;
+		    }}
+	
 		
-		}
+		
 		else if (frombuilding == true){
 			// navigeer vanaf gebouw
 			if (tobuilding==true){
