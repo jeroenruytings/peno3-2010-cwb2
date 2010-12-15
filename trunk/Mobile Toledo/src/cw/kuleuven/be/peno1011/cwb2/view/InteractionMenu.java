@@ -118,14 +118,14 @@ public class InteractionMenu extends Activity{
 				startActivity(intent);
 			}
 	    });
-//	    statsButton.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View view) {
-//				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
-//                intent.putExtra("nextview",ShowStatistics.class); 
-//				startActivity(intent);
-//			}
-//	    });
+	    statsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(InteractionMenu.this,SelectCourse.class);
+                intent.putExtra("nextview",ShowStatistics.class); 
+				startActivity(intent);
+			}
+	    });
 
 	}
 }

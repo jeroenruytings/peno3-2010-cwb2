@@ -72,7 +72,7 @@ public class ShowQuestions extends Activity {
 //      //TODO De database sorteren op score, dit is een integer van 0 tot 5
 	  final String[] displayStrings = new String[questions.length];
 	  	  for(int i = 0;i< questions.length;i++){
-	  		  	String displayString = "Vraag: " + questions[i].getMessage() + "(" + questions[i].getAppreciation() + " sterren)";
+	  		  	String displayString = "Vraag: " + questions[i].getMessage() + " ( score: " + questions[i].getAppreciation().getScore() + " )";
 				displayStrings[i] = displayString;
 				
 	  	  }
@@ -99,7 +99,12 @@ public class ShowQuestions extends Activity {
 		//dit is de custom alertdialog met een eigen view die dan een rating toelaat.
 		//deze view is te vinden bij layout/questionview.xml
 		AlertDialog.Builder ab=new AlertDialog.Builder(ShowQuestions.this);
-		ab.setTitle(question.getQuestioner().getFirstName() + " "+ question.getQuestioner().getLastName());
+		try{
+			ab.setTitle(question.getQuestioner().getFirstName() + " "+ question.getQuestioner().getLastName());
+		}
+		catch(NullPointerException ne){
+			ab.setTitle("Vrager onbekend");			
+		}
 		ab.setMessage(question.getMessage());
 		ab.setView(questionview);
 		ab.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -108,19 +113,17 @@ public class ShowQuestions extends Activity {
 	    		
   		// Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
 				  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
-				  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-				  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-				  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
-				    				  		        
-	  //TODO/ in database steken en kijken of de functie .intValue werkt die een integer van een float maakt.
-	  //dao.insert(ratingbar.getRating().intValue());
-	    				  		        
-	    				  		    }
-	    				  		});		        	
-	    		
-			        }
-			        });
-			        ab.show();	
+					  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+					@Override
+					  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+					  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
+	
+		    				  		    }
+		    				  		});		        	
+		    		
+				        }
+				        });
+ab.show();	
 	
 	
 	}

@@ -23,7 +23,6 @@
         </activity>
 		<activity android:name=".view.NavigationMenu" android:label="NavigationMenu">
 				<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
@@ -49,7 +48,6 @@
 		</activity>
 		<activity android:name=".view.GoogleMaps" android:label="GoogleMaps"  android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
-					<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
@@ -100,7 +98,6 @@
 		</activity>
 		<activity android:label="RouteMenu" android:name=".view.RouteMenu">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -122,7 +119,6 @@
 		</activity>
 		<activity android:name=".view.Agenda" android:label="Agenda" android:theme="@android:style/Theme.NoTitleBar">
 				<intent-filter>
-					<action android:name="android.intent.action.MAIN" />
 					<category android:name="android.intent.category.LAUNCHER"/>
 				</intent-filter>
 		</activity>
