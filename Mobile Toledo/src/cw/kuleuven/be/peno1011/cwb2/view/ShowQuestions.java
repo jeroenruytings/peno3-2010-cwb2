@@ -1,6 +1,9 @@
 package cw.kuleuven.be.peno1011.cwb2.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import org.apache.commons.httpclient.HttpException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import cw.kuleuven.be.peno1011.cwb2.R;
 import cw.kuleuven.be.peno1011.cwb2.controller.InfoController;
+import cw.kuleuven.be.peno1011.cwb2.controller.QuestionController;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
 import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
@@ -36,6 +40,7 @@ public class ShowQuestions extends Activity {
 	  //haalt lecture
 	  Bundle bundle = getIntent().getExtras();
 	  
+	  Question[] questions = null;
 	  ArrayList<Question> questionList=new ArrayList<Question>();
 	  if(bundle != null && bundle.get("lecture") != null && bundle.get("courseCode") != null){
 			int lectureId = (Integer) bundle.get("lecture");
@@ -44,27 +49,34 @@ public class ShowQuestions extends Activity {
 //			Toast.makeText(ShowQuestions.this, lecture.getTitle(), Toast.LENGTH_SHORT).show();
 //			Toast.makeText(ShowQuestions.this, lecture.getQuestions().get(0).getMessage(), Toast.LENGTH_SHORT).show();
 			try{
-//				questionList = getQuestionsByLecture(lectureId);
+				questions = QuestionController.getInstance().getQuestionsByLecture("" + lectureId);
 			}
 			catch(NullPointerException ne){
 				Toast.makeText(ShowQuestions.this, "Geen les gevonden", Toast.LENGTH_SHORT).show();
+				finish();
+			} catch (HttpException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		else{
 			finish();
 		}	  
-	  final ArrayList<Question> questions = questionList;
-      
-	  // maakt een string[] displayStrings aan van de alles messages van de questions
-      // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
-      //TODO De database sorteren op score, dit is een integer van 0 tot 5
-	  final String[] displayStrings = new String[questions.size()];
-	  	  for(int i = 0;i< questions.size();i++){
-	  		  	String displayString = "Vraag: " + questions.get(i).getMessage() + "(" + questions.get(i).getAppreciation() + " sterren)";
+//	  final ArrayList<Question> questions = questionList;
+//      
+//	  // maakt een string[] displayStrings aan van de alles messages van de questions
+//      // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
+//      //TODO De database sorteren op score, dit is een integer van 0 tot 5
+	  final String[] displayStrings = new String[questions.length];
+	  	  for(int i = 0;i< questions.length;i++){
+	  		  	String displayString = "Vraag: " + questions[i].getMessage() + "(" + questions[i].getAppreciation() + " sterren)";
 				displayStrings[i] = displayString;
 				
 	  	  }
-	  
+	  final Question[] allQuestions = questions;
 	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
 	  ListView lv = (ListView) findViewById(R.id.lv);
 	  lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, displayStrings));
@@ -72,7 +84,7 @@ public class ShowQuestions extends Activity {
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
-				getInfoQuestion(questions.get(questions.size()-position-1));	
+				getInfoQuestion(allQuestions[allQuestions.length-position-1]);	
 
 			}
 	  });

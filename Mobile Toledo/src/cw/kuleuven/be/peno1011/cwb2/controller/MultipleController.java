@@ -45,6 +45,8 @@ public class MultipleController{
 		return multiples;
 	}
 	
-	
+	public void addAnswer(String userId, String possibleAnswerId) throws HttpException, IOException {
+		MultipleChoiceDAO.getInstance().addAnswer(userId, possibleAnswerId);
+	}
 	
 }

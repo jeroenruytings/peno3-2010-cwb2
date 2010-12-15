@@ -8,6 +8,7 @@ import org.apache.commons.httpclient.HttpException;
 import cw.kuleuven.be.peno1011.cwb2.database.QuestionDAO;
 import cw.kuleuven.be.peno1011.cwb2.model.Course;
 import cw.kuleuven.be.peno1011.cwb2.model.Lecture;
+import cw.kuleuven.be.peno1011.cwb2.model.Question;
 
 
 
@@ -25,6 +26,10 @@ public class QuestionController{
 	public void insert(String question, int id) throws HttpException, IOException {
 		String userId = MainController.getInstance().getUser().getUserId();
 		QuestionDAO.getInstance().addQuestion(userId,question,""+id);
+	}
+	public Question[] getQuestionsByLecture(String lectureId) throws HttpException, IOException{
+		Question[] questionArray = QuestionDAO.getInstance().getQuestionByEventId(lectureId);
+		return questionArray;
 	}
 	
 }

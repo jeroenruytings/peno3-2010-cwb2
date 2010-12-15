@@ -11,7 +11,8 @@ public class Appreciation {
 		setScore(score);
 		setUsers(users);
 	}
-
+	private Appreciation() {}
+	
 	public int getScore() {
 		return score;
 	}
