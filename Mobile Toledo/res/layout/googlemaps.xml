@@ -12,7 +12,7 @@
    android:layout_height="fill_parent"
    android:layout_weight="1" 
     android:clickable="true"
-    android:apiKey="0KzMc1oXyU0p6aAW4O5YC-DgCJix2YA9YwBeoOQ"/>
+    android:apiKey="0BukLXtXeD83ZIJSHqQst8ciDksa6N_vA_KymwA"/>
 
 <LinearLayout xmlns:android=
    "http://schemas.android.com/apk/res/android"
