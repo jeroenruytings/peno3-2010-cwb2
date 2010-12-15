@@ -151,10 +151,10 @@ public class NavigationController {
 		String[] links = null;
 		
 		try {
-			if(isbuilding){
+			if(isbuilding == true){
 			links = BuildingDAO.getInstance().getPictures(locationname);
 			}	
-			else if (!isbuilding){
+			else if (!isbuilding == false){
 			links = RoomDAO.getInstance().getPictures(locationname);
 			}
 		} catch (IOException e) {
