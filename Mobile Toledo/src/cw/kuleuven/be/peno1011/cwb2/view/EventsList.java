@@ -33,15 +33,22 @@ public class EventsList extends ListActivity{
         CalendarController controller = new CalendarController();
         int numberOfDays;
         String span;
+        Date date;
         
         public void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
                   
                   Bundle bundle = getIntent().getExtras();
                   span = (String) bundle.get("span");
+                  try{
+                  date = (Date) bundle.get("date");
+                  }
+                  catch(NullPointerException ne){
+                	  
+                  }
                   
                   try {
-                        showEvents(span);
+                        showEvents(span,date);
                 } catch (HttpException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -54,7 +61,7 @@ public class EventsList extends ListActivity{
         public void onResume (){
                 super.onResume();
                 try {
-                        showEvents(span);
+                        showEvents(span,date);
                 } catch (HttpException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -92,7 +99,7 @@ public class EventsList extends ListActivity{
 		                        OnClickListener listener =new OnClickListener(){
                                         @Override
                                         public void onClick(View arg0) {
-                                                Intent intent = new Intent(EventsList.this,GetInfo.class);
+                                                Intent intent = new Intent(EventsList.this,LocationInfo.class);
                                                 intent.putExtra("building", building);
                                                 startActivity(intent);
                                         }
@@ -118,18 +125,18 @@ public class EventsList extends ListActivity{
 		                        }
                   });
         }
-        public void showEvents(String span) throws HttpException, IOException{
+        public void showEvents(String span,Date date) throws HttpException, IOException{
                 List<Event> events = new ArrayList<Event>();
                   if(span.equals("day")){
-                          events = controller.getEvents(1);
+                          events = controller.getEvents(1,date);
                           numberOfDays=1;
                   }
                   else if(span.equals("week")){
-                          events = controller.getEvents(7);
+                          events = controller.getEvents(7,date);
                           numberOfDays=7;
                   }
                   else{
-                          events = controller.getEvents(30);
+                          events = controller.getEvents(30,date);
                           numberOfDays=30;
                   }
                   makeAdapter(events);
