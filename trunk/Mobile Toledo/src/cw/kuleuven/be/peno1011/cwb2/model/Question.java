@@ -6,6 +6,12 @@ public class Question {
 	private Lecture lecture;
 	private String message;
 	private Appreciation appreciation;
+	private int questionId;
+	
+	
+	private Question(){
+		
+	}
 	
 	public Appreciation getAppreciation() {
 		return appreciation;
@@ -45,5 +51,14 @@ public class Question {
 	public void setLecture(Lecture lecture) {
 		this.lecture = lecture;
 	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
 
 }
