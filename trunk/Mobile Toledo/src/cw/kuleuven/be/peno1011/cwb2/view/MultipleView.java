@@ -41,11 +41,7 @@ public class MultipleView extends Activity{
                      Bundle bundle = getIntent().getExtras();
                      lectureId = (Integer) bundle.get("lecture");
                      courseCode = (String) bundle.get("courseCode");
-                }
-              catch(NullPointerException ne){
-              		Toast.makeText(MultipleView.this, "Geen les van dit vak gevonden die momenteel bezig is." , Toast.LENGTH_LONG).show();
-                      finish();
-              }
+              
                      Lecture lecture = InfoController.getInstance().findLectureById(lectureId,courseCode);
                      User user = MainController.getInstance().getUser();
                                 if(user.getRank()==0){
@@ -54,6 +50,11 @@ public class MultipleView extends Activity{
                                 else{
                                         poseMultiple(lecture);
                                 }  
+              }
+              catch(NullPointerException ne){
+            		Toast.makeText(MultipleView.this, "Geen les van dit vak gevonden die momenteel bezig is." , Toast.LENGTH_LONG).show();
+                    finish();
+            }
         }
        
         //TODO: saven naar database
