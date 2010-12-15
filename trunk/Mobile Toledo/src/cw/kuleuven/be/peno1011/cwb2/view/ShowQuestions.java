@@ -50,6 +50,29 @@ public class ShowQuestions extends Activity {
 //			Toast.makeText(ShowQuestions.this, lecture.getQuestions().get(0).getMessage(), Toast.LENGTH_SHORT).show();
 			try{
 				questions = QuestionController.getInstance().getQuestionsByLecture("" + lectureId);
+//				  final ArrayList<Question> questions = questionList;
+//		      
+//			  // maakt een string[] displayStrings aan van de alles messages van de questions
+//		      // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
+//		      //TODO De database sorteren op score, dit is een integer van 0 tot 5
+			  final String[] displayStrings = new String[questions.length];
+			  	  for(int i = 0;i< questions.length;i++){
+			  		  	String displayString = "Vraag: " + questions[i].getMessage() + " ( score: " + questions[i].getAppreciation().getScore() + " )";
+						displayStrings[i] = displayString;
+						
+			  	  }
+			  final Question[] allQuestions = questions;
+			  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
+			  ListView lv = (ListView) findViewById(R.id.lv);
+			  lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, displayStrings));
+			  lv.setTextFilterEnabled(true);
+			  lv.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
+						getInfoQuestion(allQuestions[allQuestions.length-position-1]);	
+
+					}
+			  });
 			}
 			catch(NullPointerException ne){
 				Toast.makeText(ShowQuestions.this, "Geen les gevonden", Toast.LENGTH_SHORT).show();
@@ -65,29 +88,6 @@ public class ShowQuestions extends Activity {
 		else{
 			finish();
 		}	  
-//	  final ArrayList<Question> questions = questionList;
-//      
-//	  // maakt een string[] displayStrings aan van de alles messages van de questions
-//      // De users zijn er niet bijgevoegd wegens wens van anonimiteit.
-//      //TODO De database sorteren op score, dit is een integer van 0 tot 5
-	  final String[] displayStrings = new String[questions.length];
-	  	  for(int i = 0;i< questions.length;i++){
-	  		  	String displayString = "Vraag: " + questions[i].getMessage() + " ( score: " + questions[i].getAppreciation().getScore() + " )";
-				displayStrings[i] = displayString;
-				
-	  	  }
-	  final Question[] allQuestions = questions;
-	  // Maakt een listAdapter met als layout de showquestions.xml en als input de string[] displayStrings  
-	  ListView lv = (ListView) findViewById(R.id.lv);
-	  lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, displayStrings));
-	  lv.setTextFilterEnabled(true);
-	  lv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {						
-				getInfoQuestion(allQuestions[allQuestions.length-position-1]);	
-
-			}
-	  });
 	      
 	  }
 		  				
@@ -112,14 +112,15 @@ public class ShowQuestions extends Activity {
 	    	public void onClick(DialogInterface dialog, int whichButton) {
 	    		
   		// Deze functie zorgt ervoor dat de rating die de gebruiker geeft ook kan gelezen worden
-				  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
-					  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-					@Override
-					  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-					  Toast.makeText(ShowQuestions.this, "New Rating: " + rating, Toast.LENGTH_SHORT).show();
-	
-		    				  		    }
-		    				  		});		        	
+//				  final RatingBar ratingbar = (RatingBar) findViewById(R.id.ratingbar);
+//					  ratingbar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+//					@Override
+//					  public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+					  Toast.makeText(getApplicationContext(), "Rating gewijzigd.",
+		                      Toast.LENGTH_LONG).show();
+//	
+//		    				  		    }
+//		    				  		});		        	
 		    		
 				        }
 				        });
