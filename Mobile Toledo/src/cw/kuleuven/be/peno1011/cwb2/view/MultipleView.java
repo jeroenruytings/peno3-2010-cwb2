@@ -132,12 +132,12 @@ public class MultipleView extends Activity{
 //					                newAnswers.get(itemPressed).setTotal(answers.get(itemPressed).getTotal()+1);
 //					                multiple.setAnswers(answers);
 					                if(saveMultiple(answerId)){
-					                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-					                        feedback.setText("Meerkeuzevraag beantwoordt");
+					                        Toast.makeText(getApplicationContext(), "Meerkeuzevraag beantwoord.",
+								                      Toast.LENGTH_LONG).show();
 					                }
 					                else{
-					                        TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-					                        feedback.setText("Fout bij verzenden meerkeuzevraag");
+					                        Toast.makeText(getApplicationContext(), "Fout bij verzenden meerkeuzevraag.",
+								                      Toast.LENGTH_LONG).show();
 					                }
 					               
 					        }
@@ -145,8 +145,8 @@ public class MultipleView extends Activity{
 					        //op annuleer drukken
 					        ab.setNegativeButton("Annuleer", new DialogInterface.OnClickListener() {
 					            public void onClick(DialogInterface dialog, int whichButton) {
-					                TextView feedback = (TextView) findViewById(R.id.multiplefeedback);
-					                feedback.setText("Meerkeuzevraag niet beantwoordt");
+					            	Toast.makeText(getApplicationContext(), "Meerkeuzevraag niet beantwoordt.",
+						                      Toast.LENGTH_LONG).show();
 					            }
 					        });
 					        ab.show();
