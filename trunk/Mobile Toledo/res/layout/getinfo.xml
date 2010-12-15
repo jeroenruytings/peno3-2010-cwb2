@@ -94,6 +94,7 @@
     android:id="@+id/gallery"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:spacing="2dip"
     android:visibility="visible"/>
  </FrameLayout>
     
