@@ -48,6 +48,7 @@ public class ShowRoute extends MapActivity {
 	GeoPoint gpto;
 	Boolean frombuilding;
 	Boolean tobuilding;
+	Location location;
 	
 
 	@Override
@@ -68,12 +69,12 @@ public class ShowRoute extends MapActivity {
 		
 		if (from.equals("ownlocation")){
 			LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-			Location location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			location = locationmanager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if (location == null){
 				Intent i = new Intent(ShowRoute.this,NavigationMenu.class);
 				i.putExtra("gps", "geengps");
 				startActivity(i);
-				finish(); 
+				finish();
 			}
 			else{
 		    int latitude = (int) location.getLatitude();
@@ -96,6 +97,7 @@ public class ShowRoute extends MapActivity {
 				GeoPoint gpto1 = buildingdao.getBuildingCoordinates(to);
 				gpfrom = gpfrom1;
 				gpto = gpto1;
+				location = new Location(from);
 
 			}
 			else{
@@ -106,6 +108,7 @@ public class ShowRoute extends MapActivity {
 					gpto2 = NavigationController.getCoordinates(to);
 					gpfrom = gpfrom2;
 					gpto = gpto2;
+					location = new Location(from);
 				} catch (IOException e) {
 					e.printStackTrace();
 					gpto=new GeoPoint(0, 0);
@@ -123,6 +126,7 @@ public class ShowRoute extends MapActivity {
 					gpfrom3 = NavigationController.getCoordinates(from);
 					gpfrom = gpfrom3;
 					gpto = gpto3;
+					location = new Location(from);
 				} catch (IOException e) {
 					e.printStackTrace();
 					gpto=new GeoPoint(0, 0);
@@ -137,6 +141,7 @@ public class ShowRoute extends MapActivity {
 						GeoPoint gpto4 = NavigationController.getCoordinates(to);
 						gpfrom = gpfrom4;
 						gpto = gpto4;
+						location = new Location(from);
 					} catch (IOException e) {
 						e.printStackTrace();
 						gpto=new GeoPoint(0, 0);
@@ -144,6 +149,7 @@ public class ShowRoute extends MapActivity {
 
 		}}
 			
+		if(location!=null){
 		if(gpto.getLatitudeE6() == 0 && gpto.getLongitudeE6() == 0){
 			if(gpto.getLatitudeE6() == 0 && gpto.getLongitudeE6() == 0 && gpfrom.getLatitudeE6() == 0 && gpfrom.getLongitudeE6() == 0){
 			Intent i = new Intent(ShowRoute.this, RouteMenu.class);
@@ -241,8 +247,15 @@ public class ShowRoute extends MapActivity {
 		mapView.setSatellite(false);
 		mapView.invalidate();
 
- 		}}
-
+ 		}
+	}
+		else{
+			Intent i = new Intent(ShowRoute.this,NavigationMenu.class);
+			i.putExtra("gps", "geengps");
+			startActivity(i);
+			finish();
+		}}
+	
 
 
 	@Override
