@@ -119,31 +119,25 @@ public class NavigationController {
 			}
 			return existing;
 		}
-	
-	  public Bitmap downloadFile(String fileUrl){
-		  Bitmap mImg = null;
-          URL mFileUrl = null;          
-          try {
-               mFileUrl= new URL(fileUrl);
-          } catch (MalformedURLException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-          }
-          try {
-               HttpURLConnection connection= (HttpURLConnection)mFileUrl.openConnection();
-               connection.setDoInput(true);
-               connection.connect();
-               int length = connection.getContentLength();
-               InputStream is = connection.getInputStream();
-               
-               mImg = BitmapFactory.decodeStream(is);
-                              
-          } catch (IOException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-          }
-          return mImg;
-	  }
+	 
+	 
+		public static Bitmap downloadFile(String urlString) {
+			
+			    try {
+			        URL url = new URL(urlString);
+			        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			        connection.setDoInput(true);
+			        connection.connect();
+			        InputStream in = connection.getInputStream();
+			        Bitmap mImg = BitmapFactory.decodeStream(in);
+			        return mImg;
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			        return null;
+			    }
+			}
+          
+        
 
 	
 	public Bitmap[] getPictureArray(String locationname, boolean isbuilding)
@@ -164,6 +158,10 @@ public class NavigationController {
 		
 			for(int i = 0 ; i<links.length ; i++ ){
 				links[i] = links[i].replaceAll(" ", "%20");
+				links[i] = links[i].replace("http","https");
+				links[i] = links[i].replace("/foto.htm?img=","/");
+				links[i] = links[i].split("jpg")[0]+"jpg";
+				
 			}
 			
 		}
