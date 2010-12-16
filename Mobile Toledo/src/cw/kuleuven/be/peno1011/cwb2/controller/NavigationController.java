@@ -143,7 +143,6 @@ public class NavigationController {
 	public Bitmap[] getPictureArray(String locationname, boolean isbuilding)
 	{
 		String[] links = null;
-		isbuilding = true;
 		try {
 			if(isbuilding == true){
 			links = BuildingDAO.getInstance().getPictures(locationname);
